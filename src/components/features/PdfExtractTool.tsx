@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { extractPagesToMergedPDF, extractPagesToZip } from '@/lib/pdf-extract';
 import {
@@ -52,6 +53,8 @@ function parsePageRange(input: string, maxPage: number): number[] {
 }
 
 export default function PdfExtractTool() {
+  const t = useTranslations('PdfExtract');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +70,7 @@ export default function PdfExtractTool() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     const selected = e.target.files[0];
-    if (selected.type !== 'application/pdf') return alert('请上传 PDF 文件');
+    if (selected.type !== 'application/pdf') return alert(tCommon('errors.uploadPdf'));
 
     setFile(selected);
     e.target.value = '';
@@ -85,7 +88,7 @@ export default function PdfExtractTool() {
         // 默认全选，方便用户直接提取全部或做反向剔除
         setSelectedPages(images.map((_, idx) => idx));
       } catch (err) {
-        alert('解析 PDF 页面失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -133,7 +136,7 @@ export default function PdfExtractTool() {
   // 表达式框选
   const handleApplyPageRange = () => {
     const parsed = parsePageRange(pageRangeInput, thumbnails.length);
-    if (parsed.length === 0) return alert('请输入有效的页码表达式（如：1-5, 8）');
+    if (parsed.length === 0) return alert(t('errors.invalidRange'));
     setSelectedPages(parsed);
     setPageRangeInput('');
   };
@@ -141,7 +144,7 @@ export default function PdfExtractTool() {
   // 执行真正的导出提取
   const handleExport = async () => {
     if (!file) return;
-    if (selectedPages.length === 0) return alert('请先勾选需要提取的页面！');
+    if (selectedPages.length === 0) return alert(t('errors.noPagesSelected'));
 
     try {
       setIsProcessing(true);
@@ -167,7 +170,7 @@ export default function PdfExtractTool() {
       }
     } catch (err) {
       console.error(err);
-      alert('提取过程发生错误');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -188,9 +191,9 @@ export default function PdfExtractTool() {
             <Upload className="w-8 h-8" />
           </div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽 PDF 文件到此处上传</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.prompt')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              抽取选中的页面独立导出为新 PDF 或打包为 ZIP 压缩包
+              {t('upload.hint')}
             </p>
           </div>
         </div>
@@ -215,12 +218,12 @@ export default function PdfExtractTool() {
               {selectedPages.length === thumbnails.length ? (
                 <>
                   <CheckSquare className="w-3.5 h-3.5 text-red-600" />
-                  <span>取消全选</span>
+                  <span>{tCommon('actions.deselectAll')}</span>
                 </>
               ) : (
                 <>
                   <Square className="w-3.5 h-3.5 text-slate-400" />
-                  <span>全选 ({selectedPages.length}/{thumbnails.length})</span>
+                  <span>{tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}</span>
                 </>
               )}
             </button>
@@ -238,21 +241,21 @@ export default function PdfExtractTool() {
                 className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
                 <Binary className="w-3.5 h-3.5 text-red-600" />
-                <span>奇数页</span>
+                <span>{t('actions.odd')}</span>
               </button>
               <button
                 onClick={() => toggleOddEvenPages('even')}
                 className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
                 <Binary className="w-3.5 h-3.5 text-red-600" />
-                <span>偶数页</span>
+                <span>{t('actions.even')}</span>
               </button>
             </div>
 
             <div className="flex items-center space-x-1.5 bg-slate-50 p-0.5 rounded-lg border border-slate-200">
               <input
                 type="text"
-                placeholder="如: 1-3, 7"
+                placeholder={t('placeholder.range')}
                 value={pageRangeInput}
                 onChange={(e) => setPageRangeInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRange()}
@@ -262,7 +265,7 @@ export default function PdfExtractTool() {
                 onClick={handleApplyPageRange}
                 className="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-0.5 rounded font-bold transition-colors shadow-sm"
               >
-                框选
+                {t('actions.applyRange')}
               </button>
             </div>
           </div>
@@ -278,10 +281,10 @@ export default function PdfExtractTool() {
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-500 hover:text-slate-800'
                 }`}
-                title="所有提取页面合并为一个 PDF 文件"
+                title={t('mode.mergedTitle')}
               >
                 <Layers className="w-3 h-3 text-red-600" />
-                <span>合并导出</span>
+                <span>{t('mode.merged')}</span>
               </button>
               <button
                 onClick={() => setExportMode('zip')}
@@ -290,10 +293,10 @@ export default function PdfExtractTool() {
                     ? 'bg-white text-slate-900 shadow-sm'
                     : 'text-slate-500 hover:text-slate-800'
                 }`}
-                title="每个页面独立拆分为单个文件并打包为 ZIP"
+                title={t('mode.zipTitle')}
               >
                 <Archive className="w-3 h-3 text-red-600" />
-                <span>单页打包 ZIP</span>
+                <span>{t('mode.zip')}</span>
               </button>
             </div>
 
@@ -303,7 +306,7 @@ export default function PdfExtractTool() {
               className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>{isProcessing ? '提取导出中...' : `提取 (${selectedPages.length} 页)`}</span>
+              <span>{isProcessing ? t('status.extracting') : t('actions.extractCount', { count: selectedPages.length })}</span>
             </button>
           </div>
         </div>
@@ -313,7 +316,7 @@ export default function PdfExtractTool() {
           {isLoading ? (
             <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
               <RefreshCw className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">正在解析页面缩略图...</span>
+              <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -343,7 +346,7 @@ export default function PdfExtractTool() {
                     {isSelected && (
                       <div className="absolute top-1.5 right-1.5 bg-slate-900/90 text-teal-400 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
                         <FileCheck2 className="w-2.5 h-2.5" />
-                        <span>提取</span>
+                        <span>{t('badge.extract')}</span>
                       </div>
                     )}
 
@@ -357,8 +360,8 @@ export default function PdfExtractTool() {
                     </div>
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] font-medium text-slate-500">
-                      <span>第 {pageIdx + 1} 页</span>
-                      {isSelected && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">已选中</span>}
+                      <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
+                      {isSelected && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selected')}</span>}
                     </div>
                   </div>
                 );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { removePDFPages } from '@/lib/pdf-delete';
 import {
@@ -51,6 +52,8 @@ function parsePageRange(input: string, maxPage: number): number[] {
 }
 
 export default function PdfDeleteTool() {
+  const t = useTranslations('PdfDelete');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +66,7 @@ export default function PdfDeleteTool() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     const selected = e.target.files[0];
-    if (selected.type !== 'application/pdf') return alert('请上传 PDF 文件');
+    if (selected.type !== 'application/pdf') return alert(tCommon('errors.uploadPdf'));
 
     setFile(selected);
     e.target.value = '';
@@ -81,7 +84,7 @@ export default function PdfDeleteTool() {
         setThumbnails(images);
         setDeletedPages([]); // 初始化清空删除标记
       } catch (err) {
-        alert('解析 PDF 页面失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -122,7 +125,7 @@ export default function PdfDeleteTool() {
   // 通过页码框选表达式标记删除
   const handleApplyPageRangeToDelete = () => {
     const parsed = parsePageRange(pageRangeInput, thumbnails.length);
-    if (parsed.length === 0) return alert('请输入有效的页码表达式（如：1-5, 8, 12-20）');
+    if (parsed.length === 0) return alert(tCommon('errors.invalidRange'));
     setDeletedPages((prev) => Array.from(new Set([...prev, ...parsed])));
     setPageRangeInput('');
   };
@@ -131,7 +134,7 @@ export default function PdfDeleteTool() {
   const handleExport = async () => {
     if (!file) return;
     if (deletedPages.length === thumbnails.length) {
-      return alert('不能删除所有页面，请至少保留一页！');
+      return alert(t('errors.keepOnePage'));
     }
 
     try {
@@ -150,7 +153,7 @@ export default function PdfDeleteTool() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      alert('导出过程发生错误');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -171,9 +174,9 @@ export default function PdfDeleteTool() {
             <Upload className="w-8 h-8" />
           </div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽 PDF 文件到此处上传</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.prompt')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              点击卡片即可标记删除，支持奇偶页批量与页码框选表达式
+              {t('upload.hint')}
             </p>
           </div>
         </div>
@@ -194,21 +197,21 @@ export default function PdfDeleteTool() {
           {/* 左侧：统计与清空状态 */}
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-1.5 text-xs font-bold text-slate-700">
-              <span>共 {thumbnails.length} 页</span>
+              <span>{t('status.totalPages', { total: thumbnails.length })}</span>
               <span className="text-slate-300">•</span>
-              <span className="text-red-600">已标记删除 {deletedPages.length} 页</span>
+              <span className="text-red-600">{t('status.marked', { count: deletedPages.length })}</span>
               <span className="text-slate-300">•</span>
-              <span className="text-slate-600">将保留 {remainingPageCount} 页</span>
+              <span className="text-slate-600">{t('status.remaining', { count: remainingPageCount })}</span>
             </div>
 
             {deletedPages.length > 0 && (
               <button
                 onClick={() => setDeletedPages([])}
                 className="flex items-center space-x-1 text-xs font-bold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition-colors"
-                title="恢复所有被标记删除的页面"
+                title={t('actions.restoreAllTitle')}
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                <span>全部恢复</span>
+                <span>{t('actions.restoreAll')}</span>
               </button>
             )}
           </div>
@@ -221,21 +224,21 @@ export default function PdfDeleteTool() {
                 className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
                 <Binary className="w-3.5 h-3.5 text-red-600" />
-                <span>删奇数页</span>
+                <span>{t('actions.deleteOdd')}</span>
               </button>
               <button
                 onClick={() => toggleOddEvenPagesToDelete('even')}
                 className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
                 <Binary className="w-3.5 h-3.5 text-red-600" />
-                <span>删偶数页</span>
+                <span>{t('actions.deleteEven')}</span>
               </button>
             </div>
 
             <div className="flex items-center space-x-1.5 bg-slate-50 p-0.5 rounded-lg border border-slate-200">
               <input
                 type="text"
-                placeholder="如: 2, 5-8"
+                placeholder={t('placeholder.range')}
                 value={pageRangeInput}
                 onChange={(e) => setPageRangeInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRangeToDelete()}
@@ -245,7 +248,7 @@ export default function PdfDeleteTool() {
                 onClick={handleApplyPageRangeToDelete}
                 className="bg-red-600 hover:bg-red-700 text-white text-xs px-2.5 py-0.5 rounded font-bold transition-colors shadow-sm"
               >
-                删页码
+                {t('actions.deleteRange')}
               </button>
             </div>
           </div>
@@ -257,7 +260,7 @@ export default function PdfDeleteTool() {
             className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95 ml-auto"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>{isProcessing ? '处理导出中...' : '生成并下载 PDF'}</span>
+            <span>{isProcessing ? tCommon('status.processing') : t('actions.generate')}</span>
           </button>
         </div>
 
@@ -266,7 +269,7 @@ export default function PdfDeleteTool() {
           {isLoading ? (
             <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
               <RefreshCw className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">正在解析页面缩略图...</span>
+              <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -299,7 +302,7 @@ export default function PdfDeleteTool() {
                           <Trash2 className="w-5 h-5" />
                         </div>
                         <span className="text-[10px] font-bold text-red-700 bg-white/90 px-2 py-0.5 rounded-full shadow-sm">
-                          点击恢复
+                          {t('status.clickToRestore')}
                         </span>
                       </div>
                     )}
@@ -316,11 +319,11 @@ export default function PdfDeleteTool() {
                     </div>
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] font-medium text-slate-500">
-                      <span>第 {pageIdx + 1} 页</span>
+                      <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
                       {isDeleted ? (
-                        <span className="text-[9px] text-red-600 font-bold bg-red-100 px-1 rounded">已标记删除</span>
+                        <span className="text-[9px] text-red-600 font-bold bg-red-100 px-1 rounded">{t('status.markedBadge')}</span>
                       ) : (
-                        <span className="text-[9px] text-slate-400">保留</span>
+                        <span className="text-[9px] text-slate-400">{t('status.kept')}</span>
                       )}
                     </div>
                   </div>

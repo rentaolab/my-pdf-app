@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · 無料オンラインPDFツール",
+    "description": "ブラウザだけで完結する無料・プライバシー重視のPDFツール。アップロード不要でPDFの結合・分割・回転・トリミング・編集ができます。"
+  },
+  "LanguageSwitcher": {
+    "label": "言語"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "PDFファイルをここにクリックまたはドラッグしてアップロード",
+      "promptMultiple": "複数のPDFファイルをここにクリックまたはドラッグしてアップロード"
+    },
+    "actions": {
+      "selectAll": "すべて選択",
+      "deselectAll": "選択を解除",
+      "cancel": "キャンセル",
+      "clear": "クリア",
+      "reset": "リセット",
+      "reupload": "再アップロード",
+      "confirmDownload": "ダウンロード",
+      "download": "PDFをダウンロード",
+      "selectAllCount": "すべて選択 ({selected}/{total})",
+      "confirm": "確定",
+      "close": "閉じる"
+    },
+    "status": {
+      "processing": "処理中...",
+      "page": "{page}ページ",
+      "selected": "選択済み",
+      "selectedShort": "選択中",
+      "parsingThumbnails": "ページサムネイルを読み込み中..."
+    },
+    "errors": {
+      "uploadPdf": "PDFファイルをアップロードしてください。",
+      "parsePdf": "PDFページの読み込みに失敗しました。",
+      "exportFailed": "書き出し中にエラーが発生しました。",
+      "invalidRange": "有効なページ範囲を入力してください（例：1-5, 8, 12-20）"
+    },
+    "filename": {
+      "title": "ファイル名の確認",
+      "label": "書き出すPDFのファイル名を入力してください：",
+      "placeholder": "ファイル名を入力"
+    },
+    "preview": {
+      "title": "リアルタイムプレビュー"
+    },
+    "unlimited": "無制限"
+  },
+  "Tools": {
+    "organize": {
+      "name": "ページ整理",
+      "desc": "ドラッグで並べ替え、回転、空白ページ挿入、再構成"
+    },
+    "merge": {
+      "name": "PDF結合",
+      "desc": "複数の文書を任意の順序で1つに結合"
+    },
+    "split": {
+      "name": "PDF分割",
+      "desc": "ページ範囲または1ページ単位で分割して書き出し"
+    },
+    "rotate": {
+      "name": "PDF回転",
+      "desc": "ページの向きを一括で修正"
+    },
+    "deletePages": {
+      "name": "ページ削除",
+      "desc": "不要なページをワンクリックで削除"
+    },
+    "extractPages": {
+      "name": "ページ抽出",
+      "desc": "選択したページを新しい文書として書き出し"
+    },
+    "crop": {
+      "name": "PDFトリミング",
+      "desc": "余白や白い枠をビジュアルで調整"
+    },
+    "edit": {
+      "name": "PDF編集",
+      "desc": "テキスト、手書き署名、描画、注釈を追加"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "ページ整理 (Organize)",
+      "description": "グリッドで並べ替え、回転、空白ページ挿入、再構成"
+    },
+    "merge": {
+      "title": "PDF結合 (Merge)",
+      "description": "複数の文書を任意の順序で1つに結合"
+    },
+    "split": {
+      "title": "PDF分割 (Split)",
+      "description": "ページ範囲または1ページ単位で分割して書き出し"
+    },
+    "rotate": {
+      "title": "PDF回転 (Rotate & Flip)",
+      "description": "一括回転と水平・垂直のミラー反転に対応"
+    },
+    "deletePages": {
+      "title": "PDFページ削除 (Delete Pages)",
+      "description": "カードをクリックするだけで不要なページを削除。奇数/偶数や範囲入力にも対応"
+    },
+    "extractPages": {
+      "title": "PDFページ抽出 (Extract Pages)",
+      "description": "選択したページを新しいPDF、または1ページずつのZIPで書き出し"
+    },
+    "crop": {
+      "title": "PDFトリミング (Crop PDF)",
+      "description": "8つのハンドルで調整。文書全体、奇数/偶数ページ、選択ページに適用"
+    },
+    "edit": {
+      "title": "PDF内容編集 (Edit PDF)",
+      "description": "テキストボックス、白塗り、手書き署名を追加"
+    }
+  },
+  "Navbar": {
+    "allTools": "すべてのツール",
+    "toggleMenu": "ナビゲーションメニューの開閉"
+  },
+  "HomePage": {
+    "heroTitle": "軽量でミニマルな<highlight>PDFツール</highlight>",
+    "heroSubtitle": "インストール不要、ファイルサイズ制限なし。すべてブラウザ内のメモリで処理され、ファイルはアップロードされません。",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · ブラウザ内でローカル処理"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "開発テストモード：現在の権限",
+      "vip": "VIPユーザー",
+      "free": "無料ユーザー（最大{max}ファイル）",
+      "switchTo": "切り替え：",
+      "freeMode": "無料モード",
+      "vipMode": "VIPモード"
+    },
+    "upload": {
+      "vipHint": "VIPユーザーはファイル数無制限で結合できます",
+      "freeHint": "無料版は最大{max}ファイルまで結合できます"
+    },
+    "list": {
+      "selected": "選択済み ({count} / {max})",
+      "dragHint": "（左のハンドルをドラッグして並べ替え）"
+    },
+    "actions": {
+      "removeFile": "このファイルを削除",
+      "mergeDownload": "結合してダウンロード",
+      "generating": "生成してダウンロード中..."
+    },
+    "footer": {
+      "limitReached": "無料結合の上限に達しました。さらにファイルを追加するにはVIPをご利用ください。"
+    },
+    "errors": {
+      "freeLimit": "無料ユーザーは一度に最大{max}個のPDFファイルを結合できます！\nVIPにアップグレードすると無制限に結合できます。",
+      "minFiles": "PDFファイルを2つ以上アップロードしてください。",
+      "mergeFailed": "結合中にエラーが発生しました。"
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "90°/180°の回転と、水平・垂直のミラー反転に対応"
+    },
+    "status": {
+      "generatingPreviews": "高解像度プレビューを生成中..."
+    },
+    "actions": {
+      "rotateLeft": "左に回転",
+      "rotateLeftTitle": "反時計回りに90°回転",
+      "rotateRight": "右に回転",
+      "rotateRightTitle": "時計回りに90°回転",
+      "flipH": "水平反転",
+      "flipHTitle": "左右に反転",
+      "flipV": "垂直反転",
+      "flipVTitle": "上下に反転",
+      "resetTitle": "選択したページをリセット"
+    },
+    "errors": {
+      "noPagesSelected": "先に調整するページを選択してください"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "カードをクリックして削除対象に設定。奇数/偶数や範囲指定にも対応"
+    },
+    "status": {
+      "totalPages": "全{total}ページ",
+      "marked": "削除対象 {count}ページ",
+      "remaining": "{count}ページを保持します",
+      "clickToRestore": "クリックして復元",
+      "markedBadge": "削除対象",
+      "kept": "保持"
+    },
+    "actions": {
+      "restoreAll": "すべて復元",
+      "restoreAllTitle": "削除対象のページをすべて復元",
+      "deleteOdd": "奇数ページを削除",
+      "deleteEven": "偶数ページを削除",
+      "deleteRange": "範囲を削除",
+      "generate": "PDFを生成してダウンロード"
+    },
+    "placeholder": {
+      "range": "例: 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "すべてのページは削除できません。少なくとも1ページは残してください。"
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "選択したページを新しいPDFまたはZIPとして書き出し"
+    },
+    "status": {
+      "extracting": "書き出し中..."
+    },
+    "actions": {
+      "odd": "奇数ページ",
+      "even": "偶数ページ",
+      "applyRange": "範囲指定",
+      "extractCount": "抽出 ({count}ページ)"
+    },
+    "mode": {
+      "merged": "1つのPDFに結合",
+      "mergedTitle": "抽出したすべてのページを1つのPDFに結合",
+      "zip": "1ページずつZIPに",
+      "zipTitle": "各ページを個別ファイルとしてZIPにまとめる"
+    },
+    "badge": {
+      "extract": "抽出"
+    },
+    "placeholder": {
+      "range": "例: 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "先に抽出するページを選択してください。",
+      "invalidRange": "有効なページ範囲を入力してください（例：1-5, 8）"
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "1つのPDFをアップロードして高度なページ編集",
+      "hint": "ドラッグで並べ替え、回転、抽出、削除が可能"
+    },
+    "status": {
+      "generating": "ページサムネイルを生成中...",
+      "selected": "{selected} / {total} ページを選択中",
+      "position": "位置: {pos}（元は{orig}ページ）"
+    },
+    "hint": {
+      "drag": "💡 カード上部のハンドルをドラッグして並べ替え、クリックで選択/解除、右上で回転できます"
+    },
+    "actions": {
+      "exportSelected": "選択したページを書き出す",
+      "rotate90": "90°回転",
+      "collapse": "折りたたむ",
+      "zoom": "拡大"
+    },
+    "preview": {
+      "position": "位置 {pos}",
+      "hint": "左側のカードにカーソルを合わせてください"
+    },
+    "errors": {
+      "noPagesKept": "少なくとも1ページを選択してください。"
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "ビジュアルなトリミング枠。複数範囲の適用とページ選択に対応"
+    },
+    "scope": {
+      "label": "トリミングの適用先:",
+      "all": "すべてのページ",
+      "current": "現在のページ",
+      "odd": "奇数ページ",
+      "even": "偶数ページ",
+      "selected": "選択したページ ({count})"
+    },
+    "actions": {
+      "resetBox": "枠をリセット",
+      "exportCount": "書き出し ({count}ページ)"
+    },
+    "mode": {
+      "merged": "1つのPDFに結合",
+      "zip": "1ページずつZIPに"
+    },
+    "status": {
+      "parsingPreviews": "プレビューを読み込み中..."
+    },
+    "nav": {
+      "title": "書き出すページ ({selected}/{total})",
+      "checkTitle": "このページを書き出しに含める",
+      "uncheckTitle": "このページを書き出しから除外"
+    },
+    "errors": {
+      "noExportPages": "右側のページ一覧から書き出すページを少なくとも1つ選択してください。"
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "1つのPDFをアップロードして分割",
+      "hint": "分割点を挿入し、書き出す部分を選択できます"
+    },
+    "status": {
+      "parsing": "ページプレビューを読み込み中...",
+      "splitPoints": "分割点：{count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "選択した部分を書き出す ({selected}/{total})",
+      "selectAllParts": "すべて選択",
+      "uncut": "切断を解除",
+      "cutHere": "ここで分割",
+      "confirmBatchDownload": "確認して一括ダウンロード"
+    },
+    "parts": {
+      "title": "分割結果（マウスを合わせると含まれるページをプレビュー）",
+      "partLabel": "パート {index}",
+      "hint": "💡 カードをクリックで拡大、中央のはさみ/プラスで分割線を挿入"
+    },
+    "badge": {
+      "cut": "分割点"
+    },
+    "preview": {
+      "hint": "左側のサムネイルにカーソルを合わせてください"
+    },
+    "modal": {
+      "title": "書き出しの確認",
+      "summary": "選択した{count}個のパートを書き出します。",
+      "customNames": "各ファイルに個別の名前を付ける",
+      "prefixLabel": "書き出すファイル名の接頭辞を設定：",
+      "perPartLabel": "各パートのファイル名を入力:"
+    },
+    "errors": {
+      "freeLimit": "無料版では最大{max}個の分割点（2ファイル）までです。\nVIPモードに切り替えると無制限に分割できます！",
+      "readFailed": "PDFの読み込みに失敗しました。",
+      "noPartsSelected": "書き出すパートを少なくとも1つ選択してください。"
+    },
+    "dev": {
+      "modeLabel": "現在の権限：",
+      "vip": "VIPユーザー（分割無制限）",
+      "free": "無料ユーザー（分割点{max}個まで）",
+      "switchTo": "切り替え：",
+      "freeMode": "無料モード",
+      "vipMode": "VIPモード"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "{page}ページ（{name}）",
+      "basketWithFile": "バスケット内 #{index}（{name}）"
+    },
+    "upload": {
+      "prompt": "複数のPDFをアップロードして文書をまたいで結合（VIP限定）",
+      "hint": "別々の文書から任意のページを選んで新しいPDFに組み立て"
+    },
+    "sources": {
+      "title": "ソース文書（クリックでプレビューを切り替え）",
+      "addMore": "＋ PDFを追加",
+      "current": "現在のソース：{name}",
+      "hint": "💡 カードをクリックで拡大、＋でバスケットに追加"
+    },
+    "status": {
+      "parsing": "ページを読み込み中...",
+      "generating": "生成中...",
+      "assembling": "組み立てて書き出し中..."
+    },
+    "actions": {
+      "addToBasket": "バスケットに追加",
+      "moveLeft": "左へ移動",
+      "moveRight": "右へ移動",
+      "rotate90": "90°回転",
+      "remove": "削除",
+      "assembleExport": "まとめて書き出す"
+    },
+    "preview": {
+      "hintCards": "カードにカーソルを合わせてプレビュー",
+      "hint": "ソースまたはバスケットのカードにカーソルを合わせるとプレビュー表示"
+    },
+    "basket": {
+      "title": "バスケット",
+      "subtitle": "組み立てるページ ({count})",
+      "dragHint": "（PCはハンドルをドラッグ、スマホは矢印で移動）",
+      "clear": "バスケットを空にする",
+      "empty": "バスケットは空です。上のページカードの＋をクリックして追加してください。"
+    },
+    "modal": {
+      "title": "ファイル名の確認",
+      "summary": "バスケット内の{count}ページを次に合成します："
+    },
+    "errors": {
+      "emptyBasket": "先にバスケットへ1ページ以上追加してください。"
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "自由なドラッグと拡大縮小、テキスト/枠のカスタマイズ、フリーハイライトペン、ベクター矢印、滑らかな手書き署名"
+    },
+    "defaultText": "ここに入力",
+    "status": {
+      "exporting": "書き出し中...",
+      "parsingHd": "高解像度ビューを読み込み中..."
+    },
+    "toolbar": {
+      "text": "テキスト",
+      "rect": "矩形/白塗り",
+      "highlightStartTitle": "手書きハイライトペンをオン",
+      "highlightStopTitle": "ハイライトペンをオフにして選択モードに戻る",
+      "highlightActive": "ハイライト描画中",
+      "highlighter": "ハイライトペン",
+      "circle": "円/楕円",
+      "arrow": "矢印",
+      "line": "直線",
+      "signature": "署名",
+      "copy": "コピー (Ctrl+C)",
+      "paste": "貼り付け (Ctrl+V)",
+      "deleteElement": "選択中の要素を削除",
+      "save": "編集したPDFを保存",
+      "autoStraighten": "線は自動でまっすぐになります",
+      "exitBrush": "ペンを終了"
+    },
+    "style": {
+      "brushColor": "ペンの色:",
+      "textColor": "文字色:",
+      "fill": "色/塗り:",
+      "thickness": "太さ:",
+      "custom": "カスタム:"
+    },
+    "colors": {
+      "yellow": "蛍光イエロー",
+      "green": "蛍光グリーン",
+      "pink": "蛍光ピンク",
+      "blue": "蛍光ブルー",
+      "customTitle": "カスタムカラー"
+    },
+    "pages": {
+      "title": "ページ一覧"
+    },
+    "modal": {
+      "signatureTitle": "滑らかな手書き署名",
+      "clearSignature": "消して描き直す",
+      "applySignature": "署名を適用"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "1つまたは複数のPDFをアップロードしてページを整理",
+      "hint": "統合ツールバー、奇数/偶数のスマート切替、カード間に空白ページ挿入、控えめなトースト通知"
+    },
+    "canvas": {
+      "blankPage": "[ 空白ページ ]"
+    },
+    "blank": {
+      "fileName": "空白ページ",
+      "short": "空白"
+    },
+    "hover": {
+      "pageWithFile": "{page}ページ（{name}）",
+      "basketWithFile": "バスケット内 #{index}（{name}）"
+    },
+    "errors": {
+      "outlineFailed": "文書のしおりの読み込みに失敗したか、このPDFにしおりがありません。",
+      "emptyBasket": "先にバスケットへ1ページ以上追加してください。"
+    },
+    "files": {
+      "title": "アップロード済みファイル（{count}）",
+      "add": "＋ ファイルを追加",
+      "selectHint": "（Shiftで範囲選択 / Ctrlで複数選択）"
+    },
+    "actions": {
+      "undo": "元に戻す (Ctrl+Z)",
+      "redo": "やり直す (Ctrl+Y)",
+      "advanced": "高度なツール（範囲/奇数偶数/しおり）",
+      "addToBasketCount": "バスケットへ ({count})",
+      "addToBasketTitle": "バスケットに追加",
+      "putCurrent": "プレビュー中のページをバスケットに追加",
+      "export": "整理したPDFを書き出す",
+      "insertFirstBlank": "＋ 最初の空白ページを挿入",
+      "insertBlankFirstTitle": "この位置（先頭）に空白ページを挿入",
+      "insertBlankBetweenTitle": "#{from}ページと#{to}ページの間に空白ページを挿入",
+      "rotate90": "90°回転",
+      "remove": "削除"
+    },
+    "preview": {
+      "hint": "左側のカードにカーソルを合わせてプレビュー"
+    },
+    "range": {
+      "label": "ページ範囲:",
+      "placeholder": "例: 1-5, 8, 12-20",
+      "odd": "奇数ページ",
+      "even": "偶数ページ",
+      "outline": "しおり"
+    },
+    "basket": {
+      "title": "結合バスケット",
+      "countBadge": "バスケット内 {count}",
+      "pulseAdded": "ページを追加しました！クリックで表示",
+      "pulseExpand": "クリックしてバスケットを展開",
+      "pulseCollapse": "クリックして折りたたむ",
+      "empty": "バスケットは空です。上のページカードの＋をクリックしてページを選ぶか空白ページを挿入してください。",
+      "selectedHint": "バスケット内 #{index} を選択中",
+      "orderHint": "バスケットのカードをクリックしてから並べ替えボタンを押してください：",
+      "moveForward": "前へ移動",
+      "moveBackward": "後ろへ移動"
+    },
+    "outline": {
+      "title": "組み込みしおり（{name}）",
+      "loading": "しおりを読み込み中...",
+      "empty": "このPDFにはしおりがありません。【ページ範囲】または【奇数/偶数】をご利用ください。",
+      "hint": "しおりをクリックするとそのページを選択できます"
+    },
+    "modal": {
+      "title": "ファイル名の確認"
+    },
+    "status": {
+      "assembling": "組み立てて書き出し中..."
+    }
+  }
+}

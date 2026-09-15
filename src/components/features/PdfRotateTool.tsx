@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { processPDFTransformations, PageTransformState } from '@/lib/pdf-rotate';
 import {
@@ -19,6 +20,8 @@ import {
 } from 'lucide-react';
 
 export default function PdfRotateTool() {
+  const t = useTranslations('PdfRotate');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +35,7 @@ export default function PdfRotateTool() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     const selected = e.target.files[0];
-    if (selected.type !== 'application/pdf') return alert('请上传 PDF 文件');
+    if (selected.type !== 'application/pdf') return alert(tCommon('errors.uploadPdf'));
 
     setFile(selected);
     e.target.value = '';
@@ -56,7 +59,7 @@ export default function PdfRotateTool() {
         setTransforms(initialTransforms);
         setSelectedPages(images.map((_, idx) => idx));
       } catch (err) {
-        alert('解析 PDF 页面失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -68,7 +71,7 @@ export default function PdfRotateTool() {
   const applyTransformToSelected = (
     action: 'rotateLeft' | 'rotateRight' | 'flipH' | 'flipV' | 'reset'
   ) => {
-    if (selectedPages.length === 0) return alert('请先勾选需要调整姿态的页面');
+    if (selectedPages.length === 0) return alert(t('errors.noPagesSelected'));
 
     setTransforms((prev) => {
       const next = { ...prev };
@@ -123,7 +126,7 @@ export default function PdfRotateTool() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      alert('调整导出失败');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -144,9 +147,9 @@ export default function PdfRotateTool() {
             <Upload className="w-8 h-8" />
           </div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽 PDF 文件到此处上传</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.prompt')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              支持 90°/180° 方向旋转以及水平与垂直镜面反转
+              {t('upload.hint')}
             </p>
           </div>
         </div>
@@ -170,12 +173,12 @@ export default function PdfRotateTool() {
               {selectedPages.length === thumbnails.length ? (
                 <>
                   <CheckSquare className="w-3.5 h-3.5 text-red-600" />
-                  <span>取消全选</span>
+                  <span>{tCommon('actions.deselectAll')}</span>
                 </>
               ) : (
                 <>
                   <Square className="w-3.5 h-3.5 text-slate-400" />
-                  <span>全选 ({selectedPages.length}/{thumbnails.length})</span>
+                  <span>{tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}</span>
                 </>
               )}
             </button>
@@ -191,19 +194,19 @@ export default function PdfRotateTool() {
               <button
                 onClick={() => applyTransformToSelected('rotateLeft')}
                 className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
-                title="逆时针旋转 90 度"
+                title={t('actions.rotateLeftTitle')}
               >
                 <RotateCcw className="w-3.5 h-3.5 text-red-600" />
-                <span>向左转</span>
+                <span>{t('actions.rotateLeft')}</span>
               </button>
 
               <button
                 onClick={() => applyTransformToSelected('rotateRight')}
                 className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
-                title="顺时针旋转 90 度"
+                title={t('actions.rotateRightTitle')}
               >
                 <RotateCw className="w-3.5 h-3.5 text-red-600" />
-                <span>向右转</span>
+                <span>{t('actions.rotateRight')}</span>
               </button>
             </div>
 
@@ -211,26 +214,26 @@ export default function PdfRotateTool() {
               <button
                 onClick={() => applyTransformToSelected('flipH')}
                 className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
-                title="水平左右镜像"
+                title={t('actions.flipHTitle')}
               >
                 <FlipHorizontal className="w-3.5 h-3.5 text-red-600" />
-                <span>水平镜像</span>
+                <span>{t('actions.flipH')}</span>
               </button>
 
               <button
                 onClick={() => applyTransformToSelected('flipV')}
                 className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
-                title="垂直上下镜像"
+                title={t('actions.flipVTitle')}
               >
                 <FlipVertical className="w-3.5 h-3.5 text-red-600" />
-                <span>垂直镜像</span>
+                <span>{t('actions.flipV')}</span>
               </button>
             </div>
 
             <button
               onClick={() => applyTransformToSelected('reset')}
               className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
-              title="重置当前选中页"
+              title={t('actions.resetTitle')}
             >
               <Undo2 className="w-4 h-4" />
             </button>
@@ -243,7 +246,7 @@ export default function PdfRotateTool() {
             className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
-            <span>{isProcessing ? '处理导出中...' : '下载 PDF'}</span>
+            <span>{isProcessing ? tCommon('status.processing') : tCommon('actions.download')}</span>
           </button>
         </div>
 
@@ -252,7 +255,7 @@ export default function PdfRotateTool() {
           {isLoading ? (
             <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
               <RefreshCw className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">正在生成高清预览图...</span>
+              <span className="text-xs font-medium">{t('status.generatingPreviews')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -306,8 +309,8 @@ export default function PdfRotateTool() {
                     </div>
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] text-slate-500 font-medium">
-                      <span>第 {pageIdx + 1} 页</span>
-                      {isChecked && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">选中</span>}
+                      <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
+                      {isChecked && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
                     </div>
                   </div>
                 );

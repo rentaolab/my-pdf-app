@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · Free Online PDF Tools",
+    "description": "Free, privacy-first PDF toolkit that runs entirely in your browser. Merge, split, rotate, crop and edit PDF files without uploading them."
+  },
+  "LanguageSwitcher": {
+    "label": "Language"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "Click or drag a PDF file here to upload",
+      "promptMultiple": "Click or drag multiple PDF files here to upload"
+    },
+    "actions": {
+      "selectAll": "Select all",
+      "deselectAll": "Deselect all",
+      "cancel": "Cancel",
+      "clear": "Clear",
+      "reset": "Reset",
+      "reupload": "Upload again",
+      "confirmDownload": "Download",
+      "download": "Download PDF",
+      "selectAllCount": "Select all ({selected}/{total})",
+      "confirm": "Confirm",
+      "close": "Close"
+    },
+    "status": {
+      "processing": "Processing…",
+      "page": "Page {page}",
+      "selected": "Selected",
+      "selectedShort": "Selected",
+      "parsingThumbnails": "Rendering page thumbnails..."
+    },
+    "errors": {
+      "uploadPdf": "Please upload a PDF file.",
+      "parsePdf": "Failed to read the PDF pages.",
+      "exportFailed": "Something went wrong while exporting.",
+      "invalidRange": "Please enter a valid page range (e.g. 1-5, 8, 12-20)."
+    },
+    "filename": {
+      "title": "Confirm file name",
+      "label": "Enter a name for the exported PDF:",
+      "placeholder": "Enter a file name"
+    },
+    "preview": {
+      "title": "Live preview"
+    },
+    "unlimited": "Unlimited"
+  },
+  "Tools": {
+    "organize": {
+      "name": "Organize PDF",
+      "desc": "Reorder, rotate, insert blank pages and rebuild your document"
+    },
+    "merge": {
+      "name": "Merge PDF",
+      "desc": "Combine multiple documents into one in any order"
+    },
+    "split": {
+      "name": "Split PDF",
+      "desc": "Split by page range or export every page separately"
+    },
+    "rotate": {
+      "name": "Rotate PDF",
+      "desc": "Fix page orientation in bulk"
+    },
+    "deletePages": {
+      "name": "Delete Pages",
+      "desc": "Remove unwanted pages in a single click"
+    },
+    "extractPages": {
+      "name": "Extract Pages",
+      "desc": "Pull out selected pages into a brand-new document"
+    },
+    "crop": {
+      "name": "Crop PDF",
+      "desc": "Adjust margins and trim white space visually"
+    },
+    "edit": {
+      "name": "Edit PDF",
+      "desc": "Add text, handwritten signatures, drawings and annotations"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "Organize PDF",
+      "description": "Visual grid sorting, rotation, blank page insertion and rebuilding"
+    },
+    "merge": {
+      "title": "Merge PDF",
+      "description": "Combine multiple documents into one, in any order"
+    },
+    "split": {
+      "title": "Split PDF",
+      "description": "Split by page range or export every page separately"
+    },
+    "rotate": {
+      "title": "Rotate & Flip PDF",
+      "description": "Rotate pages in bulk and mirror them horizontally or vertically"
+    },
+    "deletePages": {
+      "title": "Delete PDF Pages",
+      "description": "Click any page to remove it, with odd/even shortcuts and range input"
+    },
+    "extractPages": {
+      "title": "Extract PDF Pages",
+      "description": "Export selected pages as a new PDF or as a ZIP of single pages"
+    },
+    "crop": {
+      "title": "Crop PDF",
+      "description": "Eight-handle visual cropping for the whole document, odd/even pages or a custom selection"
+    },
+    "edit": {
+      "title": "Edit PDF Content",
+      "description": "Add text boxes, white-out blocks and smooth handwritten signatures"
+    }
+  },
+  "Navbar": {
+    "allTools": "All tools",
+    "toggleMenu": "Open or close the navigation menu"
+  },
+  "HomePage": {
+    "heroTitle": "Lightweight, minimal <highlight>PDF tools</highlight>",
+    "heroSubtitle": "No installs, no file size limits. Everything runs in your browser's memory — your files never leave your device.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Processed locally in your browser"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "Developer test mode: you are signed in as",
+      "vip": "VIP user",
+      "free": "Free user ({max} files max)",
+      "switchTo": "Switch to",
+      "freeMode": "Free mode",
+      "vipMode": "VIP mode"
+    },
+    "upload": {
+      "vipHint": "VIP users can merge unlimited files",
+      "freeHint": "The free plan allows merging up to {max} files"
+    },
+    "list": {
+      "selected": "Selected ({count} / {max})",
+      "dragHint": "(drag the handle on the left to reorder)"
+    },
+    "actions": {
+      "removeFile": "Remove this file",
+      "mergeDownload": "Merge and download",
+      "generating": "Generating and downloading..."
+    },
+    "footer": {
+      "limitReached": "Free merge limit reached. Unlock VIP for more files."
+    },
+    "errors": {
+      "freeLimit": "Free users can merge up to {max} PDF files at a time!\nUpgrade to VIP for unlimited merging.",
+      "minFiles": "Please upload at least 2 PDF files.",
+      "mergeFailed": "Something went wrong while merging."
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "Rotate pages 90°/180° and mirror them horizontally or vertically"
+    },
+    "status": {
+      "generatingPreviews": "Rendering high-resolution previews..."
+    },
+    "actions": {
+      "rotateLeft": "Rotate left",
+      "rotateLeftTitle": "Rotate 90° counterclockwise",
+      "rotateRight": "Rotate right",
+      "rotateRightTitle": "Rotate 90° clockwise",
+      "flipH": "Flip horizontally",
+      "flipHTitle": "Mirror horizontally",
+      "flipV": "Flip vertically",
+      "flipVTitle": "Mirror vertically",
+      "resetTitle": "Reset selected pages"
+    },
+    "errors": {
+      "noPagesSelected": "Select the pages you want to adjust first"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "Click any page to mark it for deletion, with odd/even shortcuts and range selection"
+    },
+    "status": {
+      "totalPages": "{total} pages",
+      "marked": "{count} marked for deletion",
+      "remaining": "{count} pages will be kept",
+      "clickToRestore": "Click to restore",
+      "markedBadge": "Marked for deletion",
+      "kept": "Kept"
+    },
+    "actions": {
+      "restoreAll": "Restore all",
+      "restoreAllTitle": "Restore all pages marked for deletion",
+      "deleteOdd": "Delete odd pages",
+      "deleteEven": "Delete even pages",
+      "deleteRange": "Delete range",
+      "generate": "Generate and download PDF"
+    },
+    "placeholder": {
+      "range": "e.g. 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "You cannot delete every page. Keep at least one."
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "Extract selected pages into a new PDF or a ZIP of single pages"
+    },
+    "status": {
+      "extracting": "Extracting..."
+    },
+    "actions": {
+      "odd": "Odd pages",
+      "even": "Even pages",
+      "applyRange": "Apply",
+      "extractCount": "Extract ({count} pages)"
+    },
+    "mode": {
+      "merged": "Merge into one PDF",
+      "mergedTitle": "Merge all extracted pages into a single PDF",
+      "zip": "ZIP of single pages",
+      "zipTitle": "Export every page as a separate file in a ZIP"
+    },
+    "badge": {
+      "extract": "Extract"
+    },
+    "placeholder": {
+      "range": "e.g. 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "Select the pages you want to extract first.",
+      "invalidRange": "Please enter a valid page range (e.g. 1-5, 8)."
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "Upload a single PDF for advanced page editing",
+      "hint": "Drag to reorder, rotate, extract or delete pages"
+    },
+    "status": {
+      "generating": "Generating page thumbnails...",
+      "selected": "{selected} of {total} pages selected",
+      "position": "Position {pos} (originally page {orig})"
+    },
+    "hint": {
+      "drag": "💡 Hold the handle at the top of a card to reorder; click a card to select it; use the top-right button to rotate"
+    },
+    "actions": {
+      "exportSelected": "Export selected pages",
+      "rotate90": "Rotate 90°",
+      "collapse": "Collapse",
+      "zoom": "Enlarge"
+    },
+    "preview": {
+      "position": "Position {pos}",
+      "hint": "Hover over a card on the left"
+    },
+    "errors": {
+      "noPagesKept": "Select at least one page to keep."
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "Visual crop box with multi-range scope and custom page selection"
+    },
+    "scope": {
+      "label": "Apply crop to:",
+      "all": "All pages",
+      "current": "Current page",
+      "odd": "Odd pages",
+      "even": "Even pages",
+      "selected": "Selected pages ({count})"
+    },
+    "actions": {
+      "resetBox": "Reset box",
+      "exportCount": "Export ({count} pages)"
+    },
+    "mode": {
+      "merged": "Merge into one PDF",
+      "zip": "ZIP of single pages"
+    },
+    "status": {
+      "parsingPreviews": "Rendering previews..."
+    },
+    "nav": {
+      "title": "Export pages ({selected}/{total})",
+      "checkTitle": "Include this page in the export",
+      "uncheckTitle": "Exclude this page from export"
+    },
+    "errors": {
+      "noExportPages": "Select at least one page to export in the page navigator on the right."
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "Upload a single PDF to split at break points",
+      "hint": "Insert break points, then choose which parts to export"
+    },
+    "status": {
+      "parsing": "Rendering page previews...",
+      "splitPoints": "Break points: {count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "Export selected parts ({selected}/{total})",
+      "selectAllParts": "Select all",
+      "uncut": "Remove break",
+      "cutHere": "Split here",
+      "confirmBatchDownload": "Confirm and download all"
+    },
+    "parts": {
+      "title": "Split results (hover to preview the pages inside)",
+      "partLabel": "Part {index}",
+      "hint": "💡 Click a card to enlarge it; click the scissors or plus in the middle to insert a break"
+    },
+    "badge": {
+      "cut": "Break"
+    },
+    "preview": {
+      "hint": "Hover over a thumbnail on the left"
+    },
+    "modal": {
+      "title": "Confirm export",
+      "summary": "You are about to export {count} selected parts.",
+      "customNames": "Name each file individually",
+      "prefixLabel": "Set a file name prefix for the export:",
+      "perPartLabel": "Enter a file name for each part:"
+    },
+    "errors": {
+      "freeLimit": "The free plan allows up to {max} break points (2 files).\nSwitch to VIP mode for unlimited splitting!",
+      "readFailed": "Failed to read the PDF.",
+      "noPartsSelected": "Select at least one part to export."
+    },
+    "dev": {
+      "modeLabel": "Current plan:",
+      "vip": "VIP user (unlimited splits)",
+      "free": "Free user ({max} break point)",
+      "switchTo": "Switch to",
+      "freeMode": "Free mode",
+      "vipMode": "VIP mode"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "Page {page} ({name})",
+      "basketWithFile": "#{index} in basket ({name})"
+    },
+    "upload": {
+      "prompt": "Upload multiple PDFs for cross-document assembly (VIP)",
+      "hint": "Pick any pages from different documents and assemble a brand-new PDF"
+    },
+    "sources": {
+      "title": "Source documents (click to switch preview)",
+      "addMore": "+ Add more PDFs",
+      "current": "Current source: {name}",
+      "hint": "💡 Click a card to enlarge it; click plus (+) to add the page to the basket"
+    },
+    "status": {
+      "parsing": "Reading pages...",
+      "generating": "Generating...",
+      "assembling": "Assembling and exporting..."
+    },
+    "actions": {
+      "addToBasket": "Add to basket",
+      "moveLeft": "Move left",
+      "moveRight": "Move right",
+      "rotate90": "Rotate 90°",
+      "remove": "Remove",
+      "assembleExport": "Assemble and export"
+    },
+    "preview": {
+      "hintCards": "Hover a card to preview",
+      "hint": "Hover any source or basket card to see a live preview"
+    },
+    "basket": {
+      "title": "Basket",
+      "subtitle": "Pages selected for assembly ({count})",
+      "dragHint": "(drag the handle on desktop, use the arrows on mobile)",
+      "clear": "Clear basket",
+      "empty": "Your basket is empty. Click plus (+) on a page card above to add pages."
+    },
+    "modal": {
+      "title": "Confirm file name",
+      "summary": "The {count} pages in your basket will be assembled into:"
+    },
+    "errors": {
+      "emptyBasket": "Add at least one page to the basket first."
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "Drag to resize freely, customise text and borders, use the free highlighter, vector arrows and smooth handwritten signatures"
+    },
+    "defaultText": "Type here",
+    "status": {
+      "exporting": "Exporting...",
+      "parsingHd": "Rendering high-resolution view..."
+    },
+    "toolbar": {
+      "text": "Text",
+      "rect": "Rectangle / white-out",
+      "highlightStartTitle": "Turn on the freehand highlighter",
+      "highlightStopTitle": "Turn off the highlighter and return to selection mode",
+      "highlightActive": "Highlighting",
+      "highlighter": "Highlighter",
+      "circle": "Circle / ellipse",
+      "arrow": "Arrow",
+      "line": "Line",
+      "signature": "Signature",
+      "copy": "Copy (Ctrl+C)",
+      "paste": "Paste (Ctrl+V)",
+      "deleteElement": "Delete selected element",
+      "save": "Save edited PDF",
+      "autoStraighten": "Strokes are auto-straightened",
+      "exitBrush": "Exit brush"
+    },
+    "style": {
+      "brushColor": "Brush colour:",
+      "textColor": "Text colour:",
+      "fill": "Colour / fill:",
+      "thickness": "Thickness:",
+      "custom": "Custom:"
+    },
+    "colors": {
+      "yellow": "Highlight yellow",
+      "green": "Highlight green",
+      "pink": "Highlight pink",
+      "blue": "Highlight blue",
+      "customTitle": "Custom colour"
+    },
+    "pages": {
+      "title": "Page list"
+    },
+    "modal": {
+      "signatureTitle": "Smooth handwritten signature",
+      "clearSignature": "Clear and redraw",
+      "applySignature": "Apply signature"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "Upload one or more PDFs to organize pages",
+      "hint": "Unified toolbar, smart odd/even toggles, insert blank pages between cards and silent toast feedback"
+    },
+    "canvas": {
+      "blankPage": "[ Blank page ]"
+    },
+    "blank": {
+      "fileName": "Blank page",
+      "short": "Blank"
+    },
+    "hover": {
+      "pageWithFile": "Page {page} ({name})",
+      "basketWithFile": "#{index} in basket ({name})"
+    },
+    "errors": {
+      "outlineFailed": "Could not read the document outline, or this PDF has no built-in bookmarks.",
+      "emptyBasket": "Pick at least one page and add it to the basket first."
+    },
+    "files": {
+      "title": "Uploaded files ({count})",
+      "add": "+ Add file",
+      "selectHint": "(Shift to select a range, Ctrl for multiple)"
+    },
+    "actions": {
+      "undo": "Undo (Ctrl+Z)",
+      "redo": "Redo (Ctrl+Y)",
+      "advanced": "Advanced tools (range / odd-even / outline)",
+      "addToBasketCount": "To basket ({count})",
+      "addToBasketTitle": "Add to basket",
+      "putCurrent": "Add the previewed page to the basket",
+      "export": "Export organized PDF",
+      "insertFirstBlank": "+ Insert the first blank page",
+      "insertBlankFirstTitle": "Insert a blank page here (at the very front)",
+      "insertBlankBetweenTitle": "Insert a blank page between page #{from} and #{to}",
+      "rotate90": "Rotate 90°",
+      "remove": "Remove"
+    },
+    "preview": {
+      "hint": "Hover a card on the left to preview it"
+    },
+    "range": {
+      "label": "Page range:",
+      "placeholder": "e.g. 1-5, 8, 12-20",
+      "odd": "Odd pages",
+      "even": "Even pages",
+      "outline": "Document outline"
+    },
+    "basket": {
+      "title": "Assembly basket",
+      "countBadge": "{count} in basket",
+      "pulseAdded": "Page added! Click to view",
+      "pulseExpand": "Click to expand the basket",
+      "pulseCollapse": "Click to collapse",
+      "empty": "Your basket is empty. Click plus (+) on a page card above to pick pages or insert a blank page.",
+      "selectedHint": "#{index} in the basket is selected",
+      "orderHint": "Click a basket card, then use the ordering buttons:",
+      "moveForward": "Move forward",
+      "moveBackward": "Move backward"
+    },
+    "outline": {
+      "title": "Built-in bookmarks ({name})",
+      "loading": "Reading the bookmark outline...",
+      "empty": "This PDF has no built-in bookmarks. Use the page range or odd/even tools instead.",
+      "hint": "Click an outline entry to highlight and select that page"
+    },
+    "modal": {
+      "title": "Confirm file name"
+    },
+    "status": {
+      "assembling": "Assembling and exporting..."
+    }
+  }
+}

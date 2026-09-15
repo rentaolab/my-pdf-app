@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import {
   Layers,
   Merge,
@@ -15,21 +15,24 @@ import {
   Menu,
   X,
 } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import LanguageSwitcher from '@/components/layout/LanguageSwitcher';
+
+const tools = [
+  { key: 'organize', href: '/organize-pdf', icon: Layers },
+  { key: 'merge', href: '/merge-pdf', icon: Merge },
+  { key: 'split', href: '/split-pdf', icon: Split },
+  { key: 'rotate', href: '/rotate-pdf', icon: RotateCw },
+  { key: 'deletePages', href: '/delete-pdf-pages', icon: Trash2 },
+  { key: 'extractPages', href: '/extract-pdf-pages', icon: FileOutput },
+  { key: 'crop', href: '/crop-pdf', icon: Crop },
+  { key: 'edit', href: '/edit-pdf', icon: Edit3 },
+] as const;
 
 export default function Navbar() {
+  const t = useTranslations();
   const [isToolsOpen, setIsToolsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const tools = [
-    { name: '页面整理', href: '/organize-pdf', icon: Layers, desc: '可视化拖拽排序与重组' },
-    { name: '拼接 PDF', href: '/merge-pdf', icon: Merge, desc: '多个文件无缝拼接' },
-    { name: '拆分 PDF', href: '/split-pdf', icon: Split, desc: '按范围提取或切分' },
-    { name: '旋转 PDF', href: '/rotate-pdf', icon: RotateCw, desc: '批量调整页面方向' },
-    { name: '删除页面', href: '/delete-pdf-pages', icon: Trash2, desc: '剔除不需要的页码' },
-    { name: '提取页面', href: '/extract-pdf-pages', icon: FileOutput, desc: '独立抽离选中页面' },
-    { name: '裁剪 PDF', href: '/crop-pdf', icon: Crop, desc: '裁剪留白与多余边框' },
-    { name: '编辑 PDF', href: '/edit-pdf', icon: Edit3, desc: '添加文字、涂鸦与签名' },
-  ];
 
   return (
     <header className="sticky top-0 z-50 bg-[#F8FAFC]/85 backdrop-blur-md border-b border-slate-200/60">
@@ -49,19 +52,19 @@ export default function Navbar() {
               href="/organize-pdf"
               className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all"
             >
-              页面整理
+              {t('Tools.organize.name')}
             </Link>
             <Link
               href="/merge-pdf"
               className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all"
             >
-              拼接 PDF
+              {t('Tools.merge.name')}
             </Link>
             <Link
               href="/split-pdf"
               className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all"
             >
-              拆分 PDF
+              {t('Tools.split.name')}
             </Link>
 
             {/* 所有工具 Dropdown */}
@@ -71,7 +74,7 @@ export default function Navbar() {
               onMouseLeave={() => setIsToolsOpen(false)}
             >
               <button className="flex items-center space-x-1 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 transition-all">
-                <span>全部工具</span>
+                <span>{t('Navbar.allTools')}</span>
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isToolsOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -90,10 +93,10 @@ export default function Navbar() {
                         </div>
                         <div>
                           <div className="text-xs font-bold text-slate-200 group-hover:text-red-400 transition-colors">
-                            {tool.name}
+                            {t(`Tools.${tool.key}.name`)}
                           </div>
                           <div className="text-[10px] text-slate-400 truncate max-w-[130px]">
-                            {tool.desc}
+                            {t(`Tools.${tool.key}.desc`)}
                           </div>
                         </div>
                       </Link>
@@ -101,6 +104,11 @@ export default function Navbar() {
                   })}
                 </div>
               )}
+            </div>
+
+            {/* 语言切换器 */}
+            <div className="ml-1 border-l border-slate-200/80 pl-2">
+              <LanguageSwitcher />
             </div>
           </nav>
 
@@ -118,6 +126,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={t('Navbar.toggleMenu')}
               className="p-2 text-slate-700 rounded-lg"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -140,10 +149,17 @@ export default function Navbar() {
                 className="flex items-center space-x-3 p-2.5 rounded-xl bg-slate-50 hover:bg-red-50"
               >
                 <Icon className="w-4 h-4 text-red-600" />
-                <span className="text-xs font-bold text-slate-800">{tool.name}</span>
+                <span className="text-xs font-bold text-slate-800">
+                  {t(`Tools.${tool.key}.name`)}
+                </span>
               </Link>
             );
           })}
+
+          {/* 语言切换器 */}
+          <div className="mt-1 border-t border-slate-200/80 pt-3">
+            <LanguageSwitcher fullWidth />
+          </div>
         </div>
       )}
     </header>

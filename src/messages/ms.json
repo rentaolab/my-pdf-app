@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · Alat PDF Dalam Talian Percuma",
+    "description": "Kit alat PDF percuma dan mengutamakan privasi yang berjalan sepenuhnya dalam pelayar. Gabung, pisah, putar, pangkas dan edit PDF tanpa memuat naik fail."
+  },
+  "LanguageSwitcher": {
+    "label": "Bahasa"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "Klik atau seret fail PDF ke sini untuk memuat naik",
+      "promptMultiple": "Klik atau seret beberapa fail PDF ke sini untuk memuat naik"
+    },
+    "actions": {
+      "selectAll": "Pilih semua",
+      "deselectAll": "Nyahpilih semua",
+      "cancel": "Batal",
+      "clear": "Kosongkan",
+      "reset": "Set semula",
+      "reupload": "Muat naik semula",
+      "confirmDownload": "Muat turun",
+      "download": "Muat turun PDF",
+      "selectAllCount": "Pilih semua ({selected}/{total})",
+      "confirm": "Sahkan",
+      "close": "Tutup"
+    },
+    "status": {
+      "processing": "Memproses...",
+      "page": "Halaman {page}",
+      "selected": "Dipilih",
+      "selectedShort": "Dipilih",
+      "parsingThumbnails": "Menjana lakaran halaman..."
+    },
+    "errors": {
+      "uploadPdf": "Sila muat naik fail PDF.",
+      "parsePdf": "Gagal membaca halaman PDF.",
+      "exportFailed": "Sesuatu tidak kena semasa mengeksport.",
+      "invalidRange": "Sila masukkan julat halaman yang sah (cth. 1-5, 8, 12-20)"
+    },
+    "filename": {
+      "title": "Sahkan nama fail",
+      "label": "Masukkan nama untuk PDF yang akan dieksport:",
+      "placeholder": "Masukkan nama fail"
+    },
+    "preview": {
+      "title": "Pratonton langsung"
+    },
+    "unlimited": "Tanpa had"
+  },
+  "Tools": {
+    "organize": {
+      "name": "Susun PDF",
+      "desc": "Seret untuk menyusun, putar, sisip halaman kosong dan susun semula"
+    },
+    "merge": {
+      "name": "Gabung PDF",
+      "desc": "Gabungkan beberapa dokumen menjadi satu dalam sebarang urutan"
+    },
+    "split": {
+      "name": "Pisah PDF",
+      "desc": "Pisah mengikut julat halaman atau eksport setiap halaman secara berasingan"
+    },
+    "rotate": {
+      "name": "Putar PDF",
+      "desc": "Betulkan orientasi halaman secara pukal"
+    },
+    "deletePages": {
+      "name": "Padam Halaman",
+      "desc": "Buang halaman yang tidak diperlukan dengan satu klik"
+    },
+    "extractPages": {
+      "name": "Ekstrak Halaman",
+      "desc": "Keluarkan halaman terpilih menjadi dokumen baharu"
+    },
+    "crop": {
+      "name": "Pangkas PDF",
+      "desc": "Laraskan margin dan potong ruang putih secara visual"
+    },
+    "edit": {
+      "name": "Edit PDF",
+      "desc": "Tambah teks, tandatangan tulisan tangan, lakaran dan anotasi"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "Susun PDF (Organize)",
+      "description": "Susun, putar, sisip halaman kosong dan bina semula secara visual"
+    },
+    "merge": {
+      "title": "Gabung PDF (Merge)",
+      "description": "Gabungkan beberapa dokumen menjadi satu dalam sebarang urutan"
+    },
+    "split": {
+      "title": "Pisah PDF (Split)",
+      "description": "Pisah mengikut julat halaman atau eksport setiap halaman secara berasingan"
+    },
+    "rotate": {
+      "title": "Putar PDF (Rotate & Flip)",
+      "description": "Putar secara pukal dan cermin halaman secara mendatar atau menegak"
+    },
+    "deletePages": {
+      "title": "Padam Halaman PDF (Delete Pages)",
+      "description": "Klik mana-mana halaman untuk membuangnya, dengan pintasan ganjil/genap dan input julat"
+    },
+    "extractPages": {
+      "title": "Ekstrak Halaman PDF (Extract Pages)",
+      "description": "Eksport halaman terpilih sebagai PDF baharu atau ZIP bagi setiap halaman"
+    },
+    "crop": {
+      "title": "Pangkas PDF (Crop PDF)",
+      "description": "Lapan pemegang untuk pelarasan visual pada seluruh dokumen, halaman ganjil/genap atau pilihan tersuai"
+    },
+    "edit": {
+      "title": "Edit Kandungan PDF (Edit PDF)",
+      "description": "Tambah kotak teks, penutup putih dan tandatangan tulisan tangan"
+    }
+  },
+  "Navbar": {
+    "allTools": "Semua alat",
+    "toggleMenu": "Buka atau tutup menu navigasi"
+  },
+  "HomePage": {
+    "heroTitle": "Alat <highlight>PDF</highlight> yang ringan dan minimal",
+    "heroSubtitle": "Tanpa pemasangan dan tanpa had saiz fail. Semua diproses dalam memori pelayar — fail anda tidak dimuat naik.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Diproses secara setempat dalam pelayar"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "Mod ujian pembangun: anda kini sebagai",
+      "vip": "Pengguna VIP",
+      "free": "Pengguna percuma (maks {max} fail)",
+      "switchTo": "Tukar kepada",
+      "freeMode": "Mod percuma",
+      "vipMode": "Mod VIP"
+    },
+    "upload": {
+      "vipHint": "Pengguna VIP boleh menggabungkan fail tanpa had",
+      "freeHint": "Pelan percuma membenarkan gabungan sehingga {max} fail"
+    },
+    "list": {
+      "selected": "Dipilih ({count} / {max})",
+      "dragHint": "(seret pemegang di kiri untuk menyusun semula)"
+    },
+    "actions": {
+      "removeFile": "Buang fail ini",
+      "mergeDownload": "Gabung dan muat turun",
+      "generating": "Menjana dan memuat turun..."
+    },
+    "footer": {
+      "limitReached": "Had gabungan percuma dicapai. Buka VIP untuk lebih banyak fail."
+    },
+    "errors": {
+      "freeLimit": "Pengguna percuma boleh menggabungkan sehingga {max} fail PDF pada satu masa!\nNaik taraf ke VIP untuk gabungan tanpa had.",
+      "minFiles": "Sila muat naik sekurang-kurangnya 2 fail PDF.",
+      "mergeFailed": "Sesuatu tidak kena semasa menggabungkan."
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "Putar 90°/180° dan cermin secara mendatar atau menegak"
+    },
+    "status": {
+      "generatingPreviews": "Menjana pratonton resolusi tinggi..."
+    },
+    "actions": {
+      "rotateLeft": "Putar ke kiri",
+      "rotateLeftTitle": "Putar 90° lawan arah jam",
+      "rotateRight": "Putar ke kanan",
+      "rotateRightTitle": "Putar 90° ikut arah jam",
+      "flipH": "Cermin mendatar",
+      "flipHTitle": "Cermin kiri-kanan",
+      "flipV": "Cermin menegak",
+      "flipVTitle": "Cermin atas-bawah",
+      "resetTitle": "Set semula halaman terpilih"
+    },
+    "errors": {
+      "noPagesSelected": "Sila pilih halaman yang ingin dilaraskan dahulu"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "Klik mana-mana halaman untuk menandanya dipadam, dengan pintasan ganjil/genap dan pemilihan julat"
+    },
+    "status": {
+      "totalPages": "{total} halaman",
+      "marked": "{count} ditanda untuk dipadam",
+      "remaining": "{count} halaman akan dikekalkan",
+      "clickToRestore": "Klik untuk pulihkan",
+      "markedBadge": "Ditanda dipadam",
+      "kept": "Dikekalkan"
+    },
+    "actions": {
+      "restoreAll": "Pulihkan semua",
+      "restoreAllTitle": "Pulihkan semua halaman yang ditanda dipadam",
+      "deleteOdd": "Padam halaman ganjil",
+      "deleteEven": "Padam halaman genap",
+      "deleteRange": "Padam julat",
+      "generate": "Jana dan muat turun PDF"
+    },
+    "placeholder": {
+      "range": "cth. 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "Anda tidak boleh memadam semua halaman. Simpan sekurang-kurangnya satu."
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "Ekstrak halaman terpilih sebagai PDF baharu atau ZIP"
+    },
+    "status": {
+      "extracting": "Mengekstrak..."
+    },
+    "actions": {
+      "odd": "Halaman ganjil",
+      "even": "Halaman genap",
+      "applyRange": "Guna julat",
+      "extractCount": "Ekstrak ({count} halaman)"
+    },
+    "mode": {
+      "merged": "Gabung jadi satu PDF",
+      "mergedTitle": "Gabungkan semua halaman yang diekstrak menjadi satu PDF",
+      "zip": "ZIP setiap halaman",
+      "zipTitle": "Eksport setiap halaman sebagai fail berasingan dalam ZIP"
+    },
+    "badge": {
+      "extract": "Ekstrak"
+    },
+    "placeholder": {
+      "range": "cth. 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "Sila pilih halaman yang ingin diekstrak dahulu.",
+      "invalidRange": "Sila masukkan julat halaman yang sah (cth. 1-5, 8)"
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "Muat naik satu PDF untuk penyuntingan halaman lanjutan",
+      "hint": "Seret untuk menyusun semula, putar, ekstrak atau padam halaman"
+    },
+    "status": {
+      "generating": "Menjana lakaran halaman...",
+      "selected": "{selected} / {total} halaman dipilih",
+      "position": "Kedudukan: {pos} (asalnya halaman {orig})"
+    },
+    "hint": {
+      "drag": "💡 Pegang pemegang di atas kad untuk menyusun semula; klik kad untuk memilih; guna butang kanan atas untuk memutar"
+    },
+    "actions": {
+      "exportSelected": "Eksport halaman terpilih",
+      "rotate90": "Putar 90°",
+      "collapse": "Runtuhkan",
+      "zoom": "Besarkan"
+    },
+    "preview": {
+      "position": "Kedudukan {pos}",
+      "hint": "Tuding pada kad di sebelah kiri"
+    },
+    "errors": {
+      "noPagesKept": "Pilih sekurang-kurangnya satu halaman untuk dikekalkan."
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "Kotak pangkas visual dengan skop berbilang julat dan pemilihan halaman tersuai"
+    },
+    "scope": {
+      "label": "Guna pangkas pada:",
+      "all": "Semua halaman",
+      "current": "Halaman semasa",
+      "odd": "Halaman ganjil",
+      "even": "Halaman genap",
+      "selected": "Halaman terpilih ({count})"
+    },
+    "actions": {
+      "resetBox": "Set semula kotak",
+      "exportCount": "Eksport ({count} halaman)"
+    },
+    "mode": {
+      "merged": "Gabung jadi satu PDF",
+      "zip": "ZIP setiap halaman"
+    },
+    "status": {
+      "parsingPreviews": "Menjana pratonton..."
+    },
+    "nav": {
+      "title": "Eksport halaman ({selected}/{total})",
+      "checkTitle": "Sertakan halaman ini dalam eksport",
+      "uncheckTitle": "Kecualikan halaman ini daripada eksport"
+    },
+    "errors": {
+      "noExportPages": "Sila pilih sekurang-kurangnya satu halaman untuk dieksport dalam senarai halaman di kanan."
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "Muat naik satu PDF untuk dipisah",
+      "hint": "Masukkan titik pemisah, kemudian pilih bahagian untuk dieksport"
+    },
+    "status": {
+      "parsing": "Menjana pratonton halaman...",
+      "splitPoints": "Titik pemisah: {count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "Eksport bahagian terpilih ({selected}/{total})",
+      "selectAllParts": "Pilih semua",
+      "uncut": "Buang potongan",
+      "cutHere": "Pisah di sini",
+      "confirmBatchDownload": "Sahkan dan muat turun semua"
+    },
+    "parts": {
+      "title": "Hasil pemisahan (tuding untuk pratonton halaman di dalam)",
+      "partLabel": "Bahagian {index}",
+      "hint": "💡 Klik kad untuk besarkan; klik gunting/tambah di tengah untuk memasukkan pemisah"
+    },
+    "badge": {
+      "cut": "Pemisah"
+    },
+    "preview": {
+      "hint": "Tuding pada lakaran di sebelah kiri"
+    },
+    "modal": {
+      "title": "Sahkan eksport",
+      "summary": "Anda akan mengeksport {count} bahagian terpilih.",
+      "customNames": "Namakan setiap fail secara berasingan",
+      "prefixLabel": "Tetapkan awalan nama fail untuk eksport:",
+      "perPartLabel": "Masukkan nama fail untuk setiap bahagian:"
+    },
+    "errors": {
+      "freeLimit": "Pelan percuma membenarkan sehingga {max} titik pemisah (2 fail).\nTukar ke mod VIP untuk pemisahan tanpa had!",
+      "readFailed": "Gagal membaca PDF.",
+      "noPartsSelected": "Pilih sekurang-kurangnya satu bahagian untuk dieksport."
+    },
+    "dev": {
+      "modeLabel": "Pelan semasa:",
+      "vip": "Pengguna VIP (pemisahan tanpa had)",
+      "free": "Pengguna percuma ({max} titik pemisah)",
+      "switchTo": "Tukar kepada",
+      "freeMode": "Mod percuma",
+      "vipMode": "Mod VIP"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "Halaman {page} ({name})",
+      "basketWithFile": "#{index} dalam bakul ({name})"
+    },
+    "upload": {
+      "prompt": "Muat naik berbilang PDF untuk pemasangan rentas dokumen (VIP)",
+      "hint": "Pilih mana-mana halaman daripada dokumen berbeza dan bina PDF baharu"
+    },
+    "sources": {
+      "title": "Dokumen sumber (klik untuk tukar pratonton)",
+      "addMore": "+ Tambah PDF lagi",
+      "current": "Sumber semasa: {name}",
+      "hint": "💡 Klik kad untuk besarkan; klik tambah (+) untuk masukkan ke bakul"
+    },
+    "status": {
+      "parsing": "Membaca halaman...",
+      "generating": "Menjana...",
+      "assembling": "Memasang dan mengeksport..."
+    },
+    "actions": {
+      "addToBasket": "Masukkan ke bakul",
+      "moveLeft": "Alih ke kiri",
+      "moveRight": "Alih ke kanan",
+      "rotate90": "Putar 90°",
+      "remove": "Buang",
+      "assembleExport": "Pasang dan eksport"
+    },
+    "preview": {
+      "hintCards": "Tuding kad untuk pratonton",
+      "hint": "Tuding mana-mana kad sumber atau bakul untuk pratonton langsung"
+    },
+    "basket": {
+      "title": "Bakul",
+      "subtitle": "Halaman dipilih untuk pemasangan ({count})",
+      "dragHint": "(seret pemegang pada desktop, guna anak panah pada mudah alih)",
+      "clear": "Kosongkan bakul",
+      "empty": "Bakul anda kosong. Klik tambah (+) pada kad halaman di atas untuk menambah."
+    },
+    "modal": {
+      "title": "Sahkan nama fail",
+      "summary": "{count} halaman dalam bakul akan dipasang menjadi:"
+    },
+    "errors": {
+      "emptyBasket": "Sila tambah sekurang-kurangnya satu halaman ke bakul dahulu."
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "Seret untuk mengubah saiz, tersuai teks/bingkai, pen sorot, anak panah vektor dan tandatangan tulisan tangan yang lancar"
+    },
+    "defaultText": "Taip di sini",
+    "status": {
+      "exporting": "Mengeksport...",
+      "parsingHd": "Menjana paparan resolusi tinggi..."
+    },
+    "toolbar": {
+      "text": "Teks",
+      "rect": "Segi empat / penutup putih",
+      "highlightStartTitle": "Hidupkan pen sorot bebas",
+      "highlightStopTitle": "Matikan pen sorot dan kembali ke mod pilihan",
+      "highlightActive": "Menyorot",
+      "highlighter": "Pen sorot",
+      "circle": "Bulatan / elips",
+      "arrow": "Anak panah",
+      "line": "Garis",
+      "signature": "Tandatangan",
+      "copy": "Salin (Ctrl+C)",
+      "paste": "Tampal (Ctrl+V)",
+      "deleteElement": "Padam elemen terpilih",
+      "save": "Simpan PDF yang diedit",
+      "autoStraighten": "Lakaran diluruskan secara automatik",
+      "exitBrush": "Keluar berus"
+    },
+    "style": {
+      "brushColor": "Warna berus:",
+      "textColor": "Warna teks:",
+      "fill": "Warna / isi:",
+      "thickness": "Ketebalan:",
+      "custom": "Tersuai:"
+    },
+    "colors": {
+      "yellow": "Kuning sorot",
+      "green": "Hijau sorot",
+      "pink": "Merah jambu sorot",
+      "blue": "Biru sorot",
+      "customTitle": "Warna tersuai"
+    },
+    "pages": {
+      "title": "Senarai halaman"
+    },
+    "modal": {
+      "signatureTitle": "Tandatangan tulisan tangan lancar",
+      "clearSignature": "Kosongkan dan lukis semula",
+      "applySignature": "Guna tandatangan"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "Muat naik satu atau lebih PDF untuk menyusun halaman",
+      "hint": "Bar alat bersatu, togol ganjil/genap pintar, sisip halaman kosong antara kad dan maklum balas senyap"
+    },
+    "canvas": {
+      "blankPage": "[ Halaman kosong ]"
+    },
+    "blank": {
+      "fileName": "Halaman kosong",
+      "short": "Kosong"
+    },
+    "hover": {
+      "pageWithFile": "Halaman {page} ({name})",
+      "basketWithFile": "#{index} dalam bakul ({name})"
+    },
+    "errors": {
+      "outlineFailed": "Gagal membaca garis panduan dokumen, atau PDF ini tiada penanda buku.",
+      "emptyBasket": "Sila pilih sekurang-kurangnya satu halaman ke dalam bakul dahulu."
+    },
+    "files": {
+      "title": "Fail dimuat naik ({count})",
+      "add": "+ Tambah fail",
+      "selectHint": "(Shift untuk julat, Ctrl untuk berbilang)"
+    },
+    "actions": {
+      "undo": "Buat asal (Ctrl+Z)",
+      "redo": "Buat semula (Ctrl+Y)",
+      "advanced": "Alat lanjutan (julat / ganjil-genap / garis panduan)",
+      "addToBasketCount": "Ke bakul ({count})",
+      "addToBasketTitle": "Masukkan ke bakul",
+      "putCurrent": "Masukkan halaman pratonton ke bakul",
+      "export": "Eksport PDF yang disusun",
+      "insertFirstBlank": "+ Sisip halaman kosong pertama",
+      "insertBlankFirstTitle": "Sisip halaman kosong di sini (paling hadapan)",
+      "insertBlankBetweenTitle": "Sisip halaman kosong antara halaman #{from} dan #{to}",
+      "rotate90": "Putar 90°",
+      "remove": "Buang"
+    },
+    "preview": {
+      "hint": "Tuding kad di kiri untuk pratonton"
+    },
+    "range": {
+      "label": "Julat halaman:",
+      "placeholder": "cth. 1-5, 8, 12-20",
+      "odd": "Halaman ganjil",
+      "even": "Halaman genap",
+      "outline": "Garis panduan dokumen"
+    },
+    "basket": {
+      "title": "Bakul pemasangan",
+      "countBadge": "{count} dalam bakul",
+      "pulseAdded": "Halaman ditambah! Klik untuk lihat",
+      "pulseExpand": "Klik untuk kembangkan bakul",
+      "pulseCollapse": "Klik untuk runtuhkan",
+      "empty": "Bakul anda kosong. Klik tambah (+) pada kad halaman di atas untuk memilih halaman atau menyisip halaman kosong.",
+      "selectedHint": "#{index} dalam bakul dipilih",
+      "orderHint": "Klik kad bakul, kemudian guna butang susunan:",
+      "moveForward": "Alih ke hadapan",
+      "moveBackward": "Alih ke belakang"
+    },
+    "outline": {
+      "title": "Penanda buku terbina dalam ({name})",
+      "loading": "Membaca garis panduan penanda buku...",
+      "empty": "PDF ini tiada penanda buku. Gunakan [Julat halaman] atau [Ganjil/Genap].",
+      "hint": "Klik entri garis panduan untuk memilih halaman itu"
+    },
+    "modal": {
+      "title": "Sahkan nama fail"
+    },
+    "status": {
+      "assembling": "Memasang dan mengeksport..."
+    }
+  }
+}

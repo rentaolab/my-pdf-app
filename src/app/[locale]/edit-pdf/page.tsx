@@ -1,25 +1,28 @@
+import { useTranslations } from 'next-intl';
 import Navbar from '@/components/layout/Navbar';
-import PdfCropTool from '@/components/features/PdfCropTool';
-import { Crop } from 'lucide-react';
+import PdfEditTool from '@/components/features/PdfEditTool';
+import { Edit3 } from 'lucide-react';
 
-export default function CropPdfPage() {
+export default function EditPdfPage() {
+  const t = useTranslations('ToolPages.edit');
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
         <div className="flex items-center space-x-3 pb-4 border-b border-slate-200/60">
           <div className="p-2 bg-red-600 text-white rounded-xl shadow-sm">
-            <Crop className="w-5 h-5" />
+            <Edit3 className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">裁剪 PDF (Crop PDF)</h1>
+            <h1 className="text-xl font-bold text-slate-900">{t('title')}</h1>
             <p className="text-xs text-slate-500 mt-0.5">
-              可视化八点选框调整，支持应用至全文档、奇偶页或自定义所选页面
+              {t('description')}
             </p>
           </div>
         </div>
 
-        <PdfCropTool />
+        <PdfEditTool />
       </main>
     </div>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages, renderSinglePDFPageHighRes } from '@/lib/pdf-edit';
 import { bakeEditsToPDF, FabricCanvasJSON } from '@/lib/pdf-edit-content';
 import * as fabric from 'fabric';
@@ -11,6 +12,8 @@ import {
 } from 'lucide-react';
 
 export default function PdfEditTool() {
+  const t = useTranslations('PdfEdit');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [highResBg, setHighResBg] = useState<string>('');
@@ -53,7 +56,7 @@ export default function PdfEditTool() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     const selected = e.target.files[0];
-    if (selected.type !== 'application/pdf') return alert('请上传 PDF 文件');
+    if (selected.type !== 'application/pdf') return alert(tCommon('errors.uploadPdf'));
     setFile(selected);
     e.target.value = '';
   };
@@ -67,7 +70,7 @@ export default function PdfEditTool() {
         setThumbnails(images);
         setActivePageIndex(0);
       } catch (err) {
-        alert('解析 PDF 页面失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -243,7 +246,7 @@ export default function PdfEditTool() {
   const addTextbox = () => {
     setIsHighlighting(false);
     if (!fabricCanvasRef.current) return;
-    const text = new fabric.Textbox('点击输入文本', {
+    const text = new fabric.Textbox(t('defaultText'), {
       left: 50, top: 50, fontSize: 20, fill: '#1E293B', fontFamily: 'Helvetica',
     });
     applyReeffStyle(text);
@@ -385,7 +388,7 @@ export default function PdfEditTool() {
       fabricCanvasRef.current.requestRenderAll();
       saveCanvasState();
     } catch (err) {
-      console.error('签名插入失败:', err);
+      console.error('Failed to insert signature:', err);
     }
 
     setShowSignModal(false);
@@ -455,7 +458,7 @@ export default function PdfEditTool() {
       URL.revokeObjectURL(url);
     } catch (err) {
       console.error(err);
-      alert('导出保存失败');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -468,8 +471,8 @@ export default function PdfEditTool() {
         <div className="flex flex-col items-center space-y-3">
           <div className="p-3 bg-red-50 rounded-full text-red-600"><Upload className="w-8 h-8" /></div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽 PDF 文件到此处上传</p>
-            <p className="text-xs text-slate-500 mt-1">支持自由拖拽缩放、文字/边框定制、自由荧光高亮笔、矢量箭头与平滑电子签名</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.prompt')}</p>
+            <p className="text-xs text-slate-500 mt-1">{t('upload.hint')}</p>
           </div>
         </div>
       </div>
@@ -482,8 +485,8 @@ export default function PdfEditTool() {
         {/* 吸顶控制栏 */}
         <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
           <div className="flex flex-wrap items-center gap-1.5">
-            <button onClick={addTextbox} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Type className="w-3.5 h-3.5 text-red-600" /><span>文字</span></button>
-            <button onClick={addRectangle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Square className="w-3.5 h-3.5 fill-slate-300 text-slate-600" /><span>矩形/遮挡</span></button>
+            <button onClick={addTextbox} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Type className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.text')}</span></button>
+            <button onClick={addRectangle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Square className="w-3.5 h-3.5 fill-slate-300 text-slate-600" /><span>{t('toolbar.rect')}</span></button>
             
             {/* 自由荧光笔模式开关 */}
             <button
@@ -493,23 +496,23 @@ export default function PdfEditTool() {
                   ? 'bg-amber-500 text-white border-amber-600 shadow-sm shadow-amber-500/30'
                   : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200'
               }`}
-              title={isHighlighting ? '点击关闭高亮笔，恢复选择模式' : '点击开启手绘高亮笔'}
+              title={isHighlighting ? t('toolbar.highlightStopTitle') : t('toolbar.highlightStartTitle')}
             >
               <Highlighter className="w-3.5 h-3.5" />
-              <span>{isHighlighting ? '高亮绘制中' : '荧光画笔'}</span>
+              <span>{isHighlighting ? t('toolbar.highlightActive') : t('toolbar.highlighter')}</span>
             </button>
 
-            <button onClick={addCircle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Circle className="w-3.5 h-3.5 text-red-600" /><span>圆/椭圆</span></button>
-            <button onClick={addArrow} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><MoveRight className="w-3.5 h-3.5 text-red-600" /><span>箭头</span></button>
-            <button onClick={addLine} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Minus className="w-3.5 h-3.5 text-red-600" /><span>直线</span></button>
-            <button onClick={() => setShowSignModal(true)} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-600" /><span>签名</span></button>
+            <button onClick={addCircle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Circle className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.circle')}</span></button>
+            <button onClick={addArrow} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><MoveRight className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.arrow')}</span></button>
+            <button onClick={addLine} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Minus className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.line')}</span></button>
+            <button onClick={() => setShowSignModal(true)} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.signature')}</span></button>
           </div>
 
           <div className="flex items-center space-x-2">
             <div className="flex items-center bg-slate-50 p-0.5 rounded-xl border border-slate-200">
-              <button onClick={copySelected} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title="复制 (Ctrl+C)"><Copy className="w-3.5 h-3.5" /></button>
-              <button onClick={pasteClipboard} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title="粘贴 (Ctrl+V)"><Clipboard className="w-3.5 h-3.5" /></button>
-              {selectedObject && <button onClick={deleteActiveObject} className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="删除当前元素"><Trash2 className="w-3.5 h-3.5" /></button>}
+              <button onClick={copySelected} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title={t('toolbar.copy')}><Copy className="w-3.5 h-3.5" /></button>
+              <button onClick={pasteClipboard} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title={t('toolbar.paste')}><Clipboard className="w-3.5 h-3.5" /></button>
+              {selectedObject && <button onClick={deleteActiveObject} className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title={t('toolbar.deleteElement')}><Trash2 className="w-3.5 h-3.5" /></button>}
             </div>
             <div className="flex items-center space-x-1 bg-slate-50 px-2 py-1 rounded-xl border border-slate-200">
               <button onClick={() => handleZoom('out')} className="text-slate-600 hover:text-slate-900"><ZoomOut className="w-3.5 h-3.5" /></button>
@@ -519,7 +522,7 @@ export default function PdfEditTool() {
           </div>
           <button onClick={handleExport} disabled={isProcessing} className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95 ml-auto">
             <Download className="w-3.5 h-3.5" />
-            <span>{isProcessing ? '导出中...' : '保存改字 PDF'}</span>
+            <span>{isProcessing ? t('status.exporting') : t('toolbar.save')}</span>
           </button>
         </div>
 
@@ -528,32 +531,32 @@ export default function PdfEditTool() {
           <div className="bg-slate-900/95 backdrop-blur-md text-white px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs font-bold border-b border-slate-800 animate-in fade-in duration-200">
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center space-x-2 bg-slate-800/80 px-2.5 py-1.5 rounded-xl border border-slate-700/60">
-                <span className="text-slate-400 text-[10px]">画笔颜色:</span>
+                <span className="text-slate-400 text-[10px]">{t('style.brushColor')}</span>
                 <div className="flex items-center space-x-1.5">
                   <button 
                     onClick={() => setHighlightColor('rgba(254, 240, 138, 0.5)')} 
                     className={`w-4 h-4 rounded-full bg-yellow-300 transition-transform ${highlightColor.includes('254, 240, 138') ? 'scale-125 ring-2 ring-amber-400' : 'opacity-70 hover:opacity-100'}`} 
-                    title="荧光黄" 
+                    title={t('colors.yellow')} 
                   />
                   <button 
                     onClick={() => setHighlightColor('rgba(187, 247, 208, 0.5)')} 
                     className={`w-4 h-4 rounded-full bg-emerald-300 transition-transform ${highlightColor.includes('187, 247, 208') ? 'scale-125 ring-2 ring-emerald-400' : 'opacity-70 hover:opacity-100'}`} 
-                    title="荧光绿" 
+                    title={t('colors.green')} 
                   />
                   <button 
                     onClick={() => setHighlightColor('rgba(254, 205, 211, 0.5)')} 
                     className={`w-4 h-4 rounded-full bg-rose-300 transition-transform ${highlightColor.includes('254, 205, 211') ? 'scale-125 ring-2 ring-rose-400' : 'opacity-70 hover:opacity-100'}`} 
-                    title="荧光粉" 
+                    title={t('colors.pink')} 
                   />
                   <button 
                     onClick={() => setHighlightColor('rgba(191, 219, 254, 0.5)')} 
                     className={`w-4 h-4 rounded-full bg-sky-300 transition-transform ${highlightColor.includes('191, 219, 254') ? 'scale-125 ring-2 ring-sky-400' : 'opacity-70 hover:opacity-100'}`} 
-                    title="荧光蓝" 
+                    title={t('colors.blue')} 
                   />
                 </div>
 
                 <div className="border-l border-slate-700 pl-2 ml-1 flex items-center space-x-1">
-                  <span className="text-slate-400 text-[10px]">自定义:</span>
+                  <span className="text-slate-400 text-[10px]">{t('style.custom')}</span>
                   <input 
                     type="color" 
                     onChange={(e) => {
@@ -564,13 +567,13 @@ export default function PdfEditTool() {
                       setHighlightColor(`rgba(${r}, ${g}, ${b}, 0.5)`);
                     }}
                     className="w-4 h-4 rounded cursor-pointer border-0 bg-transparent"
-                    title="自定义色彩"
+                    title={t('colors.customTitle')}
                   />
                 </div>
               </div>
 
               <div className="flex items-center space-x-2 bg-slate-800/80 px-2.5 py-1.5 rounded-xl border border-slate-700/60">
-                <span className="text-slate-400 text-[10px]">笔触粗细:</span>
+                <span className="text-slate-400 text-[10px]">{t('style.thickness')}</span>
                 <input 
                   type="range" 
                   min="8" 
@@ -590,7 +593,7 @@ export default function PdfEditTool() {
             <div className="flex items-center space-x-4">
               <div className="hidden sm:flex items-center space-x-2 text-slate-400 text-[11px]">
                 <span className="flex h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>涂划文字自动智能拉直</span>
+                <span>{t('toolbar.autoStraighten')}</span>
               </div>
 
               <button 
@@ -598,7 +601,7 @@ export default function PdfEditTool() {
                 className="bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-[11px] transition-colors border border-slate-700 flex items-center space-x-1 shrink-0"
               >
                 <X className="w-3.5 h-3.5" />
-                <span>退出画笔</span>
+                <span>{t('toolbar.exitBrush')}</span>
               </button>
             </div>
           </div>
@@ -642,7 +645,7 @@ export default function PdfEditTool() {
                 </div>
 
                 <div className="flex items-center space-x-2 bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px]">文字颜色:</span>
+                  <span className="text-slate-400 text-[10px]">{t('style.textColor')}</span>
                   <input 
                     type="color" 
                     value={objectStyle.fill} 
@@ -663,7 +666,7 @@ export default function PdfEditTool() {
               <div className="flex items-center space-x-4">
                 {selectedObject.type !== 'line' && (
                   <div className="flex items-center space-x-2 bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/60">
-                    <span className="text-slate-400 text-[10px]">颜色/填充:</span>
+                    <span className="text-slate-400 text-[10px]">{t('style.fill')}</span>
                     <input 
                       type="color" 
                       value={objectStyle.stroke} 
@@ -680,7 +683,7 @@ export default function PdfEditTool() {
                 )}
 
                 <div className="flex items-center space-x-2 bg-slate-800/80 px-2.5 py-1 rounded-lg border border-slate-700/60">
-                  <span className="text-slate-400 text-[10px]">粗细:</span>
+                  <span className="text-slate-400 text-[10px]">{t('style.thickness')}</span>
                   <input 
                     type="range" 
                     min="1" 
@@ -710,7 +713,7 @@ export default function PdfEditTool() {
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center space-y-2 text-red-600 mt-20">
                   <RefreshCw className="w-6 h-6 animate-spin" />
-                  <span className="text-xs font-medium">解析高清画面...</span>
+                  <span className="text-xs font-medium">{t('status.parsingHd')}</span>
                 </div>
               ) : (
                 <div 
@@ -746,7 +749,7 @@ export default function PdfEditTool() {
           {/* 右侧单列页面列表 */}
           <div className="w-full md:w-64 bg-white p-4 border-l border-slate-200/80 shadow-sm flex flex-col shrink-0 z-10 max-h-[calc(100vh-260px)] overflow-y-auto">
             <div className="pb-2 border-b border-slate-100 mb-3 shrink-0">
-              <span className="text-xs font-bold text-slate-800">页面列表</span>
+              <span className="text-xs font-bold text-slate-800">{t('pages.title')}</span>
             </div>
             <div className="space-y-2.5 pr-1">
               {thumbnails.map((src, idx) => {
@@ -769,17 +772,17 @@ export default function PdfEditTool() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-800">手写平滑电子签名</h3>
+              <h3 className="text-base font-bold text-slate-800">{t('modal.signatureTitle')}</h3>
               <button onClick={() => setShowSignModal(false)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
             </div>
             <div className="bg-slate-50 rounded-xl border border-slate-200 p-2 flex items-center justify-center">
               <canvas ref={signCanvasRef} width={360} height={160} onMouseDown={startSigning} onMouseMove={drawSign} onMouseUp={() => setIsSigning(false)} className="bg-white rounded border border-slate-300 cursor-crosshair" />
             </div>
             <div className="flex items-center justify-between pt-2">
-              <button onClick={() => { const canvas = signCanvasRef.current; if (canvas) { const ctx = canvas.getContext('2d'); ctx?.clearRect(0, 0, canvas.width, canvas.height); } }} className="text-xs font-bold text-slate-500 hover:text-slate-800">清空重画</button>
+              <button onClick={() => { const canvas = signCanvasRef.current; if (canvas) { const ctx = canvas.getContext('2d'); ctx?.clearRect(0, 0, canvas.width, canvas.height); } }} className="text-xs font-bold text-slate-500 hover:text-slate-800">{t('modal.clearSignature')}</button>
               <div className="flex space-x-2">
-                <button onClick={() => setShowSignModal(false)} className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">取消</button>
-                <button onClick={saveSignature} className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-xs font-bold rounded-lg shadow-sm"><Check className="w-3.5 h-3.5" /><span>应用签名</span></button>
+                <button onClick={() => setShowSignModal(false)} className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">{tCommon('actions.cancel')}</button>
+                <button onClick={saveSignature} className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-xs font-bold rounded-lg shadow-sm"><Check className="w-3.5 h-3.5" /><span>{t('modal.applySignature')}</span></button>
               </div>
             </div>
           </div>

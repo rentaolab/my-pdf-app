@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · Kostenlose Online-PDF-Tools",
+    "description": "Kostenloses PDF-Toolkit mit Fokus auf Datenschutz, das komplett im Browser läuft. PDFs zusammenfügen, teilen, drehen, zuschneiden und bearbeiten – ohne Upload."
+  },
+  "LanguageSwitcher": {
+    "label": "Sprache"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "PDF-Datei hier klicken oder ablegen, um sie hochzuladen",
+      "promptMultiple": "Mehrere PDF-Dateien hier klicken oder ablegen, um sie hochzuladen"
+    },
+    "actions": {
+      "selectAll": "Alle auswählen",
+      "deselectAll": "Auswahl aufheben",
+      "cancel": "Abbrechen",
+      "clear": "Leeren",
+      "reset": "Zurücksetzen",
+      "reupload": "Erneut hochladen",
+      "confirmDownload": "Herunterladen",
+      "download": "PDF herunterladen",
+      "selectAllCount": "Alle auswählen ({selected}/{total})",
+      "confirm": "Bestätigen",
+      "close": "Schließen"
+    },
+    "status": {
+      "processing": "Wird verarbeitet...",
+      "page": "Seite {page}",
+      "selected": "Ausgewählt",
+      "selectedShort": "Ausgewählt",
+      "parsingThumbnails": "Seitenvorschauen werden erstellt..."
+    },
+    "errors": {
+      "uploadPdf": "Bitte lade eine PDF-Datei hoch.",
+      "parsePdf": "Die PDF-Seiten konnten nicht gelesen werden.",
+      "exportFailed": "Beim Exportieren ist ein Fehler aufgetreten.",
+      "invalidRange": "Bitte gib einen gültigen Seitenbereich ein (z. B. 1-5, 8, 12-20)"
+    },
+    "filename": {
+      "title": "Dateinamen bestätigen",
+      "label": "Gib einen Namen für die exportierte PDF-Datei ein:",
+      "placeholder": "Dateinamen eingeben"
+    },
+    "preview": {
+      "title": "Live-Vorschau"
+    },
+    "unlimited": "Unbegrenzt"
+  },
+  "Tools": {
+    "organize": {
+      "name": "PDF organisieren",
+      "desc": "Seiten per Drag and drop sortieren, drehen, Leerseiten einfügen und neu zusammenstellen"
+    },
+    "merge": {
+      "name": "PDF zusammenfügen",
+      "desc": "Mehrere Dokumente in beliebiger Reihenfolge zu einem zusammenfügen"
+    },
+    "split": {
+      "name": "PDF teilen",
+      "desc": "Nach Seitenbereich oder jede Seite einzeln exportieren"
+    },
+    "rotate": {
+      "name": "PDF drehen",
+      "desc": "Seitenausrichtung in großen Mengen korrigieren"
+    },
+    "deletePages": {
+      "name": "Seiten löschen",
+      "desc": "Unerwünschte Seiten mit einem Klick entfernen"
+    },
+    "extractPages": {
+      "name": "Seiten extrahieren",
+      "desc": "Ausgewählte Seiten in ein neues Dokument übernehmen"
+    },
+    "crop": {
+      "name": "PDF zuschneiden",
+      "desc": "Ränder und weißen Raum visuell anpassen"
+    },
+    "edit": {
+      "name": "PDF bearbeiten",
+      "desc": "Text, handschriftliche Signaturen, Zeichnungen und Anmerkungen hinzufügen"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "PDF organisieren",
+      "description": "Visuelles Sortieren im Raster, Drehen, Leerseiten einfügen und neu zusammenstellen"
+    },
+    "merge": {
+      "title": "PDF zusammenfügen",
+      "description": "Mehrere Dokumente in beliebiger Reihenfolge zu einem zusammenfügen"
+    },
+    "split": {
+      "title": "PDF teilen",
+      "description": "Nach Seitenbereich oder jede Seite einzeln exportieren"
+    },
+    "rotate": {
+      "title": "PDF drehen und spiegeln",
+      "description": "Seiten in großen Mengen drehen und horizontal oder vertikal spiegeln"
+    },
+    "deletePages": {
+      "title": "PDF-Seiten löschen",
+      "description": "Jede Seite per Klick entfernen, mit Shortcuts für gerade/ungerade Seiten und Bereichseingabe"
+    },
+    "extractPages": {
+      "title": "PDF-Seiten extrahieren",
+      "description": "Ausgewählte Seiten als neue PDF oder als ZIP einzelner Seiten exportieren"
+    },
+    "crop": {
+      "title": "PDF zuschneiden",
+      "description": "Visuelles Zuschneiden mit acht Griffen für das ganze Dokument, gerade/ungerade Seiten oder eine eigene Auswahl"
+    },
+    "edit": {
+      "title": "PDF-Inhalt bearbeiten",
+      "description": "Textfelder, Weißabdeckungen und flüssige handschriftliche Signaturen hinzufügen"
+    }
+  },
+  "Navbar": {
+    "allTools": "Alle Werkzeuge",
+    "toggleMenu": "Navigationsmenü öffnen oder schließen"
+  },
+  "HomePage": {
+    "heroTitle": "Leichtgewichtige, minimalistische <highlight>PDF-Werkzeuge</highlight>",
+    "heroSubtitle": "Keine Installation, keine Dateigrößenbeschränkung. Alles läuft im Speicher deines Browsers – deine Dateien werden nie hochgeladen.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Lokal im Browser verarbeitet"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "Entwickler-Testmodus: aktuelle Rolle",
+      "vip": "VIP-Nutzer",
+      "free": "Kostenloser Nutzer (max. {max} Dateien)",
+      "switchTo": "Wechseln zu",
+      "freeMode": "Kostenloser Modus",
+      "vipMode": "VIP-Modus"
+    },
+    "upload": {
+      "vipHint": "VIP-Nutzer können unbegrenzt viele Dateien zusammenfügen",
+      "freeHint": "Der kostenlose Tarif erlaubt das Zusammenfügen von bis zu {max} Dateien"
+    },
+    "list": {
+      "selected": "Ausgewählt ({count} / {max})",
+      "dragHint": "(linken Griff ziehen, um die Reihenfolge zu ändern)"
+    },
+    "actions": {
+      "removeFile": "Diese Datei entfernen",
+      "mergeDownload": "Zusammenfügen und herunterladen",
+      "generating": "Wird erstellt und heruntergeladen..."
+    },
+    "footer": {
+      "limitReached": "Kostenloses Limit erreicht. VIP freischalten für mehr Dateien."
+    },
+    "errors": {
+      "freeLimit": "Kostenlose Nutzer können höchstens {max} PDF-Dateien auf einmal zusammenfügen!\nUpgrade auf VIP für unbegrenztes Zusammenfügen.",
+      "minFiles": "Bitte lade mindestens 2 PDF-Dateien hoch.",
+      "mergeFailed": "Beim Zusammenfügen ist ein Fehler aufgetreten."
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "Seiten um 90°/180° drehen und horizontal oder vertikal spiegeln"
+    },
+    "status": {
+      "generatingPreviews": "Hochauflösende Vorschauen werden erstellt..."
+    },
+    "actions": {
+      "rotateLeft": "Nach links drehen",
+      "rotateLeftTitle": "Um 90° gegen den Uhrzeigersinn drehen",
+      "rotateRight": "Nach rechts drehen",
+      "rotateRightTitle": "Um 90° im Uhrzeigersinn drehen",
+      "flipH": "Horizontal spiegeln",
+      "flipHTitle": "Horizontal spiegeln (links/rechts)",
+      "flipV": "Vertikal spiegeln",
+      "flipVTitle": "Vertikal spiegeln (oben/unten)",
+      "resetTitle": "Ausgewählte Seiten zurücksetzen"
+    },
+    "errors": {
+      "noPagesSelected": "Bitte zuerst die Seiten auswählen, die angepasst werden sollen"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "Klicke auf eine Seite, um sie zum Löschen zu markieren – mit Gerade/Ungerade-Shortcuts und Bereichsauswahl"
+    },
+    "status": {
+      "totalPages": "{total} Seiten",
+      "marked": "{count} zum Löschen markiert",
+      "remaining": "{count} Seiten bleiben erhalten",
+      "clickToRestore": "Zum Wiederherstellen klicken",
+      "markedBadge": "Zum Löschen markiert",
+      "kept": "Behalten"
+    },
+    "actions": {
+      "restoreAll": "Alle wiederherstellen",
+      "restoreAllTitle": "Alle zum Löschen markierten Seiten wiederherstellen",
+      "deleteOdd": "Ungerade Seiten löschen",
+      "deleteEven": "Gerade Seiten löschen",
+      "deleteRange": "Bereich löschen",
+      "generate": "PDF erstellen und herunterladen"
+    },
+    "placeholder": {
+      "range": "z. B. 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "Du kannst nicht alle Seiten löschen. Behalte mindestens eine Seite."
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "Ausgewählte Seiten als neue PDF oder ZIP exportieren"
+    },
+    "status": {
+      "extracting": "Wird exportiert..."
+    },
+    "actions": {
+      "odd": "Ungerade Seiten",
+      "even": "Gerade Seiten",
+      "applyRange": "Anwenden",
+      "extractCount": "Extrahieren ({count} Seiten)"
+    },
+    "mode": {
+      "merged": "Zu einer PDF zusammenfügen",
+      "mergedTitle": "Alle extrahierten Seiten zu einer einzigen PDF zusammenfügen",
+      "zip": "ZIP einzelner Seiten",
+      "zipTitle": "Jede Seite als separate Datei in einem ZIP exportieren"
+    },
+    "badge": {
+      "extract": "Extrahieren"
+    },
+    "placeholder": {
+      "range": "z. B. 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "Bitte zuerst die Seiten auswählen, die extrahiert werden sollen.",
+      "invalidRange": "Bitte gib einen gültigen Seitenbereich ein (z. B. 1-5, 8)"
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "Eine PDF für die erweiterte Seitenbearbeitung hochladen",
+      "hint": "Zum Sortieren, Drehen, Extrahieren oder Löschen ziehen"
+    },
+    "status": {
+      "generating": "Seitenvorschauen werden erstellt...",
+      "selected": "{selected} von {total} Seiten ausgewählt",
+      "position": "Position: {pos} (ursprünglich Seite {orig})"
+    },
+    "hint": {
+      "drag": "💡 Ziehe den Griff oben an einer Karte zum Sortieren; klicke zum Auswählen; oben rechts dreht die Seite"
+    },
+    "actions": {
+      "exportSelected": "Ausgewählte Seiten exportieren",
+      "rotate90": "Um 90° drehen",
+      "collapse": "Einklappen",
+      "zoom": "Vergrößern"
+    },
+    "preview": {
+      "position": "Position {pos}",
+      "hint": "Mit der Maus über eine Karte links fahren"
+    },
+    "errors": {
+      "noPagesKept": "Bitte mindestens eine Seite zum Behalten auswählen."
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "Visueller Zuschneiderahmen mit mehreren Bereichen und eigener Seitenauswahl"
+    },
+    "scope": {
+      "label": "Zuschnitt anwenden auf:",
+      "all": "Alle Seiten",
+      "current": "Aktuelle Seite",
+      "odd": "Ungerade Seiten",
+      "even": "Gerade Seiten",
+      "selected": "Ausgewählte Seiten ({count})"
+    },
+    "actions": {
+      "resetBox": "Rahmen zurücksetzen",
+      "exportCount": "Exportieren ({count} Seiten)"
+    },
+    "mode": {
+      "merged": "Zu einer PDF zusammenfügen",
+      "zip": "ZIP einzelner Seiten"
+    },
+    "status": {
+      "parsingPreviews": "Vorschauen werden erstellt..."
+    },
+    "nav": {
+      "title": "Seiten exportieren ({selected}/{total})",
+      "checkTitle": "Diese Seite in den Export aufnehmen",
+      "uncheckTitle": "Diese Seite vom Export ausschließen"
+    },
+    "errors": {
+      "noExportPages": "Bitte rechts in der Seitenübersicht mindestens eine Seite zum Exportieren auswählen."
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "Eine PDF zum Teilen hochladen",
+      "hint": "Trennstellen setzen und dann die zu exportierenden Teile wählen"
+    },
+    "status": {
+      "parsing": "Seitenvorschauen werden erstellt...",
+      "splitPoints": "Trennstellen: {count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "Ausgewählte Teile exportieren ({selected}/{total})",
+      "selectAllParts": "Alle auswählen",
+      "uncut": "Trennung entfernen",
+      "cutHere": "Hier trennen",
+      "confirmBatchDownload": "Bestätigen und alle herunterladen"
+    },
+    "parts": {
+      "title": "Teilungsergebnisse (zum Vorschauen der Seiten darüberfahren)",
+      "partLabel": "Teil {index}",
+      "hint": "💡 Karte anklicken zum Vergrößern; Schere/Plus in der Mitte fügt eine Trennstelle ein"
+    },
+    "badge": {
+      "cut": "Trennstelle"
+    },
+    "preview": {
+      "hint": "Mit der Maus über eine Miniatur links fahren"
+    },
+    "modal": {
+      "title": "Export bestätigen",
+      "summary": "Es werden {count} ausgewählte Teile exportiert.",
+      "customNames": "Jede Datei einzeln benennen",
+      "prefixLabel": "Dateinamen-Präfix für den Export festlegen:",
+      "perPartLabel": "Dateinamen für jeden Teil eingeben:"
+    },
+    "errors": {
+      "freeLimit": "Der kostenlose Tarif erlaubt bis zu {max} Trennstellen (2 Dateien).\nWechsle in den VIP-Modus für unbegrenztes Teilen!",
+      "readFailed": "Die PDF konnte nicht gelesen werden.",
+      "noPartsSelected": "Bitte mindestens einen Teil zum Exportieren auswählen."
+    },
+    "dev": {
+      "modeLabel": "Aktueller Tarif:",
+      "vip": "VIP-Nutzer (unbegrenzte Teilungen)",
+      "free": "Kostenloser Nutzer ({max} Trennstelle)",
+      "switchTo": "Wechseln zu",
+      "freeMode": "Kostenloser Modus",
+      "vipMode": "VIP-Modus"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "Seite {page} ({name})",
+      "basketWithFile": "#{index} im Korb ({name})"
+    },
+    "upload": {
+      "prompt": "Mehrere PDFs für dokumentübergreifende Montage hochladen (VIP)",
+      "hint": "Beliebige Seiten aus verschiedenen Dokumenten zu einer neuen PDF zusammenstellen"
+    },
+    "sources": {
+      "title": "Quelldokumente (klicken, um die Vorschau zu wechseln)",
+      "addMore": "+ Weitere PDFs hinzufügen",
+      "current": "Aktuelle Quelle: {name}",
+      "hint": "💡 Karte anklicken zum Vergrößern; mit Plus (+) in den Korb legen"
+    },
+    "status": {
+      "parsing": "Seiten werden gelesen...",
+      "generating": "Wird erstellt...",
+      "assembling": "Wird zusammengestellt und exportiert..."
+    },
+    "actions": {
+      "addToBasket": "In den Korb legen",
+      "moveLeft": "Nach links verschieben",
+      "moveRight": "Nach rechts verschieben",
+      "rotate90": "Um 90° drehen",
+      "remove": "Entfernen",
+      "assembleExport": "Zusammenstellen und exportieren"
+    },
+    "preview": {
+      "hintCards": "Zum Vorschauen über eine Karte fahren",
+      "hint": "Zum Live-Vorschau über eine Quell- oder Korbkarte fahren"
+    },
+    "basket": {
+      "title": "Korb",
+      "subtitle": "Zum Zusammenstellen ausgewählte Seiten ({count})",
+      "dragHint": "(am Desktop den Griff ziehen, am Handy die Pfeile nutzen)",
+      "clear": "Korb leeren",
+      "empty": "Dein Korb ist leer. Klicke oben auf einer Seitenkarte auf +, um Seiten hinzuzufügen."
+    },
+    "modal": {
+      "title": "Dateinamen bestätigen",
+      "summary": "Die {count} Seiten im Korb werden zusammengesetzt zu:"
+    },
+    "errors": {
+      "emptyBasket": "Bitte zuerst mindestens eine Seite in den Korb legen."
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "Frei ziehen und skalieren, Text/Rahmen anpassen, freier Textmarker, Vektorpfeile und flüssige handschriftliche Signaturen"
+    },
+    "defaultText": "Hier eingeben",
+    "status": {
+      "exporting": "Wird exportiert...",
+      "parsingHd": "Hochauflösende Ansicht wird erstellt..."
+    },
+    "toolbar": {
+      "text": "Text",
+      "rect": "Rechteck / Abdecken",
+      "highlightStartTitle": "Freihand-Textmarker einschalten",
+      "highlightStopTitle": "Textmarker ausschalten und zum Auswahlmodus zurückkehren",
+      "highlightActive": "Markieren aktiv",
+      "highlighter": "Textmarker",
+      "circle": "Kreis / Ellipse",
+      "arrow": "Pfeil",
+      "line": "Linie",
+      "signature": "Unterschrift",
+      "copy": "Kopieren (Strg+C)",
+      "paste": "Einfügen (Strg+V)",
+      "deleteElement": "Ausgewähltes Element löschen",
+      "save": "Bearbeitete PDF speichern",
+      "autoStraighten": "Striche werden automatisch begradigt",
+      "exitBrush": "Stift verlassen"
+    },
+    "style": {
+      "brushColor": "Stiftfarbe:",
+      "textColor": "Textfarbe:",
+      "fill": "Farbe / Füllung:",
+      "thickness": "Stärke:",
+      "custom": "Benutzerdefiniert:"
+    },
+    "colors": {
+      "yellow": "Textmarker-Gelb",
+      "green": "Textmarker-Grün",
+      "pink": "Textmarker-Pink",
+      "blue": "Textmarker-Blau",
+      "customTitle": "Benutzerdefinierte Farbe"
+    },
+    "pages": {
+      "title": "Seitenliste"
+    },
+    "modal": {
+      "signatureTitle": "Flüssige handschriftliche Unterschrift",
+      "clearSignature": "Leeren und neu zeichnen",
+      "applySignature": "Unterschrift anwenden"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "Eine oder mehrere PDFs hochladen, um Seiten zu organisieren",
+      "hint": "Einheitliche Werkzeugleiste, intelligente Gerade/Ungerade-Umschaltung, Leerseiten zwischen Karten und dezentes Feedback"
+    },
+    "canvas": {
+      "blankPage": "[ Leere Seite ]"
+    },
+    "blank": {
+      "fileName": "Leere Seite",
+      "short": "Leer"
+    },
+    "hover": {
+      "pageWithFile": "Seite {page} ({name})",
+      "basketWithFile": "#{index} im Korb ({name})"
+    },
+    "errors": {
+      "outlineFailed": "Die Dokumentgliederung konnte nicht gelesen werden oder dieses PDF enthält keine Lesezeichen.",
+      "emptyBasket": "Bitte zuerst mindestens eine Seite in den Korb legen."
+    },
+    "files": {
+      "title": "Hochgeladene Dateien ({count})",
+      "add": "+ Datei hinzufügen",
+      "selectHint": "(Shift für Bereich, Strg für mehrere)"
+    },
+    "actions": {
+      "undo": "Rückgängig (Strg+Z)",
+      "redo": "Wiederholen (Strg+Y)",
+      "advanced": "Erweiterte Werkzeuge (Bereich / Gerade-Ungerade / Gliederung)",
+      "addToBasketCount": "In den Korb ({count})",
+      "addToBasketTitle": "In den Korb legen",
+      "putCurrent": "Die angezeigte Seite in den Korb legen",
+      "export": "Organisierte PDF exportieren",
+      "insertFirstBlank": "+ Erste Leerseite einfügen",
+      "insertBlankFirstTitle": "Hier (ganz vorne) eine Leerseite einfügen",
+      "insertBlankBetweenTitle": "Zwischen Seite #{from} und #{to} eine Leerseite einfügen",
+      "rotate90": "Um 90° drehen",
+      "remove": "Entfernen"
+    },
+    "preview": {
+      "hint": "Zum Vorschauen über eine Karte links fahren"
+    },
+    "range": {
+      "label": "Seitenbereich:",
+      "placeholder": "z. B. 1-5, 8, 12-20",
+      "odd": "Ungerade Seiten",
+      "even": "Gerade Seiten",
+      "outline": "Dokumentgliederung"
+    },
+    "basket": {
+      "title": "Zusammenstellungs-Korb",
+      "countBadge": "{count} im Korb",
+      "pulseAdded": "Seite hinzugefügt! Zum Anzeigen klicken",
+      "pulseExpand": "Zum Erweitern des Korbs klicken",
+      "pulseCollapse": "Zum Einklappen klicken",
+      "empty": "Dein Korb ist leer. Klicke oben auf einer Seitenkarte auf +, um Seiten auszuwählen oder eine Leerseite einzufügen.",
+      "selectedHint": "#{index} im Korb ausgewählt",
+      "orderHint": "Klicke auf eine Korbkarte und nutze dann die Sortierbuttons:",
+      "moveForward": "Nach vorne verschieben",
+      "moveBackward": "Nach hinten verschieben"
+    },
+    "outline": {
+      "title": "Integrierte Lesezeichen ({name})",
+      "loading": "Lesezeichen werden gelesen...",
+      "empty": "Dieses PDF enthält keine Lesezeichen. Nutze [Seitenbereich] oder [Gerade/Ungerade].",
+      "hint": "Klicke auf einen Gliederungseintrag, um die Seite auszuwählen"
+    },
+    "modal": {
+      "title": "Dateinamen bestätigen"
+    },
+    "status": {
+      "assembling": "Wird zusammengestellt und exportiert..."
+    }
+  }
+}

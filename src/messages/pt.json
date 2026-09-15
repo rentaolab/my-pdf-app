@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · Ferramentas PDF online gratuitas",
+    "description": "Kit de ferramentas PDF gratuito e focado na privacidade, executado inteiramente no navegador. Combine, divida, gire, recorte e edite PDF sem enviar arquivos."
+  },
+  "LanguageSwitcher": {
+    "label": "Idioma"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "Clique ou arraste um arquivo PDF aqui para enviar",
+      "promptMultiple": "Clique ou arraste vários arquivos PDF aqui para enviar"
+    },
+    "actions": {
+      "selectAll": "Selecionar tudo",
+      "deselectAll": "Desmarcar tudo",
+      "cancel": "Cancelar",
+      "clear": "Limpar",
+      "reset": "Redefinir",
+      "reupload": "Enviar novamente",
+      "confirmDownload": "Baixar",
+      "download": "Baixar PDF",
+      "selectAllCount": "Selecionar tudo ({selected}/{total})",
+      "confirm": "Confirmar",
+      "close": "Fechar"
+    },
+    "status": {
+      "processing": "Processando...",
+      "page": "Página {page}",
+      "selected": "Selecionado",
+      "selectedShort": "Selecionada",
+      "parsingThumbnails": "Gerando miniaturas..."
+    },
+    "errors": {
+      "uploadPdf": "Envie um arquivo PDF.",
+      "parsePdf": "Não foi possível ler as páginas do PDF.",
+      "exportFailed": "Algo deu errado ao exportar.",
+      "invalidRange": "Digite um intervalo de páginas válido (ex.: 1-5, 8, 12-20)"
+    },
+    "filename": {
+      "title": "Confirmar nome do arquivo",
+      "label": "Digite um nome para o PDF exportado:",
+      "placeholder": "Digite um nome de arquivo"
+    },
+    "preview": {
+      "title": "Pré-visualização ao vivo"
+    },
+    "unlimited": "Ilimitado"
+  },
+  "Tools": {
+    "organize": {
+      "name": "Organizar PDF",
+      "desc": "Reordene, gire, insira páginas em branco e reconstrua o documento"
+    },
+    "merge": {
+      "name": "Mesclar PDF",
+      "desc": "Combine vários documentos em um, na ordem que quiser"
+    },
+    "split": {
+      "name": "Dividir PDF",
+      "desc": "Divida por intervalos de páginas ou exporte cada página separadamente"
+    },
+    "rotate": {
+      "name": "Girar PDF",
+      "desc": "Corrija a orientação das páginas em lote"
+    },
+    "deletePages": {
+      "name": "Excluir páginas",
+      "desc": "Remova páginas indesejadas com um único clique"
+    },
+    "extractPages": {
+      "name": "Extrair páginas",
+      "desc": "Extraia as páginas selecionadas em um documento novo"
+    },
+    "crop": {
+      "name": "Recortar PDF",
+      "desc": "Ajuste as margens e corte o espaço em branco visualmente"
+    },
+    "edit": {
+      "name": "Editar PDF",
+      "desc": "Adicione texto, assinaturas à mão, desenhos e anotações"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "Organizar PDF",
+      "description": "Organização visual em grade, rotação, inserção de páginas em branco e reconstrução"
+    },
+    "merge": {
+      "title": "Mesclar PDF",
+      "description": "Combine vários documentos em um, na ordem que quiser"
+    },
+    "split": {
+      "title": "Dividir PDF",
+      "description": "Divida por intervalos de páginas ou exporte cada página separadamente"
+    },
+    "rotate": {
+      "title": "Girar e espelhar PDF",
+      "description": "Gire em lote e espelhe as páginas na horizontal ou na vertical"
+    },
+    "deletePages": {
+      "title": "Excluir páginas do PDF",
+      "description": "Clique em qualquer página para removê-la, com atalhos para pares/ímpares e entrada de intervalos"
+    },
+    "extractPages": {
+      "title": "Extrair páginas do PDF",
+      "description": "Exporte as páginas selecionadas como um novo PDF ou como um ZIP de páginas individuais"
+    },
+    "crop": {
+      "title": "Recortar PDF",
+      "description": "Recorte visual com oito alças para todo o documento, páginas pares/ímpares ou uma seleção personalizada"
+    },
+    "edit": {
+      "title": "Editar conteúdo do PDF",
+      "description": "Adicione caixas de texto, blocos de branco e assinaturas à mão suaves"
+    }
+  },
+  "Navbar": {
+    "allTools": "Todas as ferramentas",
+    "toggleMenu": "Abrir ou fechar o menu de navegação"
+  },
+  "HomePage": {
+    "heroTitle": "Ferramentas <highlight>PDF</highlight> leves e minimalistas",
+    "heroSubtitle": "Sem instalação e sem limite de tamanho. Tudo é processado na memória do navegador — seus arquivos nunca são enviados.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Processado localmente no navegador"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "Modo de teste do desenvolvedor: seu perfil atual é",
+      "vip": "Usuário VIP",
+      "free": "Usuário gratuito (máx. {max} arquivos)",
+      "switchTo": "Mudar para",
+      "freeMode": "Modo gratuito",
+      "vipMode": "Modo VIP"
+    },
+    "upload": {
+      "vipHint": "Usuários VIP podem mesclar arquivos sem limite",
+      "freeHint": "O plano gratuito permite mesclar até {max} arquivos"
+    },
+    "list": {
+      "selected": "Selecionados ({count} / {max})",
+      "dragHint": "(arraste a alça à esquerda para reordenar)"
+    },
+    "actions": {
+      "removeFile": "Remover este arquivo",
+      "mergeDownload": "Mesclar e baixar",
+      "generating": "Gerando e baixando..."
+    },
+    "footer": {
+      "limitReached": "Limite gratuito de mesclagem atingido. Desbloqueie o VIP para mais arquivos."
+    },
+    "errors": {
+      "freeLimit": "Usuários gratuitos podem mesclar até {max} arquivos PDF por vez!\nAtualize para VIP para mesclar sem limites.",
+      "minFiles": "Envie pelo menos 2 arquivos PDF.",
+      "mergeFailed": "Algo deu errado ao mesclar."
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "Gire 90°/180° e espelhe na horizontal ou vertical"
+    },
+    "status": {
+      "generatingPreviews": "Gerando pré-visualizações em alta resolução..."
+    },
+    "actions": {
+      "rotateLeft": "Girar para a esquerda",
+      "rotateLeftTitle": "Girar 90° no sentido anti-horário",
+      "rotateRight": "Girar para a direita",
+      "rotateRightTitle": "Girar 90° no sentido horário",
+      "flipH": "Espelhar na horizontal",
+      "flipHTitle": "Refletir horizontalmente",
+      "flipV": "Espelhar na vertical",
+      "flipVTitle": "Refletir verticalmente",
+      "resetTitle": "Redefinir as páginas selecionadas"
+    },
+    "errors": {
+      "noPagesSelected": "Selecione primeiro as páginas que deseja ajustar"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "Clique em qualquer página para marcá-la para exclusão, com atalhos pares/ímpares e seleção por intervalos"
+    },
+    "status": {
+      "totalPages": "{total} páginas",
+      "marked": "{count} marcadas para excluir",
+      "remaining": "{count} páginas serão mantidas",
+      "clickToRestore": "Clique para restaurar",
+      "markedBadge": "Marcada para exclusão",
+      "kept": "Mantida"
+    },
+    "actions": {
+      "restoreAll": "Restaurar tudo",
+      "restoreAllTitle": "Restaurar todas as páginas marcadas para exclusão",
+      "deleteOdd": "Excluir páginas ímpares",
+      "deleteEven": "Excluir páginas pares",
+      "deleteRange": "Excluir intervalo",
+      "generate": "Gerar e baixar PDF"
+    },
+    "placeholder": {
+      "range": "ex.: 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "Você não pode excluir todas as páginas. Mantenha pelo menos uma."
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "Extraia as páginas selecionadas em um novo PDF ou ZIP"
+    },
+    "status": {
+      "extracting": "Extraindo..."
+    },
+    "actions": {
+      "odd": "Páginas ímpares",
+      "even": "Páginas pares",
+      "applyRange": "Aplicar",
+      "extractCount": "Extrair ({count} páginas)"
+    },
+    "mode": {
+      "merged": "Mesclar em um PDF",
+      "mergedTitle": "Mesclar todas as páginas extraídas em um único PDF",
+      "zip": "ZIP de páginas individuais",
+      "zipTitle": "Exportar cada página como um arquivo separado em um ZIP"
+    },
+    "badge": {
+      "extract": "Extrair"
+    },
+    "placeholder": {
+      "range": "ex.: 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "Selecione primeiro as páginas que deseja extrair.",
+      "invalidRange": "Digite um intervalo de páginas válido (ex.: 1-5, 8)"
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "Envie um PDF para edição avançada de páginas",
+      "hint": "Arraste para reordenar, girar, extrair ou excluir páginas"
+    },
+    "status": {
+      "generating": "Gerando miniaturas...",
+      "selected": "{selected} de {total} páginas selecionadas",
+      "position": "Posição: {pos} (originalmente página {orig})"
+    },
+    "hint": {
+      "drag": "💡 Arraste a alça superior do cartão para reordenar; clique para selecionar; use o botão superior direito para girar"
+    },
+    "actions": {
+      "exportSelected": "Exportar páginas selecionadas",
+      "rotate90": "Girar 90°",
+      "collapse": "Recolher",
+      "zoom": "Ampliar"
+    },
+    "preview": {
+      "position": "Posição {pos}",
+      "hint": "Passe o mouse sobre um cartão à esquerda"
+    },
+    "errors": {
+      "noPagesKept": "Selecione pelo menos uma página para manter."
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "Caixa de recorte visual com vários intervalos e seleção de páginas personalizada"
+    },
+    "scope": {
+      "label": "Aplicar recorte a:",
+      "all": "Todas as páginas",
+      "current": "Página atual",
+      "odd": "Páginas ímpares",
+      "even": "Páginas pares",
+      "selected": "Páginas selecionadas ({count})"
+    },
+    "actions": {
+      "resetBox": "Redefinir caixa",
+      "exportCount": "Exportar ({count} páginas)"
+    },
+    "mode": {
+      "merged": "Mesclar em um PDF",
+      "zip": "ZIP de páginas individuais"
+    },
+    "status": {
+      "parsingPreviews": "Gerando pré-visualizações..."
+    },
+    "nav": {
+      "title": "Exportar páginas ({selected}/{total})",
+      "checkTitle": "Incluir esta página na exportação",
+      "uncheckTitle": "Excluir esta página da exportação"
+    },
+    "errors": {
+      "noExportPages": "Selecione pelo menos uma página para exportar no navegador de páginas à direita."
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "Envie um PDF para dividir",
+      "hint": "Insira pontos de corte e escolha quais partes exportar"
+    },
+    "status": {
+      "parsing": "Gerando pré-visualizações...",
+      "splitPoints": "Pontos de corte: {count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "Exportar partes selecionadas ({selected}/{total})",
+      "selectAllParts": "Selecionar tudo",
+      "uncut": "Remover corte",
+      "cutHere": "Dividir aqui",
+      "confirmBatchDownload": "Confirmar e baixar tudo"
+    },
+    "parts": {
+      "title": "Resultados da divisão (passe o mouse para pré-visualizar as páginas)",
+      "partLabel": "Parte {index}",
+      "hint": "💡 Clique em um cartão para ampliar; use a tesoura ou o mais no centro para inserir um corte"
+    },
+    "badge": {
+      "cut": "Corte"
+    },
+    "preview": {
+      "hint": "Passe o mouse sobre uma miniatura à esquerda"
+    },
+    "modal": {
+      "title": "Confirmar exportação",
+      "summary": "Você vai exportar {count} partes selecionadas.",
+      "customNames": "Nomear cada arquivo individualmente",
+      "prefixLabel": "Defina um prefixo de nome para a exportação:",
+      "perPartLabel": "Digite um nome de arquivo para cada parte:"
+    },
+    "errors": {
+      "freeLimit": "O plano gratuito permite até {max} pontos de corte (2 arquivos).\nMude para o modo VIP para dividir sem limites!",
+      "readFailed": "Não foi possível ler o PDF.",
+      "noPartsSelected": "Selecione pelo menos uma parte para exportar."
+    },
+    "dev": {
+      "modeLabel": "Plano atual:",
+      "vip": "Usuário VIP (divisões ilimitadas)",
+      "free": "Usuário gratuito ({max} ponto de corte)",
+      "switchTo": "Mudar para",
+      "freeMode": "Modo gratuito",
+      "vipMode": "Modo VIP"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "Página {page} ({name})",
+      "basketWithFile": "#{index} na cesta ({name})"
+    },
+    "upload": {
+      "prompt": "Envie vários PDFs para montagem entre documentos (VIP)",
+      "hint": "Escolha páginas de documentos diferentes e monte um novo PDF"
+    },
+    "sources": {
+      "title": "Documentos de origem (clique para alternar a pré-visualização)",
+      "addMore": "+ Adicionar mais PDFs",
+      "current": "Origem atual: {name}",
+      "hint": "💡 Clique em um cartão para ampliar; use + para adicionar a página à cesta"
+    },
+    "status": {
+      "parsing": "Lendo páginas...",
+      "generating": "Gerando...",
+      "assembling": "Montando e exportando..."
+    },
+    "actions": {
+      "addToBasket": "Adicionar à cesta",
+      "moveLeft": "Mover para a esquerda",
+      "moveRight": "Mover para a direita",
+      "rotate90": "Girar 90°",
+      "remove": "Remover",
+      "assembleExport": "Montar e exportar"
+    },
+    "preview": {
+      "hintCards": "Passe o mouse sobre um cartão para pré-visualizar",
+      "hint": "Passe o mouse sobre qualquer cartão de origem ou cesta para ver a pré-visualização"
+    },
+    "basket": {
+      "title": "Cesta",
+      "subtitle": "Páginas selecionadas para montagem ({count})",
+      "dragHint": "(arraste a alça no desktop, use as setas no celular)",
+      "clear": "Esvaziar cesta",
+      "empty": "Sua cesta está vazia. Clique em + em um cartão de página acima para adicionar."
+    },
+    "modal": {
+      "title": "Confirmar nome do arquivo",
+      "summary": "As {count} páginas da cesta serão montadas em:"
+    },
+    "errors": {
+      "emptyBasket": "Adicione primeiro pelo menos uma página à cesta."
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "Arraste para redimensionar, personalize texto e bordas, use a caneta marca-texto, setas vetoriais e assinaturas à mão suaves"
+    },
+    "defaultText": "Digite aqui",
+    "status": {
+      "exporting": "Exportando...",
+      "parsingHd": "Gerando visualização em alta resolução..."
+    },
+    "toolbar": {
+      "text": "Texto",
+      "rect": "Retângulo / branco",
+      "highlightStartTitle": "Ativar a caneta marca-texto",
+      "highlightStopTitle": "Desativar a caneta e voltar ao modo de seleção",
+      "highlightActive": "Realçando",
+      "highlighter": "Caneta marca-texto",
+      "circle": "Círculo / elipse",
+      "arrow": "Seta",
+      "line": "Linha",
+      "signature": "Assinatura",
+      "copy": "Copiar (Ctrl+C)",
+      "paste": "Colar (Ctrl+V)",
+      "deleteElement": "Excluir o elemento selecionado",
+      "save": "Salvar o PDF editado",
+      "autoStraighten": "Os traços são alinhados automaticamente",
+      "exitBrush": "Sair do pincel"
+    },
+    "style": {
+      "brushColor": "Cor do pincel:",
+      "textColor": "Cor do texto:",
+      "fill": "Cor / preenchimento:",
+      "thickness": "Espessura:",
+      "custom": "Personalizado:"
+    },
+    "colors": {
+      "yellow": "Amarelo fluorescente",
+      "green": "Verde fluorescente",
+      "pink": "Rosa fluorescente",
+      "blue": "Azul fluorescente",
+      "customTitle": "Cor personalizada"
+    },
+    "pages": {
+      "title": "Lista de páginas"
+    },
+    "modal": {
+      "signatureTitle": "Assinatura à mão suave",
+      "clearSignature": "Limpar e desenhar novamente",
+      "applySignature": "Aplicar assinatura"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "Envie um ou mais PDFs para organizar páginas",
+      "hint": "Barra unificada, alternâncias pares/ímpares, inserção de páginas em branco entre cartões e avisos discretos"
+    },
+    "canvas": {
+      "blankPage": "[ Página em branco ]"
+    },
+    "blank": {
+      "fileName": "Página em branco",
+      "short": "Branco"
+    },
+    "hover": {
+      "pageWithFile": "Página {page} ({name})",
+      "basketWithFile": "#{index} na cesta ({name})"
+    },
+    "errors": {
+      "outlineFailed": "Não foi possível ler o sumário do documento ou este PDF não tem marcadores.",
+      "emptyBasket": "Adicione primeiro pelo menos uma página à cesta."
+    },
+    "files": {
+      "title": "Arquivos enviados ({count})",
+      "add": "+ Adicionar arquivo",
+      "selectHint": "(Shift para intervalo, Ctrl para vários)"
+    },
+    "actions": {
+      "undo": "Desfazer (Ctrl+Z)",
+      "redo": "Refazer (Ctrl+Y)",
+      "advanced": "Ferramentas avançadas (intervalo / pares-ímpares / sumário)",
+      "addToBasketCount": "Para a cesta ({count})",
+      "addToBasketTitle": "Adicionar à cesta",
+      "putCurrent": "Adicionar a página pré-visualizada à cesta",
+      "export": "Exportar o PDF organizado",
+      "insertFirstBlank": "+ Inserir a primeira página em branco",
+      "insertBlankFirstTitle": "Inserir uma página em branco aqui (no início)",
+      "insertBlankBetweenTitle": "Inserir uma página em branco entre as páginas #{from} e #{to}",
+      "rotate90": "Girar 90°",
+      "remove": "Remover"
+    },
+    "preview": {
+      "hint": "Passe o mouse sobre um cartão à esquerda para pré-visualizar"
+    },
+    "range": {
+      "label": "Intervalo de páginas:",
+      "placeholder": "ex.: 1-5, 8, 12-20",
+      "odd": "Páginas ímpares",
+      "even": "Páginas pares",
+      "outline": "Sumário do documento"
+    },
+    "basket": {
+      "title": "Cesta de montagem",
+      "countBadge": "{count} na cesta",
+      "pulseAdded": "Página adicionada! Clique para ver",
+      "pulseExpand": "Clique para expandir a cesta",
+      "pulseCollapse": "Clique para recolher",
+      "empty": "Sua cesta está vazia. Clique em + em um cartão acima para escolher páginas ou inserir uma em branco.",
+      "selectedHint": "#{index} da cesta selecionada",
+      "orderHint": "Clique em um cartão da cesta e use os botões de ordenação:",
+      "moveForward": "Mover para frente",
+      "moveBackward": "Mover para trás"
+    },
+    "outline": {
+      "title": "Marcadores integrados ({name})",
+      "loading": "Lendo o sumário de marcadores...",
+      "empty": "Este PDF não tem marcadores. Use [Intervalo de páginas] ou [Pares/Ímpares].",
+      "hint": "Clique em um item do sumário para selecionar essa página"
+    },
+    "modal": {
+      "title": "Confirmar nome do arquivo"
+    },
+    "status": {
+      "assembling": "Montando e exportando..."
+    }
+  }
+}

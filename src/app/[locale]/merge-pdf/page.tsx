@@ -1,8 +1,11 @@
+import { useTranslations } from 'next-intl';
 import Navbar from '@/components/layout/Navbar';
 import PdfMergeTool from '@/components/features/PdfMergeTool';
 import { Merge } from 'lucide-react';
 
 export default function MergePdfPage() {
+  const t = useTranslations('ToolPages.merge');
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
@@ -12,8 +15,8 @@ export default function MergePdfPage() {
             <Merge className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">拼接 PDF (Merge)</h1>
-            <p className="text-xs text-slate-500 mt-0.5">按任意顺序将多个文档无缝拼接为一个</p>
+            <h1 className="text-xl font-bold text-slate-900">{t('title')}</h1>
+            <p className="text-xs text-slate-500 mt-0.5">{t('description')}</p>
           </div>
         </div>
         <PdfMergeTool />

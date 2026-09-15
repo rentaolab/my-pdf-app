@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { splitPDFByPoints } from '@/lib/pdf-split';
 import {
@@ -18,6 +19,8 @@ import {
 } from 'lucide-react';
 
 export default function PdfSplitTool() {
+  const t = useTranslations('PdfSplit');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [splitPoints, setSplitPoints] = useState<number[]>([]);
@@ -92,7 +95,7 @@ export default function PdfSplitTool() {
         const images = await renderPDFToImages(file!);
         setThumbnails(images);
       } catch (err) {
-        alert('读取 PDF 失败');
+        alert(t('errors.readFailed'));
         setFile(null);
       } finally {
         setIsLoading(false);
@@ -108,7 +111,7 @@ export default function PdfSplitTool() {
     } else {
       if (splitPoints.length >= maxAllowedSplits) {
         alert(
-          `免费版最多插入 ${maxAllowedSplits} 个拆分符（切为 2 个文件）。\n切换为 VIP 模式解锁无限拆分！`
+          t('errors.freeLimit', { max: maxAllowedSplits })
         );
         return;
       }
@@ -136,7 +139,7 @@ export default function PdfSplitTool() {
   const handleOpenExportModal = () => {
     if (!file) return;
     if (selectedPartIndexes.length === 0) {
-      alert('请至少勾选一个需要导出的文档区块！');
+      alert(t('errors.noPartsSelected'));
       return;
     }
     const baseName = file.name.replace(/\.pdf$/i, '');
@@ -190,7 +193,7 @@ export default function PdfSplitTool() {
       setShowFilenameModal(false);
     } catch (err) {
       console.error(err);
-      alert('拆分导出过程发生错误。');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -203,9 +206,9 @@ export default function PdfSplitTool() {
           <div className="flex items-center space-x-2">
             <Sparkles className="w-4 h-4 text-amber-600" />
             <span>
-              当前权限为：
+              {t('dev.modeLabel')}
               <strong>
-                {isVipUser ? 'VIP 高级用户 (无上限切分)' : '免费标准用户 (限 1 个切分点)'}
+                {isVipUser ? t('dev.vip') : t('dev.free', { max: maxAllowedSplits })}
               </strong>
             </span>
           </div>
@@ -213,7 +216,7 @@ export default function PdfSplitTool() {
             onClick={() => setIsVipUser(!isVipUser)}
             className="bg-amber-600 text-white px-3 py-1 rounded-md font-medium hover:bg-amber-700 transition-colors"
           >
-            切换为 {isVipUser ? '免费模式' : 'VIP 模式'}
+            {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
           </button>
         </div>
 
@@ -228,9 +231,9 @@ export default function PdfSplitTool() {
             <div className="p-3 bg-red-50 rounded-full text-red-600">
               <Upload className="w-8 h-8" />
             </div>
-            <p className="text-base font-medium text-slate-700">上传单个 PDF 进行断点拆分</p>
+            <p className="text-base font-medium text-slate-700">{t('upload.prompt')}</p>
             <p className="text-xs text-slate-500">
-              插入拆分符后，可自由勾选需要导出的部分文件
+              {t('upload.hint')}
             </p>
           </div>
         </div>
@@ -242,7 +245,7 @@ export default function PdfSplitTool() {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] space-y-3">
         <RefreshCw className="w-8 h-8 text-red-600 animate-spin" />
-        <p className="text-sm text-slate-600">正在解析页面预览...</p>
+        <p className="text-sm text-slate-600">{t('status.parsing')}</p>
       </div>
     );
   }
@@ -255,13 +258,13 @@ export default function PdfSplitTool() {
           onClick={() => setFile(null)}
           className="text-sm text-slate-600 hover:underline"
         >
-          重新上传
+          {tCommon('actions.reupload')}
         </button>
 
         <div className="flex items-center space-x-4">
           <span className="text-xs text-slate-500">
-            拆分点：{splitPoints.length} /{' '}
-            {maxAllowedSplits === Infinity ? '无限' : maxAllowedSplits}
+            {t('status.splitPoints', { count: splitPoints.length, max: maxAllowedSplits === Infinity ? tCommon('unlimited') : maxAllowedSplits })}
+            
           </span>
           <button
             onClick={handleOpenExportModal}
@@ -271,8 +274,8 @@ export default function PdfSplitTool() {
             <Download className="w-4 h-4" />
             <span>
               {isProcessing
-                ? '处理中...'
-                : `导出选中的部分 (${selectedPartIndexes.length}/${totalParts})`}
+                ? tCommon('status.processing')
+                : t('actions.exportSelected', { selected: selectedPartIndexes.length, total: totalParts })}
             </span>
           </button>
         </div>
@@ -283,13 +286,13 @@ export default function PdfSplitTool() {
         <div className="flex items-center justify-between border-b border-slate-100 pb-2">
           <span className="text-xs font-bold text-slate-700 flex items-center space-x-1">
             <FileCheck className="w-4 h-4 text-red-600" />
-            <span>拆分结果选项 (鼠标移入可预览对应包含的页面)</span>
+            <span>{t('parts.title')}</span>
           </span>
           <button
             onClick={toggleSelectAllParts}
             className="text-xs text-red-600 hover:underline font-medium"
           >
-            {selectedPartIndexes.length === totalParts ? '取消全选' : '全选全部'}
+            {selectedPartIndexes.length === totalParts ? tCommon('actions.deselectAll') : t('actions.selectAllParts')}
           </button>
         </div>
 
@@ -317,7 +320,7 @@ export default function PdfSplitTool() {
                 ) : (
                   <Square className="w-3.5 h-3.5" />
                 )}
-                <span>文档 Part {partIdx + 1}</span>
+                <span>{t('parts.partLabel', { index: partIdx + 1 })}</span>
               </button>
             );
           })}
@@ -328,7 +331,7 @@ export default function PdfSplitTool() {
         {/* 网格预览区 */}
         <div className="lg:col-span-2 bg-slate-100 p-4 sm:p-6 rounded-xl border border-slate-200">
           <p className="text-xs text-slate-400 mb-3 block sm:hidden">
-            💡 点击卡片放大，点击中间的剪刀/加号插入拆分线
+            {t('parts.hint')}
           </p>
           <div className="flex flex-wrap items-center gap-3">
             {thumbnails.map((src, index) => {
@@ -376,7 +379,7 @@ export default function PdfSplitTool() {
                     />
                     <div className="flex items-center justify-between mt-1 px-1">
                       <span className="text-[11px] text-slate-500 font-medium">
-                        第 {index + 1} 页
+                        {tCommon('status.page', { page: index + 1 })}
                       </span>
                       <Eye className="w-3.5 h-3.5 text-slate-400 lg:hidden" />
                     </div>
@@ -391,7 +394,7 @@ export default function PdfSplitTool() {
                           ? 'border-red-500 bg-red-50 text-red-600'
                           : 'border-slate-300 hover:border-red-500 bg-white text-slate-400'
                       }`}
-                      title={isSplitAfter ? '取消切断' : '在此处切断'}
+                      title={isSplitAfter ? t('actions.uncut') : t('actions.cutHere')}
                     >
                       {isSplitAfter ? (
                         <Scissors className="w-5 h-5 animate-bounce" />
@@ -400,7 +403,7 @@ export default function PdfSplitTool() {
                       )}
                       {isSplitAfter && (
                         <span className="absolute -bottom-6 text-[10px] font-bold text-red-500 whitespace-nowrap">
-                          切开点
+                          {t('badge.cut')}
                         </span>
                       )}
                     </button>
@@ -414,9 +417,9 @@ export default function PdfSplitTool() {
         {/* 侧边大图预览 */}
         <div className="hidden lg:block lg:col-span-1 sticky top-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span className="text-xs font-semibold text-slate-500">实时大图预览</span>
+            <span className="text-xs font-semibold text-slate-500">{tCommon('preview.title')}</span>
             <span className="text-xs text-red-600 font-bold">
-              第 {activeHoverIndex + 1} 页
+              {tCommon('status.page', { page: activeHoverIndex + 1 })}
             </span>
           </div>
 
@@ -428,7 +431,7 @@ export default function PdfSplitTool() {
                 className="max-h-[460px] object-contain rounded shadow-sm transition-all duration-150"
               />
             ) : (
-              <span className="text-xs text-slate-400">将鼠标移至左侧缩略图查看</span>
+              <span className="text-xs text-slate-400">{t('preview.hint')}</span>
             )}
           </div>
         </div>
@@ -441,7 +444,7 @@ export default function PdfSplitTool() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 animate-in fade-in zoom-in duration-150 max-h-[90vh] flex flex-col overflow-hidden">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-800">导出拆分文件确认</h3>
+              <h3 className="text-base font-bold text-slate-800">{t('modal.title')}</h3>
               <button
                 onClick={() => setShowFilenameModal(false)}
                 className="text-slate-400 hover:text-slate-600 p-1 rounded-full"
@@ -452,12 +455,12 @@ export default function PdfSplitTool() {
 
             <div className="space-y-4 overflow-y-auto pr-1 flex-1 text-xs text-slate-600">
               <p>
-                即将导出所选的 <strong>{selectedPartIndexes.length}</strong> 个文件区块。
+                {t('modal.summary', { count: selectedPartIndexes.length })}
               </p>
 
               {/* 💡 Switch 开关：独立定义每个文件名 */}
               <div className="flex items-center justify-between bg-slate-50 p-3 rounded-xl border border-slate-200">
-                <span className="font-semibold text-slate-700">为每个文件单独定义名称</span>
+                <span className="font-semibold text-slate-700">{t('modal.customNames')}</span>
                 <button
                   type="button"
                   onClick={() => setIsCustomEachName(!isCustomEachName)}
@@ -476,7 +479,7 @@ export default function PdfSplitTool() {
               {/* 模式 A：统一前缀 */}
               {!isCustomEachName ? (
                 <div className="space-y-1">
-                  <label className="font-medium text-slate-700">设置导出的文件名称前缀：</label>
+                  <label className="font-medium text-slate-700">{t('modal.prefixLabel')}</label>
                   <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5">
                     <input
                       type="text"
@@ -491,7 +494,7 @@ export default function PdfSplitTool() {
               ) : (
                 /* 模式 B：单独定义每一个 Part 文件名 */
                 <div className="space-y-2.5 pt-1">
-                  <label className="font-medium text-slate-700 block">分别输入各 Part 的导出文件名：</label>
+                  <label className="font-medium text-slate-700 block">{t('modal.perPartLabel')}</label>
                   {selectedPartIndexes.map((partIdx) => (
                     <div key={partIdx} className="flex items-center space-x-2">
                       <span className="text-xs font-bold text-red-600 w-16 flex-shrink-0">
@@ -522,7 +525,7 @@ export default function PdfSplitTool() {
                 onClick={() => setShowFilenameModal(false)}
                 className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100"
               >
-                取消
+                {tCommon('actions.cancel')}
               </button>
               <button
                 onClick={handleConfirmExport}
@@ -530,7 +533,7 @@ export default function PdfSplitTool() {
                 className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>{isProcessing ? '处理中...' : '确认并批量下载'}</span>
+                <span>{isProcessing ? tCommon('status.processing') : t('actions.confirmBatchDownload')}</span>
               </button>
             </div>
           </div>

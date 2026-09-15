@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { crossMergePDFPages, SelectedPageItem } from '@/lib/pdf-cross-merge';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -80,7 +81,7 @@ function parsePageRange(input: string, maxPage: number): number[] {
 }
 
 // 辅助纯函数：创建空白 A4 图片
-function createBlankPageDataUrl(): string {
+function createBlankPageDataUrl(label: string): string {
   const canvas = document.createElement('canvas');
   canvas.width = 595;
   canvas.height = 842;
@@ -91,12 +92,14 @@ function createBlankPageDataUrl(): string {
     ctx.fillStyle = '#cbd5e1';
     ctx.font = '24px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('[ 空白页 ]', canvas.width / 2, canvas.height / 2);
+    ctx.fillText(label, canvas.width / 2, canvas.height / 2);
   }
   return canvas.toDataURL('image/png');
 }
 
 export default function PdfOrganizeTool() {
+  const t = useTranslations('PdfOrganize');
+  const tCommon = useTranslations('Common');
   const [files, setFiles] = useState<File[]>([]);
   const [activeFileIndex, setActiveFileIndex] = useState<number>(0);
   const [fileThumbnails, setFileThumbnails] = useState<{ [key: number]: string[] }>({});
@@ -238,11 +241,11 @@ export default function PdfOrganizeTool() {
 
         if (images.length > 0 && !activeHoverImage) {
           setActiveHoverImage(images[0]);
-          setActiveHoverLabel(`第 1 页 (${files[activeFileIndex].name})`);
+          setActiveHoverLabel(t('hover.pageWithFile', { page: 1, name: files[activeFileIndex].name }));
           setActiveHoverPageIdx(0);
         }
       } catch (err) {
-        alert('解析 PDF 失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -261,14 +264,14 @@ export default function PdfOrganizeTool() {
 
   // 在暂存篮指定位置 targetIndex 插入空白页（静默追加 + 气泡动画）
   const handleInsertBlankPageToBasket = (targetIndex?: number) => {
-    const blankSrc = createBlankPageDataUrl();
+    const blankSrc = createBlankPageDataUrl(t('canvas.blankPage'));
     const newItem: SelectedPageItem = {
       id: `blank-${Date.now()}-${Math.random()}`,
       fileIndex: -1,
       originalPageIndex: -1,
       rotation: 0,
       thumbnailSrc: blankSrc,
-      fileName: '空白页',
+      fileName: t('blank.fileName'),
     };
 
     setBasketItems((prev) => {
@@ -352,7 +355,7 @@ export default function PdfOrganizeTool() {
       const parsedTree = await processItems(rawOutline);
       setPdfOutline(parsedTree);
     } catch (err) {
-      alert('解析文档目录失败或该 PDF 未包含内置书签');
+      alert(t('errors.outlineFailed'));
     } finally {
       setIsParsingOutline(false);
     }
@@ -369,7 +372,7 @@ export default function PdfOrganizeTool() {
   // 框选应用
   const handleApplyPageRange = () => {
     const parsed = parsePageRange(pageRangeInput, currentThumbnails.length);
-    if (parsed.length === 0) return alert('请输入有效的页码表达式（如：1-5, 8, 12-20）');
+    if (parsed.length === 0) return alert(tCommon('errors.invalidRange'));
     setSelectedSourcePages(parsed);
     pushSnapshot();
   };
@@ -481,7 +484,7 @@ export default function PdfOrganizeTool() {
 
   // 统一导出逻辑
   const handleOpenExportModal = () => {
-    if (basketItems.length === 0) return alert('请先挑选至少一个页面放入暂存篮！');
+    if (basketItems.length === 0) return alert(t('errors.emptyBasket'));
     const baseName = files[activeFileIndex]?.name?.replace(/\.pdf$/i, '') || 'organized';
     setCustomFilename(`${baseName}_organized`);
     setShowFilenameModal(true);
@@ -505,7 +508,7 @@ export default function PdfOrganizeTool() {
       setShowFilenameModal(false);
     } catch (err) {
       console.error(err);
-      alert('导出过程发生错误');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -526,10 +529,10 @@ export default function PdfOrganizeTool() {
             <Upload className="w-8 h-8" />
           </div>
           <p className="text-base font-medium text-slate-700">
-            上传单个或多个 PDF 文件进行页面整理 (Organize PDF)
+            {t('upload.prompt')}
           </p>
           <p className="text-xs text-slate-500">
-            支持统一操作栏、奇偶页智能开关、卡片间隙加空白页与静默气泡提示
+            {t('upload.hint')}
           </p>
         </div>
       </div>
@@ -575,7 +578,7 @@ export default function PdfOrganizeTool() {
         <div className="flex items-center space-x-2">
           <Layers className="w-4 h-4 text-red-600 shrink-0" />
           <span className="text-xs font-bold text-slate-700">
-            已上传文件 ({files.length} 个)
+            {t('files.title', { count: files.length })}
           </span>
         </div>
 
@@ -597,7 +600,7 @@ export default function PdfOrganizeTool() {
         </div>
 
         <label className="text-xs text-red-600 font-bold hover:underline cursor-pointer ml-auto">
-          + 追加文件
+          {t('files.add')}
           <input type="file" multiple accept="application/pdf" onChange={handleFileChange} className="hidden" />
         </label>
       </div>
@@ -614,7 +617,7 @@ export default function PdfOrganizeTool() {
                 <span className="font-bold text-slate-800">
                   {files[activeFileIndex]?.name}
                 </span>
-                <span className="text-[11px] text-slate-400">(Shift 连选 / Ctrl 多选)</span>
+                <span className="text-[11px] text-slate-400">{t('files.selectHint')}</span>
               </div>
 
               {/* 右侧工具组：Undo/Redo、一键全选、高级工具控制 */}
@@ -625,7 +628,7 @@ export default function PdfOrganizeTool() {
                     onClick={handleUndo}
                     disabled={!canUndo}
                     className="p-1 hover:bg-white text-slate-700 disabled:opacity-20 rounded transition-colors"
-                    title="撤销 (Ctrl+Z)"
+                    title={t('actions.undo')}
                   >
                     <Undo2 className="w-3.5 h-3.5" />
                   </button>
@@ -633,7 +636,7 @@ export default function PdfOrganizeTool() {
                     onClick={handleRedo}
                     disabled={!canRedo}
                     className="p-1 hover:bg-white text-slate-700 disabled:opacity-20 rounded transition-colors"
-                    title="重做 (Ctrl+Y)"
+                    title={t('actions.redo')}
                   >
                     <Redo2 className="w-3.5 h-3.5" />
                   </button>
@@ -646,12 +649,12 @@ export default function PdfOrganizeTool() {
                   {isAllSourceSelected ? (
                     <>
                       <CheckSquare className="w-3.5 h-3.5 text-red-600" />
-                      <span>取消全选</span>
+                      <span>{tCommon('actions.deselectAll')}</span>
                     </>
                   ) : (
                     <>
                       <Square className="w-3.5 h-3.5 text-slate-400" />
-                      <span>全选</span>
+                      <span>{tCommon('actions.selectAll')}</span>
                     </>
                   )}
                 </button>
@@ -665,7 +668,7 @@ export default function PdfOrganizeTool() {
                   }`}
                 >
                   <Sliders className="w-3.5 h-3.5 text-red-600" />
-                  <span>高级工具 (页码/奇偶/目录)</span>
+                  <span>{t('actions.advanced')}</span>
                   {showAdvancedBar ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                 </button>
 
@@ -675,7 +678,7 @@ export default function PdfOrganizeTool() {
                     className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-sm transition-colors animate-in fade-in"
                   >
                     <Plus className="w-3.5 h-3.5" />
-                    <span>入篮 ({selectedSourcePages.length})</span>
+                    <span>{t('actions.addToBasketCount', { count: selectedSourcePages.length })}</span>
                   </button>
                 )}
               </div>
@@ -685,10 +688,10 @@ export default function PdfOrganizeTool() {
             {showAdvancedBar && (
               <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5 animate-in fade-in duration-150">
                 <div className="flex items-center space-x-2 flex-1 min-w-[240px]">
-                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap">页码框选:</span>
+                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap">{t('range.label')}</span>
                   <input
                     type="text"
-                    placeholder="如: 1-5, 8, 12-20"
+                    placeholder={t('range.placeholder')}
                     value={pageRangeInput}
                     onChange={(e) => setPageRangeInput(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRange()}
@@ -698,7 +701,7 @@ export default function PdfOrganizeTool() {
                     onClick={handleApplyPageRange}
                     className="bg-red-600 hover:bg-red-700 text-white text-xs px-3 py-1 rounded-lg font-bold transition-colors shadow-sm whitespace-nowrap"
                   >
-                    确定
+                    {tCommon('actions.confirm')}
                   </button>
                 </div>
 
@@ -713,7 +716,7 @@ export default function PdfOrganizeTool() {
                     }`}
                   >
                     <Binary className="w-3.5 h-3.5" />
-                    <span>奇数页</span>
+                    <span>{t('range.odd')}</span>
                   </button>
                   <button
                     onClick={() => handleSelectOddEvenPages('even')}
@@ -724,7 +727,7 @@ export default function PdfOrganizeTool() {
                     }`}
                   >
                     <Binary className="w-3.5 h-3.5" />
-                    <span>偶数页</span>
+                    <span>{t('range.even')}</span>
                   </button>
 
                   <button
@@ -732,7 +735,7 @@ export default function PdfOrganizeTool() {
                     className="flex items-center space-x-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 px-3 py-1 rounded-lg text-xs font-bold transition-colors ml-1"
                   >
                     <ListTree className="w-3.5 h-3.5 text-red-600" />
-                    <span>书本目录</span>
+                    <span>{t('range.outline')}</span>
                   </button>
                 </div>
               </div>
@@ -744,7 +747,7 @@ export default function PdfOrganizeTool() {
             {isLoading ? (
               <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
                 <RefreshCw className="w-6 h-6 animate-spin" />
-                <span className="text-xs font-medium">解析页面缩略图...</span>
+                <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -760,7 +763,7 @@ export default function PdfOrganizeTool() {
                       onMouseEnter={() => {
                         setActiveHoverImage(src);
                         setActiveHoverRotation(0);
-                        setActiveHoverLabel(`第 ${pageIdx + 1} 页 (${files[activeFileIndex].name})`);
+                        setActiveHoverLabel(t('hover.pageWithFile', { page: pageIdx + 1, name: files[activeFileIndex].name }));
                         setActiveHoverPageIdx(pageIdx);
                       }}
                       onClick={(e) => handleSourceCardClick(e, pageIdx)}
@@ -782,21 +785,21 @@ export default function PdfOrganizeTool() {
 
                       {addedCount > 0 && (
                         <div className="absolute top-1.5 right-1.5 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow z-10">
-                          <span>篮中x{addedCount}</span>
+                          <span>{t('basket.countBadge', { count: addedCount })}</span>
                         </div>
                       )}
 
                       <img src={src} alt="" className="w-full h-32 object-contain bg-slate-50 rounded pointer-events-none mt-2" />
 
                       <div className="flex items-center justify-between mt-1 px-1 text-[11px] text-slate-500">
-                        <span>第 {pageIdx + 1} 页</span>
+                        <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             addPageToBasket(pageIdx, src);
                           }}
                           className="p-1 bg-red-600 hover:bg-red-700 text-white rounded-full shadow transition-transform active:scale-90"
-                          title="加入暂存篮"
+                          title={t('actions.addToBasketTitle')}
                         >
                           <Plus className="w-3.5 h-3.5" />
                         </button>
@@ -812,7 +815,7 @@ export default function PdfOrganizeTool() {
         {/* 右侧大图预览 */}
         <div className="hidden lg:block lg:col-span-1 sticky top-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span className="text-xs font-bold text-slate-600">实时大图预览</span>
+            <span className="text-xs font-bold text-slate-600">{tCommon('preview.title')}</span>
             <span className="text-[11px] text-red-600 font-bold truncate max-w-[150px]">{activeHoverLabel}</span>
           </div>
 
@@ -825,7 +828,7 @@ export default function PdfOrganizeTool() {
                 className="max-h-[400px] object-contain rounded shadow-sm transition-transform duration-200"
               />
             ) : (
-              <span className="text-xs text-slate-400">划过左侧卡片即可预览大图</span>
+              <span className="text-xs text-slate-400">{t('preview.hint')}</span>
             )}
           </div>
 
@@ -835,7 +838,7 @@ export default function PdfOrganizeTool() {
               className="w-full flex items-center justify-center space-x-1.5 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 py-2 rounded-xl text-xs font-bold transition-colors shadow-sm"
             >
               <Plus className="w-4 h-4" />
-              <span>把当前预览页放入暂存篮</span>
+              <span>{t('actions.putCurrent')}</span>
             </button>
           )}
         </div>
@@ -864,7 +867,7 @@ export default function PdfOrganizeTool() {
               <span className="text-xs font-bold">{basketItems.length}</span>
             </div>
 
-            <span className="text-xs font-bold text-slate-800">合成暂存篮</span>
+            <span className="text-xs font-bold text-slate-800">{t('basket.title')}</span>
 
             {/* 💡 呼吸气泡 Pulse Tag */}
             <span
@@ -876,10 +879,10 @@ export default function PdfOrganizeTool() {
             >
               <span>
                 {basketPulseTrigger
-                  ? '已加页! 点击查看'
+                  ? t('basket.pulseAdded')
                   : basketState === 'collapsed'
-                  ? '点击展开暂存篮'
-                  : '点击收起'}
+                  ? t('basket.pulseExpand')
+                  : t('basket.pulseCollapse')}
               </span>
               {basketState === 'collapsed' ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
             </span>
@@ -908,7 +911,7 @@ export default function PdfOrganizeTool() {
               className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-colors shadow"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>导出整理后的 PDF</span>
+              <span>{t('actions.export')}</span>
             </button>
           </div>
         </div>
@@ -919,12 +922,12 @@ export default function PdfOrganizeTool() {
               {basketItems.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-slate-400 text-xs space-y-2">
                   <ShoppingBag className="w-8 h-8 text-slate-300" />
-                  <p>暂存篮空空如也，请在上方页面卡片上点击加号 (+) 挑选页面或插入空白页</p>
+                  <p>{t('basket.empty')}</p>
                   <button
                     onClick={() => handleInsertBlankPageToBasket(0)}
                     className="mt-2 text-red-600 font-bold bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg border border-red-200"
                   >
-                    + 插入第一张空白页
+                    {t('actions.insertFirstBlank')}
                   </button>
                 </div>
               ) : (
@@ -934,10 +937,10 @@ export default function PdfOrganizeTool() {
                     <button
                       onClick={() => handleInsertBlankPageToBasket(0)}
                       className="w-6 h-12 bg-red-500 hover:bg-red-600 text-white rounded-md shadow-md opacity-20 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all flex flex-col items-center justify-center space-y-0.5 text-[10px] font-bold z-20"
-                      title="在此缝隙（最前面）插入一张空白页"
+                      title={t('actions.insertBlankFirstTitle')}
                     >
                       <Plus className="w-3.5 h-3.5" />
-                      <span className="text-[8px] leading-tight">空白</span>
+                      <span className="text-[8px] leading-tight">{t('blank.short')}</span>
                     </button>
                   </div>
 
@@ -955,7 +958,7 @@ export default function PdfOrganizeTool() {
                           onMouseEnter={() => {
                             setActiveHoverImage(item.thumbnailSrc);
                             setActiveHoverRotation(item.rotation);
-                            setActiveHoverLabel(`篮中 #${index + 1} (${item.fileName})`);
+                            setActiveHoverLabel(t('hover.basketWithFile', { index: index + 1, name: item.fileName }));
                           }}
                           onClick={() => setActiveBasketIndex(index)}
                           className={`relative w-28 bg-slate-50 p-2 rounded-lg border transition-all duration-300 cursor-pointer origin-center hover:scale-105 ${
@@ -970,10 +973,10 @@ export default function PdfOrganizeTool() {
                                   <GripHorizontal className="w-3.5 h-3.5" />
                                 </div>
                               )}
-                              <button onClick={(e) => { e.stopPropagation(); rotateBasketItem(item.id); }} className="p-0.5 text-slate-400 hover:text-red-600" title="旋转 90 度">
+                              <button onClick={(e) => { e.stopPropagation(); rotateBasketItem(item.id); }} className="p-0.5 text-slate-400 hover:text-red-600" title={t('actions.rotate90')}>
                                 <RotateCw className="w-3 h-3" />
                               </button>
-                              <button onClick={(e) => { e.stopPropagation(); removeFromBasket(item.id); }} className="p-0.5 text-red-400 hover:text-red-600" title="移除">
+                              <button onClick={(e) => { e.stopPropagation(); removeFromBasket(item.id); }} className="p-0.5 text-red-400 hover:text-red-600" title={t('actions.remove')}>
                                 <X className="w-3 h-3" />
                               </button>
                             </div>
@@ -985,7 +988,7 @@ export default function PdfOrganizeTool() {
 
                           <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
                             <span className="truncate max-w-[80px]">{item.fileName}</span>
-                            {isSelected && <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 rounded">选中</span>}
+                            {isSelected && <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
                           </div>
                         </div>
 
@@ -994,10 +997,10 @@ export default function PdfOrganizeTool() {
                           <button
                             onClick={() => handleInsertBlankPageToBasket(index + 1)}
                             className="w-6 h-12 bg-red-500 hover:bg-red-600 text-white rounded-md shadow-md opacity-20 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all flex flex-col items-center justify-center space-y-0.5 text-[10px] font-bold z-20"
-                            title={`在 #${index + 1} 页与 #${index + 2} 页之间插入一张空白页`}
+                            title={t('actions.insertBlankBetweenTitle', { from: index + 1, to: index + 2 })}
                           >
                             <Plus className="w-3.5 h-3.5" />
-                            <span className="text-[8px] leading-tight">空白</span>
+                            <span className="text-[8px] leading-tight">{t('blank.short')}</span>
                           </button>
                         </div>
                       </div>
@@ -1010,7 +1013,7 @@ export default function PdfOrganizeTool() {
             {/* 暂存篮底部集中全局排序控制 */}
             <div className="bg-slate-50 border-t border-slate-200 px-4 py-2 flex items-center justify-center space-x-3">
               <span className="text-xs font-bold text-slate-600">
-                {activeBasketIndex !== null ? `已选中篮中 #${activeBasketIndex + 1} 页` : '点击暂存篮卡片后点击排序按钮：'}
+                {activeBasketIndex !== null ? t('basket.selectedHint', { index: activeBasketIndex + 1 }) : t('basket.orderHint')}
               </span>
 
               <div className="flex items-center space-x-2 bg-white px-3 py-1 rounded-xl border border-slate-300 shadow-sm">
@@ -1020,7 +1023,7 @@ export default function PdfOrganizeTool() {
                   className="flex items-center space-x-1 px-2 py-1 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold disabled:opacity-30 transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
-                  <span>向前移动</span>
+                  <span>{t('basket.moveForward')}</span>
                 </button>
 
                 <div className="w-[1px] h-4 bg-slate-200"></div>
@@ -1030,7 +1033,7 @@ export default function PdfOrganizeTool() {
                   disabled={activeBasketIndex === null || activeBasketIndex === basketItems.length - 1}
                   className="flex items-center space-x-1 px-2 py-1 hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold disabled:opacity-30 transition-colors"
                 >
-                  <span>向后移动</span>
+                  <span>{t('basket.moveBackward')}</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
@@ -1046,7 +1049,7 @@ export default function PdfOrganizeTool() {
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <div className="flex items-center space-x-2">
                 <FolderOpen className="w-5 h-5 text-red-600" />
-                <h3 className="text-base font-bold text-slate-800">内置书签目录 ({files[activeFileIndex]?.name})</h3>
+                <h3 className="text-base font-bold text-slate-800">{t('outline.title', { name: files[activeFileIndex]?.name })}</h3>
               </div>
               <button onClick={() => setShowOutlineModal(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-full">
                 <X className="w-5 h-5" />
@@ -1057,18 +1060,18 @@ export default function PdfOrganizeTool() {
               {isParsingOutline ? (
                 <div className="py-12 flex flex-col items-center justify-center space-y-2 text-red-600">
                   <RefreshCw className="w-6 h-6 animate-spin" />
-                  <span className="text-xs font-medium">深度提取书签大纲...</span>
+                  <span className="text-xs font-medium">{t('outline.loading')}</span>
                 </div>
               ) : pdfOutline.length === 0 ? (
-                <div className="py-12 text-center text-slate-400 text-xs">该 PDF 未包含内置书签目录。可使用【页码框选】或【奇偶页】。</div>
+                <div className="py-12 text-center text-slate-400 text-xs">{t('outline.empty')}</div>
               ) : (
                 renderOutlineTree(pdfOutline)
               )}
             </div>
 
             <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400">
-              <span>点击目录章节可直接高亮选中该页</span>
-              <button onClick={() => setShowOutlineModal(false)} className="px-4 py-1.5 bg-slate-100 text-slate-700 font-bold rounded-lg">关闭</button>
+              <span>{t('outline.hint')}</span>
+              <button onClick={() => setShowOutlineModal(false)} className="px-4 py-1.5 bg-slate-100 text-slate-700 font-bold rounded-lg">{tCommon('actions.close')}</button>
             </div>
           </div>
         </div>
@@ -1079,14 +1082,14 @@ export default function PdfOrganizeTool() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 animate-in fade-in zoom-in duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-800">确认合成文件名</h3>
+              <h3 className="text-base font-bold text-slate-800">{t('modal.title')}</h3>
               <button onClick={() => setShowFilenameModal(false)} className="text-slate-400 hover:text-slate-600 p-1 rounded-full">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-slate-600">请输入导出的 PDF 文件名：</label>
+              <label className="text-xs font-medium text-slate-600">{tCommon('filename.label')}</label>
               <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-red-500">
                 <input
                   type="text"
@@ -1101,7 +1104,7 @@ export default function PdfOrganizeTool() {
 
             <div className="flex justify-end space-x-3 pt-2">
               <button onClick={() => setShowFilenameModal(false)} className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100">
-                取消
+                {tCommon('actions.cancel')}
               </button>
               <button
                 onClick={handleConfirmExport}
@@ -1109,7 +1112,7 @@ export default function PdfOrganizeTool() {
                 className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>{isProcessing ? '正在拼装导出...' : '确认下载'}</span>
+                <span>{isProcessing ? t('status.assembling') : tCommon('actions.confirmDownload')}</span>
               </button>
             </div>
           </div>

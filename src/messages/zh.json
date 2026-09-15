@@ -1,0 +1,515 @@
+{
+  "Metadata": {
+    "title": "Reeff.PDF · 免费在线 PDF 工具",
+    "description": "免费、隐私优先的浏览器端 PDF 工具箱。合并、拆分、旋转、裁剪和编辑 PDF，全程无需上传文件。"
+  },
+  "LanguageSwitcher": {
+    "label": "选择语言"
+  },
+  "Common": {
+    "upload": {
+      "prompt": "点击或拖拽 PDF 文件到此处上传",
+      "promptMultiple": "点击或拖拽多个 PDF 文件到此处上传"
+    },
+    "actions": {
+      "selectAll": "全选",
+      "deselectAll": "取消全选",
+      "cancel": "取消",
+      "clear": "清空",
+      "reset": "重置",
+      "reupload": "重新上传",
+      "confirmDownload": "确认下载",
+      "download": "下载 PDF",
+      "selectAllCount": "全选 ({selected}/{total})",
+      "confirm": "确定",
+      "close": "关闭"
+    },
+    "status": {
+      "processing": "处理中...",
+      "page": "第 {page} 页",
+      "selected": "已选中",
+      "selectedShort": "选中",
+      "parsingThumbnails": "正在解析页面缩略图..."
+    },
+    "errors": {
+      "uploadPdf": "请上传 PDF 文件",
+      "parsePdf": "解析 PDF 页面失败",
+      "exportFailed": "导出过程发生错误",
+      "invalidRange": "请输入有效的页码表达式（如：1-5, 8, 12-20）"
+    },
+    "filename": {
+      "title": "确认文件名称",
+      "label": "请输入导出的 PDF 文件名：",
+      "placeholder": "请输入文件名"
+    },
+    "preview": {
+      "title": "实时大图预览"
+    },
+    "unlimited": "无限"
+  },
+  "Tools": {
+    "organize": {
+      "name": "页面整理",
+      "desc": "网格拖拽排序、旋转、插空白页与重组"
+    },
+    "merge": {
+      "name": "拼接 PDF",
+      "desc": "按任意顺序将多个文档合并为一个"
+    },
+    "split": {
+      "name": "拆分 PDF",
+      "desc": "按指定范围或单页独立切分导出"
+    },
+    "rotate": {
+      "name": "旋转 PDF",
+      "desc": "批量纠正 PDF 页面旋转角度"
+    },
+    "deletePages": {
+      "name": "删除页面",
+      "desc": "一键剔除文档中不需要的页面"
+    },
+    "extractPages": {
+      "name": "提取页面",
+      "desc": "挑选特定页面导出为全新的文档"
+    },
+    "crop": {
+      "name": "裁剪 PDF",
+      "desc": "可视框自由调整，裁剪留白边框"
+    },
+    "edit": {
+      "name": "编辑 PDF",
+      "desc": "添加文本、手写签名、涂鸦与标注"
+    }
+  },
+  "ToolPages": {
+    "organize": {
+      "title": "页面整理 (Organize)",
+      "description": "可视化网格排序、旋转、插空白页与重组"
+    },
+    "merge": {
+      "title": "拼接 PDF (Merge)",
+      "description": "按任意顺序将多个文档无缝拼接为一个"
+    },
+    "split": {
+      "title": "拆分 PDF (Split)",
+      "description": "按指定范围或单页独立切分导出"
+    },
+    "rotate": {
+      "title": "旋转 PDF (Rotate & Flip)",
+      "description": "支持一键批量旋转方向，以及水平与垂直镜面反转"
+    },
+    "deletePages": {
+      "title": "删除 PDF 页面 (Delete Pages)",
+      "description": "点击卡片即可轻松剔除不需要的页面，支持奇偶页快捷与页码范围输入"
+    },
+    "extractPages": {
+      "title": "提取 PDF 页面 (Extract Pages)",
+      "description": "挑选特定页面导出为全新的文档，支持合并导出或按单页打包 ZIP"
+    },
+    "crop": {
+      "title": "裁剪 PDF (Crop PDF)",
+      "description": "可视化八点选框调整，支持应用至全文档、奇偶页或自定义所选页面"
+    },
+    "edit": {
+      "title": "改字与内容编辑 (Edit PDF)",
+      "description": "支持添加文本框、白块涂抹遮挡原字以及手写电子签名"
+    }
+  },
+  "Navbar": {
+    "allTools": "全部工具",
+    "toggleMenu": "打开或关闭导航菜单"
+  },
+  "HomePage": {
+    "heroTitle": "轻巧、极简的 <highlight>PDF 处理工具</highlight>",
+    "heroSubtitle": "无需安装，无文件大小限制。所有处理均在本地内存完成，数据零上传。",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 本地加密处理"
+  },
+  "PdfMerge": {
+    "dev": {
+      "modeLabel": "开发测试模式：当前身份为",
+      "vip": "VIP 高级用户",
+      "free": "免费标准用户 (限 {max} 个文件)",
+      "switchTo": "切换为",
+      "freeMode": "免费模式",
+      "vipMode": "VIP 模式"
+    },
+    "upload": {
+      "vipHint": "VIP 用户享无限多文件合并",
+      "freeHint": "免费版最多支持合并 {max} 个文件"
+    },
+    "list": {
+      "selected": "已选择 ({count} / {max})",
+      "dragHint": "（可按住左侧手柄拖拽调整顺序）"
+    },
+    "actions": {
+      "removeFile": "删除该文件",
+      "mergeDownload": "合并并下载",
+      "generating": "正在生成并下载..."
+    },
+    "footer": {
+      "limitReached": "已达免费合并上限，需更多文件请解锁 VIP"
+    },
+    "errors": {
+      "freeLimit": "免费用户一次最多合并 {max} 个 PDF 文件！\n升级 VIP 即可无限量批量合并。",
+      "minFiles": "请至少上传 2 个 PDF 文件！",
+      "mergeFailed": "合并过程发生错误。"
+    }
+  },
+  "PdfRotate": {
+    "upload": {
+      "hint": "支持 90°/180° 方向旋转以及水平与垂直镜面反转"
+    },
+    "status": {
+      "generatingPreviews": "正在生成高清预览图..."
+    },
+    "actions": {
+      "rotateLeft": "向左转",
+      "rotateLeftTitle": "逆时针旋转 90 度",
+      "rotateRight": "向右转",
+      "rotateRightTitle": "顺时针旋转 90 度",
+      "flipH": "水平镜像",
+      "flipHTitle": "水平左右镜像",
+      "flipV": "垂直镜像",
+      "flipVTitle": "垂直上下镜像",
+      "resetTitle": "重置当前选中页"
+    },
+    "errors": {
+      "noPagesSelected": "请先勾选需要调整姿态的页面"
+    }
+  },
+  "PdfDelete": {
+    "upload": {
+      "hint": "点击卡片即可标记删除，支持奇偶页批量与页码框选表达式"
+    },
+    "status": {
+      "totalPages": "共 {total} 页",
+      "marked": "已标记删除 {count} 页",
+      "remaining": "将保留 {count} 页",
+      "clickToRestore": "点击恢复",
+      "markedBadge": "已标记删除",
+      "kept": "保留"
+    },
+    "actions": {
+      "restoreAll": "全部恢复",
+      "restoreAllTitle": "恢复所有被标记删除的页面",
+      "deleteOdd": "删奇数页",
+      "deleteEven": "删偶数页",
+      "deleteRange": "删页码",
+      "generate": "生成并下载 PDF"
+    },
+    "placeholder": {
+      "range": "如: 2, 5-8"
+    },
+    "errors": {
+      "keepOnePage": "不能删除所有页面，请至少保留一页！"
+    }
+  },
+  "PdfExtract": {
+    "upload": {
+      "hint": "抽取选中的页面独立导出为新 PDF 或打包为 ZIP 压缩包"
+    },
+    "status": {
+      "extracting": "提取导出中..."
+    },
+    "actions": {
+      "odd": "奇数页",
+      "even": "偶数页",
+      "applyRange": "框选",
+      "extractCount": "提取 ({count} 页)"
+    },
+    "mode": {
+      "merged": "合并导出",
+      "mergedTitle": "所有提取页面合并为一个 PDF 文件",
+      "zip": "单页打包 ZIP",
+      "zipTitle": "每个页面独立拆分为单个文件并打包为 ZIP"
+    },
+    "badge": {
+      "extract": "提取"
+    },
+    "placeholder": {
+      "range": "如: 1-3, 7"
+    },
+    "errors": {
+      "noPagesSelected": "请先勾选需要提取的页面！",
+      "invalidRange": "请输入有效的页码表达式（如：1-5, 8）"
+    }
+  },
+  "PdfPageEditor": {
+    "upload": {
+      "prompt": "上传单个 PDF 进行高级页面编辑",
+      "hint": "支持拖拽调整页面顺序、旋转、抽取删除"
+    },
+    "status": {
+      "generating": "正在生成页面缩略图...",
+      "selected": "已选择 {selected} / {total} 页",
+      "position": "位置: {pos} (原第 {orig} 页)"
+    },
+    "hint": {
+      "drag": "💡 按住卡片顶部手柄可拖拽调整页面顺序；点击卡片可勾选/取消；右上角可旋转"
+    },
+    "actions": {
+      "exportSelected": "导出所选页面",
+      "rotate90": "旋转 90 度",
+      "collapse": "收起",
+      "zoom": "放大"
+    },
+    "preview": {
+      "position": "位置 {pos}",
+      "hint": "将鼠标移至左侧卡片查看"
+    },
+    "errors": {
+      "noPagesKept": "请至少勾选一个保留页面！"
+    }
+  },
+  "PdfCrop": {
+    "upload": {
+      "hint": "可视化裁剪边框，支持多范围作用与自定义页面挑选导出"
+    },
+    "scope": {
+      "label": "裁剪应用至:",
+      "all": "所有页",
+      "current": "当前页",
+      "odd": "单数页",
+      "even": "双数页",
+      "selected": "所选页 ({count})"
+    },
+    "actions": {
+      "resetBox": "重置画框",
+      "exportCount": "导出 ({count} 页)"
+    },
+    "mode": {
+      "merged": "合并导出",
+      "zip": "单页打包 ZIP"
+    },
+    "status": {
+      "parsingPreviews": "解析预览页面..."
+    },
+    "nav": {
+      "title": "导出页面 ({selected}/{total})",
+      "checkTitle": "勾选导出该页",
+      "uncheckTitle": "取消导出该页"
+    },
+    "errors": {
+      "noExportPages": "请在右侧页面导航区至少勾选一个需要导出的页面！"
+    }
+  },
+  "PdfSplit": {
+    "upload": {
+      "prompt": "上传单个 PDF 进行断点拆分",
+      "hint": "插入拆分符后，可自由勾选需要导出的部分文件"
+    },
+    "status": {
+      "parsing": "正在解析页面预览...",
+      "splitPoints": "拆分点：{count} / {max}"
+    },
+    "actions": {
+      "exportSelected": "导出选中的部分 ({selected}/{total})",
+      "selectAllParts": "全选全部",
+      "uncut": "取消切断",
+      "cutHere": "在此处切断",
+      "confirmBatchDownload": "确认并批量下载"
+    },
+    "parts": {
+      "title": "拆分结果选项 (鼠标移入可预览对应包含的页面)",
+      "partLabel": "文档 Part {index}",
+      "hint": "💡 点击卡片放大，点击中间的剪刀/加号插入拆分线"
+    },
+    "badge": {
+      "cut": "切开点"
+    },
+    "preview": {
+      "hint": "将鼠标移至左侧缩略图查看"
+    },
+    "modal": {
+      "title": "导出拆分文件确认",
+      "summary": "即将导出所选的 {count} 个文件区块。",
+      "customNames": "为每个文件单独定义名称",
+      "prefixLabel": "设置导出的文件名称前缀：",
+      "perPartLabel": "分别输入各 Part 的导出文件名："
+    },
+    "errors": {
+      "freeLimit": "免费版最多插入 {max} 个拆分符（切为 2 个文件）。\n切换为 VIP 模式解锁无限拆分！",
+      "readFailed": "读取 PDF 失败",
+      "noPartsSelected": "请至少勾选一个需要导出的文档区块！"
+    },
+    "dev": {
+      "modeLabel": "当前权限为：",
+      "vip": "VIP 高级用户 (无上限切分)",
+      "free": "免费标准用户 (限 {max} 个切分点)",
+      "switchTo": "切换为",
+      "freeMode": "免费模式",
+      "vipMode": "VIP 模式"
+    }
+  },
+  "PdfCrossMerge": {
+    "hover": {
+      "pageWithFile": "第 {page} 页 ({name})",
+      "basketWithFile": "篮中 #{index} ({name})"
+    },
+    "upload": {
+      "prompt": "上传多个 PDF 进行跨文档交叉拼装 (VIP 专享)",
+      "hint": "可自由挑拣不同文档里的任意页面，拼装为一个全新的 PDF"
+    },
+    "sources": {
+      "title": "已选源文档列表 (点击切换正在预览的文件)",
+      "addMore": "+ 追加更多 PDF",
+      "current": "当前源文件：{name}",
+      "hint": "💡 点击卡片可原位放大预览，点击加号 (+) 放入暂存篮"
+    },
+    "status": {
+      "parsing": "解析页面中...",
+      "generating": "生成中...",
+      "assembling": "正在拼装导出..."
+    },
+    "actions": {
+      "addToBasket": "放入暂存篮",
+      "moveLeft": "向左移",
+      "moveRight": "向右移",
+      "rotate90": "旋转 90 度",
+      "remove": "移除",
+      "assembleExport": "一键合成导出"
+    },
+    "preview": {
+      "hintCards": "划过卡片即可预览",
+      "hint": "划过任意源文件或暂存篮卡片均可实时显示大图"
+    },
+    "basket": {
+      "title": "暂存篮",
+      "subtitle": "已选待拼装页面 ({count} 页)",
+      "dragHint": "(电脑按住手柄拖拽，手机点箭头左右移动)",
+      "clear": "清空暂存篮",
+      "empty": "暂存篮空空如也，请从上方文件页面卡片中点击加号 (+) 挑拣页面入篮"
+    },
+    "modal": {
+      "title": "确认合成文件名",
+      "summary": "将把暂存篮中的 {count} 个页面合成为："
+    },
+    "errors": {
+      "emptyBasket": "请先从上方文件中挑选至少一个页面加入组合暂存篮！"
+    }
+  },
+  "PdfEdit": {
+    "upload": {
+      "hint": "支持自由拖拽缩放、文字/边框定制、自由荧光高亮笔、矢量箭头与平滑电子签名"
+    },
+    "defaultText": "点击输入文本",
+    "status": {
+      "exporting": "导出中...",
+      "parsingHd": "解析高清画面..."
+    },
+    "toolbar": {
+      "text": "文字",
+      "rect": "矩形/遮挡",
+      "highlightStartTitle": "点击开启手绘高亮笔",
+      "highlightStopTitle": "点击关闭高亮笔，恢复选择模式",
+      "highlightActive": "高亮绘制中",
+      "highlighter": "荧光画笔",
+      "circle": "圆/椭圆",
+      "arrow": "箭头",
+      "line": "直线",
+      "signature": "签名",
+      "copy": "复制 (Ctrl+C)",
+      "paste": "粘贴 (Ctrl+V)",
+      "deleteElement": "删除当前元素",
+      "save": "保存改字 PDF",
+      "autoStraighten": "涂划文字自动智能拉直",
+      "exitBrush": "退出画笔"
+    },
+    "style": {
+      "brushColor": "画笔颜色:",
+      "textColor": "文字颜色:",
+      "fill": "颜色/填充:",
+      "thickness": "粗细:",
+      "custom": "自定义:"
+    },
+    "colors": {
+      "yellow": "荧光黄",
+      "green": "荧光绿",
+      "pink": "荧光粉",
+      "blue": "荧光蓝",
+      "customTitle": "自定义色彩"
+    },
+    "pages": {
+      "title": "页面列表"
+    },
+    "modal": {
+      "signatureTitle": "手写平滑电子签名",
+      "clearSignature": "清空重画",
+      "applySignature": "应用签名"
+    }
+  },
+  "PdfOrganize": {
+    "upload": {
+      "prompt": "上传单个或多个 PDF 文件进行页面整理 (Organize PDF)",
+      "hint": "支持统一操作栏、奇偶页智能开关、卡片间隙加空白页与静默气泡提示"
+    },
+    "canvas": {
+      "blankPage": "[ 空白页 ]"
+    },
+    "blank": {
+      "fileName": "空白页",
+      "short": "空白"
+    },
+    "hover": {
+      "pageWithFile": "第 {page} 页 ({name})",
+      "basketWithFile": "篮中 #{index} ({name})"
+    },
+    "errors": {
+      "outlineFailed": "解析文档目录失败或该 PDF 未包含内置书签",
+      "emptyBasket": "请先挑选至少一个页面放入暂存篮！"
+    },
+    "files": {
+      "title": "已上传文件 ({count} 个)",
+      "add": "+ 追加文件",
+      "selectHint": "(Shift 连选 / Ctrl 多选)"
+    },
+    "actions": {
+      "undo": "撤销 (Ctrl+Z)",
+      "redo": "重做 (Ctrl+Y)",
+      "advanced": "高级工具 (页码/奇偶/目录)",
+      "addToBasketCount": "入篮 ({count})",
+      "addToBasketTitle": "加入暂存篮",
+      "putCurrent": "把当前预览页放入暂存篮",
+      "export": "导出整理后的 PDF",
+      "insertFirstBlank": "+ 插入第一张空白页",
+      "insertBlankFirstTitle": "在此缝隙（最前面）插入一张空白页",
+      "insertBlankBetweenTitle": "在 #{from} 页与 #{to} 页之间插入一张空白页",
+      "rotate90": "旋转 90 度",
+      "remove": "移除"
+    },
+    "preview": {
+      "hint": "划过左侧卡片即可预览大图"
+    },
+    "range": {
+      "label": "页码框选:",
+      "placeholder": "如: 1-5, 8, 12-20",
+      "odd": "奇数页",
+      "even": "偶数页",
+      "outline": "书本目录"
+    },
+    "basket": {
+      "title": "合成暂存篮",
+      "countBadge": "篮中x{count}",
+      "pulseAdded": "已加页! 点击查看",
+      "pulseExpand": "点击展开暂存篮",
+      "pulseCollapse": "点击收起",
+      "empty": "暂存篮空空如也，请在上方页面卡片上点击加号 (+) 挑选页面或插入空白页",
+      "selectedHint": "已选中篮中 #{index} 页",
+      "orderHint": "点击暂存篮卡片后点击排序按钮：",
+      "moveForward": "向前移动",
+      "moveBackward": "向后移动"
+    },
+    "outline": {
+      "title": "内置书签目录 ({name})",
+      "loading": "深度提取书签大纲...",
+      "empty": "该 PDF 未包含内置书签目录。可使用【页码框选】或【奇偶页】。",
+      "hint": "点击目录章节可直接高亮选中该页"
+    },
+    "modal": {
+      "title": "确认合成文件名"
+    },
+    "status": {
+      "assembling": "正在拼装导出..."
+    }
+  }
+}

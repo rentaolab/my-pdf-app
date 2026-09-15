@@ -1,10 +1,13 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { mergePDFs } from '@/lib/pdf-merge';
 import { Upload, Trash2, FileText, Download, Crown, Sparkles, GripVertical, X } from 'lucide-react';
 
 export default function PdfMergeTool() {
+  const t = useTranslations('PdfMerge');
+  const tCommon = useTranslations('Common');
   const [files, setFiles] = useState<File[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -30,7 +33,7 @@ export default function PdfMergeTool() {
     const currentTotal = files.length + selectedFiles.length;
 
     if (currentTotal > maxAllowedFiles) {
-      alert(`免费用户一次最多合并 ${maxAllowedFiles} 个 PDF 文件！\n升级 VIP 即可无限量批量合并。`);
+      alert(t('errors.freeLimit', { max: maxAllowedFiles }));
       const remainingSlots = Math.max(0, maxAllowedFiles - files.length);
       if (remainingSlots > 0) {
         setFiles((prev) => [...prev, ...selectedFiles.slice(0, remainingSlots)]);
@@ -67,7 +70,7 @@ export default function PdfMergeTool() {
 
   // --- 打开文件名确认弹窗 ---
   const handleOpenDownloadModal = () => {
-    if (files.length < 2) return alert('请至少上传 2 个 PDF 文件！');
+    if (files.length < 2) return alert(t('errors.minFiles'));
     // 设置默认文件名（不带 .pdf 后缀，导出时自动补全）
     setCustomFilename(`merged_${Date.now()}`);
     setShowFilenameModal(true);
@@ -92,7 +95,7 @@ export default function PdfMergeTool() {
       setShowFilenameModal(false); // 下载完成后关闭弹窗
     } catch (error) {
       console.error(error);
-      alert('合并过程发生错误。');
+      alert(t('errors.mergeFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -104,13 +107,18 @@ export default function PdfMergeTool() {
       <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
         <div className="flex items-center space-x-2">
           <Sparkles className="w-4 h-4 text-amber-600" />
-          <span>开发测试模式：当前身份为 <strong>{isVipUser ? 'VIP 高级用户' : '免费标准用户 (限 2 个文件)'}</strong></span>
+          <span>
+            {t('dev.modeLabel')}{' '}
+            <strong>
+              {isVipUser ? t('dev.vip') : t('dev.free', { max: maxAllowedFiles })}
+            </strong>
+          </span>
         </div>
         <button
           onClick={() => setIsVipUser(!isVipUser)}
           className="bg-amber-600 text-white px-3 py-1 rounded-md font-medium hover:bg-amber-700 transition-colors"
         >
-          切换为 {isVipUser ? '免费模式' : 'VIP 模式'}
+          {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
         </button>
       </div>
 
@@ -128,9 +136,9 @@ export default function PdfMergeTool() {
             <Upload className="w-8 h-8" />
           </div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽多个 PDF 文件到此处上传</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.promptMultiple')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              {isVipUser ? 'VIP 用户享无限多文件合并' : '免费版最多支持合并 2 个文件'}
+              {isVipUser ? t('upload.vipHint') : t('upload.freeHint', { max: maxAllowedFiles })}
             </p>
           </div>
         </div>
@@ -141,10 +149,14 @@ export default function PdfMergeTool() {
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-100">
           <div className="p-4 bg-slate-50 rounded-t-xl font-medium text-slate-700 flex justify-between items-center">
             <span className="text-sm">
-              已选择 ({files.length} / {isVipUser ? '∞' : maxAllowedFiles}) <span className="text-xs text-slate-400 font-normal">（可按住左侧手柄拖拽调整顺序）</span>
+              {t('list.selected', {
+                count: files.length,
+                max: isVipUser ? '∞' : maxAllowedFiles,
+              })}{' '}
+              <span className="text-xs text-slate-400 font-normal">{t('list.dragHint')}</span>
             </span>
             <button onClick={() => setFiles([])} className="text-xs text-red-500 hover:underline">
-              清空
+              {tCommon('actions.clear')}
             </button>
           </div>
 
@@ -175,7 +187,7 @@ export default function PdfMergeTool() {
                   <button
                     onClick={() => setFiles(files.filter((_, i) => i !== index))}
                     className="p-1 text-red-400 hover:text-red-600"
-                    title="删除该文件"
+                    title={t('actions.removeFile')}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -189,7 +201,7 @@ export default function PdfMergeTool() {
             {!isVipUser && files.length >= 2 ? (
               <div className="flex items-center space-x-1 text-xs text-amber-600 font-medium">
                 <Crown className="w-4 h-4" />
-                <span>已达免费合并上限，需更多文件请解锁 VIP</span>
+                <span>{t('footer.limitReached')}</span>
               </div>
             ) : (
               <span />
@@ -201,7 +213,7 @@ export default function PdfMergeTool() {
               className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors shadow-sm"
             >
               <Download className="w-4 h-4" />
-              <span>合并并下载</span>
+              <span>{t('actions.mergeDownload')}</span>
             </button>
           </div>
         </div>
@@ -212,7 +224,7 @@ export default function PdfMergeTool() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 animate-in fade-in zoom-in duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-800">确认文件名称</h3>
+              <h3 className="text-base font-bold text-slate-800">{tCommon('filename.title')}</h3>
               <button
                 onClick={() => setShowFilenameModal(false)}
                 className="text-slate-400 hover:text-slate-600 p-1 rounded-full"
@@ -222,13 +234,13 @@ export default function PdfMergeTool() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-medium text-slate-600">请输入导出的 PDF 文件名：</label>
+              <label className="text-xs font-medium text-slate-600">{tCommon('filename.label')}</label>
               <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-red-500 focus-within:border-red-500">
                 <input
                   type="text"
                   value={customFilename}
                   onChange={(e) => setCustomFilename(e.target.value)}
-                  placeholder="请输入文件名"
+                  placeholder={tCommon('filename.placeholder')}
                   className="flex-1 bg-transparent text-sm text-slate-800 focus:outline-none"
                   autoFocus
                 />
@@ -241,7 +253,7 @@ export default function PdfMergeTool() {
                 onClick={() => setShowFilenameModal(false)}
                 className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 transition-colors"
               >
-                取消
+                {tCommon('actions.cancel')}
               </button>
               <button
                 onClick={handleConfirmDownload}
@@ -249,7 +261,7 @@ export default function PdfMergeTool() {
                 className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium transition-colors shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>{isProcessing ? '正在生成并下载...' : '确认下载'}</span>
+                <span>{isProcessing ? t('actions.generating') : tCommon('actions.confirmDownload')}</span>
               </button>
             </div>
           </div>

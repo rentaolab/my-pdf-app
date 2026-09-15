@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { crossMergePDFPages, SelectedPageItem } from '@/lib/pdf-cross-merge';
 import {
@@ -20,6 +21,8 @@ import {
 } from 'lucide-react';
 
 export default function PdfCrossMergeTool() {
+  const t = useTranslations('PdfCrossMerge');
+  const tCommon = useTranslations('Common');
   const [files, setFiles] = useState<File[]>([]);
   const [activeFileIndex, setActiveFileIndex] = useState<number>(0);
 
@@ -64,10 +67,10 @@ export default function PdfCrossMergeTool() {
         }));
         if (images.length > 0 && !activeHoverImage) {
           setActiveHoverImage(images[0]);
-          setActiveHoverLabel(`第 1 页 (${files[activeFileIndex].name})`);
+          setActiveHoverLabel(t('hover.pageWithFile', { page: 1, name: files[activeFileIndex].name }));
         }
       } catch (err) {
-        alert('解析 PDF 失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -155,7 +158,7 @@ export default function PdfCrossMergeTool() {
 
   const handleOpenExportModal = () => {
     if (basketItems.length === 0) {
-      alert('请先从上方文件中挑选至少一个页面加入组合暂存篮！');
+      alert(t('errors.emptyBasket'));
       return;
     }
     setCustomFilename(`cross_merged_${Date.now()}`);
@@ -180,7 +183,7 @@ export default function PdfCrossMergeTool() {
       setShowFilenameModal(false);
     } catch (err) {
       console.error(err);
-      alert('导出过程发生错误');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -201,10 +204,10 @@ export default function PdfCrossMergeTool() {
             <Upload className="w-8 h-8" />
           </div>
           <p className="text-base font-medium text-slate-700">
-            上传多个 PDF 进行跨文档交叉拼装 (VIP 专享)
+            {t('upload.prompt')}
           </p>
           <p className="text-xs text-slate-500">
-            可自由挑拣不同文档里的任意页面，拼装为一个全新的 PDF
+            {t('upload.hint')}
           </p>
         </div>
       </div>
@@ -220,10 +223,10 @@ export default function PdfCrossMergeTool() {
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-slate-700 flex items-center space-x-1">
             <Layers className="w-4 h-4 text-indigo-600" />
-            <span>已选源文档列表 (点击切换正在预览的文件)</span>
+            <span>{t('sources.title')}</span>
           </span>
           <label className="text-xs text-indigo-600 font-medium hover:underline cursor-pointer">
-            + 追加更多 PDF
+            {t('sources.addMore')}
             <input
               type="file"
               multiple
@@ -261,18 +264,18 @@ export default function PdfCrossMergeTool() {
         <div className="lg:col-span-2 bg-slate-100 p-4 sm:p-6 rounded-xl border border-slate-200 space-y-3">
           <div className="flex justify-between items-center text-xs text-slate-600">
             <span>
-              当前源文件：<strong>{files[activeFileIndex]?.name}</strong>
+              {t('sources.current', { name: files[activeFileIndex]?.name })}
             </span>
             {isLoading && (
               <span className="flex items-center space-x-1 text-indigo-600 font-medium">
                 <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-                <span>解析页面中...</span>
+                <span>{t('status.parsing')}</span>
               </span>
             )}
           </div>
 
           <p className="text-[11px] text-slate-400 block lg:hidden">
-            💡 点击卡片可原位放大预览，点击加号 (+) 放入暂存篮
+            {t('sources.hint')}
           </p>
 
           {!isLoading && (
@@ -295,7 +298,7 @@ export default function PdfCrossMergeTool() {
                     onMouseEnter={() => {
                       setActiveHoverImage(src);
                       setActiveHoverRotation(0);
-                      setActiveHoverLabel(`第 ${pageIdx + 1} 页 (${files[activeFileIndex].name})`);
+                      setActiveHoverLabel(t('hover.pageWithFile', { page: pageIdx + 1, name: files[activeFileIndex].name }));
                     }}
                     onClick={() => setMobileZoomedId(isZoomed ? null : zoomId)}
                     className={`relative bg-white p-2 rounded-lg border shadow-sm transition-all duration-300 cursor-pointer ${originClass} ${
@@ -322,14 +325,14 @@ export default function PdfCrossMergeTool() {
                     />
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] text-slate-500">
-                      <span>第 {pageIdx + 1} 页</span>
+                      <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           addPageToBasket(pageIdx, src);
                         }}
                         className="p-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow transition-transform active:scale-90"
-                        title="放入暂存篮"
+                        title={t('actions.addToBasket')}
                       >
                         <Plus className="w-3.5 h-3.5" />
                       </button>
@@ -344,7 +347,7 @@ export default function PdfCrossMergeTool() {
         {/* 右侧 (lg:col-span-1)：电脑端实时大图预览栏 */}
         <div className="hidden lg:block lg:col-span-1 sticky top-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span className="text-xs font-semibold text-slate-500">实时大图预览</span>
+            <span className="text-xs font-semibold text-slate-500">{tCommon('preview.title')}</span>
             <span className="text-[11px] text-indigo-600 font-bold truncate max-w-[150px]">
               {activeHoverLabel}
             </span>
@@ -359,10 +362,10 @@ export default function PdfCrossMergeTool() {
                 className="max-h-[420px] object-contain rounded shadow-sm transition-transform duration-200"
               />
             ) : (
-              <span className="text-xs text-slate-400">划过卡片即可预览</span>
+              <span className="text-xs text-slate-400">{t('preview.hintCards')}</span>
             )}
           </div>
-          <p className="text-[11px] text-slate-400 text-center">划过任意源文件或暂存篮卡片均可实时显示大图</p>
+          <p className="text-[11px] text-slate-400 text-center">{t('preview.hint')}</p>
         </div>
       </div>
 
@@ -371,13 +374,13 @@ export default function PdfCrossMergeTool() {
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
           <div className="flex items-center space-x-2">
             <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs font-bold">
-              暂存篮
+              {t('basket.title')}
             </span>
             <span className="text-xs font-bold text-slate-800">
-              已选待拼装页面 ({basketItems.length} 页)
+              {t('basket.subtitle', { count: basketItems.length })}
             </span>
             <span className="text-xs text-slate-400 hidden sm:inline">
-              (电脑按住手柄拖拽，手机点箭头左右移动)
+              {t('basket.dragHint')}
             </span>
           </div>
 
@@ -386,7 +389,7 @@ export default function PdfCrossMergeTool() {
               onClick={() => setBasketItems([])}
               className="text-xs text-red-500 hover:underline"
             >
-              清空暂存篮
+              {t('basket.clear')}
             </button>
             <button
               onClick={handleOpenExportModal}
@@ -394,7 +397,7 @@ export default function PdfCrossMergeTool() {
               className="flex items-center space-x-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors shadow-sm"
             >
               <Download className="w-4 h-4" />
-              <span>{isProcessing ? '生成中...' : '一键合成导出'}</span>
+              <span>{isProcessing ? t('status.generating') : t('actions.assembleExport')}</span>
             </button>
           </div>
         </div>
@@ -402,7 +405,7 @@ export default function PdfCrossMergeTool() {
         {/* 暂存篮卡片列表 */}
         {basketItems.length === 0 ? (
           <div className="py-8 text-center text-xs text-slate-400">
-            暂存篮空空如也，请从上方文件页面卡片中点击加号 (+) 挑拣页面入篮
+            {t('basket.empty')}
           </div>
         ) : (
           <div className="flex flex-wrap gap-3 p-1">
@@ -421,7 +424,7 @@ export default function PdfCrossMergeTool() {
                   onMouseEnter={() => {
                     setActiveHoverImage(item.thumbnailSrc);
                     setActiveHoverRotation(item.rotation);
-                    setActiveHoverLabel(`篮中 #${index + 1} (${item.fileName})`);
+                    setActiveHoverLabel(t('hover.basketWithFile', { index: index + 1, name: item.fileName }));
                   }}
                   onClick={() => setMobileZoomedId(isZoomed ? null : zoomId)}
                   className={`relative w-32 bg-slate-50 p-2 rounded-lg border transition-all duration-300 cursor-pointer ${originClass} ${
@@ -446,7 +449,7 @@ export default function PdfCrossMergeTool() {
                         onClick={(e) => moveBasketItemLeft(index, e)}
                         disabled={index === 0}
                         className="p-0.5 text-slate-400 hover:text-indigo-600 disabled:opacity-20 active:scale-90"
-                        title="向左移"
+                        title={t('actions.moveLeft')}
                       >
                         <ChevronLeft className="w-3.5 h-3.5" />
                       </button>
@@ -454,7 +457,7 @@ export default function PdfCrossMergeTool() {
                         onClick={(e) => moveBasketItemRight(index, e)}
                         disabled={index === basketItems.length - 1}
                         className="p-0.5 text-slate-400 hover:text-indigo-600 disabled:opacity-20 active:scale-90"
-                        title="向右移"
+                        title={t('actions.moveRight')}
                       >
                         <ChevronRight className="w-3.5 h-3.5" />
                       </button>
@@ -466,7 +469,7 @@ export default function PdfCrossMergeTool() {
                         rotateBasketItem(item.id);
                       }}
                       className="p-0.5 text-slate-400 hover:text-indigo-600"
-                      title="旋转 90 度"
+                      title={t('actions.rotate90')}
                     >
                       <RotateCw className="w-3 h-3" />
                     </button>
@@ -477,7 +480,7 @@ export default function PdfCrossMergeTool() {
                         removeFromBasket(item.id);
                       }}
                       className="p-0.5 text-red-400 hover:text-red-600"
-                      title="移除"
+                      title={t('actions.remove')}
                     >
                       <X className="w-3 h-3" />
                     </button>
@@ -507,7 +510,7 @@ export default function PdfCrossMergeTool() {
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 animate-in fade-in zoom-in duration-150">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <h3 className="text-base font-bold text-slate-800">确认合成文件名</h3>
+              <h3 className="text-base font-bold text-slate-800">{t('modal.title')}</h3>
               <button
                 onClick={() => setShowFilenameModal(false)}
                 className="text-slate-400 hover:text-slate-600 p-1 rounded-full"
@@ -518,7 +521,7 @@ export default function PdfCrossMergeTool() {
 
             <div className="space-y-2">
               <label className="text-xs font-medium text-slate-600">
-                将把暂存篮中的 {basketItems.length} 个页面合成为：
+                {t('modal.summary', { count: basketItems.length })}
               </label>
               <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-indigo-500">
                 <input
@@ -537,7 +540,7 @@ export default function PdfCrossMergeTool() {
                 onClick={() => setShowFilenameModal(false)}
                 className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100"
               >
-                取消
+                {tCommon('actions.cancel')}
               </button>
               <button
                 onClick={handleConfirmExport}
@@ -545,7 +548,7 @@ export default function PdfCrossMergeTool() {
                 className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>{isProcessing ? '正在拼装导出...' : '确认下载'}</span>
+                <span>{isProcessing ? t('status.assembling') : tCommon('actions.confirmDownload')}</span>
               </button>
             </div>
           </div>

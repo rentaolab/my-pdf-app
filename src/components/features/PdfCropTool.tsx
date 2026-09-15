@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { cropPDFPagesCustom, cropPDFPagesToZip, CropRect } from '@/lib/pdf-crop';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -21,6 +22,8 @@ import {
 export type CropScopeMode = 'all' | 'current' | 'odd' | 'even' | 'selected';
 
 export default function PdfCropTool() {
+  const t = useTranslations('PdfCrop');
+  const tCommon = useTranslations('Common');
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,7 +70,7 @@ export default function PdfCropTool() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;
     const selected = e.target.files[0];
-    if (selected.type !== 'application/pdf') return alert('请上传 PDF 文件');
+    if (selected.type !== 'application/pdf') return alert(tCommon('errors.uploadPdf'));
 
     setFile(selected);
     e.target.value = '';
@@ -102,7 +105,7 @@ export default function PdfCropTool() {
         setPageBoxPercentMap(initialMap);
         setActivePageIndex(0);
       } catch (err) {
-        alert('解析 PDF 页面失败');
+        alert(tCommon('errors.parsePdf'));
       } finally {
         setIsLoading(false);
       }
@@ -284,7 +287,7 @@ export default function PdfCropTool() {
   const handleExport = async () => {
     if (!file) return;
     if (selectedExportPages.length === 0) {
-      return alert('请在右侧页面导航区至少勾选一个需要导出的页面！');
+      return alert(t('errors.noExportPages'));
     }
 
     try {
@@ -326,7 +329,7 @@ export default function PdfCropTool() {
       }
     } catch (err) {
       console.error(err);
-      alert('裁剪导出失败');
+      alert(tCommon('errors.exportFailed'));
     } finally {
       setIsProcessing(false);
     }
@@ -346,9 +349,9 @@ export default function PdfCropTool() {
             <Upload className="w-8 h-8" />
           </div>
           <div>
-            <p className="text-base font-medium text-slate-700">点击或拖拽 PDF 文件到此处上传</p>
+            <p className="text-base font-medium text-slate-700">{tCommon('upload.prompt')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              可视化裁剪边框，支持多范围作用与自定义页面挑选导出
+              {t('upload.hint')}
             </p>
           </div>
         </div>
@@ -365,7 +368,7 @@ export default function PdfCropTool() {
           
           {/* 💡 优化 1 & 2：明确的被选中高亮（默认所有页） */}
           <div className="flex items-center space-x-2">
-            <span className="text-xs font-bold text-slate-700">裁剪应用至:</span>
+            <span className="text-xs font-bold text-slate-700">{t('scope.label')}</span>
             <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-xs font-bold">
               <button
                 onClick={() => handleScopeChange('all')}
@@ -375,7 +378,7 @@ export default function PdfCropTool() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                所有页
+                {t('scope.all')}
               </button>
               <button
                 onClick={() => handleScopeChange('current')}
@@ -385,7 +388,7 @@ export default function PdfCropTool() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                当前页
+                {t('scope.current')}
               </button>
               <button
                 onClick={() => handleScopeChange('odd')}
@@ -395,7 +398,7 @@ export default function PdfCropTool() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                单数页
+                {t('scope.odd')}
               </button>
               <button
                 onClick={() => handleScopeChange('even')}
@@ -405,7 +408,7 @@ export default function PdfCropTool() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                双数页
+                {t('scope.even')}
               </button>
               <button
                 onClick={() => handleScopeChange('selected')}
@@ -415,7 +418,7 @@ export default function PdfCropTool() {
                     : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
-                所选页 ({selectedExportPages.length})
+                {t('scope.selected', { count: selectedExportPages.length })}
               </button>
             </div>
           </div>
@@ -426,7 +429,7 @@ export default function PdfCropTool() {
             className="flex items-center space-x-1 text-xs font-bold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>重置画框</span>
+            <span>{t('actions.resetBox')}</span>
           </button>
 
           {/* 右侧：导出模式切换 + 导出按钮 */}
@@ -441,7 +444,7 @@ export default function PdfCropTool() {
                 }`}
               >
                 <Layers className="w-3 h-3 text-red-600" />
-                <span>合并导出</span>
+                <span>{t('mode.merged')}</span>
               </button>
               <button
                 onClick={() => setExportMode('zip')}
@@ -452,7 +455,7 @@ export default function PdfCropTool() {
                 }`}
               >
                 <Archive className="w-3 h-3 text-red-600" />
-                <span>单页打包 ZIP</span>
+                <span>{t('mode.zip')}</span>
               </button>
             </div>
 
@@ -462,7 +465,7 @@ export default function PdfCropTool() {
               className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>{isProcessing ? '处理导出中...' : `导出 (${selectedExportPages.length} 页)`}</span>
+              <span>{isProcessing ? tCommon('status.processing') : t('actions.exportCount', { count: selectedExportPages.length })}</span>
             </button>
           </div>
         </div>
@@ -475,7 +478,7 @@ export default function PdfCropTool() {
             {isLoading ? (
               <div className="flex flex-col items-center space-y-2 text-red-600">
                 <RefreshCw className="w-6 h-6 animate-spin" />
-                <span className="text-xs font-medium">解析预览页面...</span>
+                <span className="text-xs font-medium">{t('status.parsingPreviews')}</span>
               </div>
             ) : (
               <div className="relative max-h-[480px] max-w-full flex items-center justify-center select-none shadow-xl rounded overflow-hidden">
@@ -557,13 +560,13 @@ export default function PdfCropTool() {
           <div className="w-full md:w-64 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col max-h-[480px]">
             <div className="flex items-center justify-between pb-2 border-b border-slate-100 mb-3">
               <span className="text-xs font-bold text-slate-800">
-                导出页面 ({selectedExportPages.length}/{thumbnails.length})
+                {t('nav.title', { selected: selectedExportPages.length, total: thumbnails.length })}
               </span>
               <button
                 onClick={toggleSelectAllExport}
                 className="text-[10px] font-bold text-red-600 hover:underline flex items-center space-x-0.5"
               >
-                {selectedExportPages.length === thumbnails.length ? '取消全选' : '全选'}
+                {selectedExportPages.length === thumbnails.length ? tCommon('actions.deselectAll') : tCommon('actions.selectAll')}
               </button>
             </div>
 
@@ -588,7 +591,7 @@ export default function PdfCropTool() {
                       className={`absolute top-1 left-1 w-4 h-4 rounded flex items-center justify-center text-white text-[9px] font-bold z-10 transition-colors ${
                         isChecked ? 'bg-red-600' : 'bg-slate-300 hover:bg-slate-400'
                       }`}
-                      title={isChecked ? '取消导出该页' : '勾选导出该页'}
+                      title={isChecked ? t('nav.uncheckTitle') : t('nav.checkTitle')}
                     >
                       {isChecked ? <Check className="w-3 h-3" /> : null}
                     </button>

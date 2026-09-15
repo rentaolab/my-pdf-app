@@ -1,8 +1,11 @@
+import { useTranslations } from 'next-intl';
 import Navbar from '@/components/layout/Navbar';
 import PdfDeleteTool from '@/components/features/PdfDeleteTool';
 import { Trash2 } from 'lucide-react';
 
 export default function DeletePdfPagesPage() {
+  const t = useTranslations('ToolPages.deletePages');
+
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
@@ -12,9 +15,9 @@ export default function DeletePdfPagesPage() {
             <Trash2 className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-slate-900">删除 PDF 页面 (Delete Pages)</h1>
+            <h1 className="text-xl font-bold text-slate-900">{t('title')}</h1>
             <p className="text-xs text-slate-500 mt-0.5">
-              点击卡片即可轻松剔除不需要的页面，支持奇偶页快捷与页码范围输入
+              {t('description')}
             </p>
           </div>
         </div>
