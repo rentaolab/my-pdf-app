@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { renderPDFToImages, renderSinglePDFPageHighRes } from '@/lib/pdf-edit';
 import { bakeEditsToPDF, FabricCanvasJSON } from '@/lib/pdf-edit-content';
@@ -10,6 +10,14 @@ import {
   Highlighter, PenTool, Trash2, ChevronLeft, ChevronRight, X,
   Check, Copy, Clipboard, ZoomIn, ZoomOut, Minus
 } from 'lucide-react';
+
+/** 仅描述本组件需要读取的样式字段，避免使用 any */
+type StyleSource = {
+  fill?: unknown;
+  stroke?: unknown;
+  strokeWidth?: unknown;
+  fontSize?: unknown;
+};
 
 export default function PdfEditTool() {
   const t = useTranslations('PdfEdit');
@@ -30,8 +38,8 @@ export default function PdfEditTool() {
   const [isHighlighting, setIsHighlighting] = useState(false);
   const [highlightColor, setHighlightColor] = useState('rgba(254, 240, 138, 0.5)'); // 默认半透明荧光黄
 
-  const clipboardRef = useRef<any>(null);
-  const [selectedObject, setSelectedObject] = useState<any>(null);
+  const clipboardRef = useRef<fabric.Object | null>(null);
+  const [selectedObject, setSelectedObject] = useState<fabric.Object | null>(null);
   const [objectStyle, setObjectStyle] = useState({
     fill: '#1E293B', stroke: '#EF4444', strokeWidth: 2, fontSize: 20,
   });
@@ -43,13 +51,13 @@ export default function PdfEditTool() {
   const signCanvasRef = useRef<HTMLCanvasElement>(null);
   const [isSigning, setIsSigning] = useState(false);
 
-  const syncObjectStyleToUI = (obj: any) => {
+  const syncObjectStyleToUI = (obj: StyleSource | null | undefined) => {
     if (!obj) return;
     setObjectStyle({
-      fill: obj.fill === 'transparent' ? '#FFFFFF' : obj.fill || '#1E293B',
-      stroke: obj.stroke || '#EF4444',
-      strokeWidth: obj.strokeWidth || 2,
-      fontSize: obj.fontSize || 20,
+      fill: obj.fill === 'transparent' ? '#FFFFFF' : (obj.fill as string) || '#1E293B',
+      stroke: (obj.stroke as string) || '#EF4444',
+      strokeWidth: (obj.strokeWidth as number) || 2,
+      fontSize: (obj.fontSize as number) || 20,
     });
   };
 
@@ -64,6 +72,7 @@ export default function PdfEditTool() {
   useEffect(() => {
     if (!file) return;
     async function loadPDF() {
+      if (!file) return;
       try {
         setIsLoading(true);
         const images = await renderPDFToImages(file);
@@ -81,10 +90,13 @@ export default function PdfEditTool() {
   useEffect(() => {
     if (!file || thumbnails.length === 0) return;
     let isMounted = true;
-    setIsLoading(true);
 
-    renderSinglePDFPageHighRes(file, activePageIndex)
-      .then((imgUrl) => {
+    // 在异步函数内触发 loading，避免在 effect 主体同步 setState；
+    // await 之前仍同步执行，行为与原来一致。
+    const loadHighResPage = async () => {
+      setIsLoading(true);
+      try {
+        const imgUrl = await renderSinglePDFPageHighRes(file, activePageIndex);
         if (isMounted) {
           setHighResBg(imgUrl);
           
@@ -98,10 +110,12 @@ export default function PdfEditTool() {
             setIsLoading(false);
           };
         }
-      })
-      .catch(() => {
+      } catch {
         if (isMounted) setIsLoading(false);
-      });
+      }
+    };
+
+    loadHighResPage();
 
     return () => { isMounted = false; };
   }, [file, activePageIndex, thumbnails]);
@@ -124,6 +138,14 @@ export default function PdfEditTool() {
     setSelectedObject(null);
     setIsHighlighting(false);
     setActivePageIndex(newIdx);
+  };
+
+  // 必须定义在下面的 useEffect 之前：该 effect 注册的 canvas 事件回调会调用它
+  const saveCanvasState = () => {
+    if (!fabricCanvasRef.current) return;
+    const json = fabricCanvasRef.current.toJSON();
+    json.pageSize = pageSize;
+    setPageFabricMap((prev) => ({ ...prev, [activePageIndex]: json }));
   };
 
   useEffect(() => {
@@ -164,11 +186,12 @@ export default function PdfEditTool() {
     }
 
     // 💡 智能直线矫正逻辑：自动识别划线动作并强制重置为绝对水平直线条
-    canvas.on('path:created', (e: any) => {
+    canvas.on('path:created', (e: { path: fabric.Path }) => {
       const pathObj = e.path;
       if (!pathObj || !fabricCanvasRef.current) return;
 
-      const pathData = pathObj.path; // SVG Path 指令数组 [['M', x1, y1], ['Q', ...], ...]
+      // fabric 的 path 指令元组类型过严，这里按坐标数组使用（实际只读取数字坐标）
+      const pathData = pathObj.path as unknown as number[][]; // SVG Path 指令数组 [['M', x1, y1], ['Q', ...], ...]
       if (pathData && pathData.length > 0) {
         const startPoint = pathData[0];
         const endPoint = pathData[pathData.length - 1];
@@ -209,11 +232,11 @@ export default function PdfEditTool() {
     });
 
     canvas.on('selection:created', (e) => {
-      setSelectedObject(e.selected?.[0]);
+      setSelectedObject(e.selected?.[0] ?? null);
       syncObjectStyleToUI(e.selected?.[0]);
     });
     canvas.on('selection:updated', (e) => {
-      setSelectedObject(e.selected?.[0]);
+      setSelectedObject(e.selected?.[0] ?? null);
       syncObjectStyleToUI(e.selected?.[0]);
     });
     canvas.on('selection:cleared', () => setSelectedObject(null));
@@ -227,13 +250,6 @@ export default function PdfEditTool() {
       fabricCanvasRef.current = null;
     };
   }, [activePageIndex, highResBg, pageSize, isHighlighting, highlightColor]);
-
-  const saveCanvasState = useCallback(() => {
-    if (!fabricCanvasRef.current) return;
-    const json = fabricCanvasRef.current.toJSON();
-    json.pageSize = pageSize;
-    setPageFabricMap((prev) => ({ ...prev, [activePageIndex]: json }));
-  }, [activePageIndex, pageSize]);
 
   const toggleHighlightMode = () => {
     setIsHighlighting((prev) => !prev);
@@ -324,12 +340,14 @@ export default function PdfEditTool() {
     applyReeffStyle(clonedObj);
 
     if (clonedObj.type === 'activeSelection') {
-      clonedObj.canvas = fabricCanvasRef.current;
-      clonedObj.forEachObject((obj: any) => {
+      // forEachObject / setCoordinates 仅存在于 ActiveSelection 上
+      const activeSelection = clonedObj as fabric.ActiveSelection;
+      activeSelection.canvas = fabricCanvasRef.current;
+      activeSelection.forEachObject((obj: fabric.Object) => {
         applyReeffStyle(obj);
         fabricCanvasRef.current?.add(obj);
       });
-      clonedObj.setCoordinates();
+      // 注：fabric v7 的 ActiveSelection 已移除 setCoordinates()，多选边界由内部自动重算
     } else {
       fabricCanvasRef.current.add(clonedObj);
     }

@@ -26,6 +26,7 @@ export async function renderPDFToImages(file: File): Promise<string[]> {
       await page.render({
         canvasContext: context,
         viewport: viewport,
+        canvas,
       }).promise;
       imageUrls.push(canvas.toDataURL('image/png'));
     }
@@ -85,6 +86,7 @@ export async function renderSinglePDFPageHighRes(
     await page.render({
       canvasContext: context,
       viewport: viewport,
+      canvas,
     }).promise;
     return canvas.toDataURL('image/png');
   }

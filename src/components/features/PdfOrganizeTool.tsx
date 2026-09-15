@@ -97,6 +97,20 @@ function createBlankPageDataUrl(label: string): string {
   return canvas.toDataURL('image/png');
 }
 
+/** 暂存篮条目 ID（放在模块作用域，避免在渲染期调用 Date.now / Math.random） */
+const createBasketItemId = (fileIndex: number, pageIndex: number) =>
+  `file-${fileIndex}-page-${pageIndex}-${Date.now()}-${Math.random()}`;
+
+/** pdf.js 内部引用对象（仅用于 getPageIndex），避免使用 any */
+type PdfRefLike = { num: number; gen: number };
+
+/** pdf.js 书签节点（仅描述本组件用到的字段） */
+type RawOutlineNode = {
+  title: string;
+  dest?: string | PdfRefLike[] | null;
+  items?: RawOutlineNode[];
+};
+
 export default function PdfOrganizeTool() {
   const t = useTranslations('PdfOrganize');
   const tCommon = useTranslations('Common');
@@ -220,11 +234,6 @@ export default function PdfOrganizeTool() {
   };
 
   useEffect(() => {
-    setSelectedSourcePages([]);
-    setLastSelectedSourceIndex(null);
-  }, [activeFileIndex]);
-
-  useEffect(() => {
     if (files.length === 0 || !files[activeFileIndex]) return;
 
     async function loadCurrentThumbnails() {
@@ -331,7 +340,7 @@ export default function PdfOrganizeTool() {
         return;
       }
 
-      const processItems = async (items: any[]): Promise<PdfOutlineNode[]> => {
+      const processItems = async (items: RawOutlineNode[]): Promise<PdfOutlineNode[]> => {
         const result: PdfOutlineNode[] = [];
         for (const item of items) {
           let pageIdx = 0;
@@ -390,7 +399,7 @@ export default function PdfOrganizeTool() {
   // 放入暂存篮（静默添加 + 触发呼吸气泡动画，不骚扰展开）
   const addPageToBasket = (pageIdx: number, thumbnailSrc: string) => {
     const newItem: SelectedPageItem = {
-      id: `file-${activeFileIndex}-page-${pageIdx}-${Date.now()}-${Math.random()}`,
+      id: createBasketItemId(activeFileIndex, pageIdx),
       fileIndex: activeFileIndex,
       originalPageIndex: pageIdx,
       rotation: 0,
@@ -404,7 +413,7 @@ export default function PdfOrganizeTool() {
 
   const addSelectedPagesToBasket = () => {
     const newItems: SelectedPageItem[] = selectedSourcePages.map((pageIdx) => ({
-      id: `file-${activeFileIndex}-page-${pageIdx}-${Date.now()}-${Math.random()}`,
+      id: createBasketItemId(activeFileIndex, pageIdx),
       fileIndex: activeFileIndex,
       originalPageIndex: pageIdx,
       rotation: 0,
@@ -586,7 +595,11 @@ export default function PdfOrganizeTool() {
           {files.map((f, idx) => (
             <button
               key={idx}
-              onClick={() => setActiveFileIndex(idx)}
+              onClick={() => {
+                setActiveFileIndex(idx);
+                setSelectedSourcePages([]);
+                setLastSelectedSourceIndex(null);
+              }}
               className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${
                 activeFileIndex === idx
                   ? 'border-red-600 bg-red-600 text-white shadow-sm'

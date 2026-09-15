@@ -20,6 +20,10 @@ import {
   ChevronRight,
 } from 'lucide-react';
 
+/** 暂存篮条目 ID（放在模块作用域，避免在渲染期调用 Date.now / Math.random） */
+const createBasketItemId = (fileIndex: number, pageIndex: number) =>
+  `file-${fileIndex}-page-${pageIndex}-${Date.now()}-${Math.random()}`;
+
 export default function PdfCrossMergeTool() {
   const t = useTranslations('PdfCrossMerge');
   const tCommon = useTranslations('Common');
@@ -87,7 +91,7 @@ export default function PdfCrossMergeTool() {
 
   const addPageToBasket = (pageIdx: number, thumbnailSrc: string) => {
     const newItem: SelectedPageItem = {
-      id: `file-${activeFileIndex}-page-${pageIdx}-${Date.now()}-${Math.random()}`,
+      id: createBasketItemId(activeFileIndex, pageIdx),
       fileIndex: activeFileIndex,
       originalPageIndex: pageIdx,
       rotation: 0,

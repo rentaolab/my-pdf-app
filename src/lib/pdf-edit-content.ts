@@ -2,7 +2,7 @@ import { PDFDocument } from 'pdf-lib';
 
 export interface FabricCanvasJSON {
   version: string;
-  objects: any[];
+  objects: object[];
   pageSize?: { width: number; height: number };
   canvasDataUrl?: string; // 页面专属透明 PNG 蒙版 (Base64)
 }
