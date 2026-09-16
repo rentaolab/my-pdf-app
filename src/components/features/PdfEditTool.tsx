@@ -49,7 +49,8 @@ export default function PdfEditTool() {
 
   const [showSignModal, setShowSignModal] = useState(false);
   const signCanvasRef = useRef<HTMLCanvasElement>(null);
-  const [isSigning, setIsSigning] = useState(false);
+  // 落笔状态用 ref 承载：Pointer 事件跨重渲染读取，避免丢失起始笔画
+  const isSigningRef = useRef(false);
 
   const syncObjectStyleToUI = (obj: StyleSource | null | undefined) => {
     if (!obj) return;
@@ -368,32 +369,67 @@ export default function PdfEditTool() {
     }
   };
 
-  const startSigning = (e: React.MouseEvent) => {
-    setIsSigning(true);
-    const canvas = signCanvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
-    ctx.beginPath();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  const openSignModal = () => {
+    isSigningRef.current = false;
+    setShowSignModal(true);
   };
 
-  const drawSign = (e: React.MouseEvent) => {
-    if (!isSigning) return;
+  const closeSignModal = () => {
+    isSigningRef.current = false; // 关闭弹窗时重置落笔状态，避免残留
+    setShowSignModal(false);
+  };
+
+  /** 屏幕坐标 → 画布内部像素：移动端画布被 CSS 等比缩小时仍能笔笔对位 */
+  const getSignPoint = (canvas: HTMLCanvasElement, clientX: number, clientY: number) => {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height),
+    };
+  };
+
+  /** 空签名校验：画布上无任何非透明像素时视为未落笔 */
+  const isSignatureBlank = (canvas: HTMLCanvasElement) => {
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return true;
+    const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    for (let i = 3; i < data.length; i += 4) {
+      if (data[i] !== 0) return false; // 存在非透明像素即有笔迹
+    }
+    return true;
+  };
+
+  // 签名板统一使用 Pointer Events：同一套代码覆盖手指 / 触控笔 / 鼠标
+  const startSigning = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    const canvas = signCanvasRef.current;
+    if (!canvas) return;
+    e.currentTarget.setPointerCapture(e.pointerId); // 手指滑出画布也不断笔
+    isSigningRef.current = true;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const { x, y } = getSignPoint(canvas, e.clientX, e.clientY);
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+  };
+
+  const drawSign = (e: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!isSigningRef.current) return;
     const canvas = signCanvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    const rect = canvas.getBoundingClientRect();
+    const { x, y } = getSignPoint(canvas, e.clientX, e.clientY);
     ctx.lineWidth = 3; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#0F172A';
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.lineTo(x, y);
     ctx.stroke();
   };
+
+  const endSigning = () => { isSigningRef.current = false; };
 
   const saveSignature = async () => {
     const canvas = signCanvasRef.current;
     if (!canvas || !fabricCanvasRef.current) return;
+    if (isSignatureBlank(canvas)) return; // 未落笔：不插入空白透明图片
     const dataUrl = canvas.toDataURL('image/png');
 
     try {
@@ -409,7 +445,7 @@ export default function PdfEditTool() {
       console.error('Failed to insert signature:', err);
     }
 
-    setShowSignModal(false);
+    closeSignModal();
   };
 
   const handleZoom = (type: 'in' | 'out') => {
@@ -523,7 +559,7 @@ export default function PdfEditTool() {
             <button onClick={addCircle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Circle className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.circle')}</span></button>
             <button onClick={addArrow} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><MoveRight className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.arrow')}</span></button>
             <button onClick={addLine} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Minus className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.line')}</span></button>
-            <button onClick={() => setShowSignModal(true)} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.signature')}</span></button>
+            <button onClick={openSignModal} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.signature')}</span></button>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -791,15 +827,24 @@ export default function PdfEditTool() {
           <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4">
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="text-base font-bold text-slate-800">{t('modal.signatureTitle')}</h3>
-              <button onClick={() => setShowSignModal(false)} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
+              <button onClick={closeSignModal} className="text-slate-400 hover:text-slate-600"><X className="w-5 h-5" /></button>
             </div>
             <div className="bg-slate-50 rounded-xl border border-slate-200 p-2 flex items-center justify-center">
-              <canvas ref={signCanvasRef} width={360} height={160} onMouseDown={startSigning} onMouseMove={drawSign} onMouseUp={() => setIsSigning(false)} className="bg-white rounded border border-slate-300 cursor-crosshair" />
+              <canvas
+                ref={signCanvasRef}
+                width={360}
+                height={160}
+                onPointerDown={startSigning}
+                onPointerMove={drawSign}
+                onPointerUp={endSigning}
+                onPointerCancel={endSigning}
+                className="block w-full max-w-[360px] h-auto touch-none bg-white rounded border border-slate-300 cursor-crosshair"
+              />
             </div>
             <div className="flex items-center justify-between pt-2">
               <button onClick={() => { const canvas = signCanvasRef.current; if (canvas) { const ctx = canvas.getContext('2d'); ctx?.clearRect(0, 0, canvas.width, canvas.height); } }} className="text-xs font-bold text-slate-500 hover:text-slate-800">{t('modal.clearSignature')}</button>
               <div className="flex space-x-2">
-                <button onClick={() => setShowSignModal(false)} className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">{tCommon('actions.cancel')}</button>
+                <button onClick={closeSignModal} className="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">{tCommon('actions.cancel')}</button>
                 <button onClick={saveSignature} className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-xs font-bold rounded-lg shadow-sm"><Check className="w-3.5 h-3.5" /><span>{t('modal.applySignature')}</span></button>
               </div>
             </div>
