@@ -79,6 +79,14 @@
     "edit": {
       "name": "PDF編集",
       "desc": "テキスト、手書き署名、描画、注釈を追加"
+    },
+    "pdfToImage": {
+      "name": "PDF → 画像",
+      "desc": "ページを高解像度の PNG・JPG・WebP で書き出す"
+    },
+    "imageToPdf": {
+      "name": "画像 → PDF",
+      "desc": "複数の PNG・JPG・WebP 画像を 1 つの PDF にまとめる"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "PDF内容編集 (Edit PDF)",
       "description": "テキストボックス、白塗り、手書き署名を追加"
+    },
+    "pdfToImage": {
+      "title": "PDF を画像に変換",
+      "description": "PDF のページを高解像度の PNG・JPG・WebP 画像として書き出す"
+    },
+    "imageToPdf": {
+      "title": "画像を PDF に変換",
+      "description": "画像をアップロードして並べ替え、標準 PDF を作成"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "組み立てて書き出し中..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "PDF ファイルをここにクリックまたはドラッグして画像に変換",
+      "hint": "PNG・JPG・WebP と解像度を選び、単ページまたは ZIP で一括ダウンロード",
+      "tagline": "最大 300 DPI をローカル描画 · アップロード不要"
+    },
+    "format": {
+      "label": "出力形式",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "解像度",
+      "standard": "96 DPI · 画面",
+      "high": "150 DPI · 高画質",
+      "ultra": "300 DPI · 印刷"
+    },
+    "quality": {
+      "label": "画質",
+      "lossless": "可逆"
+    },
+    "pages": {
+      "title": "書き出すページ",
+      "selectedCount": "{total} ページ中 {selected} ページを選択",
+      "selectAll": "すべて選択"
+    },
+    "preview": {
+      "title": "ライブプレビュー",
+      "hint": "左のページにカーソルを合わせるとプレビューできます"
+    },
+    "actions": {
+      "downloadPage": "このページをダウンロード",
+      "zipCount": "ZIP をダウンロード（{count}）",
+      "exporting": "{done} / {total} を描画中…"
+    },
+    "status": {
+      "parsing": "ページプレビューを描画しています..."
+    },
+    "errors": {
+      "readFailed": "この PDF を読み込めませんでした。別のファイルをお試しください。",
+      "noPages": "書き出すページを 1 つ以上選択してください。",
+      "singleFailed": "このページを画像として書き出せませんでした。",
+      "exportFailed": "ZIP ファイルの作成中にエラーが発生しました。"
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "PNG・JPG・WebP 画像をここにクリックまたはドラッグ",
+      "hint": "複数選択して順番を並べ替え、標準 PDF を作成できます"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "用紙サイズ",
+        "fit": "画像に合わせる",
+        "a4": "A4",
+        "letter": "Letter"
+      },
+      "orientation": {
+        "label": "向き",
+        "auto": "自動",
+        "portrait": "縦",
+        "landscape": "横"
+      },
+      "margin": {
+        "label": "余白",
+        "none": "なし",
+        "small": "小",
+        "medium": "中",
+        "large": "大"
+      }
+    },
+    "list": {
+      "title": "画像の順序",
+      "count": "{count} 枚の画像を選択中",
+      "addMore": "画像を追加",
+      "dragHint": "カードをドラッグして並べ替え"
+    },
+    "actions": {
+      "remove": "この画像を削除",
+      "export": "PDF を作成",
+      "exporting": "PDF を作成中…"
+    },
+    "errors": {
+      "unsupported": "PNG・JPG・WebP 形式のみ対応しています。",
+      "noImages": "先に画像を 1 枚以上追加してください。",
+      "exportFailed": "PDF の作成中にエラーが発生しました。"
     }
   }
 }

@@ -79,6 +79,14 @@
     "edit": {
       "name": "编辑 PDF",
       "desc": "添加文本、手写签名、涂鸦与标注"
+    },
+    "pdfToImage": {
+      "name": "PDF 转图片",
+      "desc": "将页面导出为高清 PNG、JPG 或 WebP 图片"
+    },
+    "imageToPdf": {
+      "name": "图片转 PDF",
+      "desc": "将多张 PNG、JPG 或 WebP 图片合成一个标准 PDF"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "改字与内容编辑 (Edit PDF)",
       "description": "支持添加文本框、白块涂抹遮挡原字以及手写电子签名"
+    },
+    "pdfToImage": {
+      "title": "PDF 转图片",
+      "description": "将 PDF 页面导出为高清 PNG、JPG 或 WebP 图片"
+    },
+    "imageToPdf": {
+      "title": "图片转 PDF",
+      "description": "上传图片、拖拽排序并合成一个标准 PDF"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "正在拼装导出..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "点击或拖拽一个 PDF 文件到这里转换为图片",
+      "hint": "选择 PNG / JPG / WebP 与分辨率，支持单页下载或打包 ZIP 下载",
+      "tagline": "最高 300 DPI 本地渲染 · 不上传、不排队"
+    },
+    "format": {
+      "label": "输出格式",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "分辨率",
+      "standard": "96 DPI · 屏幕",
+      "high": "150 DPI · 高清",
+      "ultra": "300 DPI · 打印"
+    },
+    "quality": {
+      "label": "图片质量",
+      "lossless": "无损"
+    },
+    "pages": {
+      "title": "导出页面",
+      "selectedCount": "已选择 {selected} / {total} 页",
+      "selectAll": "全选"
+    },
+    "preview": {
+      "title": "实时预览",
+      "hint": "将鼠标移到左侧页面卡片上即可预览"
+    },
+    "actions": {
+      "downloadPage": "下载此页",
+      "zipCount": "打包下载 ZIP（{count} 页）",
+      "exporting": "正在渲染 {done} / {total}…"
+    },
+    "status": {
+      "parsing": "正在生成页面预览..."
+    },
+    "errors": {
+      "readFailed": "无法读取该 PDF，请换一个文件重试。",
+      "noPages": "请至少选择一页进行导出。",
+      "singleFailed": "该页导出图片失败。",
+      "exportFailed": "生成 ZIP 压缩包时出错。"
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "点击或拖拽 PNG / JPG / WebP 图片到这里",
+      "hint": "支持多选，拖拽调整顺序后合成一个标准 PDF"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "纸张尺寸",
+        "fit": "贴合图片",
+        "a4": "A4",
+        "letter": "Letter"
+      },
+      "orientation": {
+        "label": "页面方向",
+        "auto": "自动",
+        "portrait": "纵向",
+        "landscape": "横向"
+      },
+      "margin": {
+        "label": "页边距",
+        "none": "无",
+        "small": "小",
+        "medium": "中",
+        "large": "大"
+      }
+    },
+    "list": {
+      "title": "图片顺序",
+      "count": "已选择 {count} 张图片",
+      "addMore": "继续添加",
+      "dragHint": "拖拽卡片调整顺序"
+    },
+    "actions": {
+      "remove": "移除这张图片",
+      "export": "生成 PDF",
+      "exporting": "正在生成 PDF…"
+    },
+    "errors": {
+      "unsupported": "仅支持 PNG、JPG 与 WebP 格式的图片。",
+      "noImages": "请先添加至少一张图片。",
+      "exportFailed": "生成 PDF 时出错。"
     }
   }
 }

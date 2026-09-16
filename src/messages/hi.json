@@ -79,6 +79,14 @@
     "edit": {
       "name": "PDF संपादित करें",
       "desc": "टेक्स्ट, हस्तलिखित हस्ताक्षर, ड्रॉइंग और एनोटेशन जोड़ें"
+    },
+    "pdfToImage": {
+      "name": "PDF से इमेज",
+      "desc": "पेजों को हाई-रिज़ॉल्यूशन PNG, JPG या WebP में निर्यात करें"
+    },
+    "imageToPdf": {
+      "name": "इमेज से PDF",
+      "desc": "कई PNG, JPG या WebP इमेज को एक PDF में मिलाएँ"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "PDF सामग्री संपादित करें (Edit PDF)",
       "description": "टेक्स्ट बॉक्स, सफ़ेद आवरण और हस्तलिखित हस्ताक्षर जोड़ें"
+    },
+    "pdfToImage": {
+      "title": "PDF से इमेज",
+      "description": "PDF पेजों को हाई-रिज़ॉल्यूशन PNG, JPG या WebP इमेज के रूप में निर्यात करें"
+    },
+    "imageToPdf": {
+      "title": "इमेज से PDF",
+      "description": "इमेज अपलोड करें, क्रम बदलें और एक मानक PDF बनाएँ"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "इकट्ठा और निर्यात किया जा रहा है..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "इमेज में बदलने के लिए PDF फ़ाइल यहाँ क्लिक या ड्रैग करें",
+      "hint": "PNG, JPG या WebP और रिज़ॉल्यूशन चुनें, फिर एक पेज या ZIP डाउनलोड करें",
+      "tagline": "300 DPI तक लोकल रेंडरिंग · कोई अपलोड नहीं"
+    },
+    "format": {
+      "label": "आउटपुट फ़ॉर्मैट",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "रिज़ॉल्यूशन",
+      "standard": "96 DPI · स्क्रीन",
+      "high": "150 DPI · हाई",
+      "ultra": "300 DPI · प्रिंट"
+    },
+    "quality": {
+      "label": "गुणवत्ता",
+      "lossless": "लॉसलेस"
+    },
+    "pages": {
+      "title": "निर्यात करने के पेज",
+      "selectedCount": "{total} में से {selected} पेज चुने गए",
+      "selectAll": "सभी चुनें"
+    },
+    "preview": {
+      "title": "लाइव प्रीव्यू",
+      "hint": "प्रीव्यू के लिए बाईं ओर किसी पेज पर माउस रखें"
+    },
+    "actions": {
+      "downloadPage": "यह पेज डाउनलोड करें",
+      "zipCount": "ZIP डाउनलोड करें ({count})",
+      "exporting": "{done} / {total} रेंडर हो रहे हैं…"
+    },
+    "status": {
+      "parsing": "पेज प्रीव्यू बनाए जा रहे हैं..."
+    },
+    "errors": {
+      "readFailed": "यह PDF पढ़ी नहीं जा सकी। कृपया दूसरी फ़ाइल आज़माएँ।",
+      "noPages": "निर्यात के लिए कम से कम एक पेज चुनें।",
+      "singleFailed": "इस पेज को इमेज के रूप में निर्यात नहीं किया जा सका।",
+      "exportFailed": "ZIP फ़ाइल बनाते समय कुछ गलत हो गया।"
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "PNG, JPG या WebP इमेज यहाँ क्लिक या ड्रैग करें",
+      "hint": "कई इमेज जोड़ें, क्रम बदलें और एक मानक PDF बनाएँ"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "पेज साइज़",
+        "fit": "इमेज के अनुसार",
+        "a4": "A4",
+        "letter": "Letter"
+      },
+      "orientation": {
+        "label": "दिशा",
+        "auto": "ऑटो",
+        "portrait": "पोर्ट्रेट",
+        "landscape": "लैंडस्केप"
+      },
+      "margin": {
+        "label": "मार्जिन",
+        "none": "कोई नहीं",
+        "small": "छोटा",
+        "medium": "मध्यम",
+        "large": "बड़ा"
+      }
+    },
+    "list": {
+      "title": "इमेज का क्रम",
+      "count": "{count} इमेज चुनी गईं",
+      "addMore": "इमेज जोड़ें",
+      "dragHint": "क्रम बदलने के लिए कार्ड ड्रैग करें"
+    },
+    "actions": {
+      "remove": "यह इमेज हटाएँ",
+      "export": "PDF बनाएँ",
+      "exporting": "PDF बनाया जा रहा है…"
+    },
+    "errors": {
+      "unsupported": "केवल PNG, JPG और WebP इमेज समर्थित हैं।",
+      "noImages": "पहले कम से कम एक इमेज जोड़ें।",
+      "exportFailed": "PDF बनाते समय कुछ गलत हो गया।"
     }
   }
 }

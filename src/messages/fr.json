@@ -79,6 +79,14 @@
     "edit": {
       "name": "Modifier le PDF",
       "desc": "Ajoutez du texte, des signatures manuscrites, des dessins et des annotations"
+    },
+    "pdfToImage": {
+      "name": "PDF en image",
+      "desc": "Exportez les pages en PNG, JPG ou WebP haute résolution"
+    },
+    "imageToPdf": {
+      "name": "Image en PDF",
+      "desc": "Combinez plusieurs images PNG, JPG ou WebP en un seul PDF"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "Modifier le contenu du PDF",
       "description": "Ajoutez des zones de texte, des masques blancs et des signatures manuscrites fluides"
+    },
+    "pdfToImage": {
+      "title": "PDF en image",
+      "description": "Exportez les pages PDF en images PNG, JPG ou WebP haute résolution"
+    },
+    "imageToPdf": {
+      "title": "Image en PDF",
+      "description": "Importez des images, réorganisez-les et créez un PDF standard"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "Assemblage et export en cours..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "Cliquez ou déposez un fichier PDF ici pour le convertir en images",
+      "hint": "Choisissez PNG, JPG ou WebP et la résolution, puis téléchargez une page ou un ZIP",
+      "tagline": "Rendu local jusqu’à 300 DPI · aucun envoi"
+    },
+    "format": {
+      "label": "Format de sortie",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "Résolution",
+      "standard": "96 DPI · Écran",
+      "high": "150 DPI · Élevée",
+      "ultra": "300 DPI · Impression"
+    },
+    "quality": {
+      "label": "Qualité",
+      "lossless": "Sans perte"
+    },
+    "pages": {
+      "title": "Pages à exporter",
+      "selectedCount": "{selected} sur {total} pages sélectionnées",
+      "selectAll": "Tout sélectionner"
+    },
+    "preview": {
+      "title": "Aperçu en direct",
+      "hint": "Survolez une page à gauche pour l’afficher"
+    },
+    "actions": {
+      "downloadPage": "Télécharger cette page",
+      "zipCount": "Télécharger le ZIP ({count})",
+      "exporting": "Rendu {done} / {total}…"
+    },
+    "status": {
+      "parsing": "Génération des aperçus..."
+    },
+    "errors": {
+      "readFailed": "Impossible de lire ce PDF. Essayez un autre fichier.",
+      "noPages": "Sélectionnez au moins une page à exporter.",
+      "singleFailed": "Impossible d’exporter cette page en image.",
+      "exportFailed": "Une erreur est survenue lors de la création du ZIP."
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "Cliquez ou déposez des images PNG, JPG ou WebP ici",
+      "hint": "Ajoutez plusieurs images, réorganisez-les et créez un PDF standard"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "Taille de page",
+        "fit": "Adapter à l’image",
+        "a4": "A4",
+        "letter": "Lettre"
+      },
+      "orientation": {
+        "label": "Orientation",
+        "auto": "Automatique",
+        "portrait": "Portrait",
+        "landscape": "Paysage"
+      },
+      "margin": {
+        "label": "Marge",
+        "none": "Aucune",
+        "small": "Petite",
+        "medium": "Moyenne",
+        "large": "Grande"
+      }
+    },
+    "list": {
+      "title": "Ordre des images",
+      "count": "{count} images sélectionnées",
+      "addMore": "Ajouter des images",
+      "dragHint": "Faites glisser les cartes pour réorganiser"
+    },
+    "actions": {
+      "remove": "Supprimer cette image",
+      "export": "Créer le PDF",
+      "exporting": "Création du PDF…"
+    },
+    "errors": {
+      "unsupported": "Seules les images PNG, JPG et WebP sont prises en charge.",
+      "noImages": "Ajoutez d’abord au moins une image.",
+      "exportFailed": "Une erreur est survenue lors de la création du PDF."
     }
   }
 }

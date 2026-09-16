@@ -79,6 +79,14 @@
     "edit": {
       "name": "Edit PDF",
       "desc": "Tambah teks, tandatangan tulisan tangan, lakaran dan anotasi"
+    },
+    "pdfToImage": {
+      "name": "PDF ke Imej",
+      "desc": "Eksport halaman sebagai PNG, JPG atau WebP resolusi tinggi"
+    },
+    "imageToPdf": {
+      "name": "Imej ke PDF",
+      "desc": "Gabungkan beberapa imej PNG, JPG atau WebP menjadi satu PDF"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "Edit Kandungan PDF (Edit PDF)",
       "description": "Tambah kotak teks, penutup putih dan tandatangan tulisan tangan"
+    },
+    "pdfToImage": {
+      "title": "PDF ke Imej",
+      "description": "Eksport halaman PDF sebagai imej PNG, JPG atau WebP resolusi tinggi"
+    },
+    "imageToPdf": {
+      "title": "Imej ke PDF",
+      "description": "Muat naik imej, susun semula dan hasilkan satu PDF standard"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "Memasang dan mengeksport..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "Klik atau seret fail PDF ke sini untuk tukar kepada imej",
+      "hint": "Pilih PNG, JPG atau WebP serta resolusi, kemudian muat turun halaman tunggal atau ZIP",
+      "tagline": "Dirender secara setempat sehingga 300 DPI · tiada muat naik"
+    },
+    "format": {
+      "label": "Format output",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "Resolusi",
+      "standard": "96 DPI · Skrin",
+      "high": "150 DPI · Tinggi",
+      "ultra": "300 DPI · Cetakan"
+    },
+    "quality": {
+      "label": "Kualiti",
+      "lossless": "Tanpa rugi"
+    },
+    "pages": {
+      "title": "Halaman untuk dieksport",
+      "selectedCount": "{selected} daripada {total} halaman dipilih",
+      "selectAll": "Pilih semua"
+    },
+    "preview": {
+      "title": "Pratonton langsung",
+      "hint": "Letakkan kursor pada halaman di kiri untuk pratonton"
+    },
+    "actions": {
+      "downloadPage": "Muat turun halaman ini",
+      "zipCount": "Muat turun ZIP ({count})",
+      "exporting": "Merender {done} / {total}…"
+    },
+    "status": {
+      "parsing": "Menjana pratonton halaman..."
+    },
+    "errors": {
+      "readFailed": "Gagal membaca PDF ini. Sila cuba fail lain.",
+      "noPages": "Pilih sekurang-kurangnya satu halaman untuk dieksport.",
+      "singleFailed": "Gagal mengeksport halaman ini sebagai imej.",
+      "exportFailed": "Berlaku masalah semasa membina fail ZIP."
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "Klik atau seret imej PNG, JPG atau WebP ke sini",
+      "hint": "Tambah beberapa imej, susun semula, kemudian hasilkan satu PDF standard"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "Saiz halaman",
+        "fit": "Ikut imej",
+        "a4": "A4",
+        "letter": "Letter"
+      },
+      "orientation": {
+        "label": "Orientasi",
+        "auto": "Auto",
+        "portrait": "Potret",
+        "landscape": "Landskap"
+      },
+      "margin": {
+        "label": "Jidar",
+        "none": "Tiada",
+        "small": "Kecil",
+        "medium": "Sederhana",
+        "large": "Besar"
+      }
+    },
+    "list": {
+      "title": "Susunan imej",
+      "count": "{count} imej dipilih",
+      "addMore": "Tambah imej",
+      "dragHint": "Seret kad untuk susun semula"
+    },
+    "actions": {
+      "remove": "Buang imej ini",
+      "export": "Hasilkan PDF",
+      "exporting": "Menghasilkan PDF…"
+    },
+    "errors": {
+      "unsupported": "Hanya imej PNG, JPG dan WebP disokong.",
+      "noImages": "Tambah sekurang-kurangnya satu imej dahulu.",
+      "exportFailed": "Berlaku masalah semasa menghasilkan PDF."
     }
   }
 }

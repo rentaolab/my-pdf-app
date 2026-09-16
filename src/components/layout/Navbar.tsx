@@ -11,6 +11,8 @@ import {
   FileOutput,
   Crop,
   Edit3,
+  FileImage,
+  Images,
   ChevronDown,
   Menu,
   X,
@@ -27,6 +29,8 @@ const tools = [
   { key: 'extractPages', href: '/extract-pdf-pages', icon: FileOutput },
   { key: 'crop', href: '/crop-pdf', icon: Crop },
   { key: 'edit', href: '/edit-pdf', icon: Edit3 },
+  { key: 'pdfToImage', href: '/pdf-to-image', icon: FileImage },
+  { key: 'imageToPdf', href: '/image-to-pdf', icon: Images },
 ] as const;
 
 export default function Navbar() {

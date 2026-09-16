@@ -79,6 +79,14 @@
     "edit": {
       "name": "Editar PDF",
       "desc": "Adicione texto, assinaturas à mão, desenhos e anotações"
+    },
+    "pdfToImage": {
+      "name": "PDF para imagem",
+      "desc": "Exporte páginas como PNG, JPG ou WebP em alta resolução"
+    },
+    "imageToPdf": {
+      "name": "Imagem para PDF",
+      "desc": "Combine várias imagens PNG, JPG ou WebP em um único PDF"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "Editar conteúdo do PDF",
       "description": "Adicione caixas de texto, blocos de branco e assinaturas à mão suaves"
+    },
+    "pdfToImage": {
+      "title": "PDF para imagem",
+      "description": "Exporte páginas do PDF como imagens PNG, JPG ou WebP em alta resolução"
+    },
+    "imageToPdf": {
+      "title": "Imagem para PDF",
+      "description": "Envie imagens, reordene e gere um PDF padrão"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "Montando e exportando..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "Clique ou arraste um PDF aqui para convertê-lo em imagens",
+      "hint": "Escolha PNG, JPG ou WebP e a resolução, depois baixe páginas individuais ou um ZIP",
+      "tagline": "Renderizado localmente até 300 DPI · sem upload"
+    },
+    "format": {
+      "label": "Formato de saída",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "Resolução",
+      "standard": "96 DPI · Tela",
+      "high": "150 DPI · Alta",
+      "ultra": "300 DPI · Impressão"
+    },
+    "quality": {
+      "label": "Qualidade",
+      "lossless": "Sem perdas"
+    },
+    "pages": {
+      "title": "Páginas para exportar",
+      "selectedCount": "{selected} de {total} páginas selecionadas",
+      "selectAll": "Selecionar tudo"
+    },
+    "preview": {
+      "title": "Pré-visualização",
+      "hint": "Passe o mouse sobre uma página à esquerda para visualizá-la"
+    },
+    "actions": {
+      "downloadPage": "Baixar esta página",
+      "zipCount": "Baixar ZIP ({count})",
+      "exporting": "Renderizando {done} / {total}…"
+    },
+    "status": {
+      "parsing": "Gerando pré-visualizações das páginas..."
+    },
+    "errors": {
+      "readFailed": "Não foi possível ler este PDF. Tente outro arquivo.",
+      "noPages": "Selecione pelo menos uma página para exportar.",
+      "singleFailed": "Não foi possível exportar esta página como imagem.",
+      "exportFailed": "Ocorreu um erro ao criar o arquivo ZIP."
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "Clique ou arraste imagens PNG, JPG ou WebP aqui",
+      "hint": "Adicione várias imagens, reordene e gere um PDF padrão"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "Tamanho da página",
+        "fit": "Ajustar à imagem",
+        "a4": "A4",
+        "letter": "Carta"
+      },
+      "orientation": {
+        "label": "Orientação",
+        "auto": "Automática",
+        "portrait": "Retrato",
+        "landscape": "Paisagem"
+      },
+      "margin": {
+        "label": "Margem",
+        "none": "Nenhuma",
+        "small": "Pequena",
+        "medium": "Média",
+        "large": "Grande"
+      }
+    },
+    "list": {
+      "title": "Ordem das imagens",
+      "count": "{count} imagens selecionadas",
+      "addMore": "Adicionar imagens",
+      "dragHint": "Arraste os cartões para reordenar"
+    },
+    "actions": {
+      "remove": "Remover esta imagem",
+      "export": "Criar PDF",
+      "exporting": "Criando o PDF…"
+    },
+    "errors": {
+      "unsupported": "Apenas imagens PNG, JPG e WebP são suportadas.",
+      "noImages": "Adicione pelo menos uma imagem primeiro.",
+      "exportFailed": "Ocorreu um erro ao criar o PDF."
     }
   }
 }

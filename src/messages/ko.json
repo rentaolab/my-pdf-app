@@ -79,6 +79,14 @@
     "edit": {
       "name": "PDF 편집",
       "desc": "텍스트, 자필 서명, 그리기, 주석 추가"
+    },
+    "pdfToImage": {
+      "name": "PDF → 이미지",
+      "desc": "페이지를 고해상도 PNG, JPG, WebP로 내보내기"
+    },
+    "imageToPdf": {
+      "name": "이미지 → PDF",
+      "desc": "여러 PNG, JPG, WebP 이미지를 하나의 PDF로 합치기"
     }
   },
   "ToolPages": {
@@ -113,6 +121,14 @@
     "edit": {
       "title": "PDF 내용 편집 (Edit PDF)",
       "description": "텍스트 상자, 흰색 가리기, 자필 서명 추가"
+    },
+    "pdfToImage": {
+      "title": "PDF를 이미지로 변환",
+      "description": "PDF 페이지를 고해상도 PNG, JPG, WebP 이미지로 내보내기"
+    },
+    "imageToPdf": {
+      "title": "이미지를 PDF로 변환",
+      "description": "이미지를 업로드하고 순서를 바꿔 하나의 표준 PDF로 만들기"
     }
   },
   "Navbar": {
@@ -510,6 +526,95 @@
     },
     "status": {
       "assembling": "조립 및 내보내는 중..."
+    }
+  },
+  "PdfToImage": {
+    "upload": {
+      "prompt": "PDF 파일을 클릭하거나 여기로 끌어다 놓으세요",
+      "hint": "PNG, JPG, WebP와 해상도를 선택한 뒤 단일 페이지 또는 ZIP으로 다운로드하세요",
+      "tagline": "최대 300 DPI 로컬 렌더링 · 업로드 없음"
+    },
+    "format": {
+      "label": "출력 형식",
+      "png": "PNG",
+      "jpg": "JPG",
+      "webp": "WebP"
+    },
+    "resolution": {
+      "label": "해상도",
+      "standard": "96 DPI · 화면",
+      "high": "150 DPI · 고화질",
+      "ultra": "300 DPI · 인쇄"
+    },
+    "quality": {
+      "label": "품질",
+      "lossless": "무손실"
+    },
+    "pages": {
+      "title": "내보낼 페이지",
+      "selectedCount": "전체 {total}페이지 중 {selected}페이지 선택됨",
+      "selectAll": "전체 선택"
+    },
+    "preview": {
+      "title": "실시간 미리보기",
+      "hint": "왼쪽 페이지에 마우스를 올리면 미리 볼 수 있습니다"
+    },
+    "actions": {
+      "downloadPage": "이 페이지 다운로드",
+      "zipCount": "ZIP 다운로드 ({count})",
+      "exporting": "{done} / {total} 렌더링 중…"
+    },
+    "status": {
+      "parsing": "페이지 미리보기를 생성하는 중..."
+    },
+    "errors": {
+      "readFailed": "이 PDF를 읽을 수 없습니다. 다른 파일을 사용해 주세요.",
+      "noPages": "내보낼 페이지를 하나 이상 선택하세요.",
+      "singleFailed": "이 페이지를 이미지로 내보내지 못했습니다.",
+      "exportFailed": "ZIP 파일을 만드는 중 오류가 발생했습니다."
+    }
+  },
+  "ImageToPdf": {
+    "upload": {
+      "prompt": "PNG, JPG, WebP 이미지를 클릭하거나 여기로 끌어다 놓으세요",
+      "hint": "여러 장을 선택하고 순서를 바꾼 뒤 하나의 표준 PDF로 만드세요"
+    },
+    "settings": {
+      "pageSize": {
+        "label": "용지 크기",
+        "fit": "이미지에 맞춤",
+        "a4": "A4",
+        "letter": "Letter"
+      },
+      "orientation": {
+        "label": "방향",
+        "auto": "자동",
+        "portrait": "세로",
+        "landscape": "가로"
+      },
+      "margin": {
+        "label": "여백",
+        "none": "없음",
+        "small": "작게",
+        "medium": "보통",
+        "large": "크게"
+      }
+    },
+    "list": {
+      "title": "이미지 순서",
+      "count": "{count}장의 이미지 선택됨",
+      "addMore": "이미지 추가",
+      "dragHint": "카드를 끌어 순서 변경"
+    },
+    "actions": {
+      "remove": "이 이미지 제거",
+      "export": "PDF 만들기",
+      "exporting": "PDF 생성 중…"
+    },
+    "errors": {
+      "unsupported": "PNG, JPG, WebP 형식만 지원합니다.",
+      "noImages": "먼저 이미지를 한 장 이상 추가하세요.",
+      "exportFailed": "PDF를 만드는 중 오류가 발생했습니다."
     }
   }
 }
