@@ -6,6 +6,7 @@ import { renderPDFToImages } from '@/lib/pdf-edit';
 import { splitPDFByPoints } from '@/lib/pdf-split';
 import {
   Upload,
+  Split,
   Scissors,
   Download,
   RefreshCw,
@@ -260,7 +261,7 @@ export default function PdfSplitTool() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center space-x-3 min-w-0">
             <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
-              <Scissors className="w-5 h-5" />
+              <Split className="w-5 h-5" />
             </div>
             <div className="min-w-0">
               <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">

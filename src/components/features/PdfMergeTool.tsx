@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { mergePDFs } from '@/lib/pdf-merge';
-import { Upload, Trash2, FileText, Download, Sparkles, GripVertical, X } from 'lucide-react';
+import { Upload, Trash2, FileText, Download, Sparkles, GripVertical, X, Merge } from 'lucide-react';
 
 export default function PdfMergeTool() {
   const t = useTranslations('PdfMerge');
@@ -152,7 +152,7 @@ export default function PdfMergeTool() {
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center space-x-3 min-w-0">
                 <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
-                  <FileText className="w-5 h-5" />
+                  <Merge className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-white">

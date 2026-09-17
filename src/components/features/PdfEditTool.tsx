@@ -8,7 +8,7 @@ import * as fabric from 'fabric';
 import {
   Upload, Download, Loader2, Type, Square, Circle, MoveRight,
   Highlighter, PenTool, Trash2, ChevronLeft, ChevronRight, X,
-  Check, Copy, Clipboard, ZoomIn, ZoomOut, Minus
+  Check, Copy, Clipboard, ZoomIn, ZoomOut, Minus, Edit3
 } from 'lucide-react';
 
 /** 仅描述本组件需要读取的样式字段，避免使用 any */
@@ -534,13 +534,37 @@ export default function PdfEditTool() {
   }
 
   return (
-    <div className="space-y-4 select-none pb-12">
+    <div className="space-y-6 select-none pb-12">
       <div className="bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col min-h-[620px]">
         {/* 吸顶控制栏 */}
-        <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+        <div className="bg-slate-900 px-5 py-4 shrink-0 z-10 space-y-4">
+          {/* 第一行：文件信息 + 导出 */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+                <Edit3 className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                  {file.name}
+                </p>
+                <p className="text-[11px] text-slate-400">
+                  {tCommon('status.page', { page: activePageIndex + 1 })}
+                </p>
+              </div>
+            </div>
+
+            <button onClick={handleExport} disabled={isProcessing} className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all duration-200 active:scale-95">
+              <Download className="w-3.5 h-3.5" />
+              <span>{isProcessing ? t('status.exporting') : t('toolbar.save')}</span>
+            </button>
+          </div>
+
+          {/* 第二行：绘图工具与画布工具 */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
           <div className="flex flex-wrap items-center gap-1.5">
-            <button onClick={addTextbox} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Type className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.text')}</span></button>
-            <button onClick={addRectangle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Square className="w-3.5 h-3.5 fill-slate-300 text-slate-600" /><span>{t('toolbar.rect')}</span></button>
+            <button onClick={addTextbox} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Type className="w-3.5 h-3.5 text-red-500" /><span>{t('toolbar.text')}</span></button>
+            <button onClick={addRectangle} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Square className="w-3.5 h-3.5 fill-slate-500 text-slate-300" /><span>{t('toolbar.rect')}</span></button>
             
             {/* 自由荧光笔模式开关 */}
             <button
@@ -548,7 +572,7 @@ export default function PdfEditTool() {
               className={`flex items-center space-x-1.5 border px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                 isHighlighting
                   ? 'bg-amber-500 text-white border-amber-600 shadow-sm shadow-amber-500/30'
-                  : 'bg-amber-50 hover:bg-amber-100 text-amber-800 border-amber-200'
+                  : 'bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border-amber-500/40'
               }`}
               title={isHighlighting ? t('toolbar.highlightStopTitle') : t('toolbar.highlightStartTitle')}
             >
@@ -556,28 +580,25 @@ export default function PdfEditTool() {
               <span>{isHighlighting ? t('toolbar.highlightActive') : t('toolbar.highlighter')}</span>
             </button>
 
-            <button onClick={addCircle} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Circle className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.circle')}</span></button>
-            <button onClick={addArrow} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><MoveRight className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.arrow')}</span></button>
-            <button onClick={addLine} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Minus className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.line')}</span></button>
-            <button onClick={openSignModal} className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-600" /><span>{t('toolbar.signature')}</span></button>
+            <button onClick={addCircle} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Circle className="w-3.5 h-3.5 text-red-500" /><span>{t('toolbar.circle')}</span></button>
+            <button onClick={addArrow} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><MoveRight className="w-3.5 h-3.5 text-red-500" /><span>{t('toolbar.arrow')}</span></button>
+            <button onClick={addLine} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><Minus className="w-3.5 h-3.5 text-red-500" /><span>{t('toolbar.line')}</span></button>
+            <button onClick={openSignModal} className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-colors"><PenTool className="w-3.5 h-3.5 text-red-500" /><span>{t('toolbar.signature')}</span></button>
           </div>
 
           <div className="flex items-center space-x-2">
-            <div className="flex items-center bg-slate-50 p-0.5 rounded-xl border border-slate-200">
-              <button onClick={copySelected} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title={t('toolbar.copy')}><Copy className="w-3.5 h-3.5" /></button>
-              <button onClick={pasteClipboard} className="p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white rounded-lg transition-colors" title={t('toolbar.paste')}><Clipboard className="w-3.5 h-3.5" /></button>
-              {selectedObject && <button onClick={deleteActiveObject} className="p-1.5 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title={t('toolbar.deleteElement')}><Trash2 className="w-3.5 h-3.5" /></button>}
+            <div className="flex items-center bg-slate-800 p-0.5 rounded-xl border border-slate-700">
+              <button onClick={copySelected} className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors" title={t('toolbar.copy')}><Copy className="w-3.5 h-3.5" /></button>
+              <button onClick={pasteClipboard} className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition-colors" title={t('toolbar.paste')}><Clipboard className="w-3.5 h-3.5" /></button>
+              {selectedObject && <button onClick={deleteActiveObject} className="p-1.5 text-red-400 hover:bg-slate-700 rounded-lg transition-colors" title={t('toolbar.deleteElement')}><Trash2 className="w-3.5 h-3.5" /></button>}
             </div>
-            <div className="flex items-center space-x-1 bg-slate-50 px-2 py-1 rounded-xl border border-slate-200">
-              <button onClick={() => handleZoom('out')} className="text-slate-600 hover:text-slate-900"><ZoomOut className="w-3.5 h-3.5" /></button>
-              <span className="text-xs font-bold font-mono text-slate-700">{Math.round(zoomLevel * 100)}%</span>
-              <button onClick={() => handleZoom('in')} className="text-slate-600 hover:text-slate-900"><ZoomIn className="w-3.5 h-3.5" /></button>
+            <div className="flex items-center space-x-1 bg-slate-800 px-2 py-1 rounded-xl border border-slate-700">
+              <button onClick={() => handleZoom('out')} className="text-slate-300 hover:text-white"><ZoomOut className="w-3.5 h-3.5" /></button>
+              <span className="text-xs font-bold font-mono text-slate-200">{Math.round(zoomLevel * 100)}%</span>
+              <button onClick={() => handleZoom('in')} className="text-slate-300 hover:text-white"><ZoomIn className="w-3.5 h-3.5" /></button>
             </div>
           </div>
-          <button onClick={handleExport} disabled={isProcessing} className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95 ml-auto">
-            <Download className="w-3.5 h-3.5" />
-            <span>{isProcessing ? t('status.exporting') : t('toolbar.save')}</span>
-          </button>
+          </div>
         </div>
 
         {/* 开启荧光笔时的深色精致控制栏 */}
@@ -765,9 +786,9 @@ export default function PdfEditTool() {
           <div className="flex-1 flex flex-col min-w-0 relative overflow-hidden">
             <div className="flex-1 overflow-y-auto overflow-x-auto p-8 flex justify-center items-start max-h-[calc(100vh-260px)]">
               {isLoading ? (
-                <div className="flex flex-col items-center justify-center space-y-2 text-red-600 mt-20">
-                  <Loader2 className="w-6 h-6 animate-spin" />
-                  <span className="text-xs font-medium">{t('status.parsingHd')}</span>
+                <div className="flex flex-col items-center justify-center space-y-3 mt-20">
+                  <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+                  <span className="text-sm text-slate-600">{t('status.parsingHd')}</span>
                 </div>
               ) : (
                 <div 

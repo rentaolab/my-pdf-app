@@ -17,6 +17,7 @@ import {
   Check,
   CheckSquare,
   Square,
+  Crop,
 } from 'lucide-react';
 
 export type CropScopeMode = 'all' | 'current' | 'odd' | 'even' | 'selected';
@@ -360,112 +361,131 @@ export default function PdfCropTool() {
   }
 
   return (
-    <div className="space-y-4 select-none pb-12">
+    <div className="space-y-6 select-none pb-12">
       <div className="bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col min-h-[560px]">
         
         {/* 固定 Header 控制栏 */}
-        <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+        <div className="bg-slate-900 px-5 py-4 shrink-0 z-10 space-y-4">
           
-          {/* 💡 优化 1 & 2：明确的被选中高亮（默认所有页） */}
-          <div className="flex items-center space-x-2">
-            <span className="text-xs font-bold text-slate-700">{t('scope.label')}</span>
-            <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-xs font-bold">
+          {/* 第一行：文件信息 + 导出模式 + 导出按钮 */}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+                <Crop className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                  {file.name}
+                </p>
+                <p className="text-[11px] text-slate-400">
+                  {t('nav.title', { selected: selectedExportPages.length, total: thumbnails.length })}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center bg-slate-800 p-0.5 rounded-xl border border-slate-700">
+                <button
+                  onClick={() => setExportMode('merged')}
+                  className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                    exportMode === 'merged'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  <Layers className="w-3 h-3" />
+                  <span>{t('mode.merged')}</span>
+                </button>
+                <button
+                  onClick={() => setExportMode('zip')}
+                  className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
+                    exportMode === 'zip'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  <Archive className="w-3 h-3" />
+                  <span>{t('mode.zip')}</span>
+                </button>
+              </div>
+
               <button
-                onClick={() => handleScopeChange('all')}
-                className={`px-3 py-1 rounded-lg transition-all ${
-                  scopeMode === 'all'
-                    ? 'bg-red-600 text-white shadow-sm shadow-red-500/30'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
+                onClick={handleExport}
+                disabled={isProcessing || selectedExportPages.length === 0}
+                className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all duration-200 active:scale-95"
               >
-                {t('scope.all')}
-              </button>
-              <button
-                onClick={() => handleScopeChange('current')}
-                className={`px-3 py-1 rounded-lg transition-all ${
-                  scopeMode === 'current'
-                    ? 'bg-red-600 text-white shadow-sm shadow-red-500/30'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {t('scope.current')}
-              </button>
-              <button
-                onClick={() => handleScopeChange('odd')}
-                className={`px-3 py-1 rounded-lg transition-all ${
-                  scopeMode === 'odd'
-                    ? 'bg-red-600 text-white shadow-sm shadow-red-500/30'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {t('scope.odd')}
-              </button>
-              <button
-                onClick={() => handleScopeChange('even')}
-                className={`px-3 py-1 rounded-lg transition-all ${
-                  scopeMode === 'even'
-                    ? 'bg-red-600 text-white shadow-sm shadow-red-500/30'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {t('scope.even')}
-              </button>
-              <button
-                onClick={() => handleScopeChange('selected')}
-                className={`px-3 py-1 rounded-lg transition-all ${
-                  scopeMode === 'selected'
-                    ? 'bg-red-600 text-white shadow-sm shadow-red-500/30'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {t('scope.selected', { count: selectedExportPages.length })}
+                <Download className="w-3.5 h-3.5" />
+                <span>{isProcessing ? tCommon('status.processing') : t('actions.exportCount', { count: selectedExportPages.length })}</span>
               </button>
             </div>
           </div>
 
-          {/* 重置 */}
-          <button
-            onClick={() => updateCurrentBox({ x: 5, y: 5, width: 90, height: 90 })}
-            className="flex items-center space-x-1 text-xs font-bold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition-colors"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>{t('actions.resetBox')}</span>
-          </button>
-
-          {/* 右侧：导出模式切换 + 导出按钮 */}
-          <div className="flex items-center space-x-2 ml-auto">
-            <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
-              <button
-                onClick={() => setExportMode('merged')}
-                className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                  exportMode === 'merged'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                <Layers className="w-3 h-3 text-red-600" />
-                <span>{t('mode.merged')}</span>
-              </button>
-              <button
-                onClick={() => setExportMode('zip')}
-                className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
-                  exportMode === 'zip'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                <Archive className="w-3 h-3 text-red-600" />
-                <span>{t('mode.zip')}</span>
-              </button>
+          {/* 第二行：裁剪范围与重置 */}
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                {t('scope.label')}
+              </span>
+              <div className="flex items-center bg-slate-800 p-0.5 rounded-xl border border-slate-700 text-xs font-bold">
+                <button
+                  onClick={() => handleScopeChange('all')}
+                  className={`px-3 py-1 rounded-lg transition-all ${
+                    scopeMode === 'all'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {t('scope.all')}
+                </button>
+                <button
+                  onClick={() => handleScopeChange('current')}
+                  className={`px-3 py-1 rounded-lg transition-all ${
+                    scopeMode === 'current'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {t('scope.current')}
+                </button>
+                <button
+                  onClick={() => handleScopeChange('odd')}
+                  className={`px-3 py-1 rounded-lg transition-all ${
+                    scopeMode === 'odd'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {t('scope.odd')}
+                </button>
+                <button
+                  onClick={() => handleScopeChange('even')}
+                  className={`px-3 py-1 rounded-lg transition-all ${
+                    scopeMode === 'even'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {t('scope.even')}
+                </button>
+                <button
+                  onClick={() => handleScopeChange('selected')}
+                  className={`px-3 py-1 rounded-lg transition-all ${
+                    scopeMode === 'selected'
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {t('scope.selected', { count: selectedExportPages.length })}
+                </button>
+              </div>
             </div>
 
             <button
-              onClick={handleExport}
-              disabled={isProcessing || selectedExportPages.length === 0}
-              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
+              onClick={() => updateCurrentBox({ x: 5, y: 5, width: 90, height: 90 })}
+              className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>{isProcessing ? tCommon('status.processing') : t('actions.exportCount', { count: selectedExportPages.length })}</span>
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>{t('actions.resetBox')}</span>
             </button>
           </div>
         </div>
@@ -476,9 +496,9 @@ export default function PdfCropTool() {
           {/* 左侧：主编辑 Canvas */}
           <div className="flex-1 bg-slate-200/70 rounded-2xl p-4 flex flex-col items-center justify-center relative overflow-hidden min-h-[420px]">
             {isLoading ? (
-              <div className="flex flex-col items-center space-y-2 text-red-600">
-                <Loader2 className="w-6 h-6 animate-spin" />
-                <span className="text-xs font-medium">{t('status.parsingPreviews')}</span>
+              <div className="flex flex-col items-center space-y-3">
+                <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+                <span className="text-sm text-slate-600">{t('status.parsingPreviews')}</span>
               </div>
             ) : (
               <div className="relative max-h-[480px] max-w-full flex items-center justify-center select-none shadow-xl rounded overflow-hidden">
