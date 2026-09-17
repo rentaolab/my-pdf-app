@@ -8,7 +8,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import {
   Upload,
   Download,
-  RefreshCw,
+  Loader2,
   ChevronLeft,
   ChevronRight,
   RotateCcw,
@@ -477,7 +477,7 @@ export default function PdfCropTool() {
           <div className="flex-1 bg-slate-200/70 rounded-2xl p-4 flex flex-col items-center justify-center relative overflow-hidden min-h-[420px]">
             {isLoading ? (
               <div className="flex flex-col items-center space-y-2 text-red-600">
-                <RefreshCw className="w-6 h-6 animate-spin" />
+                <Loader2 className="w-6 h-6 animate-spin" />
                 <span className="text-xs font-medium">{t('status.parsingPreviews')}</span>
               </div>
             ) : (

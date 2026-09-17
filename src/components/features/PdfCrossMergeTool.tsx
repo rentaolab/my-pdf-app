@@ -8,7 +8,7 @@ import {
   Upload,
   Download,
   Trash2,
-  RefreshCw,
+  Loader2,
   Plus,
   RotateCw,
   Layers,
@@ -272,7 +272,7 @@ export default function PdfCrossMergeTool() {
             </span>
             {isLoading && (
               <span className="flex items-center space-x-1 text-indigo-600 font-medium">
-                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
                 <span>{t('status.parsing')}</span>
               </span>
             )}

@@ -6,7 +6,7 @@ import { renderPDFToImages, renderSinglePDFPageHighRes } from '@/lib/pdf-edit';
 import { bakeEditsToPDF, FabricCanvasJSON } from '@/lib/pdf-edit-content';
 import * as fabric from 'fabric';
 import {
-  Upload, Download, RefreshCw, Type, Square, Circle, MoveRight,
+  Upload, Download, Loader2, Type, Square, Circle, MoveRight,
   Highlighter, PenTool, Trash2, ChevronLeft, ChevronRight, X,
   Check, Copy, Clipboard, ZoomIn, ZoomOut, Minus
 } from 'lucide-react';
@@ -766,7 +766,7 @@ export default function PdfEditTool() {
             <div className="flex-1 overflow-y-auto overflow-x-auto p-8 flex justify-center items-start max-h-[calc(100vh-260px)]">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center space-y-2 text-red-600 mt-20">
-                  <RefreshCw className="w-6 h-6 animate-spin" />
+                  <Loader2 className="w-6 h-6 animate-spin" />
                   <span className="text-xs font-medium">{t('status.parsingHd')}</span>
                 </div>
               ) : (

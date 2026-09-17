@@ -8,7 +8,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import {
   Upload,
   Download,
-  RefreshCw,
+  Loader2,
   Plus,
   RotateCw,
   Layers,
@@ -759,7 +759,7 @@ export default function PdfOrganizeTool() {
           <div className="flex-1 p-4 overflow-y-auto">
             {isLoading ? (
               <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-                <RefreshCw className="w-6 h-6 animate-spin" />
+                <Loader2 className="w-6 h-6 animate-spin" />
                 <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
               </div>
             ) : (
@@ -1072,7 +1072,7 @@ export default function PdfOrganizeTool() {
             <div className="flex-1 overflow-y-auto pr-1">
               {isParsingOutline ? (
                 <div className="py-12 flex flex-col items-center justify-center space-y-2 text-red-600">
-                  <RefreshCw className="w-6 h-6 animate-spin" />
+                  <Loader2 className="w-6 h-6 animate-spin" />
                   <span className="text-xs font-medium">{t('outline.loading')}</span>
                 </div>
               ) : pdfOutline.length === 0 ? (

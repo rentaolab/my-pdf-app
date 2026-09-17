@@ -7,7 +7,7 @@ import { removePDFPages } from '@/lib/pdf-delete';
 import {
   Upload,
   Download,
-  RefreshCw,
+  Loader2,
   Trash2,
   Undo2,
   Check,
@@ -268,7 +268,7 @@ export default function PdfDeleteTool() {
         <div className="flex-1 p-5 sm:p-7 overflow-y-auto">
           {isLoading ? (
             <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-              <RefreshCw className="w-6 h-6 animate-spin" />
+              <Loader2 className="w-6 h-6 animate-spin" />
               <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
             </div>
           ) : (

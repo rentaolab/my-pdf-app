@@ -8,7 +8,7 @@ import {
   Upload,
   Scissors,
   Download,
-  RefreshCw,
+  Loader2,
   Plus,
   Eye,
   CheckSquare,
@@ -244,7 +244,7 @@ export default function PdfSplitTool() {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] space-y-3">
-        <RefreshCw className="w-8 h-8 text-red-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-red-600 animate-spin" />
         <p className="text-sm text-slate-600">{t('status.parsing')}</p>
       </div>
     );

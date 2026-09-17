@@ -7,7 +7,7 @@ import { processPDFTransformations, PageTransformState } from '@/lib/pdf-rotate'
 import {
   Upload,
   Download,
-  RefreshCw,
+  Loader2,
   RotateCcw,
   RotateCw,
   FlipHorizontal,
@@ -254,7 +254,7 @@ export default function PdfRotateTool() {
         <div className="flex-1 p-5 sm:p-7 overflow-y-auto ">
           {isLoading ? (
             <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-              <RefreshCw className="w-6 h-6 animate-spin" />
+              <Loader2 className="w-6 h-6 animate-spin" />
               <span className="text-xs font-medium">{t('status.generatingPreviews')}</span>
             </div>
           ) : (

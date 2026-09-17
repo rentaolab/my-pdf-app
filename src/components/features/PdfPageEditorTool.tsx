@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { renderPDFToImages, processPDFPages } from '@/lib/pdf-edit';
-import { RotateCw, Check, Download, RefreshCw, Upload, Eye, GripHorizontal, X } from 'lucide-react';
+import { RotateCw, Check, Download, Loader2, Upload, Eye, GripHorizontal, X } from 'lucide-react';
 
 export default function PdfPageEditorTool() {
   const t = useTranslations('PdfPageEditor');
@@ -172,7 +172,7 @@ export default function PdfPageEditorTool() {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] space-y-3">
-        <RefreshCw className="w-8 h-8 text-indigo-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
         <p className="text-sm text-slate-600">{t('status.generating')}</p>
       </div>
     );
