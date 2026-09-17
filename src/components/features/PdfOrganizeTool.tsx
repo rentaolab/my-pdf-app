@@ -923,7 +923,7 @@ export default function PdfOrganizeTool() {
                 handleOpenExportModal();
               }}
               disabled={basketItems.length === 0}
-              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-colors shadow"
+              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold transition-colors shadow"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{t('actions.export')}</span>
@@ -1003,7 +1003,7 @@ export default function PdfOrganizeTool() {
 
                           <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
                             <span className="truncate max-w-[80px]">{item.fileName}</span>
-                            {isSelected && <span className="text-[9px] font-bold text-red-600 bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
+                            {isSelected && <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
                           </div>
                         </div>
 
@@ -1124,7 +1124,7 @@ export default function PdfOrganizeTool() {
               <button
                 onClick={handleConfirmExport}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-bold shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? t('status.assembling') : tCommon('actions.confirmDownload')}</span>

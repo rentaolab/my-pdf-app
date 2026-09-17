@@ -588,7 +588,7 @@ export default function PdfCropTool() {
                     {/* 勾选框：点击独立控制是否导出该页 */}
                     <button
                       onClick={(e) => toggleSelectExportPage(idx, e)}
-                      className={`absolute top-1 left-1 w-4 h-4 rounded flex items-center justify-center text-white text-[9px] font-bold z-10 transition-colors ${
+                      className={`absolute top-1 left-1 w-4 h-4 rounded flex items-center justify-center text-white text-[10px] font-bold z-10 transition-colors ${
                         isChecked ? 'bg-red-600' : 'bg-slate-300 hover:bg-slate-400'
                       }`}
                       title={isChecked ? t('nav.uncheckTitle') : t('nav.checkTitle')}
@@ -596,7 +596,7 @@ export default function PdfCropTool() {
                       {isChecked ? <Check className="w-3 h-3" /> : null}
                     </button>
 
-                    <div className="text-[9px] font-mono font-bold text-right text-slate-500 mb-1 pr-1">
+                    <div className="text-[10px] font-mono font-bold text-right text-slate-500 mb-1 pr-1">
                       P.{idx + 1}
                     </div>
                     <img src={src} alt="" className="w-full h-32 object-contain pointer-events-none" />

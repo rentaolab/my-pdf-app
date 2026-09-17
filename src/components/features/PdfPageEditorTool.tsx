@@ -191,7 +191,7 @@ export default function PdfPageEditorTool() {
           <button
             onClick={handleOpenExportModal}
             disabled={isProcessing || selectedPages.length === 0}
-            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors disabled:bg-slate-300 shadow-sm"
+            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors disabled:bg-slate-300 shadow-sm"
           >
             <Download className="w-4 h-4" />
             <span>{isProcessing ? tCommon('status.processing') : t('actions.exportSelected')}</span>
@@ -352,7 +352,7 @@ export default function PdfPageEditorTool() {
               <button
                 onClick={handleConfirmExport}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-bold shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? tCommon('status.processing') : tCommon('actions.confirmDownload')}</span>

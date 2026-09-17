@@ -214,7 +214,7 @@ export default function PdfSplitTool() {
           </div>
           <button
             onClick={() => setIsVipUser(!isVipUser)}
-            className="bg-amber-600 text-white px-3 py-1 rounded-md font-medium hover:bg-amber-700 transition-colors"
+            className="bg-amber-600 text-white px-3 py-1 rounded-md font-bold hover:bg-amber-700 transition-colors"
           >
             {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
           </button>
@@ -271,7 +271,7 @@ export default function PdfSplitTool() {
           <button
             onClick={handleOpenExportModal}
             disabled={isProcessing || selectedPartIndexes.length === 0}
-            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors"
+            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors"
           >
             <Download className="w-4 h-4" />
             <span>
@@ -532,7 +532,7 @@ export default function PdfSplitTool() {
               <button
                 onClick={handleConfirmExport}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-xs font-bold shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? tCommon('status.processing') : t('actions.confirmBatchDownload')}</span>

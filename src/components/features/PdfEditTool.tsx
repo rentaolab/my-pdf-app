@@ -810,7 +810,7 @@ export default function PdfEditTool() {
                 const isActive = activePageIndex === idx;
                 return (
                   <div key={idx} onClick={() => handlePageChange(idx)} className={`relative bg-slate-50 p-1.5 rounded-lg border transition-all cursor-pointer hover:scale-105 ${isActive ? 'border-2 border-red-600 bg-red-50/20 shadow-sm' : 'border-slate-200/80'}`}>
-                    <div className="text-[9px] font-mono font-bold text-slate-500 mb-1">P.{idx + 1}</div>
+                    <div className="text-[10px] font-mono font-bold text-slate-500 mb-1">P.{idx + 1}</div>
                     <img src={src} alt="" className="w-full h-20 object-contain pointer-events-none" />
                   </div>
                 );

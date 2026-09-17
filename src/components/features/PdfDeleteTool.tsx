@@ -321,9 +321,9 @@ export default function PdfDeleteTool() {
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] font-medium text-slate-500">
                       <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
                       {isDeleted ? (
-                        <span className="text-[9px] text-red-600 font-bold bg-red-100 px-1 rounded">{t('status.markedBadge')}</span>
+                        <span className="text-[10px] text-red-600 font-bold bg-red-100 px-1 rounded">{t('status.markedBadge')}</span>
                       ) : (
-                        <span className="text-[9px] text-slate-400">{t('status.kept')}</span>
+                        <span className="text-[10px] text-slate-400">{t('status.kept')}</span>
                       )}
                     </div>
                   </div>

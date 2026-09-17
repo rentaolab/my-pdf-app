@@ -344,7 +344,7 @@ export default function PdfExtractTool() {
 
                     {/* 提取标识 Pill */}
                     {isSelected && (
-                      <div className="absolute top-1.5 right-1.5 bg-slate-900/90 text-red-400 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
+                      <div className="absolute top-1.5 right-1.5 bg-slate-900/90 text-red-400 text-[10px] font-mono font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
                         <FileCheck2 className="w-2.5 h-2.5" />
                         <span>{t('badge.extract')}</span>
                       </div>
@@ -361,7 +361,7 @@ export default function PdfExtractTool() {
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] font-medium text-slate-500">
                       <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
-                      {isSelected && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selected')}</span>}
+                      {isSelected && <span className="text-[10px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selected')}</span>}
                     </div>
                   </div>
                 );

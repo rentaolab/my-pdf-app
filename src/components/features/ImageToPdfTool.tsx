@@ -284,7 +284,7 @@ export default function ImageToPdfTool() {
                 <button
                   key={value}
                   onClick={() => setPageSize(value)}
-                  className={`py-2 rounded-lg text-[11px] font-bold transition-all ${
+                  className={`py-2 rounded-lg text-xs font-bold transition-all ${
                     pageSize === value
                       ? 'bg-red-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
@@ -308,7 +308,7 @@ export default function ImageToPdfTool() {
                   key={value}
                   onClick={() => setOrientation(value)}
                   disabled={hasFitPage}
-                  className={`py-2 rounded-lg text-[11px] font-bold transition-all disabled:cursor-not-allowed ${
+                  className={`py-2 rounded-lg text-xs font-bold transition-all disabled:cursor-not-allowed ${
                     orientation === value
                       ? 'bg-red-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
@@ -331,7 +331,7 @@ export default function ImageToPdfTool() {
                 <button
                   key={preset.key}
                   onClick={() => setMargin(preset.value)}
-                  className={`py-2 rounded-lg text-[11px] font-bold transition-all ${
+                  className={`py-2 rounded-lg text-xs font-bold transition-all ${
                     margin === preset.value
                       ? 'bg-red-600 text-white shadow-sm'
                       : 'text-slate-400 hover:text-white hover:bg-slate-700/60'

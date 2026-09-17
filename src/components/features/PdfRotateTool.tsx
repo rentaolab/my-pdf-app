@@ -310,7 +310,7 @@ export default function PdfRotateTool() {
 
                     <div className="flex items-center justify-between mt-1 px-1 text-[11px] text-slate-500 font-medium">
                       <span>{tCommon('status.page', { page: pageIdx + 1 })}</span>
-                      {isChecked && <span className="text-[9px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
+                      {isChecked && <span className="text-[10px] text-red-600 font-bold bg-red-50 px-1 rounded">{tCommon('status.selectedShort')}</span>}
                     </div>
                   </div>
                 );

@@ -116,7 +116,7 @@ export default function PdfMergeTool() {
         </div>
         <button
           onClick={() => setIsVipUser(!isVipUser)}
-          className="bg-amber-600 text-white px-3 py-1 rounded-md font-medium hover:bg-amber-700 transition-colors"
+          className="bg-amber-600 text-white px-3 py-1 rounded-md font-bold hover:bg-amber-700 transition-colors"
         >
           {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
         </button>
@@ -210,7 +210,7 @@ export default function PdfMergeTool() {
             <button
               onClick={handleOpenDownloadModal}
               disabled={files.length < 2}
-              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-6 py-2.5 rounded-lg font-medium text-sm transition-colors shadow-sm"
+              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-sm"
             >
               <Download className="w-4 h-4" />
               <span>{t('actions.mergeDownload')}</span>
@@ -258,7 +258,7 @@ export default function PdfMergeTool() {
               <button
                 onClick={handleConfirmDownload}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium transition-colors shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-bold transition-colors shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? t('actions.generating') : tCommon('actions.confirmDownload')}</span>
