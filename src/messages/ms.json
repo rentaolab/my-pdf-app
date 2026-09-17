@@ -64,6 +64,10 @@
       "name": "Putar PDF",
       "desc": "Betulkan orientasi halaman secara pukal"
     },
+    "reorderPages": {
+      "name": "Susun semula halaman",
+      "desc": "Seret untuk ubah urutan, putar halaman individu dan eksport"
+    },
     "deletePages": {
       "name": "Padam Halaman",
       "desc": "Buang halaman yang tidak diperlukan dengan satu klik"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "Putar PDF (Rotate & Flip)",
       "description": "Putar secara pukal dan cermin halaman secara mendatar atau menegak"
+    },
+    "reorderPages": {
+      "title": "Susun semula halaman PDF",
+      "description": "Seret kad untuk mengubah urutan halaman, putar halaman secara individu dan eksport halaman terpilih dalam urutan baharu"
     },
     "deletePages": {
       "title": "Padam Halaman PDF (Delete Pages)",

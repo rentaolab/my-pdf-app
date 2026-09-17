@@ -64,6 +64,10 @@
       "name": "PDF回転",
       "desc": "ページの向きを一括で修正"
     },
+    "reorderPages": {
+      "name": "ページ並べ替え",
+      "desc": "ドラッグでページ順を入れ替え、個別に回転して書き出し"
+    },
     "deletePages": {
       "name": "ページ削除",
       "desc": "不要なページをワンクリックで削除"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "PDF回転 (Rotate & Flip)",
       "description": "一括回転と水平・垂直のミラー反転に対応"
+    },
+    "reorderPages": {
+      "title": "PDFページ並べ替え",
+      "description": "カードをドラッグしてページ順を変更し、ページごとに回転して、新しい順序で選択したページを書き出せます"
     },
     "deletePages": {
       "title": "PDFページ削除 (Delete Pages)",

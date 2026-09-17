@@ -64,6 +64,10 @@
       "name": "Faire pivoter un PDF",
       "desc": "Corrigez l'orientation des pages en masse"
     },
+    "reorderPages": {
+      "name": "Réorganiser les pages",
+      "desc": "Glissez pour réordonner, pivotez chaque page et exportez"
+    },
     "deletePages": {
       "name": "Supprimer des pages",
       "desc": "Supprimez les pages indésirables en un seul clic"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "Faire pivoter et retourner un PDF",
       "description": "Faites pivoter en masse et retournez les pages horizontalement ou verticalement"
+    },
+    "reorderPages": {
+      "title": "Réorganiser les pages d'un PDF",
+      "description": "Glissez les cartes pour changer l'ordre des pages, faites pivoter une page et exportez la sélection dans le nouvel ordre"
     },
     "deletePages": {
       "title": "Supprimer des pages du PDF",

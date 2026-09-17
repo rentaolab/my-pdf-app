@@ -64,6 +64,10 @@
       "name": "PDF drehen",
       "desc": "Seitenausrichtung in großen Mengen korrigieren"
     },
+    "reorderPages": {
+      "name": "Seiten neu anordnen",
+      "desc": "Seiten per Drag and drop sortieren, einzeln drehen und exportieren"
+    },
     "deletePages": {
       "name": "Seiten löschen",
       "desc": "Unerwünschte Seiten mit einem Klick entfernen"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "PDF drehen und spiegeln",
       "description": "Seiten in großen Mengen drehen und horizontal oder vertikal spiegeln"
+    },
+    "reorderPages": {
+      "title": "PDF-Seiten neu anordnen",
+      "description": "Seitenkarten per Drag and drop neu sortieren, einzelne Seiten drehen und die Auswahl in der neuen Reihenfolge exportieren"
     },
     "deletePages": {
       "title": "PDF-Seiten löschen",

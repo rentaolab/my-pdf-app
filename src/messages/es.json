@@ -64,6 +64,10 @@
       "name": "Rotar PDF",
       "desc": "Corrige la orientación de las páginas en lote"
     },
+    "reorderPages": {
+      "name": "Reordenar páginas",
+      "desc": "Arrastra para cambiar el orden, rota cada página y exporta"
+    },
     "deletePages": {
       "name": "Eliminar páginas",
       "desc": "Quita las páginas que no necesites con un solo clic"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "Rotar y voltear PDF",
       "description": "Rota en lote y refleja las páginas en horizontal o vertical"
+    },
+    "reorderPages": {
+      "title": "Reordenar páginas de PDF",
+      "description": "Arrastra las tarjetas para cambiar el orden de las páginas, rota páginas sueltas y exporta la selección en el nuevo orden"
     },
     "deletePages": {
       "title": "Eliminar páginas del PDF",

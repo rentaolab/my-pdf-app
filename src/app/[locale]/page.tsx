@@ -12,6 +12,7 @@ import {
   Edit3,
   FileImage,
   Images,
+  GripHorizontal,
   ArrowUpRight,
 } from 'lucide-react';
 
@@ -22,6 +23,7 @@ export default function Home() {
     { key: 'merge', href: '/merge-pdf', icon: Merge },
     { key: 'split', href: '/split-pdf', icon: Split },
     { key: 'rotate', href: '/rotate-pdf', icon: RotateCw },
+    { key: 'reorderPages', href: '/reorder-pdf-pages', icon: GripHorizontal },
     { key: 'deletePages', href: '/delete-pdf-pages', icon: Trash2 },
     { key: 'extractPages', href: '/extract-pdf-pages', icon: FileOutput },
     { key: 'crop', href: '/crop-pdf', icon: Crop },

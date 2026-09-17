@@ -64,6 +64,10 @@
       "name": "Rotate PDF",
       "desc": "Fix page orientation in bulk"
     },
+    "reorderPages": {
+      "name": "Reorder Pages",
+      "desc": "Drag pages into a new order, rotate individual pages and export"
+    },
     "deletePages": {
       "name": "Delete Pages",
       "desc": "Remove unwanted pages in a single click"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "Rotate & Flip PDF",
       "description": "Rotate pages in bulk and mirror them horizontally or vertically"
+    },
+    "reorderPages": {
+      "title": "Reorder PDF Pages",
+      "description": "Drag page cards to change their order, rotate single pages and export the selected pages in the new sequence"
     },
     "deletePages": {
       "title": "Delete PDF Pages",

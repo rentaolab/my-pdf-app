@@ -799,15 +799,15 @@ export default function PdfOrganizeTool() {
                       }`}
                     >
                       <div
-                        className={`absolute top-1.5 left-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold z-10 ${
-                          isChecked ? 'bg-red-600' : 'bg-slate-300/80 hover:bg-red-400'
+                        className={`absolute top-2 left-2 z-10 flex items-center justify-center text-[10px] font-bold text-white px-1.5 py-0.5 rounded-md ${
+                          isChecked ? 'bg-red-600' : 'bg-slate-900/85 hover:bg-red-600'
                         }`}
                       >
                         {isChecked ? <Check className="w-3 h-3" /> : pageIdx + 1}
                       </div>
 
                       {addedCount > 0 && (
-                        <div className="absolute top-1.5 right-1.5 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow z-10">
+                        <div className="absolute top-2 right-2 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md shadow z-10">
                           <span>{t('basket.countBadge', { count: addedCount })}</span>
                         </div>
                       )}

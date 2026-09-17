@@ -344,8 +344,8 @@ export default function PdfExtractTool() {
                   >
                     {/* 勾选徽章 */}
                     <div
-                      className={`absolute top-1.5 left-1.5 w-5 h-5 rounded-full flex items-center justify-center text-white text-[10px] font-bold z-10 transition-colors ${
-                        isSelected ? 'bg-red-600' : 'bg-slate-300/80'
+                      className={`absolute top-2 left-2 z-10 flex items-center justify-center text-[10px] font-bold text-white px-1.5 py-0.5 rounded-md transition-colors ${
+                        isSelected ? 'bg-red-600' : 'bg-slate-900/85 hover:bg-red-600'
                       }`}
                     >
                       {isSelected ? <Check className="w-3 h-3" /> : pageIdx + 1}

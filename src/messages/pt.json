@@ -64,6 +64,10 @@
       "name": "Girar PDF",
       "desc": "Corrija a orientação das páginas em lote"
     },
+    "reorderPages": {
+      "name": "Reordenar páginas",
+      "desc": "Arraste para reordenar, gire páginas individuais e exporte"
+    },
     "deletePages": {
       "name": "Excluir páginas",
       "desc": "Remova páginas indesejadas com um único clique"
@@ -105,6 +109,10 @@
     "rotate": {
       "title": "Girar e espelhar PDF",
       "description": "Gire em lote e espelhe as páginas na horizontal ou na vertical"
+    },
+    "reorderPages": {
+      "title": "Reordenar páginas do PDF",
+      "description": "Arraste os cartões para alterar a ordem das páginas, gire páginas individuais e exporte a seleção na nova ordem"
     },
     "deletePages": {
       "title": "Excluir páginas do PDF",
