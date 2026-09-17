@@ -583,17 +583,30 @@ export default function PdfOrganizeTool() {
   );
 
   return (
-    <div className="space-y-4 relative pb-24 select-none">
-      {/* 顶部 Pills 文件管理栏（已彻底移除干净的 Undo/Redo，移入下方操作栏） */}
-      <div className="bg-white p-3 sm:p-4 rounded-xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center space-x-2">
-          <Layers className="w-4 h-4 text-red-600 shrink-0" />
-          <span className="text-xs font-bold text-slate-700">
-            {t('files.title', { count: files.length })}
-          </span>
+    <div className="space-y-6 relative pb-24 select-none">
+      {/* Slate-900 现代化控制栏 */}
+      <div className="bg-slate-900 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+              <Layers className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white">
+                {t('files.title', { count: files.length })}
+              </p>
+              <p className="text-[11px] text-slate-400">{t('files.selectHint')}</p>
+            </div>
+          </div>
+
+          <label className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors cursor-pointer">
+            <FilePlus className="w-3.5 h-3.5" />
+            <span>{t('files.add')}</span>
+            <input type="file" multiple accept="application/pdf" onChange={handleFileChange} className="hidden" />
+          </label>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 border-t border-slate-800 pt-4">
           {files.map((f, idx) => (
             <button
               key={idx}
@@ -602,10 +615,10 @@ export default function PdfOrganizeTool() {
                 setSelectedSourcePages([]);
                 setLastSelectedSourceIndex(null);
               }}
-              className={`flex items-center space-x-1.5 px-2.5 py-1 rounded-lg text-xs font-medium border transition-all ${
+              className={`flex items-center space-x-1.5 px-2.5 py-1.5 rounded-xl text-xs font-medium border transition-all ${
                 activeFileIndex === idx
                   ? 'border-red-600 bg-red-600 text-white shadow-sm'
-                  : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
+                  : 'border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
               }`}
             >
               <FileText className="w-3.5 h-3.5" />
@@ -613,11 +626,6 @@ export default function PdfOrganizeTool() {
             </button>
           ))}
         </div>
-
-        <label className="text-xs text-red-600 font-bold hover:underline cursor-pointer ml-auto">
-          {t('files.add')}
-          <input type="file" multiple accept="application/pdf" onChange={handleFileChange} className="hidden" />
-        </label>
       </div>
 
       {/* 核心双栏面板区 */}
@@ -626,23 +634,23 @@ export default function PdfOrganizeTool() {
         <div className="lg:col-span-2 bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col max-h-[calc(100vh-210px)] min-h-[520px]">
           
           {/* 💡 微调 1：集中式聚合操作工具栏（全选 / Undo / Redo / 高级折叠面板） */}
-          <div className="bg-white px-4 py-3 border-b border-slate-200/80 space-y-2.5 shrink-0 z-10">
+          <div className="bg-slate-900 px-4 py-3.5 space-y-2.5 shrink-0 z-10">
             <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-              <div className="flex items-center space-x-2">
-                <span className="font-bold text-slate-800">
+              <div className="flex items-center space-x-2 min-w-0">
+                <FileText className="w-4 h-4 text-red-500 shrink-0" />
+                <span className="text-sm font-bold text-white truncate max-w-[180px] sm:max-w-sm">
                   {files[activeFileIndex]?.name}
                 </span>
-                <span className="text-[11px] text-slate-400">{t('files.selectHint')}</span>
               </div>
 
               {/* 右侧工具组：Undo/Redo、一键全选、高级工具控制 */}
               <div className="flex items-center space-x-2">
                 {/* 💡 统一集成的 Undo / Redo 按钮组 */}
-                <div className="flex items-center space-x-0.5 bg-slate-50 p-0.5 rounded-lg border border-slate-200 mr-1">
+                <div className="flex items-center space-x-0.5 bg-slate-800 p-0.5 rounded-lg border border-slate-700 mr-1">
                   <button
                     onClick={handleUndo}
                     disabled={!canUndo}
-                    className="p-1 hover:bg-white text-slate-700 disabled:opacity-20 rounded transition-colors"
+                    className="p-1 hover:bg-slate-700 text-slate-300 hover:text-white disabled:opacity-30 rounded transition-colors"
                     title={t('actions.undo')}
                   >
                     <Undo2 className="w-3.5 h-3.5" />
@@ -650,7 +658,7 @@ export default function PdfOrganizeTool() {
                   <button
                     onClick={handleRedo}
                     disabled={!canRedo}
-                    className="p-1 hover:bg-white text-slate-700 disabled:opacity-20 rounded transition-colors"
+                    className="p-1 hover:bg-slate-700 text-slate-300 hover:text-white disabled:opacity-30 rounded transition-colors"
                     title={t('actions.redo')}
                   >
                     <Redo2 className="w-3.5 h-3.5" />
@@ -659,16 +667,16 @@ export default function PdfOrganizeTool() {
 
                 <button
                   onClick={toggleSelectAllSourcePages}
-                  className="flex items-center space-x-1 bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 px-2.5 py-1 rounded-lg text-xs font-medium shadow-sm transition-colors"
+                  className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-colors"
                 >
                   {isAllSourceSelected ? (
                     <>
-                      <CheckSquare className="w-3.5 h-3.5 text-red-600" />
+                      <CheckSquare className="w-3.5 h-3.5" />
                       <span>{tCommon('actions.deselectAll')}</span>
                     </>
                   ) : (
                     <>
-                      <Square className="w-3.5 h-3.5 text-slate-400" />
+                      <Square className="w-3.5 h-3.5" />
                       <span>{tCommon('actions.selectAll')}</span>
                     </>
                   )}
@@ -676,13 +684,13 @@ export default function PdfOrganizeTool() {
 
                 <button
                   onClick={() => setShowAdvancedBar(!showAdvancedBar)}
-                  className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold border transition-colors ${
+                  className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
                     showAdvancedBar
-                      ? 'bg-red-50 border-red-300 text-red-600'
-                      : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'
+                      ? 'bg-red-600 border-red-600 text-white shadow-sm'
+                      : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700 hover:text-white'
                   }`}
                 >
-                  <Sliders className="w-3.5 h-3.5 text-red-600" />
+                  <Sliders className="w-3.5 h-3.5 text-red-500" />
                   <span>{t('actions.advanced')}</span>
                   {showAdvancedBar ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                 </button>
@@ -690,7 +698,7 @@ export default function PdfOrganizeTool() {
                 {selectedSourcePages.length > 0 && (
                   <button
                     onClick={addSelectedPagesToBasket}
-                    className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg text-xs font-bold shadow-sm transition-colors animate-in fade-in"
+                    className="flex items-center space-x-1 bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-colors animate-in fade-in"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>{t('actions.addToBasketCount', { count: selectedSourcePages.length })}</span>
@@ -701,16 +709,16 @@ export default function PdfOrganizeTool() {
 
             {/* 折叠高级工具栏：奇偶页开关、页码框选、目录树 */}
             {showAdvancedBar && (
-              <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5 animate-in fade-in duration-150">
+              <div className="pt-2.5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2.5 animate-in fade-in duration-150">
                 <div className="flex items-center space-x-2 flex-1 min-w-[240px]">
-                  <span className="text-xs font-bold text-slate-700 whitespace-nowrap">{t('range.label')}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 whitespace-nowrap">{t('range.label')}</span>
                   <input
                     type="text"
                     placeholder={t('range.placeholder')}
                     value={pageRangeInput}
                     onChange={(e) => setPageRangeInput(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRange()}
-                    className="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="flex-1 bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500"
                   />
                   <button
                     onClick={handleApplyPageRange}
@@ -724,10 +732,10 @@ export default function PdfOrganizeTool() {
                 <div className="flex items-center space-x-1.5">
                   <button
                     onClick={() => handleSelectOddEvenPages('odd')}
-                    className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors border ${
+                    className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors border ${
                       isOddFullySelected
                         ? 'bg-red-600 text-white border-red-600 shadow-sm'
-                        : 'bg-slate-100 hover:bg-red-50 hover:text-red-600 border-slate-200 text-slate-700'
+                        : 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
                     }`}
                   >
                     <Binary className="w-3.5 h-3.5" />
@@ -735,10 +743,10 @@ export default function PdfOrganizeTool() {
                   </button>
                   <button
                     onClick={() => handleSelectOddEvenPages('even')}
-                    className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors border ${
+                    className={`flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-colors border ${
                       isEvenFullySelected
                         ? 'bg-red-600 text-white border-red-600 shadow-sm'
-                        : 'bg-slate-100 hover:bg-red-50 hover:text-red-600 border-slate-200 text-slate-700'
+                        : 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
                     }`}
                   >
                     <Binary className="w-3.5 h-3.5" />
@@ -747,9 +755,9 @@ export default function PdfOrganizeTool() {
 
                   <button
                     onClick={handleFetchPdfOutline}
-                    className="flex items-center space-x-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 px-3 py-1 rounded-lg text-xs font-bold transition-colors ml-1"
+                    className="flex items-center space-x-1 bg-red-600/15 hover:bg-red-600/25 border border-red-500/40 text-red-300 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ml-1"
                   >
-                    <ListTree className="w-3.5 h-3.5 text-red-600" />
+                    <ListTree className="w-3.5 h-3.5" />
                     <span>{t('range.outline')}</span>
                   </button>
                 </div>
@@ -760,9 +768,9 @@ export default function PdfOrganizeTool() {
           {/* 独立滚动视口 */}
           <div className="flex-1 p-4 overflow-y-auto">
             {isLoading ? (
-              <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-                <Loader2 className="w-6 h-6 animate-spin" />
-                <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
+              <div className="h-64 flex flex-col items-center justify-center space-y-3">
+                <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+                <span className="text-sm text-slate-600">{tCommon('status.parsingThumbnails')}</span>
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -828,13 +836,13 @@ export default function PdfOrganizeTool() {
         </div>
 
         {/* 右侧大图预览 */}
-        <div className="hidden lg:block lg:col-span-1 sticky top-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+        <div className="hidden lg:block lg:col-span-1 sticky top-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span className="text-xs font-bold text-slate-600">{tCommon('preview.title')}</span>
+            <span className="text-xs font-semibold text-slate-500">{tCommon('preview.title')}</span>
             <span className="text-[11px] text-red-600 font-bold truncate max-w-[150px]">{activeHoverLabel}</span>
           </div>
 
-          <div className="bg-slate-50 rounded-xl p-2 flex items-center justify-center min-h-[360px] max-h-[440px] overflow-hidden border border-slate-100 relative group">
+          <div className="bg-slate-50 rounded-lg p-2 flex items-center justify-center min-h-[360px] max-h-[440px] overflow-hidden border border-slate-100 relative group">
             {activeHoverImage ? (
               <img
                 src={activeHoverImage}
@@ -867,7 +875,7 @@ export default function PdfOrganizeTool() {
       >
         <div
           onClick={() => setBasketState(basketState === 'collapsed' ? 'half' : 'collapsed')}
-          className="bg-red-50/90 hover:bg-red-100/90 transition-colors border-b border-red-100 px-4 py-2 flex items-center justify-between cursor-pointer select-none relative"
+          className="bg-slate-900 hover:bg-slate-800 transition-colors border-b border-slate-800 px-4 py-2.5 flex items-center justify-between cursor-pointer select-none relative"
         >
           <div className="w-24 hidden sm:block"></div>
 
@@ -882,14 +890,14 @@ export default function PdfOrganizeTool() {
               <span className="text-xs font-bold">{basketItems.length}</span>
             </div>
 
-            <span className="text-xs font-bold text-slate-800">{t('basket.title')}</span>
+            <span className="text-xs font-bold text-white">{t('basket.title')}</span>
 
             {/* 💡 呼吸气泡 Pulse Tag */}
             <span
               className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center space-x-1 transition-all duration-300 ${
                 basketPulseTrigger
                   ? 'bg-red-600 text-white animate-bounce shadow-md'
-                  : 'bg-red-200 text-red-800 hover:bg-red-300'
+                  : 'bg-red-600/20 text-red-300 hover:bg-red-600/30'
               }`}
             >
               <span>
@@ -908,9 +916,9 @@ export default function PdfOrganizeTool() {
                 e.stopPropagation();
                 setBasketState(basketState === 'full' ? 'half' : 'full');
               }}
-              className="p-1 bg-white hover:bg-slate-100 text-slate-600 rounded-lg border border-slate-200 shadow-sm transition-all flex items-center space-x-1 px-2 text-[10px] font-medium"
+              className="p-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg border border-slate-700 shadow-sm transition-all flex items-center space-x-1 px-2 text-[10px] font-medium"
             >
-              {basketState === 'full' ? <Minimize2 className="w-3.5 h-3.5 text-red-600" /> : <Maximize2 className="w-3.5 h-3.5 text-red-600" />}
+              {basketState === 'full' ? <Minimize2 className="w-3.5 h-3.5 text-red-500" /> : <Maximize2 className="w-3.5 h-3.5 text-red-500" />}
             </button>
           </div>
 
@@ -923,7 +931,7 @@ export default function PdfOrganizeTool() {
                 handleOpenExportModal();
               }}
               disabled={basketItems.length === 0}
-              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold transition-colors shadow"
+              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold transition-colors shadow"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{t('actions.export')}</span>
@@ -1073,9 +1081,9 @@ export default function PdfOrganizeTool() {
 
             <div className="flex-1 overflow-y-auto pr-1">
               {isParsingOutline ? (
-                <div className="py-12 flex flex-col items-center justify-center space-y-2 text-red-600">
-                  <Loader2 className="w-6 h-6 animate-spin" />
-                  <span className="text-xs font-medium">{t('outline.loading')}</span>
+                <div className="py-12 flex flex-col items-center justify-center space-y-3">
+                  <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+                  <span className="text-sm text-slate-600">{t('outline.loading')}</span>
                 </div>
               ) : pdfOutline.length === 0 ? (
                 <div className="py-12 text-center text-slate-400 text-xs">{t('outline.empty')}</div>
