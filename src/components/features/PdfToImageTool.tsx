@@ -216,7 +216,6 @@ export default function PdfToImageTool() {
 
   const activeThumbnail = thumbnails[activeIndex] ?? thumbnails[0];
 
-
   return (
     <div className="space-y-6">
       {/* Slate-900 现代化控制栏 */}
@@ -278,23 +277,28 @@ export default function PdfToImageTool() {
               <Ruler className="w-3.5 h-3.5" />
               <span>{t('resolution.label')}</span>
             </label>
-            <select
-              value={dpi}
-              onChange={(e) => setDpi(Number(e.target.value))}
-              className="w-full appearance-none bg-slate-800 border border-slate-700 text-slate-200 text-xs font-medium rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-red-500/60 focus:border-red-500"
-            >
+            <div className="grid grid-cols-3 gap-1 bg-slate-800 p-1 rounded-xl">
               {DPI_OPTIONS.map((value) => (
-                <option key={value} value={value}>
-                  {t(
+                <button
+                  key={value}
+                  onClick={() => setDpi(value)}
+                  title={t(
                     value === 96
                       ? 'resolution.standard'
                       : value === 150
                       ? 'resolution.high'
                       : 'resolution.ultra'
                   )}
-                </option>
+                  className={`py-2 rounded-lg text-xs font-bold transition-all ${
+                    dpi === value
+                      ? 'bg-red-600 text-white shadow-sm'
+                      : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
+                  }`}
+                >
+                  {value} DPI
+                </button>
               ))}
-            </select>
+            </div>
           </div>
 
           {/* 质量 */}
@@ -347,7 +351,6 @@ export default function PdfToImageTool() {
           </button>
         </div>
       </div>
-
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* 页面网格 */}
@@ -445,7 +448,6 @@ export default function PdfToImageTool() {
             })}
           </div>
         </div>
-
 
         {/* 实时预览面板 */}
         <div className="lg:col-span-1 sticky top-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">

@@ -191,7 +191,6 @@ export default function ImageToPdfTool() {
     }
   };
 
-
   // 1. 上传区（空状态）
   if (entries.length === 0) {
     return (
@@ -271,7 +270,6 @@ export default function ImageToPdfTool() {
           </div>
         </div>
 
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-slate-800 pt-4">
           {/* 纸张尺寸 */}
           <div className="space-y-2">
@@ -344,7 +342,6 @@ export default function ImageToPdfTool() {
           </div>
         </div>
       </div>
-
 
       {/* 图片列表：Canvas 预览 + 拖拽排序 */}
       <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
