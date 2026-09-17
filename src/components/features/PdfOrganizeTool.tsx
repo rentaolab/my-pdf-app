@@ -537,12 +537,14 @@ export default function PdfOrganizeTool() {
           <div className="p-3 bg-red-50 rounded-full text-red-600">
             <Upload className="w-8 h-8" />
           </div>
-          <p className="text-base font-medium text-slate-700">
-            {t('upload.prompt')}
-          </p>
-          <p className="text-xs text-slate-500">
-            {t('upload.hint')}
-          </p>
+          <div>
+            <p className="text-base font-medium text-slate-700">
+              {t('upload.prompt')}
+            </p>
+            <p className="text-xs text-slate-500 mt-1">
+              {t('upload.hint')}
+            </p>
+          </div>
         </div>
       </div>
     );
