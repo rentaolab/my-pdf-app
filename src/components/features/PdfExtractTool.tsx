@@ -15,6 +15,7 @@ import {
   Layers,
   Archive,
   FileCheck2,
+  FileOutput,
 } from 'lucide-react';
 
 // 解析 "1-5, 8, 12-20" 页码表达式
@@ -202,64 +203,72 @@ export default function PdfExtractTool() {
   }
 
   return (
-    <div className="space-y-4 select-none pb-12">
+    <div className="space-y-6 select-none pb-12">
       {/* 2. 主容器视口 */}
       <div className="bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col max-h-[calc(100vh-220px)] min-h-[500px]">
         
         {/* 吸顶控制栏 */}
-        <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+        <div className="bg-slate-900 px-5 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
           
-          {/* 左侧：全选与计数 */}
-          <div className="flex items-center space-x-3">
+          {/* 左侧：文件信息 */}
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+              <FileOutput className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                {file.name}
+              </p>
+              <p className="text-[11px] text-slate-400">
+                {tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}
+              </p>
+            </div>
+          </div>
+
+          {/* 中部：全选、奇偶与框选 */}
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={toggleSelectAll}
-              className="flex items-center space-x-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors shadow-sm"
+              className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-colors mr-1"
             >
               {selectedPages.length === thumbnails.length ? (
                 <>
-                  <CheckSquare className="w-3.5 h-3.5 text-red-600" />
+                  <CheckSquare className="w-3.5 h-3.5" />
                   <span>{tCommon('actions.deselectAll')}</span>
                 </>
               ) : (
                 <>
-                  <Square className="w-3.5 h-3.5 text-slate-400" />
-                  <span>{tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}</span>
+                  <Square className="w-3.5 h-3.5" />
+                  <span>{tCommon('actions.selectAll')}</span>
                 </>
               )}
             </button>
 
-            <span className="text-xs font-bold text-slate-700 hidden sm:inline-block max-w-[180px] truncate">
-              {file.name}
-            </span>
-          </div>
-
-          {/* 中部：奇偶与框选 */}
-          <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center space-x-1">
               <button
                 onClick={() => toggleOddEvenPages('odd')}
-                className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
+                className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
-                <Binary className="w-3.5 h-3.5 text-red-600" />
+                <Binary className="w-3.5 h-3.5 text-red-500" />
                 <span>{t('actions.odd')}</span>
               </button>
               <button
                 onClick={() => toggleOddEvenPages('even')}
-                className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
+                className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
-                <Binary className="w-3.5 h-3.5 text-red-600" />
+                <Binary className="w-3.5 h-3.5 text-red-500" />
                 <span>{t('actions.even')}</span>
               </button>
             </div>
 
-            <div className="flex items-center space-x-1.5 bg-slate-50 p-0.5 rounded-lg border border-slate-200">
+            <div className="flex items-center space-x-1.5 bg-slate-800 p-0.5 rounded-lg border border-slate-700">
               <input
                 type="text"
                 placeholder={t('placeholder.range')}
                 value={pageRangeInput}
                 onChange={(e) => setPageRangeInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRange()}
-                className="w-24 bg-white border border-slate-200 rounded px-2 py-0.5 text-xs focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="w-24 bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 rounded px-2 py-0.5 text-xs focus:outline-none focus:ring-1 focus:ring-red-500"
               />
               <button
                 onClick={handleApplyPageRange}
@@ -273,29 +282,29 @@ export default function PdfExtractTool() {
           {/* 右侧：模式切换与导出 */}
           <div className="flex items-center space-x-2 ml-auto">
             {/* 模式选择 Toggle */}
-            <div className="flex items-center bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+            <div className="flex items-center bg-slate-800 p-0.5 rounded-xl border border-slate-700">
               <button
                 onClick={() => setExportMode('single')}
                 className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
                   exportMode === 'single'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-800'
+                    ? 'bg-red-600 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
                 }`}
                 title={t('mode.mergedTitle')}
               >
-                <Layers className="w-3 h-3 text-red-600" />
+                <Layers className="w-3 h-3" />
                 <span>{t('mode.merged')}</span>
               </button>
               <button
                 onClick={() => setExportMode('zip')}
                 className={`flex items-center space-x-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all ${
                   exportMode === 'zip'
-                    ? 'bg-white text-slate-900 shadow-sm'
-                    : 'text-slate-500 hover:text-slate-800'
+                    ? 'bg-red-600 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-700/60'
                 }`}
                 title={t('mode.zipTitle')}
               >
-                <Archive className="w-3 h-3 text-red-600" />
+                <Archive className="w-3 h-3" />
                 <span>{t('mode.zip')}</span>
               </button>
             </div>
@@ -303,7 +312,7 @@ export default function PdfExtractTool() {
             <button
               onClick={handleExport}
               disabled={isProcessing || selectedPages.length === 0}
-              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
+              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all duration-200 active:scale-95"
             >
               <Download className="w-3.5 h-3.5" />
               <span>{isProcessing ? t('status.extracting') : t('actions.extractCount', { count: selectedPages.length })}</span>
@@ -314,9 +323,9 @@ export default function PdfExtractTool() {
         {/* 3. 网格内容视口 */}
         <div className="flex-1 p-5 sm:p-7 overflow-y-auto">
           {isLoading ? (
-            <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-              <Loader2 className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
+            <div className="h-64 flex flex-col items-center justify-center space-y-3">
+              <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+              <span className="text-sm text-slate-600">{tCommon('status.parsingThumbnails')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

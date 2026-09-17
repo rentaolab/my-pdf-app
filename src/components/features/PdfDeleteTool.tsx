@@ -187,33 +187,30 @@ export default function PdfDeleteTool() {
   const remainingPageCount = thumbnails.length - deletedPages.length;
 
   return (
-    <div className="space-y-4 select-none pb-12">
+    <div className="space-y-6 select-none pb-12">
       {/* 固定结构的主容器视口 */}
       <div className="bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col max-h-[calc(100vh-220px)] min-h-[500px]">
         
         {/* 固定吸顶控制栏 */}
-        <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+        <div className="bg-slate-900 px-5 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
           
-          {/* 左侧：统计与清空状态 */}
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-1.5 text-xs font-bold text-slate-700">
-              <span>{t('status.totalPages', { total: thumbnails.length })}</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-red-600">{t('status.marked', { count: deletedPages.length })}</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-slate-600">{t('status.remaining', { count: remainingPageCount })}</span>
+          {/* 左侧：文件信息与统计 */}
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+              <Trash2 className="w-5 h-5" />
             </div>
-
-            {deletedPages.length > 0 && (
-              <button
-                onClick={() => setDeletedPages([])}
-                className="flex items-center space-x-1 text-xs font-bold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 px-2.5 py-1 rounded-lg transition-colors"
-                title={t('actions.restoreAllTitle')}
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>{t('actions.restoreAll')}</span>
-              </button>
-            )}
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                {file.name}
+              </p>
+              <p className="flex flex-wrap items-center gap-x-1.5 text-[11px] text-slate-400">
+                <span>{t('status.totalPages', { total: thumbnails.length })}</span>
+                <span className="text-slate-600">•</span>
+                <span className="text-red-400">{t('status.marked', { count: deletedPages.length })}</span>
+                <span className="text-slate-600">•</span>
+                <span>{t('status.remaining', { count: remainingPageCount })}</span>
+              </p>
+            </div>
           </div>
 
           {/* 中部：奇偶页与框选批量标记工具 */}
@@ -221,28 +218,28 @@ export default function PdfDeleteTool() {
             <div className="flex items-center space-x-1">
               <button
                 onClick={() => toggleOddEvenPagesToDelete('odd')}
-                className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
+                className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
-                <Binary className="w-3.5 h-3.5 text-red-600" />
+                <Binary className="w-3.5 h-3.5 text-red-500" />
                 <span>{t('actions.deleteOdd')}</span>
               </button>
               <button
                 onClick={() => toggleOddEvenPagesToDelete('even')}
-                className="flex items-center space-x-1 bg-slate-50 hover:bg-red-50 text-slate-700 hover:text-red-600 border border-slate-200 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
+                className="flex items-center space-x-1 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 px-2.5 py-1 rounded-lg text-xs font-bold transition-colors"
               >
-                <Binary className="w-3.5 h-3.5 text-red-600" />
+                <Binary className="w-3.5 h-3.5 text-red-500" />
                 <span>{t('actions.deleteEven')}</span>
               </button>
             </div>
 
-            <div className="flex items-center space-x-1.5 bg-slate-50 p-0.5 rounded-lg border border-slate-200">
+            <div className="flex items-center space-x-1.5 bg-slate-800 p-0.5 rounded-lg border border-slate-700">
               <input
                 type="text"
                 placeholder={t('placeholder.range')}
                 value={pageRangeInput}
                 onChange={(e) => setPageRangeInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleApplyPageRangeToDelete()}
-                className="w-24 bg-white border border-slate-200 rounded px-2 py-0.5 text-xs focus:outline-none focus:ring-1 focus:ring-red-500"
+                className="w-24 bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 rounded px-2 py-0.5 text-xs focus:outline-none focus:ring-1 focus:ring-red-500"
               />
               <button
                 onClick={handleApplyPageRangeToDelete}
@@ -253,23 +250,36 @@ export default function PdfDeleteTool() {
             </div>
           </div>
 
-          {/* 右侧：下载导出按钮 */}
-          <button
-            onClick={handleExport}
-            disabled={isProcessing || remainingPageCount === 0}
-            className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95 ml-auto"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>{isProcessing ? tCommon('status.processing') : t('actions.generate')}</span>
-          </button>
+          {/* 右侧：恢复全部与下载导出 */}
+          <div className="flex items-center space-x-2 ml-auto">
+            {deletedPages.length > 0 && (
+              <button
+                onClick={() => setDeletedPages([])}
+                className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors"
+                title={t('actions.restoreAllTitle')}
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>{t('actions.restoreAll')}</span>
+              </button>
+            )}
+
+            <button
+              onClick={handleExport}
+              disabled={isProcessing || remainingPageCount === 0}
+              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all duration-200 active:scale-95"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>{isProcessing ? tCommon('status.processing') : t('actions.generate')}</span>
+            </button>
+          </div>
         </div>
 
         {/* 独立内部滚动视口 */}
         <div className="flex-1 p-5 sm:p-7 overflow-y-auto">
           {isLoading ? (
-            <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-              <Loader2 className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">{tCommon('status.parsingThumbnails')}</span>
+            <div className="h-64 flex flex-col items-center justify-center space-y-3">
+              <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+              <span className="text-sm text-slate-600">{tCommon('status.parsingThumbnails')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

@@ -158,42 +158,50 @@ export default function PdfRotateTool() {
   }
 
   return (
-    <div className="space-y-4 select-none">
+    <div className="space-y-6 select-none">
       {/* 2. 主容器视口 */}
       <div className="bg-slate-100/90 rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col max-h-[calc(100vh-220px)] min-h-[500px]">
         
         {/* 固定 Header 控制栏 */}
-        <div className="bg-white px-5 py-3 border-b border-slate-200/80 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
-          {/* 左侧：文件信息与全选 */}
-          <div className="flex items-center space-x-3">
+        <div className="bg-slate-900 px-5 py-4 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0 z-10">
+          {/* 左侧：文件信息 */}
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+              <RotateCw className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                {file.name}
+              </p>
+              <p className="text-[11px] text-slate-400">
+                {tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}
+              </p>
+            </div>
+          </div>
+
+          {/* 中部：全选与分类操作工具组 */}
+          <div className="flex flex-wrap items-center gap-1.5">
             <button
               onClick={toggleSelectAll}
-              className="flex items-center space-x-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold transition-colors shadow-sm"
+              className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-colors mr-1"
             >
               {selectedPages.length === thumbnails.length ? (
                 <>
-                  <CheckSquare className="w-3.5 h-3.5 text-red-600" />
+                  <CheckSquare className="w-3.5 h-3.5" />
                   <span>{tCommon('actions.deselectAll')}</span>
                 </>
               ) : (
                 <>
-                  <Square className="w-3.5 h-3.5 text-slate-400" />
-                  <span>{tCommon('actions.selectAllCount', { selected: selectedPages.length, total: thumbnails.length })}</span>
+                  <Square className="w-3.5 h-3.5" />
+                  <span>{tCommon('actions.selectAll')}</span>
                 </>
               )}
             </button>
 
-            <span className="text-xs font-bold text-slate-700 hidden sm:inline-block max-w-[200px] truncate">
-              {file.name}
-            </span>
-          </div>
-
-          {/* 中部：分类操作工具组 */}
-          <div className="flex flex-wrap items-center gap-1.5">
-            <div className="flex items-center bg-slate-50 p-1 rounded-xl border border-slate-200/80 space-x-1">
+            <div className="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 space-x-1">
               <button
                 onClick={() => applyTransformToSelected('rotateLeft')}
-                className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
+                className="flex items-center space-x-1 px-2.5 py-1 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-bold transition-colors"
                 title={t('actions.rotateLeftTitle')}
               >
                 <RotateCcw className="w-3.5 h-3.5 text-red-600" />
@@ -202,7 +210,7 @@ export default function PdfRotateTool() {
 
               <button
                 onClick={() => applyTransformToSelected('rotateRight')}
-                className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
+                className="flex items-center space-x-1 px-2.5 py-1 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-bold transition-colors"
                 title={t('actions.rotateRightTitle')}
               >
                 <RotateCw className="w-3.5 h-3.5 text-red-600" />
@@ -210,10 +218,10 @@ export default function PdfRotateTool() {
               </button>
             </div>
 
-            <div className="flex items-center bg-slate-50 p-1 rounded-xl border border-slate-200/80 space-x-1">
+            <div className="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 space-x-1">
               <button
                 onClick={() => applyTransformToSelected('flipH')}
-                className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
+                className="flex items-center space-x-1 px-2.5 py-1 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-bold transition-colors"
                 title={t('actions.flipHTitle')}
               >
                 <FlipHorizontal className="w-3.5 h-3.5 text-red-600" />
@@ -222,7 +230,7 @@ export default function PdfRotateTool() {
 
               <button
                 onClick={() => applyTransformToSelected('flipV')}
-                className="flex items-center space-x-1 px-2.5 py-1 bg-white hover:bg-red-50 text-slate-700 hover:text-red-600 rounded-lg text-xs font-bold shadow-sm transition-colors"
+                className="flex items-center space-x-1 px-2.5 py-1 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg text-xs font-bold transition-colors"
                 title={t('actions.flipVTitle')}
               >
                 <FlipVertical className="w-3.5 h-3.5 text-red-600" />
@@ -232,7 +240,7 @@ export default function PdfRotateTool() {
 
             <button
               onClick={() => applyTransformToSelected('reset')}
-              className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-xl transition-colors"
               title={t('actions.resetTitle')}
             >
               <Undo2 className="w-4 h-4" />
@@ -243,7 +251,7 @@ export default function PdfRotateTool() {
           <button
             onClick={handleExport}
             disabled={isProcessing}
-            className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm shadow-red-500/20 transition-all duration-200 active:scale-95"
+            className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all duration-200 active:scale-95"
           >
             <Download className="w-3.5 h-3.5" />
             <span>{isProcessing ? tCommon('status.processing') : tCommon('actions.download')}</span>
@@ -253,9 +261,9 @@ export default function PdfRotateTool() {
         {/* 3. 网格内容视口 */}
         <div className="flex-1 p-5 sm:p-7 overflow-y-auto ">
           {isLoading ? (
-            <div className="h-64 flex flex-col items-center justify-center space-y-2 text-red-600">
-              <Loader2 className="w-6 h-6 animate-spin" />
-              <span className="text-xs font-medium">{t('status.generatingPreviews')}</span>
+            <div className="h-64 flex flex-col items-center justify-center space-y-3">
+              <Loader2 className="w-6 h-6 text-red-600 animate-spin" />
+              <span className="text-sm text-slate-600">{t('status.generatingPreviews')}</span>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
