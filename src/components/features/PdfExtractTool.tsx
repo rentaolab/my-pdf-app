@@ -344,7 +344,7 @@ export default function PdfExtractTool() {
 
                     {/* 提取标识 Pill */}
                     {isSelected && (
-                      <div className="absolute top-1.5 right-1.5 bg-slate-900/90 text-teal-400 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
+                      <div className="absolute top-1.5 right-1.5 bg-slate-900/90 text-red-400 text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
                         <FileCheck2 className="w-2.5 h-2.5" />
                         <span>{t('badge.extract')}</span>
                       </div>

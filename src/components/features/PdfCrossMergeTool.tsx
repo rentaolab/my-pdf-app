@@ -195,7 +195,7 @@ export default function PdfCrossMergeTool() {
 
   if (files.length === 0) {
     return (
-      <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-indigo-500 transition-colors cursor-pointer relative">
+      <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-red-500 transition-colors cursor-pointer relative">
         <input
           type="file"
           multiple
@@ -204,7 +204,7 @@ export default function PdfCrossMergeTool() {
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
         <div className="flex flex-col items-center space-y-3">
-          <div className="p-3 bg-indigo-50 rounded-full text-indigo-600">
+          <div className="p-3 bg-red-50 rounded-full text-red-600">
             <Upload className="w-8 h-8" />
           </div>
           <div>
@@ -228,10 +228,10 @@ export default function PdfCrossMergeTool() {
       <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-slate-700 flex items-center space-x-1">
-            <Layers className="w-4 h-4 text-indigo-600" />
+            <Layers className="w-4 h-4 text-red-600" />
             <span>{t('sources.title')}</span>
           </span>
-          <label className="text-xs text-indigo-600 font-medium hover:underline cursor-pointer">
+          <label className="text-xs text-red-600 font-medium hover:underline cursor-pointer">
             {t('sources.addMore')}
             <input
               type="file"
@@ -252,7 +252,7 @@ export default function PdfCrossMergeTool() {
                 onClick={() => setActiveFileIndex(idx)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-xl text-xs font-medium border transition-all ${
                   isActive
-                    ? 'border-indigo-600 bg-indigo-600 text-white shadow-md'
+                    ? 'border-red-600 bg-red-600 text-white shadow-md'
                     : 'border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100'
                 }`}
               >
@@ -273,7 +273,7 @@ export default function PdfCrossMergeTool() {
               {t('sources.current', { name: files[activeFileIndex]?.name })}
             </span>
             {isLoading && (
-              <span className="flex items-center space-x-1 text-indigo-600 font-medium">
+              <span className="flex items-center space-x-1 text-red-600 font-medium">
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
                 <span>{t('status.parsing')}</span>
               </span>
@@ -309,16 +309,16 @@ export default function PdfCrossMergeTool() {
                     onClick={() => setMobileZoomedId(isZoomed ? null : zoomId)}
                     className={`relative bg-white p-2 rounded-lg border shadow-sm transition-all duration-300 cursor-pointer ${originClass} ${
                       addedCount > 0
-                        ? 'border-indigo-500 ring-2 ring-indigo-500/20 bg-indigo-50/10'
-                        : 'border-slate-200 hover:border-indigo-400'
+                        ? 'border-red-500 ring-2 ring-red-500/25 bg-red-50/10'
+                        : 'border-slate-200 hover:border-red-400'
                     } ${
                       isZoomed
-                        ? 'scale-150 z-50 shadow-2xl ring-4 ring-indigo-500/50'
+                        ? 'scale-150 z-50 shadow-2xl ring-4 ring-red-500/50'
                         : 'hover:scale-105'
                     }`}
                   >
                     {addedCount > 0 && (
-                      <div className="absolute top-1.5 left-1.5 bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
+                      <div className="absolute top-1.5 left-1.5 bg-red-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow z-10 flex items-center space-x-0.5">
                         <Check className="w-2.5 h-2.5" />
                         <span>{addedCount}</span>
                       </div>
@@ -337,7 +337,7 @@ export default function PdfCrossMergeTool() {
                           e.stopPropagation();
                           addPageToBasket(pageIdx, src);
                         }}
-                        className="p-1 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full shadow transition-transform active:scale-90"
+                        className="p-1 bg-red-600 hover:bg-red-700 text-white rounded-full shadow transition-transform active:scale-90"
                         title={t('actions.addToBasket')}
                       >
                         <Plus className="w-3.5 h-3.5" />
@@ -354,7 +354,7 @@ export default function PdfCrossMergeTool() {
         <div className="hidden lg:block lg:col-span-1 sticky top-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
             <span className="text-xs font-semibold text-slate-500">{tCommon('preview.title')}</span>
-            <span className="text-[11px] text-indigo-600 font-bold truncate max-w-[150px]">
+            <span className="text-[11px] text-red-600 font-bold truncate max-w-[150px]">
               {activeHoverLabel}
             </span>
           </div>
@@ -376,10 +376,10 @@ export default function PdfCrossMergeTool() {
       </div>
 
       {/* 3. 底部拼装暂存篮 Drawer */}
-      <div className="bg-white rounded-xl border-2 border-indigo-500 shadow-lg p-4 space-y-4">
+      <div className="bg-white rounded-xl border-2 border-red-500 shadow-lg p-4 space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
           <div className="flex items-center space-x-2">
-            <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs font-bold">
+            <span className="bg-red-600 text-white px-2 py-0.5 rounded text-xs font-bold">
               {t('basket.title')}
             </span>
             <span className="text-xs font-bold text-slate-800">
@@ -400,7 +400,7 @@ export default function PdfCrossMergeTool() {
             <button
               onClick={handleOpenExportModal}
               disabled={isProcessing || basketItems.length === 0}
-              className="flex items-center space-x-1.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors shadow-sm"
+              className="flex items-center space-x-1.5 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors shadow-sm"
             >
               <Download className="w-4 h-4" />
               <span>{isProcessing ? t('status.generating') : t('actions.assembleExport')}</span>
@@ -435,17 +435,17 @@ export default function PdfCrossMergeTool() {
                   onClick={() => setMobileZoomedId(isZoomed ? null : zoomId)}
                   className={`relative w-32 bg-slate-50 p-2 rounded-lg border transition-all duration-300 cursor-pointer ${originClass} ${
                     draggedBasketIndex === index
-                      ? 'opacity-30 border-indigo-400 scale-95'
-                      : 'border-slate-200 hover:border-indigo-500'
+                      ? 'opacity-30 border-red-400 scale-95'
+                      : 'border-slate-200 hover:border-red-500'
                   } ${
                     isZoomed
-                      ? 'scale-150 z-50 shadow-2xl ring-4 ring-indigo-500/50 bg-white'
+                      ? 'scale-150 z-50 shadow-2xl ring-4 ring-red-500/50 bg-white'
                       : 'hover:scale-105'
                   }`}
                 >
                   {/* 顶部按钮与移动控制栏 */}
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-1 rounded">
+                    <span className="text-[10px] font-bold text-red-600 bg-red-50 px-1 rounded">
                       #{index + 1}
                     </span>
 
@@ -454,7 +454,7 @@ export default function PdfCrossMergeTool() {
                       <button
                         onClick={(e) => moveBasketItemLeft(index, e)}
                         disabled={index === 0}
-                        className="p-0.5 text-slate-400 hover:text-indigo-600 disabled:opacity-20 active:scale-90"
+                        className="p-0.5 text-slate-400 hover:text-red-600 disabled:opacity-20 active:scale-90"
                         title={t('actions.moveLeft')}
                       >
                         <ChevronLeft className="w-3.5 h-3.5" />
@@ -462,7 +462,7 @@ export default function PdfCrossMergeTool() {
                       <button
                         onClick={(e) => moveBasketItemRight(index, e)}
                         disabled={index === basketItems.length - 1}
-                        className="p-0.5 text-slate-400 hover:text-indigo-600 disabled:opacity-20 active:scale-90"
+                        className="p-0.5 text-slate-400 hover:text-red-600 disabled:opacity-20 active:scale-90"
                         title={t('actions.moveRight')}
                       >
                         <ChevronRight className="w-3.5 h-3.5" />
@@ -474,7 +474,7 @@ export default function PdfCrossMergeTool() {
                         e.stopPropagation();
                         rotateBasketItem(item.id);
                       }}
-                      className="p-0.5 text-slate-400 hover:text-indigo-600"
+                      className="p-0.5 text-slate-400 hover:text-red-600"
                       title={t('actions.rotate90')}
                     >
                       <RotateCw className="w-3 h-3" />
@@ -529,7 +529,7 @@ export default function PdfCrossMergeTool() {
               <label className="text-xs font-medium text-slate-600">
                 {t('modal.summary', { count: basketItems.length })}
               </label>
-              <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-indigo-500">
+              <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-red-500">
                 <input
                   type="text"
                   value={customFilename}
@@ -551,7 +551,7 @@ export default function PdfCrossMergeTool() {
               <button
                 onClick={handleConfirmExport}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? t('status.assembling') : tCommon('actions.confirmDownload')}</span>

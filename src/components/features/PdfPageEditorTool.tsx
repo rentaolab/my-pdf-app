@@ -151,7 +151,7 @@ export default function PdfPageEditorTool() {
 
   if (!file) {
     return (
-      <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-indigo-500 transition-colors cursor-pointer relative">
+      <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-red-500 transition-colors cursor-pointer relative">
         <input
           type="file"
           accept="application/pdf"
@@ -159,7 +159,7 @@ export default function PdfPageEditorTool() {
           className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         />
         <div className="flex flex-col items-center space-y-3">
-          <div className="p-3 bg-indigo-50 rounded-full text-indigo-600">
+          <div className="p-3 bg-red-50 rounded-full text-red-600">
             <Upload className="w-8 h-8" />
           </div>
           <div>
@@ -174,7 +174,7 @@ export default function PdfPageEditorTool() {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[300px] space-y-3">
-        <Loader2 className="w-8 h-8 text-indigo-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-red-600 animate-spin" />
         <p className="text-sm text-slate-600">{t('status.generating')}</p>
       </div>
     );
@@ -191,7 +191,7 @@ export default function PdfPageEditorTool() {
           <button
             onClick={handleOpenExportModal}
             disabled={isProcessing || selectedPages.length === 0}
-            className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors disabled:bg-slate-300 shadow-sm"
+            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors disabled:bg-slate-300 shadow-sm"
           >
             <Download className="w-4 h-4" />
             <span>{isProcessing ? tCommon('status.processing') : t('actions.exportSelected')}</span>
@@ -224,12 +224,12 @@ export default function PdfPageEditorTool() {
                   onMouseEnter={() => setActiveHoverIndex(index)}
                   onClick={() => toggleSelectPage(origIdx)}
                   className={`relative bg-white p-3 rounded-xl border-2 transition-all duration-200 cursor-pointer group shadow-sm ${originClass} ${
-                    isSelected ? 'border-indigo-600 bg-indigo-50/10' : 'border-slate-200 opacity-60 hover:opacity-100'
+                    isSelected ? 'border-red-600 bg-red-50/10' : 'border-slate-200 opacity-60 hover:opacity-100'
                   } ${
-                    draggedCardIndex === index ? 'scale-95 opacity-30 ring-2 ring-indigo-400' : ''
+                    draggedCardIndex === index ? 'scale-95 opacity-30 ring-2 ring-red-400' : ''
                   } ${
                     isMobileZoomed
-                      ? 'scale-150 z-30 shadow-2xl ring-4 ring-indigo-500/40 my-6'
+                      ? 'scale-150 z-30 shadow-2xl ring-4 ring-red-500/40 my-6'
                       : 'z-10 hover:scale-105'
                   }`}
                 >
@@ -237,7 +237,7 @@ export default function PdfPageEditorTool() {
                   <div className="flex items-center justify-between z-20 relative mb-2">
                     <div
                       className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold transition-colors ${
-                        isSelected ? 'bg-indigo-600' : 'bg-slate-300'
+                        isSelected ? 'bg-red-600' : 'bg-slate-300'
                       }`}
                     >
                       {isSelected ? <Check className="w-4 h-4" /> : index + 1}
@@ -254,7 +254,7 @@ export default function PdfPageEditorTool() {
                       className="p-1 bg-white hover:bg-slate-50 text-slate-700 rounded-full shadow border border-slate-200 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity"
                       title={t('actions.rotate90')}
                     >
-                      <RotateCw className="w-3.5 h-3.5 text-indigo-600" />
+                      <RotateCw className="w-3.5 h-3.5 text-red-600" />
                     </button>
                   </div>
 
@@ -269,7 +269,7 @@ export default function PdfPageEditorTool() {
                     <button
                       onClick={(e) => toggleMobileZoom(index, e)}
                       className={`lg:hidden absolute bottom-2 bg-slate-900/80 hover:bg-slate-900 text-white text-[11px] px-2.5 py-1 rounded-full flex items-center space-x-1 shadow-lg backdrop-blur-sm z-20 transition-transform active:scale-95 ${
-                        isMobileZoomed ? 'bg-indigo-600 ring-2 ring-white' : ''
+                        isMobileZoomed ? 'bg-red-600 ring-2 ring-white' : ''
                       }`}
                     >
                       <Eye className="w-3 h-3" />
@@ -290,7 +290,7 @@ export default function PdfPageEditorTool() {
         <div className="hidden lg:block lg:col-span-1 sticky top-6 bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-3">
           <div className="flex items-center justify-between border-b border-slate-100 pb-2">
             <span className="text-xs font-semibold text-slate-500">{tCommon('preview.title')}</span>
-            <span className="text-xs text-indigo-600 font-bold">
+            <span className="text-xs text-red-600 font-bold">
               {t('preview.position', { pos: activeHoverIndex + 1 })}
             </span>
           </div>
@@ -330,7 +330,7 @@ export default function PdfPageEditorTool() {
 
             <div className="space-y-2">
               <label className="text-xs font-medium text-slate-600">{tCommon('filename.label')}</label>
-              <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-indigo-500">
+              <div className="flex items-center space-x-2 border border-slate-300 rounded-lg p-2.5 focus-within:ring-2 focus-within:ring-red-500">
                 <input
                   type="text"
                   value={customFilename}
@@ -352,7 +352,7 @@ export default function PdfPageEditorTool() {
               <button
                 onClick={handleConfirmExport}
                 disabled={isProcessing}
-                className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
+                className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2 rounded-lg text-xs font-medium shadow-sm"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{isProcessing ? tCommon('status.processing') : tCommon('actions.confirmDownload')}</span>
