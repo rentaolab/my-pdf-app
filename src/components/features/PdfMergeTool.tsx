@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { mergePDFs } from '@/lib/pdf-merge';
-import { Upload, Trash2, FileText, Download, Crown, Sparkles, GripVertical, X } from 'lucide-react';
+import { Upload, Trash2, FileText, Download, Sparkles, GripVertical, X } from 'lucide-react';
 
 export default function PdfMergeTool() {
   const t = useTranslations('PdfMerge');
@@ -116,7 +116,7 @@ export default function PdfMergeTool() {
         </div>
         <button
           onClick={() => setIsVipUser(!isVipUser)}
-          className="bg-amber-600 text-white px-3 py-1 rounded-md font-bold hover:bg-amber-700 transition-colors"
+          className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
         >
           {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
         </button>
@@ -144,79 +144,105 @@ export default function PdfMergeTool() {
         </div>
       </div>
 
-      {/* 文件列表 (支持拖拽手柄排序) */}
+      {/* 已加载：Slate-900 控制面板 + 文件列表 */}
       {files.length > 0 && (
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 divide-y divide-slate-100">
-          <div className="p-4 bg-slate-50 rounded-t-xl font-medium text-slate-700 flex justify-between items-center">
-            <span className="text-sm">
-              {t('list.selected', {
-                count: files.length,
-                max: isVipUser ? '∞' : maxAllowedFiles,
-              })}{' '}
-              <span className="text-xs text-slate-400 font-normal">{t('list.dragHint')}</span>
-            </span>
-            <button onClick={() => setFiles([])} className="text-xs text-red-500 hover:underline">
-              {tCommon('actions.clear')}
-            </button>
+        <>
+          {/* Slate-900 现代化控制栏 */}
+          <div className="bg-slate-900 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center space-x-3 min-w-0">
+                <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-white">
+                    {t('list.selected', {
+                      count: files.length,
+                      max: isVipUser ? '∞' : maxAllowedFiles,
+                    })}
+                  </p>
+                  <p className="text-[11px] text-slate-400">
+                    {(files.reduce((sum, item) => sum + item.size, 0) / 1024 / 1024).toFixed(2)} MB
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setFiles([])}
+                  className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>{tCommon('actions.clear')}</span>
+                </button>
+
+                <button
+                  onClick={handleOpenDownloadModal}
+                  disabled={files.length < 2}
+                  className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-sm"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>{t('actions.mergeDownload')}</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
+              <p className="flex items-center space-x-1.5 text-[11px] text-slate-400">
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>
+                  {!isVipUser && files.length >= 2
+                    ? t('footer.limitReached')
+                    : isVipUser
+                    ? t('upload.vipHint')
+                    : t('upload.freeHint', { max: maxAllowedFiles })}
+                </span>
+              </p>
+            </div>
           </div>
 
-          <ul className="divide-y divide-slate-100 max-h-80 overflow-y-auto">
-            {files.map((file, index) => (
-              <li
-                key={`${file.name}-${index}`}
-                draggable
-                onDragStart={() => handleDragStart(index)}
-                onDragOver={(e) => handleDragOver(e, index)}
-                onDragEnd={handleDragEnd}
-                className={`p-4 flex items-center justify-between transition-colors bg-white ${
-                  draggedIndex === index ? 'opacity-40 bg-red-50/50' : 'hover:bg-slate-50/80'
-                }`}
-              >
-                <div className="flex items-center space-x-3 overflow-hidden">
-                  {/* 拖拽手柄图标 */}
-                  <div className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 p-1 rounded">
-                    <GripVertical className="w-5 h-5" />
+          {/* 文件列表 (支持拖拽手柄排序) */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm">
+            <div className="flex items-center space-x-1.5 border-b border-slate-100 px-4 py-3">
+              <FileText className="w-4 h-4 text-red-600" />
+              <span className="text-xs font-bold text-slate-700">{t('list.dragHint')}</span>
+            </div>
+
+            <ul className="divide-y divide-slate-100 max-h-80 overflow-y-auto">
+              {files.map((file, index) => (
+                <li
+                  key={`${file.name}-${index}`}
+                  draggable
+                  onDragStart={() => handleDragStart(index)}
+                  onDragOver={(e) => handleDragOver(e, index)}
+                  onDragEnd={handleDragEnd}
+                  className={`px-4 py-3 flex items-center justify-between transition-colors bg-white ${
+                    draggedIndex === index ? 'opacity-40 bg-red-50/50' : 'hover:bg-slate-50/80'
+                  }`}
+                >
+                  <div className="flex items-center space-x-3 overflow-hidden">
+                    {/* 拖拽手柄图标 */}
+                    <div className="cursor-grab active:cursor-grabbing text-slate-400 hover:text-slate-600 p-1 rounded">
+                      <GripVertical className="w-5 h-5" />
+                    </div>
+
+                    <FileText className="w-5 h-5 text-red-500 flex-shrink-0" />
+                    <span className="text-sm font-medium text-slate-700 truncate">{file.name}</span>
+                    <span className="text-xs text-slate-400">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                   </div>
 
-                  <FileText className="w-5 h-5 text-red-500 flex-shrink-0" />
-                  <span className="text-sm text-slate-700 truncate font-medium">{file.name}</span>
-                  <span className="text-xs text-slate-400">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
-                </div>
-
-                <div className="flex items-center space-x-2">
                   <button
                     onClick={() => setFiles(files.filter((_, i) => i !== index))}
-                    className="p-1 text-red-400 hover:text-red-600"
+                    className="p-1 text-slate-300 hover:text-red-600 transition-colors"
                     title={t('actions.removeFile')}
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          {/* 底部按钮区 */}
-          <div className="p-4 bg-slate-50 rounded-b-xl flex items-center justify-between">
-            {!isVipUser && files.length >= 2 ? (
-              <div className="flex items-center space-x-1 text-xs text-amber-600 font-medium">
-                <Crown className="w-4 h-4" />
-                <span>{t('footer.limitReached')}</span>
-              </div>
-            ) : (
-              <span />
-            )}
-
-            <button
-              onClick={handleOpenDownloadModal}
-              disabled={files.length < 2}
-              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-sm"
-            >
-              <Download className="w-4 h-4" />
-              <span>{t('actions.mergeDownload')}</span>
-            </button>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        </>
       )}
 
       {/* 自定义文件名弹窗 (Modal) */}

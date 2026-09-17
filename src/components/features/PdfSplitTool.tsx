@@ -8,6 +8,7 @@ import {
   Upload,
   Scissors,
   Download,
+  RefreshCw,
   Loader2,
   Plus,
   Eye,
@@ -214,7 +215,7 @@ export default function PdfSplitTool() {
           </div>
           <button
             onClick={() => setIsVipUser(!isVipUser)}
-            className="bg-amber-600 text-white px-3 py-1 rounded-md font-bold hover:bg-amber-700 transition-colors"
+            className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
           >
             {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
           </button>
@@ -254,32 +255,48 @@ export default function PdfSplitTool() {
 
   return (
     <div className="space-y-6">
-      {/* 顶部工具栏 */}
-      <div className="flex flex-wrap justify-between items-center gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-        <button
-          onClick={() => setFile(null)}
-          className="text-sm text-slate-600 hover:underline"
-        >
-          {tCommon('actions.reupload')}
-        </button>
+      {/* Slate-900 现代化控制栏 */}
+      <div className="bg-slate-900 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="p-2.5 bg-red-600 text-white rounded-xl shrink-0 shadow-sm shadow-red-500/30">
+              <Scissors className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm font-bold text-white truncate max-w-[200px] sm:max-w-sm">
+                {file.name}
+              </p>
+              <p className="text-[11px] text-slate-400">
+                {t('status.splitPoints', {
+                  count: splitPoints.length,
+                  max: maxAllowedSplits === Infinity ? tCommon('unlimited') : maxAllowedSplits,
+                })}
+              </p>
+            </div>
+          </div>
 
-        <div className="flex items-center space-x-4">
-          <span className="text-xs text-slate-500">
-            {t('status.splitPoints', { count: splitPoints.length, max: maxAllowedSplits === Infinity ? tCommon('unlimited') : maxAllowedSplits })}
-            
-          </span>
-          <button
-            onClick={handleOpenExportModal}
-            disabled={isProcessing || selectedPartIndexes.length === 0}
-            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-300 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>
-              {isProcessing
-                ? tCommon('status.processing')
-                : t('actions.exportSelected', { selected: selectedPartIndexes.length, total: totalParts })}
-            </span>
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setFile(null)}
+              className="flex items-center space-x-1.5 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white px-3 py-2 rounded-xl text-xs font-medium transition-colors"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>{tCommon('actions.reupload')}</span>
+            </button>
+
+            <button
+              onClick={handleOpenExportModal}
+              disabled={isProcessing || selectedPartIndexes.length === 0}
+              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 disabled:bg-slate-700 disabled:text-slate-500 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors shadow-sm"
+            >
+              <Download className="w-4 h-4" />
+              <span>
+                {isProcessing
+                  ? tCommon('status.processing')
+                  : t('actions.exportSelected', { selected: selectedPartIndexes.length, total: totalParts })}
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -292,7 +309,7 @@ export default function PdfSplitTool() {
           </span>
           <button
             onClick={toggleSelectAllParts}
-            className="text-xs text-red-600 hover:underline font-medium"
+            className="text-xs font-medium text-red-600 hover:underline"
           >
             {selectedPartIndexes.length === totalParts ? tCommon('actions.deselectAll') : t('actions.selectAllParts')}
           </button>
@@ -309,7 +326,7 @@ export default function PdfSplitTool() {
                 onClick={() => toggleSelectPart(partIdx)}
                 onMouseEnter={() => setHoveredPartIndex(partIdx)}
                 onMouseLeave={() => setHoveredPartIndex(null)}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
                   isHovered
                     ? 'border-red-600 bg-red-100 text-red-800 ring-2 ring-red-400/30 scale-105'
                     : isChecked
