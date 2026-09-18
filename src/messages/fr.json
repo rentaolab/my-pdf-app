@@ -352,7 +352,7 @@
       "perPartLabel": "Saisissez un nom de fichier pour chaque partie :"
     },
     "errors": {
-      "freeLimit": "L'offre gratuite permet jusqu'à {max} points de coupe (2 fichiers).\nPassez en mode VIP pour un découpage illimité !",
+      "freeLimit": "L'offre gratuite permet jusqu'à {max} points de coupe.\nPassez en mode VIP pour un découpage illimité !",
       "readFailed": "Impossible de lire le PDF.",
       "noPartsSelected": "Sélectionnez au moins une partie à exporter."
     },

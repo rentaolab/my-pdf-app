@@ -352,7 +352,7 @@
       "perPartLabel": "Enter a file name for each part:"
     },
     "errors": {
-      "freeLimit": "The free plan allows up to {max} break points (2 files).\nSwitch to VIP mode for unlimited splitting!",
+      "freeLimit": "The free plan allows up to {max} break points.\nSwitch to VIP mode for unlimited splitting!",
       "readFailed": "Failed to read the PDF.",
       "noPartsSelected": "Select at least one part to export."
     },

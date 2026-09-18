@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { mergePDFs } from '@/lib/pdf-merge';
+import { DEFAULT_PLAN, PLAN_LIMITS, isUnlimited, type Plan } from '@/lib/plan';
+import { SHOW_DEV_BAR } from '@/lib/flags';
 import { Upload, Trash2, FileText, Download, Sparkles, GripVertical, X, Merge } from 'lucide-react';
 
 export default function PdfMergeTool() {
@@ -18,9 +20,10 @@ export default function PdfMergeTool() {
   const [showFilenameModal, setShowFilenameModal] = useState(false);
   const [customFilename, setCustomFilename] = useState('');
 
-  // 模拟当前用户状态
-  const [isVipUser, setIsVipUser] = useState(false);
-  const maxAllowedFiles = isVipUser ? Infinity : 2;
+  // 当前套餐：Phase 0 仍为本地状态，后续由签名许可证 / 账号权益接管
+  const [plan, setPlan] = useState<Plan>(DEFAULT_PLAN);
+  const isProUser = plan === 'pro';
+  const maxAllowedFiles = PLAN_LIMITS[plan].mergeMaxFiles;
 
   // 处理文件上传与数量拦截
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,24 +106,26 @@ export default function PdfMergeTool() {
 
   return (
     <div className="space-y-6">
-      {/* 开发调试 Bar */}
-      <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
-        <div className="flex items-center space-x-2">
-          <Sparkles className="w-4 h-4 text-amber-600" />
-          <span>
-            {t('dev.modeLabel')}{' '}
-            <strong>
-              {isVipUser ? t('dev.vip') : t('dev.free', { max: maxAllowedFiles })}
-            </strong>
-          </span>
+      {/* 开发调试 Bar：仅在 NEXT_PUBLIC_SHOW_DEV_BAR=1 时渲染 */}
+      {SHOW_DEV_BAR && (
+        <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
+          <div className="flex items-center space-x-2">
+            <Sparkles className="w-4 h-4 text-amber-600" />
+            <span>
+              {t('dev.modeLabel')}{' '}
+              <strong>
+                {isProUser ? t('dev.vip') : t('dev.free', { max: maxAllowedFiles })}
+              </strong>
+            </span>
+          </div>
+          <button
+            onClick={() => setPlan(isProUser ? 'free' : 'pro')}
+            className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
+          >
+            {t('dev.switchTo')} {isProUser ? t('dev.freeMode') : t('dev.vipMode')}
+          </button>
         </div>
-        <button
-          onClick={() => setIsVipUser(!isVipUser)}
-          className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
-        >
-          {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
-        </button>
-      </div>
+      )}
 
       {/* 上传区域 */}
       <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-red-500 transition-colors cursor-pointer relative">
@@ -138,7 +143,7 @@ export default function PdfMergeTool() {
           <div>
             <p className="text-base font-medium text-slate-700">{tCommon('upload.promptMultiple')}</p>
             <p className="text-xs text-slate-500 mt-1">
-              {isVipUser ? t('upload.vipHint') : t('upload.freeHint', { max: maxAllowedFiles })}
+              {isProUser ? t('upload.vipHint') : t('upload.freeHint', { max: maxAllowedFiles })}
             </p>
           </div>
         </div>
@@ -158,7 +163,7 @@ export default function PdfMergeTool() {
                   <p className="text-sm font-bold text-white">
                     {t('list.selected', {
                       count: files.length,
-                      max: isVipUser ? '∞' : maxAllowedFiles,
+                      max: isUnlimited(maxAllowedFiles) ? tCommon('unlimited') : maxAllowedFiles,
                     })}
                   </p>
                   <p className="text-[11px] text-slate-400">
@@ -191,9 +196,9 @@ export default function PdfMergeTool() {
               <p className="flex items-center space-x-1.5 text-[11px] text-slate-400">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
                 <span>
-                  {!isVipUser && files.length >= 2
+                  {!isProUser && files.length >= 2
                     ? t('footer.limitReached')
-                    : isVipUser
+                    : isProUser
                     ? t('upload.vipHint')
                     : t('upload.freeHint', { max: maxAllowedFiles })}
                 </span>

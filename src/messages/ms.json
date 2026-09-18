@@ -352,7 +352,7 @@
       "perPartLabel": "Masukkan nama fail untuk setiap bahagian:"
     },
     "errors": {
-      "freeLimit": "Pelan percuma membenarkan sehingga {max} titik pemisah (2 fail).\nTukar ke mod VIP untuk pemisahan tanpa had!",
+      "freeLimit": "Pelan percuma membenarkan sehingga {max} titik pemisah.\nTukar ke mod VIP untuk pemisahan tanpa had!",
       "readFailed": "Gagal membaca PDF.",
       "noPartsSelected": "Pilih sekurang-kurangnya satu bahagian untuk dieksport."
     },

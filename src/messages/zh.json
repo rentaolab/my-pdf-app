@@ -352,7 +352,7 @@
       "perPartLabel": "分别输入各 Part 的导出文件名："
     },
     "errors": {
-      "freeLimit": "免费版最多插入 {max} 个拆分符（切为 2 个文件）。\n切换为 VIP 模式解锁无限拆分！",
+      "freeLimit": "免费版最多插入 {max} 个拆分符。\n切换为 VIP 模式解锁无限拆分！",
       "readFailed": "读取 PDF 失败",
       "noPartsSelected": "请至少勾选一个需要导出的文档区块！"
     },

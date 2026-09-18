@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { splitPDFByPoints } from '@/lib/pdf-split';
+import { DEFAULT_PLAN, PLAN_LIMITS, isUnlimited, type Plan } from '@/lib/plan';
+import { SHOW_DEV_BAR } from '@/lib/flags';
 import {
   Upload,
   Split,
@@ -39,9 +41,10 @@ export default function PdfSplitTool() {
   const [activeHoverIndex, setActiveHoverIndex] = useState<number>(0);
   const [mobileZoomedIndex, setMobileZoomedIndex] = useState<number | null>(null);
 
-  // 模拟 VIP 权限状态
-  const [isVipUser, setIsVipUser] = useState(false);
-  const maxAllowedSplits = isVipUser ? Infinity : 1;
+  // 当前套餐：Phase 0 仍为本地状态，后续由签名许可证 / 账号权益接管
+  const [plan, setPlan] = useState<Plan>(DEFAULT_PLAN);
+  const isProUser = plan === 'pro';
+  const maxAllowedSplits = PLAN_LIMITS[plan].splitMaxBreaks;
 
   // 下载确认弹窗状态
   const [showFilenameModal, setShowFilenameModal] = useState(false);
@@ -204,23 +207,26 @@ export default function PdfSplitTool() {
   if (!file) {
     return (
       <div className="space-y-6">
-        <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
-          <div className="flex items-center space-x-2">
-            <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>
-              {t('dev.modeLabel')}
-              <strong>
-                {isVipUser ? t('dev.vip') : t('dev.free', { max: maxAllowedSplits })}
-              </strong>
-            </span>
+        {/* 开发调试 Bar：仅在 NEXT_PUBLIC_SHOW_DEV_BAR=1 时渲染 */}
+        {SHOW_DEV_BAR && (
+          <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
+            <div className="flex items-center space-x-2">
+              <Sparkles className="w-4 h-4 text-amber-600" />
+              <span>
+                {t('dev.modeLabel')}
+                <strong>
+                  {isProUser ? t('dev.vip') : t('dev.free', { max: maxAllowedSplits })}
+                </strong>
+              </span>
+            </div>
+            <button
+              onClick={() => setPlan(isProUser ? 'free' : 'pro')}
+              className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
+            >
+              {t('dev.switchTo')} {isProUser ? t('dev.freeMode') : t('dev.vipMode')}
+            </button>
           </div>
-          <button
-            onClick={() => setIsVipUser(!isVipUser)}
-            className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
-          >
-            {t('dev.switchTo')} {isVipUser ? t('dev.freeMode') : t('dev.vipMode')}
-          </button>
-        </div>
+        )}
 
         <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-red-500 transition-colors cursor-pointer relative">
           <input
@@ -270,7 +276,7 @@ export default function PdfSplitTool() {
               <p className="text-[11px] text-slate-400">
                 {t('status.splitPoints', {
                   count: splitPoints.length,
-                  max: maxAllowedSplits === Infinity ? tCommon('unlimited') : maxAllowedSplits,
+                  max: isUnlimited(maxAllowedSplits) ? tCommon('unlimited') : maxAllowedSplits,
                 })}
               </p>
             </div>

@@ -352,7 +352,7 @@
       "perPartLabel": "Introduce un nombre de archivo para cada parte:"
     },
     "errors": {
-      "freeLimit": "El plan gratuito permite hasta {max} puntos de corte (2 archivos).\n¡Cambia al modo VIP para dividir sin límites!",
+      "freeLimit": "El plan gratuito permite hasta {max} puntos de corte.\n¡Cambia al modo VIP para dividir sin límites!",
       "readFailed": "No se pudo leer el PDF.",
       "noPartsSelected": "Selecciona al menos una parte para exportar."
     },

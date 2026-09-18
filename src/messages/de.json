@@ -352,7 +352,7 @@
       "perPartLabel": "Dateinamen für jeden Teil eingeben:"
     },
     "errors": {
-      "freeLimit": "Der kostenlose Tarif erlaubt bis zu {max} Trennstellen (2 Dateien).\nWechsle in den VIP-Modus für unbegrenztes Teilen!",
+      "freeLimit": "Der kostenlose Tarif erlaubt bis zu {max} Trennstellen.\nWechsle in den VIP-Modus für unbegrenztes Teilen!",
       "readFailed": "Die PDF konnte nicht gelesen werden.",
       "noPartsSelected": "Bitte mindestens einen Teil zum Exportieren auswählen."
     },
