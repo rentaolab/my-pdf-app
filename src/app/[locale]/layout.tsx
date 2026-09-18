@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
@@ -20,10 +20,22 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+/**
+ * Canonical origin of this sub-brand. Required so Open Graph / Twitter image
+ * URLs resolve to absolute paths (e.g. https://pdf.reeff.app/opengraph-image.png).
+ * Future verticals (image./audio./receipt.reeff.app) only change this constant.
+ */
+const SITE_URL = "https://pdf.reeff.app";
+
+export const viewport: Viewport = {
+  themeColor: "#0F172A",
+};
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("Metadata");
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: t("title"),
     description: t("description"),
   };
