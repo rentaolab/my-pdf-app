@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · Free Online PDF Tools",
-    "description": "Free, privacy-first PDF toolkit that runs entirely in your browser. Merge, split, rotate, crop and edit PDF files without uploading them."
+    "title": "Reeff.PDF · Free Online PDF Tools for Office Chores",
+    "description": "Free browser-based PDF tools for everyday office chores: merge, split, rotate, crop, edit and convert PDFs. No installs, no sign-up, no waiting for uploads."
   },
   "LanguageSwitcher": {
     "label": "Language"
@@ -144,9 +144,9 @@
     "toggleMenu": "Open or close the navigation menu"
   },
   "HomePage": {
-    "heroTitle": "Lightweight, minimal <highlight>PDF tools</highlight>",
-    "heroSubtitle": "No installs, no file size limits. Everything runs in your browser's memory — your files never leave your device.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Processed locally in your browser"
+    "heroTitle": "Free <highlight>PDF tools</highlight> for everyday office chores.",
+    "heroSubtitle": "Light, fast, simple — no installs, no sign-up, no waiting for uploads. One tool does one job, right in your browser.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Office chores, sorted."
   },
   "PdfMerge": {
     "dev": {

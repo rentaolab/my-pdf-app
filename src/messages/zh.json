@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · 免费在线 PDF 工具",
-    "description": "免费、隐私优先的浏览器端 PDF 工具箱。合并、拆分、旋转、裁剪和编辑 PDF，全程无需上传文件。"
+    "title": "Reeff.PDF · 免费在线 PDF 工具，搞定办公杂活",
+    "description": "免费、运行在浏览器里的 PDF 工具：合并、拆分、旋转、裁剪、编辑与转换，专治日常办公杂活。不装软件、不用注册、不用等上传。"
   },
   "LanguageSwitcher": {
     "label": "选择语言"
@@ -144,9 +144,9 @@
     "toggleMenu": "打开或关闭导航菜单"
   },
   "HomePage": {
-    "heroTitle": "轻巧、极简的 <highlight>PDF 处理工具</highlight>",
-    "heroSubtitle": "无需安装，无文件大小限制。所有处理均在本地内存完成，数据零上传。",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 本地加密处理"
+    "heroTitle": "免费 <highlight>PDF 工具</highlight>，搞定日常办公杂活",
+    "heroSubtitle": "轻·快·简：不装软件、不用注册、不用等上传。一个工具只做一件事，全部在浏览器里完成。",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 办公杂活，交给 Reeff"
   },
   "PdfMerge": {
     "dev": {

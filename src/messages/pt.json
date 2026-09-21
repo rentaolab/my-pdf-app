@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · Ferramentas PDF online gratuitas",
-    "description": "Kit de ferramentas PDF gratuito e focado na privacidade, executado inteiramente no navegador. Combine, divida, gire, recorte e edite PDF sem enviar arquivos."
+    "title": "Reeff.PDF · Ferramentas PDF gratuitas para tarefas de escritório",
+    "description": "Ferramentas PDF gratuitas que rodam no navegador: juntar, dividir, girar, recortar, editar e converter. Para as tarefas de escritório do dia a dia. Sem instalação, sem cadastro, sem espera de upload."
   },
   "LanguageSwitcher": {
     "label": "Idioma"
@@ -144,9 +144,9 @@
     "toggleMenu": "Abrir ou fechar o menu de navegação"
   },
   "HomePage": {
-    "heroTitle": "Ferramentas <highlight>PDF</highlight> leves e minimalistas",
-    "heroSubtitle": "Sem instalação e sem limite de tamanho. Tudo é processado na memória do navegador — seus arquivos nunca são enviados.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Processado localmente no navegador"
+    "heroTitle": "<highlight>Ferramentas PDF gratuitas</highlight> para as tarefas de escritório",
+    "heroSubtitle": "Leves, rápidas e simples: sem instalação, sem cadastro, sem espera de upload. Uma ferramenta, uma tarefa, no seu navegador.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Tarefas de escritório, resolvidas."
   },
   "PdfMerge": {
     "dev": {

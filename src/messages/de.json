@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · Kostenlose Online-PDF-Tools",
-    "description": "Kostenloses PDF-Toolkit mit Fokus auf Datenschutz, das komplett im Browser läuft. PDFs zusammenfügen, teilen, drehen, zuschneiden und bearbeiten – ohne Upload."
+    "title": "Reeff.PDF · Kostenlose Online-PDF-Tools für Büro-Kleinkram",
+    "description": "Kostenlose PDF-Tools, die im Browser laufen: zusammenfügen, teilen, drehen, zuschneiden, bearbeiten und umwandeln. Für den Büro-Alltag. Keine Installation, keine Anmeldung, kein Warten auf Uploads."
   },
   "LanguageSwitcher": {
     "label": "Sprache"
@@ -144,9 +144,9 @@
     "toggleMenu": "Navigationsmenü öffnen oder schließen"
   },
   "HomePage": {
-    "heroTitle": "Leichtgewichtige, minimalistische <highlight>PDF-Werkzeuge</highlight>",
-    "heroSubtitle": "Keine Installation, keine Dateigrößenbeschränkung. Alles läuft im Speicher deines Browsers – deine Dateien werden nie hochgeladen.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Lokal im Browser verarbeitet"
+    "heroTitle": "Kostenlose <highlight>PDF-Tools</highlight> für den Büro-Alltag",
+    "heroSubtitle": "Leicht, schnell, einfach: keine Installation, keine Anmeldung, kein Warten auf Uploads. Ein Tool, eine Aufgabe, direkt im Browser.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Büro-Kleinkram, erledigt."
   },
   "PdfMerge": {
     "dev": {

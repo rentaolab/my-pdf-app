@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · 무료 온라인 PDF 도구",
-    "description": "브라우저에서 실행되는 무료·개인정보 보호 중심 PDF 도구입니다. 업로드 없이 PDF 병합, 분할, 회전, 자르기, 편집을 지원합니다."
+    "title": "Reeff.PDF · 사무실 잡무를 끝내는 무료 PDF 도구",
+    "description": "브라우저에서 실행되는 무료 PDF 도구. 병합·분할·회전·자르기·편집·변환으로 사무실 잡무를 끝냅니다. 설치 없음, 가입 없음, 업로드 대기 없음."
   },
   "LanguageSwitcher": {
     "label": "언어"
@@ -144,9 +144,9 @@
     "toggleMenu": "내비게이션 메뉴 열기 또는 닫기"
   },
   "HomePage": {
-    "heroTitle": "가볍고 미니멀한 <highlight>PDF 도구</highlight>",
-    "heroSubtitle": "설치가 필요 없고 파일 크기 제한도 없습니다. 모든 처리는 브라우저 메모리에서 이루어지며 파일은 업로드되지 않습니다.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 브라우저에서 로컬 처리"
+    "heroTitle": "사무실 잡무를 끝내는 <highlight>무료 PDF 도구</highlight>",
+    "heroSubtitle": "가볍고 빠르고 단순하게. 설치 없음, 가입 없음, 업로드 대기 없음. 하나의 도구는 하나의 일만, 브라우저 안에서.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 사무실 잡무는 Reeff에게"
   },
   "PdfMerge": {
     "dev": {

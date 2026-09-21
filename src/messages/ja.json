@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · 無料オンラインPDFツール",
-    "description": "ブラウザだけで完結する無料・プライバシー重視のPDFツール。アップロード不要でPDFの結合・分割・回転・トリミング・編集ができます。"
+    "title": "Reeff.PDF · オフィス雑務を片付ける無料 PDF ツール",
+    "description": "ブラウザで動く無料 PDF ツール。結合・分割・回転・切り抜き・編集・変換で、日常のオフィス雑務を片付けます。インストール不要、登録不要、アップロード待ちなし。"
   },
   "LanguageSwitcher": {
     "label": "言語"
@@ -144,9 +144,9 @@
     "toggleMenu": "ナビゲーションメニューの開閉"
   },
   "HomePage": {
-    "heroTitle": "軽量でミニマルな<highlight>PDFツール</highlight>",
-    "heroSubtitle": "インストール不要、ファイルサイズ制限なし。すべてブラウザ内のメモリで処理され、ファイルはアップロードされません。",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · ブラウザ内でローカル処理"
+    "heroTitle": "日常のオフィス雑務を片付ける<highlight>無料 PDF ツール</highlight>",
+    "heroSubtitle": "軽く・速く・シンプル。インストール不要、登録不要、アップロード待ちなし。1つのツールが1つの仕事だけを、ブラウザの中で。",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · オフィスの雑務は、Reeff に。"
   },
   "PdfMerge": {
     "dev": {

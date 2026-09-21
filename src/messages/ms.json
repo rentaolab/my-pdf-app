@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · Alat PDF Dalam Talian Percuma",
-    "description": "Kit alat PDF percuma dan mengutamakan privasi yang berjalan sepenuhnya dalam pelayar. Gabung, pisah, putar, pangkas dan edit PDF tanpa memuat naik fail."
+    "title": "Reeff.PDF · Alat PDF Online Percuma untuk Kerja Pejabat",
+    "description": "Alat PDF percuma yang berjalan dalam pelayar: gabung, pisah, putar, pangkas, edit dan tukar format. Untuk kerja pejabat harian. Tiada pemasangan, tiada pendaftaran, tiada menunggu muat naik."
   },
   "LanguageSwitcher": {
     "label": "Bahasa"
@@ -144,9 +144,9 @@
     "toggleMenu": "Buka atau tutup menu navigasi"
   },
   "HomePage": {
-    "heroTitle": "Alat <highlight>PDF</highlight> yang ringan dan minimal",
-    "heroSubtitle": "Tanpa pemasangan dan tanpa had saiz fail. Semua diproses dalam memori pelayar — fail anda tidak dimuat naik.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Diproses secara setempat dalam pelayar"
+    "heroTitle": "<highlight>Alat PDF percuma</highlight> untuk kerja pejabat harian",
+    "heroSubtitle": "Ringan, pantas, mudah — tiada pemasangan, tiada pendaftaran, tiada menunggu muat naik. Satu alat, satu tugas, terus dalam pelayar.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Kerja-kerja kecil pejabat, serahkan pada Reeff"
   },
   "PdfMerge": {
     "dev": {

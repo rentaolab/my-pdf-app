@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Reeff.PDF · Outils PDF en ligne gratuits",
-    "description": "Boîte à outils PDF gratuite et respectueuse de la vie privée, exécutée entièrement dans le navigateur. Fusionnez, divisez, faites pivoter, recadrez et modifiez des PDF sans téléversement."
+    "title": "Reeff.PDF · Outils PDF gratuits pour les petites tâches de bureau",
+    "description": "Des outils PDF gratuits qui tournent dans le navigateur : fusionner, diviser, pivoter, recadrer, modifier et convertir. Pour les petites tâches de bureau du quotidien. Pas d'installation, pas d'inscription, pas d'attente d'envoi."
   },
   "LanguageSwitcher": {
     "label": "Langue"
@@ -144,9 +144,9 @@
     "toggleMenu": "Ouvrir ou fermer le menu de navigation"
   },
   "HomePage": {
-    "heroTitle": "Des <highlight>outils PDF</highlight> légers et minimalistes",
-    "heroSubtitle": "Aucune installation, aucune limite de taille. Tout est traité dans la mémoire du navigateur — vos fichiers ne sont jamais téléversés.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Traité localement dans le navigateur"
+    "heroTitle": "Des <highlight>outils PDF gratuits</highlight> pour vos petites tâches de bureau",
+    "heroSubtitle": "Légers, rapides, simples : pas d'installation, pas d'inscription, pas d'attente d'envoi. Un outil, une tâche, directement dans le navigateur.",
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Petites tâches de bureau, réglées."
   },
   "PdfMerge": {
     "dev": {
