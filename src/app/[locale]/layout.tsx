@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { alternatesFor } from "@/lib/seo";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -32,12 +33,26 @@ export const viewport: Viewport = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("Metadata");
+  const [t, locale] = await Promise.all([getTranslations("Metadata"), getLocale()]);
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: t("title"),
+    // Tool pages only set their own title, so the template adds the brand for them
+    // while the home page keeps its full localized title.
+    title: { default: t("title"), template: "%s · Reeff.PDF" },
     description: t("description"),
+    alternates: alternatesFor("", locale),
+    openGraph: {
+      type: "website",
+      siteName: "Reeff.PDF",
+      title: t("title"),
+      description: t("description"),
+      url: `/${locale}`,
+      // Explicit on purpose: setting openGraph here would otherwise drop the image
+      // that the file convention (src/app/opengraph-image.png) attaches.
+      images: [{ url: "/opengraph-image.png", width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -46,6 +61,22 @@ export default async function LocaleLayout({
 }: LayoutProps<"/[locale]">) {
   const locale = await getLocale();
 
+  // Site-level structured data: the brand entity plus the toolkit itself.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebSite", name: "Reeff.PDF", url: SITE_URL, inLanguage: locale },
+      {
+        "@type": "SoftwareApplication",
+        name: "Reeff.PDF",
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Any modern web browser",
+        url: SITE_URL,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+    ],
+  };
+
   return (
     <html
       lang={locale}
@@ -53,6 +84,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
   );

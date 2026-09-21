@@ -45,7 +45,8 @@
     "preview": {
       "title": "Live-Vorschau"
     },
-    "unlimited": "Unbegrenzt"
+    "unlimited": "Unbegrenzt",
+    "relatedTools": "Verwandte Tools"
   },
   "Tools": {
     "organize": {

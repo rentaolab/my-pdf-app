@@ -1,6 +1,9 @@
+import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Navbar from '@/components/layout/Navbar';
+import { alternatesFor } from '@/lib/seo';
 import {
   Layers,
   Merge,
@@ -15,6 +18,19 @@ import {
   GripHorizontal,
   ArrowUpRight,
 } from 'lucide-react';
+
+/**
+ * The home page keeps the layout's full localized title (no template) and only
+ * adds the description + canonical/hreflang for its own path.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const [t, locale] = await Promise.all([getTranslations('Metadata'), getLocale()]);
+
+  return {
+    description: t('description'),
+    alternates: alternatesFor('', locale),
+  };
+}
 
 export default function Home() {
   const t = useTranslations();

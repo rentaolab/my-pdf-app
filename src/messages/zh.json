@@ -45,7 +45,8 @@
     "preview": {
       "title": "实时大图预览"
     },
-    "unlimited": "无限"
+    "unlimited": "无限",
+    "relatedTools": "相关工具"
   },
   "Tools": {
     "organize": {

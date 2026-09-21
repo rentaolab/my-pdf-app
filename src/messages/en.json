@@ -45,7 +45,8 @@
     "preview": {
       "title": "Live preview"
     },
-    "unlimited": "Unlimited"
+    "unlimited": "Unlimited",
+    "relatedTools": "Related tools"
   },
   "Tools": {
     "organize": {

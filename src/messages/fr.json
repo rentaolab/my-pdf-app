@@ -45,7 +45,8 @@
     "preview": {
       "title": "Aperçu en direct"
     },
-    "unlimited": "Illimité"
+    "unlimited": "Illimité",
+    "relatedTools": "Outils associés"
   },
   "Tools": {
     "organize": {

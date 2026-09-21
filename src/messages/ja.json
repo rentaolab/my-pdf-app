@@ -45,7 +45,8 @@
     "preview": {
       "title": "リアルタイムプレビュー"
     },
-    "unlimited": "無制限"
+    "unlimited": "無制限",
+    "relatedTools": "関連ツール"
   },
   "Tools": {
     "organize": {
