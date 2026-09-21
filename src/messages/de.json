@@ -625,5 +625,37 @@
       "noImages": "Bitte zuerst mindestens ein Bild hinzufügen.",
       "exportFailed": "Beim Erstellen der PDF ist ein Fehler aufgetreten."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "So funktioniert es",
+    "stepPick": "Datei auswählen oder ablegen — hochgeladen wird nichts.",
+    "stepDownload": "Ergebnis herunterladen. Kein Konto, keine Warteschlange, kein Wasserzeichen.",
+    "privacy": "Alles läuft im Browser. Die Datei verlässt dein Gerät nicht.",
+    "intro": {
+      "organize": "Baue ein PDF so auf, wie du es brauchst: Seiten per Drag verschieben, drehen, leere Seiten einfügen oder Seiten aus einer anderen Datei übernehmen. Praktisch, wenn ein Scan in falscher Reihenfolge zurückkommt.",
+      "merge": "Fasse mehrere PDFs in einem Dokument zusammen — in genau der Reihenfolge, die du bestimmst. Ziehe die Dateien vor dem Export an die richtige Position.",
+      "split": "Teile ein PDF in mehrere Dateien. Setze Trennstellen dort, wo geteilt werden soll, und exportiere nur die benötigten Teile.",
+      "rotate": "Korrigiere Seiten, die seitlich oder kopfüber gescannt wurden. Drehe die ausgewählten Seiten um 90° oder 180° oder spiegele sie.",
+      "reorderPages": "Ändere die Seitenreihenfolge eines PDFs im visuellen Raster: Seitenkarten ziehen, einzelne Seiten drehen und in der neuen Reihenfolge exportieren.",
+      "deletePages": "Entferne unerwünschte Seiten aus einem PDF. Klicke die Seiten an oder nutze bei langen Dokumenten die Gerade/Ungerade-Auswahl und den Seitenbereich.",
+      "extractPages": "Ziehe ausgewählte Seiten aus einem PDF und exportiere sie als neues Dokument oder als ZIP einzelner Seiten.",
+      "crop": "Beschneide Ränder oder einen Bereich auf jeder Seite mit acht Griffen. Der Zuschnitt gilt für das ganze Dokument, gerade oder ungerade Seiten oder deine Auswahl.",
+      "edit": "Füge Textboxen, weiße Abdeckungen und eine handschriftliche Unterschrift ins PDF ein und lade die Datei direkt herunter.",
+      "pdfToImage": "Wandle PDF-Seiten in hochauflösende PNG-, JPG- oder WebP-Bilder um. Wähle die Auflösung bis 300 DPI und lade einzelne Seiten oder alles als ZIP.",
+      "imageToPdf": "Erzeuge ein einzelnes PDF aus PNG-, JPG- oder WebP-Bildern. Ziehe die Bilder in die richtige Reihenfolge und lege Format, Ausrichtung und Rand fest."
+    },
+    "stepAction": {
+      "organize": "Seitenkarten in die gewünschte Reihenfolge ziehen",
+      "merge": "Dateien in die gewünschte Reihenfolge ziehen",
+      "split": "Zwischen zwei Seiten klicken, um eine Trennstelle zu setzen",
+      "rotate": "Seiten auswählen und drehen oder spiegeln",
+      "reorderPages": "Seitenkarten in die neue Reihenfolge ziehen",
+      "deletePages": "Die zu löschenden Seiten anklicken",
+      "extractPages": "Die Seiten auswählen, die bleiben sollen",
+      "crop": "Mit den Griffen den gewünschten Bereich aufziehen",
+      "edit": "Textbox platzieren oder Unterschrift zeichnen",
+      "pdfToImage": "Ausgabeformat und Auflösung wählen",
+      "imageToPdf": "Bilder sortieren und Papierformat wählen"
+    }
   }
 }

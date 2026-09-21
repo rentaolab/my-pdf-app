@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Navbar from "@/components/layout/Navbar";
 import RelatedTools from "@/components/layout/RelatedTools";
+import ToolContent from "@/components/layout/ToolContent";
 import { SITE_URL } from "@/lib/seo";
 
 /**
@@ -48,6 +49,8 @@ export default function ToolPageShell({
         </div>
 
         {children}
+
+        <ToolContent toolKey={toolKey} />
 
         <RelatedTools currentPath={path} />
       </main>

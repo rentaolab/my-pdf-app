@@ -625,5 +625,37 @@
       "noImages": "Add at least one image first.",
       "exportFailed": "Something went wrong while creating the PDF."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "How it works",
+    "stepPick": "Pick or drop your file — there is nothing to upload.",
+    "stepDownload": "Download the result. No account, no queue, no watermark.",
+    "privacy": "Everything runs in your browser. Your file never leaves your device.",
+    "intro": {
+      "organize": "Rebuild a PDF the way you want it: drag pages into a new order, rotate them, insert blank pages, or pull pages in from another file. Handy when a scan comes back in the wrong order.",
+      "merge": "Combine several PDFs into a single document, in exactly the order you choose. Drag the files to fix the sequence before you export.",
+      "split": "Cut one PDF into several files. Insert break points where the splits should happen, then export only the parts you need.",
+      "rotate": "Fix pages that were scanned sideways or upside down. Rotate the selected pages by 90° or 180°, or mirror them horizontally and vertically.",
+      "reorderPages": "Change the page order of a PDF on a visual grid: drag page cards around, rotate single pages, then export them in the new sequence.",
+      "deletePages": "Remove unwanted pages from a PDF. Click the pages you want to delete, or use the odd/even shortcut and the range field on long documents.",
+      "extractPages": "Pull selected pages out of a PDF and export them as one new document, or as a ZIP of single-page files.",
+      "crop": "Trim margins or cut to a region on every page with eight drag handles. Apply the crop to the whole document, odd or even pages, or just the pages you select.",
+      "edit": "Add text boxes, white-out blocks and a handwritten signature to a PDF, then download the edited file.",
+      "pdfToImage": "Turn PDF pages into high-resolution PNG, JPG or WebP images. Choose the resolution you need, up to 300 DPI, then download single pages or the whole set as a ZIP.",
+      "imageToPdf": "Build a single PDF from PNG, JPG or WebP images. Drag the images into order and set the page size, orientation and margin."
+    },
+    "stepAction": {
+      "organize": "Drag the page cards into the order you want.",
+      "merge": "Drag the files into the order you want.",
+      "split": "Click between two pages to add a break point.",
+      "rotate": "Select the pages, then rotate or flip them.",
+      "reorderPages": "Drag the page cards into their new order.",
+      "deletePages": "Click the pages you want to remove.",
+      "extractPages": "Select the pages you want to keep.",
+      "crop": "Drag the handles around the area to keep.",
+      "edit": "Place a text box or draw your signature.",
+      "pdfToImage": "Pick an output format and resolution.",
+      "imageToPdf": "Drag the images into order and pick a page size."
+    }
   }
 }

@@ -625,5 +625,37 @@
       "noImages": "Añade primero al menos una imagen.",
       "exportFailed": "Ocurrió un error al crear el PDF."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "Cómo funciona",
+    "stepPick": "Elige o arrastra tu archivo; no se sube nada.",
+    "stepDownload": "Descarga el resultado. Sin cuenta, sin colas, sin marca de agua.",
+    "privacy": "Todo se ejecuta en tu navegador. El archivo nunca sale de tu dispositivo.",
+    "intro": {
+      "organize": "Reconstruye un PDF como quieras: arrastra las páginas para reordenarlas, gíralas, inserta páginas en blanco o trae páginas de otro archivo. Muy útil cuando un escaneo llega desordenado.",
+      "merge": "Une varios PDF en un solo documento, exactamente en el orden que elijas. Arrastra los archivos para corregir la secuencia antes de exportar.",
+      "split": "Divide un PDF en varios archivos. Coloca los puntos de corte donde quieras separarlo y exporta solo las partes que necesitas.",
+      "rotate": "Corrige páginas escaneadas de lado o al revés. Gira las páginas seleccionadas 90° o 180°, o voltéalas horizontal y verticalmente.",
+      "reorderPages": "Cambia el orden de las páginas de un PDF en una cuadrícula visual: arrastra las tarjetas, gira páginas sueltas y expórtalas en la nueva secuencia.",
+      "deletePages": "Elimina páginas que no quieras de un PDF. Haz clic en las páginas que sobran o usa la selección de pares/impares y el rango de páginas en documentos largos.",
+      "extractPages": "Extrae las páginas elegidas de un PDF y expórtalas como un documento nuevo o como un ZIP de archivos de una página.",
+      "crop": "Recorta los márgenes o una zona en todas las páginas con ocho tiradores. Aplica el recorte al documento completo, a las páginas pares o impares, o solo a tu selección.",
+      "edit": "Añade cuadros de texto, bloques de borrado y una firma manuscrita a un PDF, y descarga el archivo editado.",
+      "pdfToImage": "Convierte las páginas de un PDF en imágenes PNG, JPG o WebP de alta resolución. Elige la resolución hasta 300 DPI y descarga páginas sueltas o todo en un ZIP.",
+      "imageToPdf": "Crea un solo PDF a partir de imágenes PNG, JPG o WebP. Arrastra las imágenes para ordenarlas y define el tamaño de página, la orientación y el margen."
+    },
+    "stepAction": {
+      "organize": "Arrastra las tarjetas al orden que quieras",
+      "merge": "Arrastra los archivos al orden que quieras",
+      "split": "Haz clic entre dos páginas para añadir un punto de corte",
+      "rotate": "Selecciona las páginas y gíralas o voltéalas",
+      "reorderPages": "Arrastra las tarjetas a su nueva posición",
+      "deletePages": "Haz clic en las páginas que quieras quitar",
+      "extractPages": "Selecciona las páginas que quieras conservar",
+      "crop": "Arrastra los tiradores alrededor de la zona a conservar",
+      "edit": "Coloca un cuadro de texto o dibuja tu firma",
+      "pdfToImage": "Elige el formato de salida y la resolución",
+      "imageToPdf": "Ordena las imágenes y elige un tamaño de página"
+    }
   }
 }

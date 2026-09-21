@@ -625,5 +625,37 @@
       "noImages": "Ajoutez d’abord au moins une image.",
       "exportFailed": "Une erreur est survenue lors de la création du PDF."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "Comment ça marche",
+    "stepPick": "Choisissez ou déposez votre fichier — rien n'est envoyé.",
+    "stepDownload": "Téléchargez le résultat. Sans compte, sans file d'attente, sans filigrane.",
+    "privacy": "Tout se passe dans votre navigateur. Votre fichier ne quitte jamais votre appareil.",
+    "intro": {
+      "organize": "Reconstruisez un PDF comme vous le voulez : déplacez les pages par glisser-déposer, faites-les pivoter, insérez des pages blanches ou récupérez des pages d'un autre fichier. Pratique quand un scan revient dans le désordre.",
+      "merge": "Réunissez plusieurs PDF dans un seul document, exactement dans l'ordre que vous choisissez. Faites glisser les fichiers pour corriger l'ordre avant d'exporter.",
+      "split": "Découpez un PDF en plusieurs fichiers. Placez les points de coupe là où la séparation doit se faire, puis n'exportez que les parties utiles.",
+      "rotate": "Redressez les pages scannées de travers ou à l'envers. Faites pivoter les pages sélectionnées de 90° ou 180°, ou retournez-les horizontalement et verticalement.",
+      "reorderPages": "Changez l'ordre des pages d'un PDF sur une grille visuelle : faites glisser les vignettes, faites pivoter certaines pages, puis exportez-les dans le nouvel ordre.",
+      "deletePages": "Supprimez les pages inutiles d'un PDF. Cliquez sur les pages à retirer, ou utilisez la sélection pair/impair et la plage de pages pour les longs documents.",
+      "extractPages": "Extrayez les pages choisies d'un PDF et exportez-les dans un nouveau document, ou dans un ZIP de fichiers d'une page.",
+      "crop": "Recadrez les marges ou une zone sur chaque page grâce à huit poignées. Appliquez le recadrage à tout le document, aux pages paires ou impaires, ou à votre sélection.",
+      "edit": "Ajoutez des zones de texte, des masques blancs et une signature manuscrite à un PDF, puis téléchargez le fichier modifié.",
+      "pdfToImage": "Convertissez les pages d'un PDF en images PNG, JPG ou WebP haute résolution. Choisissez la résolution jusqu'à 300 DPI, puis téléchargez une page ou l'ensemble en ZIP.",
+      "imageToPdf": "Créez un seul PDF à partir d'images PNG, JPG ou WebP. Faites glisser les images dans l'ordre voulu et réglez le format, l'orientation et les marges."
+    },
+    "stepAction": {
+      "organize": "Faites glisser les vignettes dans l'ordre voulu",
+      "merge": "Faites glisser les fichiers dans l'ordre voulu",
+      "split": "Cliquez entre deux pages pour placer un point de coupe",
+      "rotate": "Sélectionnez les pages puis faites-les pivoter ou retournez-les",
+      "reorderPages": "Faites glisser les vignettes dans le nouvel ordre",
+      "deletePages": "Cliquez sur les pages à supprimer",
+      "extractPages": "Sélectionnez les pages à conserver",
+      "crop": "Encadrez la zone à garder avec les poignées",
+      "edit": "Placez une zone de texte ou dessinez votre signature",
+      "pdfToImage": "Choisissez le format et la résolution",
+      "imageToPdf": "Réorganisez les images et choisissez un format de page"
+    }
   }
 }

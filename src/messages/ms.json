@@ -625,5 +625,37 @@
       "noImages": "Tambah sekurang-kurangnya satu imej dahulu.",
       "exportFailed": "Berlaku masalah semasa menghasilkan PDF."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "Cara guna",
+    "stepPick": "Pilih atau lepaskan fail anda — tiada apa yang dimuat naik.",
+    "stepDownload": "Muat turun hasilnya. Tiada akaun, tiada giliran, tiada tera air.",
+    "privacy": "Semuanya berjalan dalam pelayar anda. Fail anda tidak keluar dari peranti anda.",
+    "intro": {
+      "organize": "Bina semula PDF ikut cara anda: seret halaman untuk susun semula, putarkan, selitkan halaman kosong atau ambil halaman daripada fail lain. Berguna apabila imbasan tersusun salah.",
+      "merge": "Gabungkan beberapa PDF menjadi satu dokumen, tepat mengikut susunan yang anda pilih. Seret fail untuk betulkan susunan sebelum eksport.",
+      "split": "Pisahkan satu PDF kepada beberapa fail. Letakkan titik pemisah di tempat yang anda mahu, kemudian eksport bahagian yang perlu sahaja.",
+      "rotate": "Betulkan halaman yang diimbas senget atau terbalik. Putarkan halaman terpilih 90° atau 180°, atau cerminkan secara mendatar dan menegak.",
+      "reorderPages": "Tukar susunan halaman PDF pada grid visual: seret kad halaman, putarkan halaman tertentu, kemudian eksport dalam susunan baharu.",
+      "deletePages": "Buang halaman yang tidak diperlukan daripada PDF. Klik halaman yang mahu dibuang, atau guna pilihan ganjil/genap dan julat halaman untuk dokumen panjang.",
+      "extractPages": "Keluarkan halaman terpilih daripada PDF dan eksport sebagai satu dokumen baharu, atau sebagai ZIP fail satu halaman.",
+      "crop": "Potong margin atau satu kawasan pada setiap halaman dengan lapan pemegang. Gunakan potongan pada seluruh dokumen, halaman ganjil atau genap, atau pilihan anda sahaja.",
+      "edit": "Tambah kotak teks, blok penutup putih dan tandatangan tulisan tangan pada PDF, kemudian muat turun fail yang telah diedit.",
+      "pdfToImage": "Tukar halaman PDF kepada imej PNG, JPG atau WebP resolusi tinggi. Pilih resolusi sehingga 300 DPI, kemudian muat turun halaman tunggal atau kesemuanya dalam ZIP.",
+      "imageToPdf": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret imej untuk susun atur dan tetapkan saiz halaman, orientasi dan margin."
+    },
+    "stepAction": {
+      "organize": "Seret kad halaman ke susunan yang dikehendaki",
+      "merge": "Seret fail ke susunan yang dikehendaki",
+      "split": "Klik antara dua halaman untuk letak titik pemisah",
+      "rotate": "Pilih halaman, kemudian putar atau cerminkan",
+      "reorderPages": "Seret kad halaman ke susunan baharu",
+      "deletePages": "Klik halaman yang mahu dibuang",
+      "extractPages": "Pilih halaman yang mahu dikekalkan",
+      "crop": "Seret pemegang mengelilingi kawasan yang mahu dikekalkan",
+      "edit": "Letakkan kotak teks atau lukis tandatangan anda",
+      "pdfToImage": "Pilih format output dan resolusi",
+      "imageToPdf": "Susun imej dan pilih saiz halaman"
+    }
   }
 }

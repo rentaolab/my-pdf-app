@@ -625,5 +625,37 @@
       "noImages": "Adicione pelo menos uma imagem primeiro.",
       "exportFailed": "Ocorreu um erro ao criar o PDF."
     }
+  },
+  "ToolContent": {
+    "howItWorks": "Como funciona",
+    "stepPick": "Escolha ou arraste seu arquivo — nada é enviado.",
+    "stepDownload": "Baixe o resultado. Sem conta, sem fila, sem marca d'água.",
+    "privacy": "Tudo roda no seu navegador. O arquivo nunca sai do seu dispositivo.",
+    "intro": {
+      "organize": "Reconstrua um PDF do jeito que você quer: arraste as páginas para reordenar, gire, insira páginas em branco ou traga páginas de outro arquivo. Ótimo quando uma digitalização vem fora de ordem.",
+      "merge": "Junte vários PDFs em um único documento, exatamente na ordem que você escolher. Arraste os arquivos para ajustar a sequência antes de exportar.",
+      "split": "Divida um PDF em vários arquivos. Insira os pontos de corte onde a separação deve acontecer e exporte só as partes que precisar.",
+      "rotate": "Corrija páginas digitalizadas de lado ou de cabeça para baixo. Gire as páginas selecionadas em 90° ou 180°, ou espelhe na horizontal e na vertical.",
+      "reorderPages": "Mude a ordem das páginas de um PDF numa grade visual: arraste os cartões, gire páginas individuais e exporte na nova sequência.",
+      "deletePages": "Remova páginas indesejadas de um PDF. Clique nas páginas que quer excluir ou use a seleção de pares/ímpares e o intervalo de páginas em documentos longos.",
+      "extractPages": "Extraia as páginas escolhidas de um PDF e exporte como um documento novo ou como um ZIP de arquivos de uma página.",
+      "crop": "Corte as margens ou uma região em todas as páginas com oito alças. Aplique o corte ao documento inteiro, às páginas pares ou ímpares, ou só à sua seleção.",
+      "edit": "Adicione caixas de texto, blocos de branco e uma assinatura à mão em um PDF, e baixe o arquivo editado.",
+      "pdfToImage": "Converta páginas de PDF em imagens PNG, JPG ou WebP em alta resolução. Escolha a resolução, até 300 DPI, e baixe páginas avulsas ou tudo em ZIP.",
+      "imageToPdf": "Monte um único PDF a partir de imagens PNG, JPG ou WebP. Arraste as imagens para ordenar e defina o tamanho da página, a orientação e a margem."
+    },
+    "stepAction": {
+      "organize": "Arraste os cartões para a ordem desejada",
+      "merge": "Arraste os arquivos para a ordem desejada",
+      "split": "Clique entre duas páginas para inserir um ponto de corte",
+      "rotate": "Selecione as páginas e gire ou espelhe",
+      "reorderPages": "Arraste os cartões para a nova ordem",
+      "deletePages": "Clique nas páginas que quer remover",
+      "extractPages": "Selecione as páginas que quer manter",
+      "crop": "Arraste as alças ao redor da área a manter",
+      "edit": "Posicione uma caixa de texto ou desenhe sua assinatura",
+      "pdfToImage": "Escolha o formato de saída e a resolução",
+      "imageToPdf": "Ordene as imagens e escolha o tamanho da página"
+    }
   }
 }
