@@ -1,406 +1,337 @@
-# Reeff 变现模型 v1（免费 / 注册 / 订阅 + 激励广告）
+# Reeff 变现模型 v2（全功能免费 · 页面广告 · 会员预留）
 
-> 本文档是**商业化的唯一依据**。变更时请同步更新：
-> `src/lib/plan.ts`（功能限额）、`src/messages/*.json`（额度与升级文案）、
-> `/privacy` 与 `/terms`、导出流程组件、`edit`/`organize` 的遮罩组件。
+> **状态：v2 已取代 v1（2026-10-20）。**
+> v2 的核心变化：**取消配额、取消登录前置、取消激励广告、取消工具遮罩**。
+> 11 个工具**全部免费、无限次使用与导出**；收入**只来自页面展示广告**；
+> 会员（去广告）作为**未来可选项**，现在不实现。
 >
+> v1 的完整设计与论证保存在 git 历史（`71485da:docs/monetization.md`），
+> 本文档**附录 A** 保留了可复用的关键设计，将来重启会员时不必重写。
+>
+> 本文档是商业化的唯一依据。变更时同步更新：
+> `src/lib/ads.ts`（版位与开关）、`src/components/ads/*`、`src/messages/*.json`（广告标签）、
+> `/privacy` 与 `/terms`（子域当前**尚无**这两个页面，见 §4.4）。
 > 相关文档：`docs/brand-brief.md`（品牌定位与 Never-do 清单）。
 
 ---
 
-## 0. 一页速览（决策表）
+## 0. 一页速览
 
-| | **匿名（未登录）** | **注册未订阅** | **订阅** |
-|---|---|---|---|
-| **可用工具** | 9 个开放工具 | 11 个（含 edit / organize **可操作**） | 11 个 |
-| **edit / organize** | 🔒 遮罩，仅可浏览页面 | ✅ 可操作，❌ **不可导出** | ✅ 可操作 + ✅ 可导出 |
-| **每日免费导出** | **每工具 1 次** → 全站 ≤ **9 次/天** | **每工具 3 次** → 9 个开放工具共 ≤ **27 次/天** | **无限** |
-| **额度用完后** | 看激励广告 → 解锁 1 次导出 | 看激励广告 → 解锁 1 次导出 | — |
-| **edit / organize 导出** | — | 仅订阅（无广告解锁路径） | ✅ |
-| **页面广告** | 内容区展示（每页 ≤1–2 个） | 内容区展示 | **无广告** |
-
-**定价（待最终确认）**：$19 / 年（或再加 $2.99 / 月）；PPP 区域用折扣码给 ~$9 / 年。
-
----
-
-## 1. 工具分组与标识
-
-`toolKey` 与 i18n 的 `Tools.<key>` / `ToolPages.<key>` 完全一致，共 11 个：
-
-| 分组 | toolKey | 路由 |
+| 维度 | **现在（v2）** | 未来（可选，v3） |
 |---|---|---|
-| **A. 开放工具（9 个）** | `merge` | `/merge-pdf` |
-| | `split` | `/split-pdf` |
-| | `rotate` | `/rotate-pdf` |
-| | `reorderPages` | `/reorder-pdf-pages` |
-| | `deletePages` | `/delete-pdf-pages` |
-| | `extractPages` | `/extract-pdf-pages` |
-| | `crop` | `/crop-pdf` |
-| | `pdfToImage` | `/pdf-to-image` |
-| | `imageToPdf` | `/image-to-pdf` |
-| **B. 受限工具（2 个）** | `edit` | `/edit-pdf` |
-| | `organize` | `/organize-pdf` |
+| 可用工具 | **11 个全部可用**（含 `edit` / `organize`） | 不变 |
+| 使用次数 | **无限制** | 不变 |
+| 导出次数 | **无限制、无水印** | 不变 |
+| 登录 / 账号 | **不需要**（全站无服务端状态） | 会员需要 |
+| 服务端 / DB | **不需要**（纯静态即可运行） | 订阅校验需要 |
+| 收入 | **页面展示广告** | 广告 + 去广告订阅 |
+| 广告 | 每页 ≤2 个内容位 + 1 个移动锚定；导出流程内**零广告** | 会员零广告 |
 
-- **配额桶只有 9 个**（A 组）。B 组不参与配额与激励广告。
-- 密钥/常量放在 `src/lib/plan.ts` 或新建 `src/lib/entitlements.ts`，**不要在各组件里硬编码**。
+**三条不可退让的底线（广告模式的生死线）**
+
+1. 加广告**不能让工具变慢或变难用** —— 广告只在空白区域，**工具工作区零广告**
+2. **导出 / 下载按钮附近禁放广告** —— Google 政策原文见 §4.1，这是最高频的封号原因
+3. 广告被拦截时**工具照常可用**（不提示、不惩罚、不留白块）
+
+### 为什么放弃 v1（配额 + 激励广告 + 会员）
+
+| v1 的问题 | v2 的判断 |
+|---|---|
+| 配额直接砍掉"打开即用"的卖点，与品牌三支柱（打开就能用／不排队／交代清楚）冲突 | 免费无门槛才是这类工具的转化核心；**先要流量** |
+| 账号 + DB + 服务端计数 + webhook + 遮罩 ≈ 2–3 周工程量，且全部发生在**收到第一分钱之前** | 广告可以先上线，工程量≈一个组件 + 一个配置文件 |
+| 激励广告要自建 opt-in 屏 + 事件状态机 + 兜底，而"看广告换导出"本质是负向体验 | **不做** |
+| "1 次/工具/天"极易被截图传播成"假免费"，伤害口碑 | **不做** |
+| 没有流量时，会员定价与价值主张无从验证 | 先用广告验证流量与留存，4–8 周后再谈会员 |
 
 ---
 
-## 2. 额度规则（定量）
+## 1. 收入模型（先把预期摆正）
 
-| 规则 | 值 |
+**计费口径**：`月收入 ≈ 月广告曝光 ÷ 1000 × RPM`，
+其中 `曝光 ≈ 月 PV × 每页平均成功填充的广告位数量`（经验值 1.2–1.6）。
+
+| 月 PV | 曝光（×1.5） | @ RPM $0.8 | @ RPM $1.5 | @ RPM $3.0 |
+|---|---|---|---|---|
+| 10,000 | 15,000 | $12 | $23 | $45 |
+| 50,000 | 75,000 | $60 | $113 | $225 |
+| 200,000 | 300,000 | $240 | $450 | $900 |
+| 1,000,000 | 1,500,000 | $1,200 | $2,250 | $4,500 |
+
+> **RPM 是假设值**，必须用 Ad Manager 实测替换。
+> 工具类站点的全球混合流量通常低于内容站；US / EU 占比越高、RPM 越高。
+> 成本侧：Cloudflare 免费额度 + 域名 ≈ **$1/月** → 约 **1,000 PV/月即可覆盖成本**。
+
+**三句必须记住的结论**
+
+1. 广告模式在**成本上**立刻成立，但**绝对收入取决于流量**，不要指望早期收入；
+2. 本阶段唯一该优化的是：**收录与点击（SEO）→ 工具完成率 → 曝光**；
+3. 会员不是"更高级的产品"，而是**流量足够大时才值得做的 ARPU 提升**（门槛见 §6.1）。
+
+---
+
+## 2. 广告位规划
+
+设计原则：广告只出现在**用户不需要专注的位置**，且**远离所有"下载／导出／操作"按钮**。
+
+| 版位 | 位置 | 尺寸 | 端 | 说明 |
+|---|---|---|---|---|
+| **P1 顶部横幅** | Navbar 下方、工具工作区**上方** | 970×90 ／ 728×90 ／ 320×100（响应式） | 全 | 桌面用 970/728，移动用 320×100；高度必须预留（防 CLS） |
+| **P2 工作区下方** | 工具卡片与正文（`ToolContent`）之间 | 336×280 ／ 300×250 ／ fluid | 全 | 用户"已经做完事"才看到，转化损失最小 |
+| **P3 正文内** | 正文第 2 段之后（首页 / 长文页） | fluid（in-article） | 全 | 每页只放 1 个 |
+| **P4 移动锚定** | 屏幕底部（可关闭） | auto | 仅移动 | AdSense 自动广告的 Anchor，或在 GAM 中用固定 slot + 自建可关闭 UI 实现 |
+| ❌ **禁止** | 工具工作区内部、文件拖放区、**导出按钮周边 96px**、按钮与按钮之间 | — | — | 政策红线（§4.1） |
+| ❌ **禁止** | 弹出式／插屏／带声自动播放视频 | — | — | Better Ads Standards + 体验 |
+
+**每页上限**：1 个 P1 + 1 个 P2（或 P3）+ 1 个 P4（仅移动）
+→ **桌面 ≤2 个内容位，移动 ≤3 个**。
+
+**导出流程内零广告**：凡是有"下载／导出"按钮的那一屏，**不放任何广告**。
+将来若做成步骤式导出视图，同样适用（那里是政策高危区）。
+
+---
+
+## 3. 技术实现（Google Ad Manager / GPT）
+
+### 3.1 选型
+
+| 方案 | 结论 |
 |---|---|
-| 匿名：每工具每日免费导出 | **1 次** |
-| 匿名：全站每日上限（9 个工具各 1 次） | **9 次** |
-| 注册未订阅：每工具每日免费导出 | **3 次** |
-| 注册未订阅：全站每日上限 | **27 次** |
-| 订阅：导出 | 无限 |
-| 激励广告解锁 | **+1 次**，不缓存、不叠加，仅限 A 组 9 个工具 |
-| B 组（edit / organize）免费导出 | **0**（仅订阅） |
-| 额度重置 | 登录用户按 **UTC 日期桶**；匿名按**本地日期桶** |
-| 超额且广告不可用 | **放行本次导出**（见 §4.3，防死锁） |
+| **Google Ad Manager（GAM）** | ✅ **推荐**：版位/尺寸统一管理、可用 house line item 兜底、将来对会员关闭广告只换 unit、报表更细 |
+| AdSense 直接接入 | 起步更简单，但控制力弱、后期迁到 GAM 要改代码；可作为 GAM 的需求来源（能否关联以账号类型说明为准） |
+| 第三方网络（Ezoic 等） | ❌ 现在不引入：脚本重、伤 LCP，与"快"的定位冲突 |
 
-> **为什么"每工具分别计数"**：对"随手用多个工具"的普通用户宽容（流量与口碑），
-> 对"同一个工具一天用很多次"的高频用户收紧（这才是该付费的人）。
-> 代价是全站免费总量偏大（匿名 9 / 注册 27），这是刻意的取舍。
+> GAM / AdSense 都需要**申请 + 站点审核**（人工复核，时间不定）→ **今天就提交**，
+> 代码可以先写好、ID 拿到后填进 `src/lib/ads.ts`。
 
-## 3. 配额系统设计
+### 3.2 文件与职责
 
-### 3.1 登录用户：服务端计数（唯一可信来源）
+| 文件 | 职责 |
+|---|---|
+| `src/lib/ads.ts` | **单一配置源**：`ADS_ENABLED`、`NETWORK_CODE`、版位表（`p1`/`p2`/`p3`/`anchor` → ad unit path + 尺寸组） |
+| `src/components/ads/AdSlot.tsx` | 客户端组件：懒加载 → `defineSlot` → `display` → 高度预留；`enabled=false` 时**渲染 `null`**（不留 DOM） |
+| `src/components/ads/AdProvider.tsx` | 提供 `enabled`（现在恒 `true`）；将来读到会员 `adFree` 即置 `false` → **广告组件零改动** |
+| `src/components/ads/ConsentBanner.tsx` | CMP（EEA / 英国）；未同意前**不加载任何广告脚本** |
+| `public/ads.txt` | 授权卖方清单（必须落在 `pdf.reeff.app/ads.txt` 根路径） |
 
-**表结构**（Postgres 版本；下方附 D1/SQLite 差异）
+### 3.3 GPT 生命周期（Next 客户端路由的坑，必须逐条照做）
 
-```sql
-create table if not exists export_quota (
-  user_id    text        not null,          -- 账号 ID
-  tool_key   text        not null,          -- 9 个开放工具的 key
-  day        text        not null,          -- UTC 日期 YYYY-MM-DD
-  used       integer     not null default 0,
-  updated_at timestamptz not null default now(),
-  primary key (user_id, tool_key, day)
-);
-```
+| 要求 | 原因 |
+|---|---|
+| `googletag` 脚本与 `enableServices()` **全站只执行一次**（`window.__reeffAds` 单例守卫） | 重复 `enableServices` 会导致 slot 行为异常 |
+| 路由变化（`usePathname()`）时：先 `destroySlots(旧 slot)` → 再 `defineSlot` + `display` 新容器 | 否则旧 slot 残留在新页面（"广告串页"） |
+| `defineSlot` 的 `divId` 每次唯一（`useId()`） | 复用 id 会拿到已销毁的空容器 |
+| 组件卸载时 `return () => destroySlots(...)` | 防内存泄漏与幽灵曝光 |
+| **不要**用 `refresh()` 硬刷同一 slot 制造曝光 | 可能被判无效流量（扣款风险） |
+| 逻辑只在客户端（`"use client"`），SSR 阶段不触碰 `window.googletag` | 静态导出后必须保证首屏不报错 |
 
-D1 / SQLite 差异：`updated_at text not null default current_timestamp`，其余相同
-（SQLite 3.35+ 支持 `RETURNING` 与 `ON CONFLICT ... DO UPDATE ... WHERE`）。
+### 3.4 性能与 CLS（必须达标）
 
-**原子"检查并扣减"**（并发安全，不要在应用层做 read-then-write）：
+| 项 | 要求 |
+|---|---|
+| 脚本加载 | `next/script` `strategy="afterInteractive"`，且**仅在** `ADS_ENABLED` **且**已取得同意时加载 |
+| 首屏 | P1 **不得**把工具工作区推出首屏；移动端必要时隐藏 P1、只留 P4 |
+| 高度预留 | 容器 `min-height` 与尺寸组一致（90 / 250 / 280 / 100）；无填充时折叠为 0，**不允许跳动** |
+| 无填充 | 折叠容器并移除外边距；**不要**留空白灰块 |
+| 广告被拦截 | 与无填充同处理：静默折叠，工具完全可用，**不弹任何提示** |
+| 目标 | **CLS < 0.1**；LCP 相对"关广告"回归 **< 10%**（用 PageSpeed Insights 对比） |
+
+### 3.5 开关
+
+- `NEXT_PUBLIC_ADS_ENABLED`：`false` → 全站**零广告请求**（本地开发、staging、紧急关闭用）
+- 会员预留：`AdProvider.enabled` 现在恒 `true`；将来 = `!session.isAdFree`
+
+---
+
+## 4. 合规（不做 = 封号，逐条核对）
+
+### 4.1 广告位置政策（官方原文）
+
+> *"Publishers are not permitted to encourage users to click on Google ads in any way.
+> This includes implementing the ads in a way that they might be mistaken for other site
+> content, such as a menu, navigation, or download links. **Be careful when placing links,
+> play buttons, download buttons, navigation buttons (e.g., "Previous" or "Next"), game
+> windows, video players, drop-down menus, or applications near ads because they might lead
+> to accidental clicks. Even if the layout unintentionally leads to accidental clicks,
+> publishers may still receive a violation notification.**"*
+> —— Google AdSense《Ad placement policies》
+
+**对我们的硬约束**
+
+| 要求 | 落地做法 |
+|---|---|
+| 导出／下载按钮附近禁放广告 | 广告与"导出"按钮之间**至少隔一个独立区块**（分割线 + ≥96px 间距），且**不在同一张卡片内** |
+| 广告不得伪装成 UI | 广告容器背景/边框与工具卡片明显不同；不与文件列表、按钮同色同形状 |
+| 必须标注 | 广告上方固定小字标签：中文「广告」／英文「Advertisement」（i18n `Ads.label`）；官方只允许 "Advertisements" / "Sponsored Links" 这类明确标注 |
+| 不得诱导点击 | 全站文案不得出现"点广告支持我们""看广告帮助站点"之类表述 |
+| 不得用箭头/动画指向广告 | 广告容器内不放装饰性指引、不做闪烁 |
+| 移动锚定不得遮挡操作 | anchor 与底部导出按钮保持安全距离，且用户可关闭 |
+| Better Ads Standards | 不做插屏、不做带声自动播放、不做大面积遮挡 |
+
+### 4.2 ads.txt 与授权卖方
+
+> *"You must not: place Google-served ads on a domain that uses ads.txt where you are not
+> included as an authorized seller of the inventory in the ads.txt file."*
+
+- `https://pdf.reeff.app/ads.txt` 必须 **200**，内容为 Google 提供的行
+  （形如 `google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0`）
+- **按 host 生效**：`pdf.reeff.app` 与 `reeff.app` 是不同 host，各自需要自己的 `ads.txt`
+
+### 4.3 CMP 与同意（EEA / 英国）
+
+- 必须使用 **Google 认证的 CMP**（TCF v2.2）；**未取得同意前不得加载广告脚本或写广告 Cookie**
+- 建议直接用 GAM 内置的 **Privacy & messaging / Funding Choices**（免费、合规、零开发）
+- 非 EEA 用户：至少提供"隐私设置"入口，可随时撤回同意
+- 同意状态必须**与广告请求联动**（Consent Mode），不能只是弹个窗了事
+
+### 4.4 隐私政策与条款（当前缺口）
+
+| 现状 | 需要做 |
+|---|---|
+| ⚠️ `pdf.reeff.app` **没有** `/privacy`、`/terms` 页面，页脚也没有链接（品牌页在 `reeff.app` 根域，属另一个仓库） | ① 在子域新增 `/privacy`、`/terms`（10 语言，至少 en + zh 完整）② 或在页脚链接到 `https://reeff.app/privacy`；**广告审核时同域更稳，建议子域也放一份** |
+| 隐私政策需新增的内容 | 第三方广告（Google）Cookie 与标识符、个性化广告说明与 opt-out 入口、CMP 同意记录、数据保留期、联系方式 |
+| 现有 `ToolContent.privacy` 文案（"文件不离开设备"） | ✅ **依然正确，不要改**；只需补充一句"广告由 Google 提供，与文件处理无关" |
+| `/terms` | 免费、无 SLA、页面含广告、第三方链接免责 |
+
+---
+
+## 5. 指标与实验
+
+| 指标 | 来源 | 用途 |
+|---|---|---|
+| PV / UV / 国家分布 | Cloudflare Analytics（迁移后） | 判断 RPM 天花板 |
+| 广告曝光 / 可见曝光 / viewability | Ad Manager 报表 | 版位质量 |
+| RPM、会话 RPM | Ad Manager | 收入基线 |
+| 工具完成率（上传 → 导出） | 轻量埋点（**无 Cookie、无 PII**，如 Plausible 或自建计数端点） | 广告是否损伤体验 |
+| CLS / LCP | PageSpeed Insights（开/关广告对比） | 性能底线 |
+
+**实验（一次只改一个变量）**
+
+1. P2 vs P3 的 RPM 与跳出率
+2. 移动锚定开 / 关
+3. P1 桌面 970 vs 728
+4. 每页 2 位 vs 3 位（观察完成率是否变差）
+
+**决策点**：连续 4 周数据后回答两个问题 ——
+① 广告是否已覆盖成本并随流量增长？② 加会员是否会显著提高 ARPU？（门槛见 §6.1）
+
+---
+
+## 6. 未来：去广告会员（预留，不现在做）
+
+### 6.1 触发条件（任一满足再启动）
+
+- 月 PV ≥ 50,000 **且** 连续 3 个月 RPM 稳定；或
+- 用户反馈中出现明确的付费意愿信号（≥10 例，或问卷 ≥5% 愿付）
+
+### 6.2 形态
+
+| 项 | 设计 |
+|---|---|
+| 卖点 | **只有一件事：去广告**（不做功能分级、不做配额） |
+| 价格 | $12–19 / 年（PPP 折扣另议） |
+| 结算 | Lemon Squeezy（商户审核需提前 2–4 周排期） |
+| 账号 | 仅用于"证明订阅有效"：Google 一键登录 + 会话 |
+| 权益 | `adFree = true` → `AdProvider.enabled = false`（**零重构**） |
+| 退款 | 遵循 LS 政策 + 自助取消 |
+
+### 6.3 届时需要新增（复用附录 A）
+
+账号 / 会话 / DB / LS webhook —— 但**不需要**配额表、**不需要**激励广告、
+**不需要**工具遮罩。工程量约为 v1 的 40%。
+
+---
+
+## 7. 实现顺序与验收
+
+> 每一步独立可验收后再进入下一步。
+
+### Step 1 · 申请与账号（今天提交，等审核）
+- Ad Manager（推荐）或 AdSense；提交站点 `pdf.reeff.app`
+- **验收**：审核通过，拿到 `pub-` ID 与至少 1 个 ad unit
+
+### Step 2 · 广告组件骨架（可在拿到 ID 前完成）
+- 产出：`src/lib/ads.ts`、`AdProvider`、`AdSlot`、`ConsentBanner` 骨架、`NEXT_PUBLIC_ADS_ENABLED` 开关
+- **验收**：`ADS_ENABLED=false` 时全站**零**广告 DOM、零外部请求
+  （DevTools Network 过滤 `googlesyndication` / `doubleclick` 结果为 0）
+
+### Step 3 · 接入 3 个版位
+- 产出：`ToolPageShell` 接 P1 + P2；首页接 P3；移动端 P4
+- **验收**：任一工具页广告数 ≤2（桌面）/ ≤3（移动）；**导出按钮 96px 内无任何广告容器**；
+  Lighthouse 移动端 **CLS < 0.1**
+
+### Step 4 · 合规补齐
+- 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查
+- **验收**：`curl -I https://pdf.reeff.app/ads.txt` → `200`；
+  `/en/privacy` 可访问且含广告 Cookie 说明；`robots.txt` 不屏蔽 `/`（当前已 `allow: "/"` ✅）
+
+### Step 5 · 灰度上线
+- 产出：先只在 2 个高流量工具页开广告 → 观察 1 周 → 全量
+- **验收**：Ad Manager 有曝光；CLS / LCP 未回归；GSC 无异常波动
+
+### Step 6 · 观察 4 周 → 会员决策
+- **验收**：产出《广告 4 周报告》（PV、曝光、RPM、完成率、CLS），并给出"是否启动会员"的结论
+
+---
+
+## 8. 端到端用例（上线前必须手测）
+
+| # | 用例 | 期望 |
+|---|---|---|
+| 1 | 任意工具全流程（上传 → 处理 → 导出） | 成功，**无任何次数限制提示** |
+| 2 | 每页广告数量 | 桌面 ≤2、移动 ≤3，无第三个内容位 |
+| 3 | 导出按钮周边 | 96px 内无广告容器；广告不与其同卡片 |
+| 4 | 广告标签 | 每个广告上方有「广告 / Advertisement」 |
+| 5 | `NEXT_PUBLIC_ADS_ENABLED=false` | 零广告、零广告请求，工具完全正常 |
+| 6 | 开启 AdBlock | 工具完全正常；**不提示**；无空白块（折叠） |
+| 7 | EEA 用户首次访问 | 出现 CMP；拒绝后 **无广告请求**（Network 面板验证） |
+| 8 | 客户端路由切换（工具 A → 工具 B） | 广告正确重渲染，无"串页 / 空白 / 重复" |
+| 9 | 无填充（Ad Manager 测试流量或强制） | 容器折叠，不留灰块，不遮挡内容 |
+| 10 | 移动端 anchor | 可关闭；不遮挡导出按钮与正文关键操作 |
+| 11 | Lighthouse（移动） | CLS < 0.1；LCP 相对关广告回归 < 10% |
+| 12 | `ads.txt` | `https://pdf.reeff.app/ads.txt` → 200 且含授权行 |
+
+---
+
+## 9. 开放问题
+
+| # | 问题 | 现状 / 建议 |
+|---|---|---|
+| 1 | GAM 还是 AdSense 起步 | 建议 GAM（控制力强）；若审核太慢，先用 AdSense 上线，后续迁 GAM |
+| 2 | 移动端是否保留 P1 | 待 A/B；担心首屏被挤压 → 可只留 P4 |
+| 3 | CMP 自建还是 GAM 内置 | 建议 GAM 内置 Funding Choices（免费、合规、零开发） |
+| 4 | 是否接第二个广告网络（瀑布流） | 暂不接；先看单一网络的填充率与 RPM |
+| 5 | 会员启动时点 | 见 §6.1 门槛，不设死日期 |
+| 6 | 广告是否按语言/地区差异化 | 先统一；看 Ad Manager 报表里各语言的 RPM 差异再定 |
+
+---
+
+## 附录 A · v1（配额 + 激励广告 + 会员）可复用设计摘要
+
+> 完整版：`git show 71485da:docs/monetization.md`
+
+- **工具分组**：A 组 9 个开放工具、B 组 `edit` / `organize`；配额桶 9 个
+- **额度**：匿名 1 次/工具/天（≤9/天）、注册 3 次/工具/天（≤27/天）、订阅无限
+- **服务端原子扣减**（D1 / SQLite 与 Postgres 通用写法）：
 
 ```sql
 insert into export_quota (user_id, tool_key, day, used)
 values (:userId, :toolKey, :day, 1)
 on conflict (user_id, tool_key, day)
-  do update set used = export_quota.used + 1, updated_at = now()
+  do update set used = export_quota.used + 1
   where export_quota.used < :limit
-returning used;
+returning used;            -- 无返回行 = 额度已用尽
 ```
 
-- 返回一行 → 扣减成功，本次导出放行
-- **没有返回行** → 额度已用完（`used >= limit`）→ 进入激励广告流程
-- `:limit` 由身份决定：注册未订阅 = 3，订阅 = 不查表（直接放行）
-
-接口形态（Route Handler / Worker）：
-
-| 方法 | 路径 | 作用 |
-|---|---|---|
-| `POST` | `/api/export/consume` | 扣减一次额度，返回 `{ allowed: boolean, remaining: number }` |
-| `GET` | `/api/export/quota?tool=merge` | 只读查询（用于按钮文案"今日剩余 N 次"） |
-
-### 3.2 匿名用户：客户端计数（诚实用户设计）
-
-- **键格式**：`reeff.quota.v1.<toolKey>.<YYYY-MM-DD>` → 已用次数（字符串数字）
-- **日期桶**：本地时区日期（`toLocaleDateString('sv-SE')` 或手动格式化，避免 UTC 偏移）
-- **读写**：`getUsed(toolKey)` / `consume(toolKey)`；每次写前重新读取（多标签页共享同一 origin）
-- **存储不可用时（Safari 隐私模式 / 禁用 storage / 配额满）**：**按 used = 0 处理并放行**（fail-open），
-  同时埋点记录 —— 这与"清缓存即可重置"属同一类已知且接受的绕过，不要让它变成"正常用户被卡住"。
-- **每日上限校验**：匿名只看单工具计数（1 次/天），无需全站校验（全站 9 次是自然上限）。
-
-### 3.3 边界情况（必须在实现时处理）
-
-| 情况 | 处理 |
-|---|---|
-| 跨午夜 | 以"打开导出视图那一刻"的日期为准；导出一半跨天不重算 |
-| 换设备 / 换浏览器 | 匿名不迁移（额度归零）；登录用户跟随账号 ✅ |
-| 用户改系统时间 | 匿名可被绕过（已接受）；登录用户用服务端 UTC，不受影响 ✅ |
-| 多标签页并发点击 | 登录用户：服务端原子 upsert 保证不超发；客户端加**单飞标志 + 按钮 disabled** |
-| 额度刚好在导出过程中被用掉 | 以 `/api/export/consume` 的返回值为准，失败则不执行导出 |
-| 存储被清空 | 匿名额度重置（已接受）；登录用户不受影响 ✅ |
-
-### 3.4 与 `plan.ts` 的分工（不要混淆两件事）
-
-| 关注点 | 归属 | 例子 |
-|---|---|---|
-| **功能限额**（工具能力上限） | `src/lib/plan.ts` | merge 最多 2 个文件、split 最多 1 个断点、DPI 上限 |
-| **导出次数**（本文件的配额） | 本文档 §2/§3 | 匿名 1 次/工具/天、注册 3 次/工具/天 |
-| **权益来源** | 会话（登录）→ DB 里的订阅记录 | 订阅 = 无限 + 去广告 + B 组可导出 |
-
-> 三者都从同一个 `plan` 概念派生，但**不可互相替代**：功能限额拦的是"单次任务的规模"，
-> 导出次数拦的是"使用频率"。实现时分别读取，不要合成一个数。
-
-## 4. 激励广告（Google Ad Manager · rewarded ads for web）
-
-> 依据（已核实的官方文档《Traffic rewarded ads for web》）：
-> - *"The rewarded ad experience allows users to **voluntarily opt in** to an ad experience in exchange for a reward."*
-> - *"Examples of a rewarded ad experience: ... **3 news articles**, 10 gold coins, an extra life in a game, **wifi access at an airport**"* → **内容/功能门槛是官方认可的用法，且不限于游戏**
-> - *"The display must be in view for **5 seconds** for a reward to be granted."*（display 需求）
-> - *"**Differentiate rewarded versus non‑rewarded ads. Do not show a rewarded prompt for a non‑rewarded ad.**"*
-> - *"You **cannot** submit requests for multiple rewarded ads at the same time."*
-> - *"**Destroy the ad slot when `rewardedSlotClosed` is called.**"*
-> - *"Publishers are responsible for creating and displaying the screen where the user **opts in**, and for delivering the reward."*
-
-### 4.1 前置条件（Ad Manager 侧）
-
-| # | 事项 | 说明 |
-|---|---|---|
-| 1 | Ad Manager 账号 | 免费但需审核 → **尽早申请** |
-| 2 | 创建 ad unit + line item | Reward 字段默认 "1 reward"，可设 **Reward type = `export`，Reward amount = `1`**（与业务语义对齐） |
-| 3 | 关闭保护 | **Block non‑instream video ads** 必须关闭，否则不填充 |
-| 4 | viewport meta | rewarded 仅对 mobile optimized 页面生效（项目已具备 ✅） |
-| 5 | `ads.txt` | 按 host 生效 → **`pdf.reeff.app/ads.txt` 必须单独提供** |
-| 6 | CMP + Consent Mode | EEA / 英国必需（Google 认证 CMP） |
-
-### 4.2 导出流程状态机（事件驱动，**不要自己写倒计时**）
-
-```
-[点击导出]
-   │
-   ├─ 订阅 / 仍有免费额度 ──────────────► exporting（直接导出）
-   │
-   └─ 额度用尽
-        │
-        ▼
-     optIn（自建 opt-in 屏："看一段广告，换 1 次导出"）
-        │ 用户确认                    │ 用户取消 → 回到 idle（不扣额度）
-        ▼
-     requesting（请求一个 rewarded slot，同一时刻只能有一个）
-        │
-        ├─ SlotRenderEndedEvent.isEmpty = true ─► fallbackGrant（放行）
-        ├─ 8 秒超时 / 抛错 / 被拦截 ────────────► fallbackGrant（放行）
-        └─ 广告开始播放
-              │
-              ├─ rewardedSlotGranted  ─► unlockOnce = true ─► exporting
-              └─ 用户中途关闭（未 granted）
-                     └─ rewardedSlotClosed → 不发奖 → 提示"未完成观看，未获得导出机会"（可重试）
-        │
-        └─ 任意路径结束后：rewardedSlotClosed → **销毁该 slot**（官方要求，不可复用）
-```
-
-**硬性实现要求**
-- `unlockOnce` 只对**当前这一次**导出有效：用完即清，不缓存、不叠加
-- 同一时刻**只能存在一个** rewarded slot；上一个未关闭前禁止请求下一个
-- 展示广告位**绝不能**被包装成"看了就送导出"（官方明令禁止给非奖励广告配奖励提示）
-
-### 4.3 兜底规则（必须实现，防死锁）
-
-| 情况 | 处理 | 理由 |
-|---|---|---|
-| `isEmpty`（无填充） | **放行本次导出** | 这是**我们的库存问题**，不是用户的问题 |
-| 请求超时（8s）/ JS 异常 | **放行本次导出** | 同上 |
-| 检测到 AdBlock | 按策略：**默认不放行**，友好提示"请关闭广告拦截，或订阅免广告" + 订阅按钮 | 这是**用户的选择**（业务决定），但做成开关（见下） |
-| 用户中途关闭广告 | 不发奖，允许重试 | 官方要求提示会失去奖励 |
-| 放行路径 | 不消耗当天免费额度（或按实现消耗一次，二选一并写进埋点） | 保持行为一致、可统计 |
-
-**AdBlock 策略开关（工程保险）**
-
-```
-NEXT_PUBLIC_AB_POLICY = "block"   # 默认：无广告 → 不导出，提示关闭或订阅
-                      = "allow"   # 一键翻回：检测到拦截器也放行（只提示）
-```
-
-> 目的：上线两周后如果"导出失败率"或订阅转化不达预期，改一个环境变量即可回退，无需改代码。
-> 注意：AdBlock 检测本身**不可靠**（Brave / uBlock / Safari 内置 / DNS 拦截 / 企业代理 / VPN 都会误报），
-> 因此命中时只做"提示 + 订阅出口"，**不要在页面加载时就弹窗或遮挡**，也不要因此封禁账号。
-
-### 4.4 不接入激励广告的路径
-
-- `edit` / `organize` 的导出：**不请求 rewarded**，直接展示订阅 CTA
-  （避免"看完广告仍不能导出"的必须避免的坑）
-- 订阅用户：完全不出广告，不请求任何 rewarded
-
-### 4.5 展示广告位规则（被动收入）
-
-| 位置 | 规则 |
-|---|---|
-| 工具工作区（上传区 / 控制面板 / 画布） | ❌ **零广告** |
-| 工具页正文区（`ToolContent` 附近）/ 相关工具之间 | ✅ 每页 ≤1 个 |
-| 导出视图（按钮下方） | ✅ 1–2 个，且必须与 rewarded 广告**明显区分** |
-| 首页 / 品牌页 | ✅ ≤2 个 |
-| 插屏 / 弹窗 / 锚定悬浮 / 自动播放视频 | ❌ 永不使用 |
-
-**导出视图内容要求**（避免被判"为广告而存在的页面"）：文件摘要（页数/大小）、
-"导出后会发生什么"、隐私说明行、相关工具链接；并且 **`noindex`**（不进 sitemap）。
-
-## 5. 导出视图规范（内存 store，不做真跳页）
-
-### 5.1 为什么不能真的"跳到下一页"
-
-导出所需的数据（`File` 对象 / canvas 状态）**只存在于浏览器内存**：
-
-| 场景 | 结果 |
-|---|---|
-| Next 客户端路由跳转（`router.push`） | ✅ 内存保留 |
-| **刷新页面 / 新标签打开 / 前进后退 / iOS 回收内存** | ❌ **文件丢失** → 导出视图变成"没有文件可导" |
-
-### 5.2 方案：同一路由内的全屏导出视图
-
-- 视觉与"独立页"完全一致（全屏 overlay / 步骤视图），但**不改变 URL**
-- 数据通过**应用层共享内存 store**（Context 或 Zustand，挂在 app shell 上）传递：
-  `{ toolKey, files | canvasState, outputName, sourceToolLabel }`
-- **兜底**：打开导出视图时若 store 为空 → 显示"文件已失效，请重新上传" + 返回工具的按钮（绝不显示空白页）
-- ✅ 附带好处：既然是 overlay 就**没有新的 URL**，不存在"导出页被判薄内容/需要 noindex"的问题；
-  广告仍然会渲染并产生曝光（曝光来自广告单元加载，不依赖 pageview）
-  > 代价：不会增加 pageview 指标（如果你更看重这个指标，可改用"真路由 + IndexedDB 暂存文件"，但要额外处理大文件写入、配额与清理）
-
-### 5.3 导出视图内容（必须包含）
-
-| 区块 | 内容 |
-|---|---|
-| 文件摘要 | 文件名 / 页数 / 大小（来自 store 或工具组件） |
-| 主操作 | **真正的导出按钮**（用户点击后才生成并下载） |
-| 额度状态 | 有额度时显示"今日剩余 N 次"；无额度时显示 opt-in 或订阅 CTA |
-| 说明 | "导出后会发生什么"（本地生成、不上传） |
-| 隐私行 | 复用 `ToolContent.privacy` 文案 |
-| 相关工具 | 复用 `RelatedTools` 组件 |
-| 广告 | 按钮下方 1–2 个展示位（与 rewarded 明显区分） |
-
-### 5.4 交互与无障碍
-
-- **焦点管理**：进入导出视图时把焦点移到标题；`Esc` 可关闭返回工具；焦点不逃逸到背景
-- **状态播报**：`aria-live="polite"` 播报"正在准备广告 / 已获得导出机会 / 广告未完成"
-- 单飞：请求 rewarded 期间按钮 `disabled`，防重复请求（官方：同一时刻只能一个 rewarded）
-- 键盘可达：所有 CTA 可 Tab 聚焦
-
----
-
-## 6. `edit` / `organize` 匿名遮罩规范
-
-### 6.1 行为
-
-| 身份 | 工具区 | 导出按钮 |
-|---|---|---|
-| 匿名 | 🔒 **灰色半透明遮罩**（只可浏览页面） | — |
-| 注册未订阅 | ✅ 完全可用 | 🔒 显示"订阅后可导出" + 订阅 CTA（**不请求 rewarded**） |
-| 订阅 | ✅ | ✅ 可用 |
-
-### 6.2 遮罩实现要求（含 SEO 硬约束）
-
-| 要求 | 原因 |
-|---|---|
-| **只覆盖工具操作区**，不要覆盖页头/正文/相关工具 | 页面主体必须可读取、可索引 |
-| **SSR 内容原样输出**：`<h1>`、描述、`ToolContent`（简介+怎么用+隐私）、`RelatedTools`、`BreadcrumbList` **全部照常渲染** | `edit pdf` 是搜索量最高的关键词之一，这两页**绝不能变成空页/薄内容** |
-| 遮罩样式 | `bg-slate-900/60 backdrop-blur-sm` + 居中卡片（文案 + 注册/登录 CTA）；卡片内按钮在正常 DOM 顺序中，可 Tab 聚焦 |
-| 对操作区使用 `inert`（现代浏览器） | 阻止 Tab/点击进入被遮罩控件，同时保留 DOM 供无障碍与爬虫解析 |
-| **不要**用 modal/dialog 包裹整页，**不要**自动弹窗，**不要**给正文加 `aria-hidden` | 避免被判插屏、避免影响索引 |
-| **不要出现"遮罩闪烁"**：仅在会话状态已知后才渲染遮罩，未登录判断期间显示中性骨架 | 避免已登录用户看到一秒的遮罩（体验事故） |
-
-### 6.3 需要新增的 i18n key（× 10 语言）
-
-```
-Gate.anonMaskTitle        "这个工具需要登录后使用"
-Gate.anonMaskBody         "免费注册即可操作；导出需要订阅"
-Gate.registerCta          "注册 / 登录"
-Gate.exportLocked         "订阅后可导出"
-Gate.subscribeCta         "查看订阅"
-Gate.quotaRemaining       "今日剩余 {count} 次导出"
-Gate.quotaExhausted       "今天的免费导出次数已用完"
-Gate.rewardOptInTitle     "看一段广告，换 1 次导出"
-Gate.rewardOptInBody      "广告是我们的收入来源；订阅后没有任何广告"
-Gate.rewardWatch          "开始观看"
-Gate.rewardGranted        "已获得 1 次导出机会"
-Gate.rewardClosedEarly    "未完成观看，未获得导出机会（可重试）"
-Gate.rewardUnavailable    "广告暂时不可用，本次导出已免费放行"
-Gate.adblockTitle         "检测到广告拦截"
-Gate.adblockBody          "请关闭拦截器以继续导出，或订阅免广告"
-Gate.exportMissingFile    "文件已失效，请重新上传"
-```
-
-> 文案基调遵循 `docs/brand-brief.md`：客气、直白、不指责用户、不使用促销腔。
-
-## 7. 申请与合规清单
-
-| # | 事项 | 为什么 | 何时 | 状态 |
-|---|---|---|---|---|
-| 1 | **Google Ad Manager 账号** | rewarded 广告的载体；**需审核** | **立刻**（要等） | ☐ |
-| 2 | 创建 ad unit + line item（Reward type `export`，amount `1`） | 让奖励语义与业务一致 | 账号通过后 | ☐ |
-| 3 | 关闭 **Block non‑instream video ads** | 否则 rewarded 不填充 | 与 2 同时 | ☐ |
-| 4 | `ads.txt`（**`pdf.reeff.app/ads.txt`**，按 host） | 广告需求方要求 | 与 2 同时 | ☐ |
-| 5 | **CMP + Consent Mode**（EEA/英国） | Google 强制要求 | 上线广告前 | ☐ |
-| 6 | **Lemon Squeezy 商户审核**（KYC、收款到马来西亚） | 订阅收入通道 | 与 1 并行 | ☐ |
-| 7 | 更新 `/privacy`：广告 Cookie、第三方广告、配额与标识记录 | 现状写着"不设置广告 Cookie" → **自相矛盾，必须改** | 上线广告前 | ☐ |
-| 8 | 更新 `/terms`：订阅、退款、额度、广告条款 | 法务前置 | 与 7 同时 | ☐ |
-| 9 | **Google OAuth 同意屏幕**发布（需隐私政策 URL ✅ 已有） | Google 一键登录 | Step 4 前 | ☐ |
-| 10 | **平台决策 + 商用资格**（Vercel Pro $20/月 或 Cloudflare） | Hobby 禁止商用；账号+配额需要 DB | **Step 1 前** | ☐ |
-| 11 | DB（配额 + 订阅状态）：Postgres / D1 | 服务端计数与权益 | Step 1 前 | ☐ |
-| 12 | 定价页 + 升级入口 + 恢复购买 | 变现闭环 | Step 6 | ☐ |
-| 13 | GSC：已提交 sitemap，盯索引曲线 | 流量基线 | 已完成 ✅ | ☑ |
-| 14 | 马来西亚本地渠道（Billplz/toyyibpay）+ SSM | 本地用户付款（LS 不支持 FPX/TnG） | **二期**，视数据再决定 | ☐ |
-
----
-
-## 8. 实现顺序与验收标准
-
-> 每一步都应**可独立验收**后再进入下一步。
-
-### Step 1 · 配额基础（匿名 + 服务端）
-- 产出：`src/lib/entitlements.ts`（工具分组、限额常量）、匿名 localStorage 读写、`POST /api/export/consume`、`export_quota` 表
-- **验收**：匿名第 1 次导出成功；第 2 次被拦截并显示"今日免费额度已用完"；清空 localStorage 后可再次导出（预期行为）；服务端接口在并发两次请求下不会超发（用两并发 curl 验证）
-
-### Step 2 · 导出视图（overlay + 内存 store）
-- 产出：共享 store、全屏导出视图组件、文件失效兜底、i18n key（`Gate.*`）
-- **验收**：任意开放工具能打开导出视图并成功导出；**刷新页面后**显示"文件已失效，请重新上传"；URL 不变化；键盘可完成全流程；`aria-live` 播报状态
-
-### Step 3 · `edit` / `organize` 遮罩
-- 产出：遮罩组件（`inert` + 卡片 + CTA）
-- **验收**：匿名打开 `/en/edit-pdf` 看到遮罩且**无法操作**；`curl` 抓取该页 HTML 仍包含 `<h1>`、正文简介、"How it works"、相关工具链接（SEO 不退化）；登录未订阅用户看到"订阅后可导出"而无遮罩；无遮罩闪烁
-
-### Step 4 · 认证（Google 一键登录）
-- 产出：会话、登录/登出、配额切换到服务端、账号删除入口
-- **验收**：登录后换浏览器仍保留配额；登出后回到匿名计数；删除账号后相关记录清空
-
-### Step 5 · 激励广告（Ad Manager rewarded）
-- 产出：opt-in 屏、状态机、兜底、埋点
-- **验收**：额度用尽 → opt-in → 观看 → **`rewardedSlotGranted` 触发后**按钮才解锁 → 导出成功 → slot 被销毁；`isEmpty` 时放行并提示；中途关闭不发奖可重试；**同一时刻只有一个 rewarded slot**；展示广告位与 rewarded 视觉可区分
-
-### Step 6 · 订阅（LS + 账号绑定）
-- 产出：`create-checkout` 时传 **`checkout_data[custom][user_id]`**、webhook 写订阅状态、权益读取
-- **验收**：用测试模式完成结账 → webhook 收到 `meta.custom_data.user_id` → 页面刷新后无广告、无限导出、`edit`/`organize` 可导出；取消订阅后权益回收（webhook 更新）
-
-### Step 7 · 展示广告 + 合规
-- 产出：广告位组件（每页 ≤1–2）、CMP 接入、`ads.txt`、隐私/条款更新
-- **验收**：工具工作区零广告；EEA 用户在未同意前**不加载**任何广告脚本；`https://pdf.reeff.app/ads.txt` 返回 200；`/privacy` 已如实描述广告数据
-
----
-
-## 9. 端到端用例（上线前必须手测通过）
-
-| # | 用例 | 期望 |
-|---|---|---|
-| 1 | 匿名用 `merge` 导出 1 次 | 成功，并显示"今日剩余 0 次" |
-| 2 | 匿名用 `merge` 再导出 | 出现 opt-in → 观看广告 → 获得 1 次 → 导出成功 |
-| 3 | 匿名在 `crop` 上导出（同一浏览器） | **成功**（每工具独立计数：crop 仍有 1 次） |
-| 4 | 匿名打开 `/en/edit-pdf` | 遮罩 + 不可操作；页面正文与相关工具仍可见 |
-| 5 | 注册并登录后用 `merge` 导出 4 次 | 前 3 次直接成功，第 4 次出现 opt-in |
-| 6 | 登录用户打开 `/zh/organize-pdf` | 可操作；导出按钮提示"订阅后可导出"；**不出现 rewarded** |
-| 7 | 订阅用户（测试模式） | 无任何广告；`edit`/`organize` 可导出；额度不显示 |
-| 8 | 广告无填充（可用 Ad Manager 测试流量或强制 `isEmpty`） | **放行 + 提示"广告暂时不可用，本次已免费放行"** |
-| 9 | 开启广告拦截器 + `AB_POLICY=block` | 提示关闭拦截器或订阅；**不出现死循环/空白** |
-| 10 | 观看中关闭广告 | 提示未完成、未获得机会；可重试；额度未被扣除 |
-| 11 | 导出视图刷新页面 | "文件已失效，请重新上传" + 返回按钮 |
-| 12 | 并发双击导出按钮 | 只消耗 1 次额度（单飞 + 服务端原子扣减） |
-
----
-
-## 10. 开放问题（待定，不影响前 3 步开工）
-
-| # | 问题 | 现状 |
-|---|---|---|
-| 1 | 定价：$19/年 单独，或 + $2.99/月 | 建议 $19/年 + 可选月付；PPP 折扣 ~$9 |
-| 2 | 平台：Vercel Pro（$20/月）vs Cloudflare（$0–5/月） | **必须在 Step 1 前定**（账号+配额需要 DB 与商用资格） |
-| 3 | 服务端正向功能（发票查验 / 云 OCR / 批量 / API） | 强烈建议至少加 1 个，否则订阅价值仍是"去广告+解锁"的负向结构 |
-| 4 | AdBlock 策略默认值 | 暂定 `block`（可一键翻转，见 §4.3） |
-| 5 | 放行路径是否消耗当天额度 | 待定，需与埋点口径一致 |
-| 6 | `edit` / `organize` 是否给"首次免费试导 1 次" | **已决定：不给**（导出严格仅订阅） ✅ |
-
-
+- **匿名计数**：`localStorage['reeff.quota.v1.<toolKey>.<YYYY-MM-DD>']`；
+  storage 不可用（隐私模式/配额满）时 **fail-open**（按 used = 0 放行）
+- **激励广告**：只在 `rewardedSlotGranted` 时发奖（官方要求广告可见 5 秒），
+  `isEmpty` / 超时 **放行**（库存是我们的问题），`rewardedSlotClosed` 后**销毁 slot**，
+  同一时刻**只能有一个** rewarded slot
+- **导出视图**：必须用内存 store + overlay（`File` 只在浏览器内存，刷新即失效）
+- **遮罩**：`inert` + 只覆盖操作区 + SSR 正文原样输出（SEO 不退化）
+- **LS 订阅绑定**：结账时传 `checkout_data[custom][user_id]`，webhook 读 `meta.custom_data.user_id`
+
+> **若重启会员**：只取「账号 + 会话 + LS webhook + `AdProvider.enabled=false`」，
+> **不要**恢复配额与激励广告 —— v2 已判定为负向体验。
 
 
