@@ -1,6 +1,6 @@
 # 部署：Cloudflare Pages（pdf.reeff.app）
 
-> 状态：迁移进行中（分支 `feature/cloudflare-migration`）。
+> 状态：**已部署到 `https://my-pdf-app.pages.dev`**（分支 `feature/cloudflare-migration`，commit `3a189f6`）。
 > 目标：把 `pdf.reeff.app` 从 Vercel（Hobby，禁止商用）迁到 Cloudflare Pages 免费额度内的**纯静态**部署。
 
 ## 0. 为什么可行（迁移前的事实核对）
@@ -38,7 +38,7 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
 ## 3. 首次上线（Cloudflare Dashboard）
 
 1. **Workers & Pages → Create → Pages → Connect to Git**，选 `rentaolab/my-pdf-app`
-2. Project name：`reeff-pdf`（决定 `<name>.pages.dev`）
+2. Project name：`my-pdf-app`（决定 `<name>.pages.dev`；当前线上为 `my-pdf-app.pages.dev`）
 3. **Production branch**：迁移期填 `feature/cloudflare-migration`（验证通过后再改成 `main`）
 4. Build command：`npx next build`；**Build output directory：`out`**
 5. 环境变量：**`NODE_VERSION=22`**
@@ -46,11 +46,11 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
    > `Iterator.prototype` 的 polyfill；Node 20 没有全局 `Iterator`，预渲染 `/crop-pdf`、
    > `/organize-pdf`、`/pdf-to-image` 时会直接 `ReferenceError: Iterator is not defined` 并中断构建。
    > 仓库里已放 `.node-version` / `.nvmrc`（均为 `22`），Dashboard 的变量是双保险。
-6. **Save and Deploy** → 得到 `https://reeff-pdf.pages.dev`
+6. **Save and Deploy** → 得到 `https://my-pdf-app.pages.dev`
 7. 跑 §5 验收清单 → 绑 `staging.pdf.reeff.app` → 再绑 `pdf.reeff.app`
 
 > 如果 Pages 构建内存不足（大仓库偶发），改用本地构建 + 上传：
-> `npm run build && npx wrangler pages deploy out --project-name reeff-pdf`
+> `npm run build && npx wrangler pages deploy out --project-name my-pdf-app`
 
 ## 4. 域名与 DNS 切换
 
@@ -68,6 +68,8 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
 
 ## 5. 验收清单
 
+**已于 2026-10-20 对 `https://my-pdf-app.pages.dev` 全量跑通**（结果见 §5.1）。切 `staging.` / 生产域名后按同一套脚本复跑即可。
+
 ```bash
 # 语言协商
 curl -sI https://staging.pdf.reeff.app/ | head -1                 # 302
@@ -83,7 +85,27 @@ curl -sI https://staging.pdf.reeff.app/en/merge-pdf/ | head -1    # 301 → 无�
 curl -s  https://staging.pdf.reeff.app/robots.txt                  # allow: /
 curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 120
 curl -sI https://staging.pdf.reeff.app/en | grep -i 'content-security-policy'  # frame-ancestors 'self'
+curl -s  https://staging.pdf.reeff.app/en/merge-pdf | grep -o 'rel="canonical" href="[^"]*"'  # https://pdf.reeff.app/...
+
+# 非生产域名必须 noindex（生产域不应出现该头）
+curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, nofollow
 ```
+
+### 5.1 2026-10-20 `my-pdf-app.pages.dev` 实测结果
+
+| 用例 | 结果 |
+|---|---|
+| `/` + `en-US` / `zh-CN` / `ja-JP` / `ms-MY` | 302 → `/en` `/zh` `/ja` `/ms` ✅ |
+| `/merge-pdf` + `ko` | 302 → `/ko/merge-pdf` ✅ |
+| `Set-Cookie` | `NEXT_LOCALE=ko; Path=/; Max-Age=31536000; SameSite=Lax` ✅ |
+| 9 个抽查页面（含 `edit` / `organize` / `crop` / `pdf-to-image`、`zh`/`ja`/`de`） | 全部 **200** ✅ |
+| `/en/merge-pdf/` | **301** → 无尾斜杠 ✅ |
+| `/en/not-a-tool` | **404** ✅ |
+| `robots.txt` / `sitemap.xml` | 正常 / **120** 条 URL ✅ |
+| 安全头 | `frame-ancestors 'self'`、`nosniff`、`SAMEORIGIN`、`strict-origin-when-cross-origin` ✅ |
+| canonical / og:image / hreflang | 均指向 `https://pdf.reeff.app/...` ✅ |
+| `/_next/static/*` | `public, max-age=31536000, immutable` ✅ |
+| `*.pages.dev` 索引状态 | `X-Robots-Tag: noindex, nofollow` ✅（`pdf.reeff.app` 不带此头） |
 
 浏览器手测（**必做**，静态导出对客户端行为最敏感）：
 

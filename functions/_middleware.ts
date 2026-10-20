@@ -12,6 +12,8 @@
  *   3. Locale-prefixed paths are served as-is.
  *   4. Everything else (`/`, `/merge-pdf`) is negotiated from the `NEXT_LOCALE`
  *      cookie, then `Accept-Language`, then the default locale, and 302'd.
+ *   5. Any host that is not the production domain gets `X-Robots-Tag: noindex`
+ *      so `*.pages.dev` / staging previews never compete with pdf.reeff.app.
  *
  * Types are declared locally to avoid pulling in `@cloudflare/workers-types`,
  * which `tsconfig.json` would otherwise require (it includes `**\/*.ts`).
@@ -20,6 +22,9 @@
 const LOCALES = ["en", "zh", "ja", "ko", "hi", "ms", "es", "pt", "de", "fr"] as const;
 const DEFAULT_LOCALE = "en";
 const LOCALE_COOKIE = "NEXT_LOCALE";
+
+/** Hosts allowed to be indexed. Everything else (pages.dev, staging, localhost) is not. */
+const PRODUCTION_HOSTS = ["pdf.reeff.app"];
 
 type PagesContext = {
   request: Request;
@@ -76,6 +81,24 @@ function firstSegment(pathname: string): string {
 }
 
 export const onRequest = async (context: PagesContext): Promise<Response> => {
+  const response = await handleRequest(context);
+  const { hostname } = new URL(context.request.url);
+
+  if (PRODUCTION_HOSTS.includes(hostname)) return response;
+
+  // Preview / staging hosts: keep them out of search results. Canonical and
+  // hreflang already point at pdf.reeff.app, this is the belt to that braces.
+  const headers = new Headers(response.headers);
+  headers.set("X-Robots-Tag", "noindex, nofollow");
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+};
+
+async function handleRequest(context: PagesContext): Promise<Response> {
   const url = new URL(context.request.url);
   const { pathname } = url;
 
@@ -105,4 +128,4 @@ export const onRequest = async (context: PagesContext): Promise<Response> => {
       "Set-Cookie": `${LOCALE_COOKIE}=${locale}; Path=/; Max-Age=31536000; SameSite=Lax`,
     },
   });
-};
+}
