@@ -26,8 +26,12 @@ export function getPdfjs(): Promise<typeof PdfjsModule> {
 
   if (!pdfjsPromise) {
     pdfjsPromise = import("pdfjs-dist").then((mod) => {
-      // Same CDN worker as before, pinned to the installed version.
-      mod.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.version}/build/pdf.worker.min.mjs`;
+      // Self-hosted worker (copied into `public/` by
+      // `scripts/sync-pdf-worker.mjs`, run from `predev`/`prebuild`).
+      // Same origin means no third-party CDN can block page rendering, and the
+      // version in the file name always matches this module's `mod.version` —
+      // pdf.js throws "API version does not match the Worker version" otherwise.
+      mod.GlobalWorkerOptions.workerSrc = `/pdf.worker.${mod.version}.min.mjs`;
       return mod;
     });
   }

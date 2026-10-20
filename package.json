@@ -6,7 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "predev": "node scripts/sync-pdf-worker.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/sync-pdf-worker.mjs",
     "build": "next build",
     "preview": "npx --yes wrangler pages dev out --port 8788",
     "lint": "eslint",

@@ -8,6 +8,7 @@
     "/*.xml",
     "/*.json",
     "/*.webmanifest",
+    "/*.mjs",
     "/*.png",
     "/*.svg",
     "/*.ico",

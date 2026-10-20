@@ -18,3 +18,9 @@
 
 /brand/*
   Cache-Control: public, max-age=604800
+
+# pdf.js worker, copied into public/ by scripts/sync-pdf-worker.mjs.
+# The file name embeds the pdfjs-dist version, so a new release gets a new URL
+# and can safely be cached for a year.
+/pdf.worker.*.min.mjs
+  Cache-Control: public, max-age=31536000, immutable
