@@ -83,9 +83,13 @@ curl -sI https://staging.pdf.reeff.app/en/merge-pdf/ | head -1    # 301 → 无�
 
 # 元数据与安全头
 curl -s  https://staging.pdf.reeff.app/robots.txt                  # allow: /
-curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 120
+curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 140
 curl -sI https://staging.pdf.reeff.app/en | grep -i 'content-security-policy'  # frame-ancestors 'self'
 curl -s  https://staging.pdf.reeff.app/en/merge-pdf | grep -o 'rel="canonical" href="[^"]*"'  # https://pdf.reeff.app/...
+curl -sI https://staging.pdf.reeff.app/en/privacy | head -1            # 200（法律页）
+curl -sI https://staging.pdf.reeff.app/zh/terms   | head -1            # 200
+curl -sI https://staging.pdf.reeff.app/pdf.worker.6.3.289.min.mjs | grep -iE 'content-type|cache-control'
+                                                                        # application/javascript + immutable
 
 # 非生产域名必须 noindex（生产域不应出现该头）
 curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, nofollow
@@ -183,13 +187,34 @@ const pdfjsLib = await getPdfjs();   // 首次调用才 import('pdfjs-dist')，�
 2. pdf.js（约 400 KB）从首屏 chunk 移到独立异步 chunk，只在真正打开 PDF 时才下载
 3. worker 路径只在浏览器里设置一次，不会在 Node 中触发 `GlobalWorkerOptions` 副作用
 
-### 7.2 `_routes.json` 与 Functions 免费额度（100k 请求/天）
+### 7.2 pdf.js worker 已自托管（去掉 unpkg 单点）
+
+原先 worker 走 `//unpkg.com/pdfjs-dist@<version>/build/pdf.worker.min.mjs`：`crop` / `organize` / `pdf-to-image` /
+`edit` 四个工具都依赖它，CDN 被墙、被广告拦截器拦掉或变慢时，这些工具会卡在一个永不 settle 的请求上。
+
+现在：
+
+- `scripts/sync-pdf-worker.mjs` 在 `predev` / `prebuild` 把 `node_modules/pdfjs-dist/build/pdf.worker.min.mjs`
+  复制成 `public/pdf.worker.<version>.min.mjs`，并删除旧版本残留。该文件**不入库**（`.gitignore`），
+  每次构建/R安装后重新生成，永远不会出现「API 与 Worker 版本不一致」。
+- `src/lib/pdfjs.ts` 里 `workerSrc = /pdf.worker.${mod.version}.min.mjs`（同源绝对路径）。
+- 文件名带版本 → `public/_headers` 可以放心给 `immutable`（1 年）；升级 pdfjs 后 URL 变化，不会命中旧 worker。
+- `public/_routes.json` 增加 `/*.mjs`，保证这个 1.2 MB 的请求**不进 Function**（不计配额）。
+
+```bash
+# 本地/线上确认：Content-Type 必须是 application/javascript（module worker 要求），且无 x-robots-tag
+curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs | grep -iE 'content-type|cache-control|x-robots-tag'
+```
+
+注意：ESLint 已 `globalIgnores` 掉 `public/**`，否则这个压缩后的 1.2 MB 文件会刷出 1600+ 条无意义告警。
+
+### 7.3 `_routes.json` 与 Functions 免费额度（100k 请求/天）
 
 橙云代理生效后，**每一次 Pages Functions 调用都计入 Free 档的 100,000 请求/天**，超了直接报错（不是降级）。
 
-静态导出的产物里有 **605 个 `.txt`**（Next.js 的 RSC payload），客户端导航/预取会抓它们；再加上 `sitemap.xml`、
-`robots.txt`、各类图标。中间件只有在「路径含 `.`」时才 `context.next()` 透传，所以这些请求**不需要**进 Function，
-但没有排除前它们照样消耗额度，单次浏览可能 3–12 次调用。
+静态导出的产物里有 **706 个 `.txt`**（Next.js 的 RSC payload，法律页让它从 605 涨了上来），客户端导航/预取会抓它们；
+再加上 `sitemap.xml`、`robots.txt`、`ads.txt`、图标和 pdf.js worker。中间件只有在「路径含 `.`」时才 `context.next()`
+透传，所以这些请求**不需要**进 Function，但没有排除前它们照样消耗额度，单次浏览可能 3–12 次调用。
 
 因此 `public/_routes.json` 排除了它们（`include: ["/*"]` + 扩展名黑名单）。判定方式：
 
@@ -216,7 +241,9 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 1. 在特性分支开发 → 推送到 GitHub。
 2. `git checkout main && git merge --ff-only <branch>` → `git push origin main`。
 3. CF Pages 自动用 `main` 构建（约 1–2 分钟），**构建成功才切换流量，失败则旧部署继续在线**。
-4. 验收关键三项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、`sitemap.xml` 仍 120 条。
+4. 验收关键四项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、
+   `sitemap.xml` **140 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
+   （pdf.js 升级后这里的版本号要跟着变）。
 
 > ⚠️ 历史教训：**先合并 `main`，再去改 CF 的 Production branch**。反过来做会让 CF 用旧 `main`（Vercel 时代、
 > 没有 `output: "export"`）构建，得到「输出目录 `out` 不存在」的失败，或产出错误站点。
@@ -224,5 +251,23 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 发布后的常规检查：
 - **Functions Metrics**（Pages 项目 → Functions Metrics）的 `requests` 图 = 计入免费额度的调用数；
   24h 总量接近 5 万就该考虑 Workers Paid（$5/月）。出现错误码 **1027** 即已撞上限。
-- 高峰期若发现 `requests` 远多于 PV，说明有静态路径没被 `public/_routes.json` 排除（见 §7.2）。
+- 高峰期若发现 `requests` 远多于 PV，说明有静态路径没被 `public/_routes.json` 排除（见 §7.3）。
+
+## 9. AdSense 前置资产（2026-10-20 补齐）
+
+| 资产 | 位置 | 说明 |
+|---|---|---|
+| 隐私政策 | `/[locale]/privacy` | 10 语言各一份，文案在 `src/messages/*.json` 的 `Legal.privacy` |
+| 使用条款 | `/[locale]/terms` | 同上，`Legal.terms` |
+| 页脚入口 | `src/components/layout/SiteFooter.tsx` | 首页与两个法律页渲染；工具页暂未加（首页一键可达） |
+| `ads.txt` | `public/ads.txt` | **目前只有注释**：拿到 AdSense 发布商 ID 后，把 `google.com, pub-…` 那一行取消注释并填 ID |
+| 联系方式 | `src/lib/seo.ts` 的 `CONTACT_EMAIL` | 现为 `support@reeff.app`，如实际邮箱不同只改这一处 |
+
+要点：
+
+- 法律页是**真页面**（参与 hreflang / canonical / sitemap，priority 0.3、yearly），不是弹窗；
+  标题带 layout 的 `%s · Reeff.PDF` 模板。
+- 内容以 `sections: [{ heading, body }]` 数组存进字典（`t.raw('sections')` 渲染），翻译只改散文、不改结构。
+- AdSense 审核前**不要**填入假 `pub-` ID：ads.txt 里声明不存在的账号会被报成「未授权卖方」，比「未配置」更难排查。
+- 广告位代码还没接入（计划 `src/lib/ads.ts` + `AdProvider` + `AdSlot`，`ADS_ENABLED = false`，批准前零请求）。
 
