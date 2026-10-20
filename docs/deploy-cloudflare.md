@@ -1,6 +1,6 @@
 # 部署：Cloudflare Pages（pdf.reeff.app）
 
-> 状态：**已部署到 `https://my-pdf-app.pages.dev`**（分支 `feature/cloudflare-migration`，commit `3a189f6`）。
+> 状态：**已上线 `https://pdf.reeff.app`**（Cloudflare Pages，生产分支 `main`，commit `a2f5f36`，2026-10-20 完成切换）。
 > 目标：把 `pdf.reeff.app` 从 Vercel（Hobby，禁止商用）迁到 Cloudflare Pages 免费额度内的**纯静态**部署。
 
 ## 0. 为什么可行（迁移前的事实核对）
@@ -39,7 +39,7 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
 
 1. **Workers & Pages → Create → Pages → Connect to Git**，选 `rentaolab/my-pdf-app`
 2. Project name：`my-pdf-app`（决定 `<name>.pages.dev`；当前线上为 `my-pdf-app.pages.dev`）
-3. **Production branch**：迁移期填 `feature/cloudflare-migration`（验证通过后再改成 `main`）
+3. **Production branch**：`main`（迁移期曾临时指向 `feature/cloudflare-migration`，2026-10-20 切换完成后已改回）
 4. Build command：`npx next build`；**Build output directory：`out`**
 5. 环境变量：**`NODE_VERSION=22`**
    > ⚠️ 必须是 22 或更高。`pdfjs-dist@6` 声明 `engines: node >=22.13.0`，且在模块顶层就求值
@@ -59,10 +59,10 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
 | 1 | Pages 项目 → **Custom domains** → 添加 `staging.pdf.reeff.app` |
 | 2 | 若 `reeff.app` 已在同一 Cloudflare 账号：直接一键绑定（自动建 CNAME） |
 | 3 | 验证 §5 全绿（**先 staging，不动生产**） |
-| 4 | 把 Pages 项目的 Production branch 改为 `main` |
-| 5 | 添加 `pdf.reeff.app` → 更新 CNAME 指向 `<project>.pages.dev` |
-| 6 | 保留 Vercel 项目 **2 周**（回滚方案：CNAME 改回 `cname.vercel-dns.com`） |
-| 7 | 2 周无异常 → 删除 Vercel 项目与 `pdf` 记录 |
+| 4 | 把 Pages 项目的 Production branch 改为 `main` | ✅ 2026-10-20 |
+| 5 | 添加 `pdf.reeff.app` → 更新 CNAME 指向 `<project>.pages.dev` | ✅ 2026-10-20 |
+| 6 | 保留 Vercel 项目 **2 周**（回滚方案：CNAME 改回 `cname.vercel-dns.com`，**并保留 Vercel 侧的域名绑定**） | 截止 2026-11-03 |
+| 7 | 2 周无异常 → 删除 Vercel 项目与 `pdf` 记录 | |
 
 > 切 DNS 前把记录的 TTL 调短（Cloudflare 代理记录无手工 TTL，直接切换即可）。
 
@@ -209,4 +209,20 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 > `max-age=0`，不会被边缘缓存，所以 `noindex` 这类头不会滞留。
 
 
+
+
+## 8. 日常发布流程
+
+1. 在特性分支开发 → 推送到 GitHub。
+2. `git checkout main && git merge --ff-only <branch>` → `git push origin main`。
+3. CF Pages 自动用 `main` 构建（约 1–2 分钟），**构建成功才切换流量，失败则旧部署继续在线**。
+4. 验收关键三项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、`sitemap.xml` 仍 120 条。
+
+> ⚠️ 历史教训：**先合并 `main`，再去改 CF 的 Production branch**。反过来做会让 CF 用旧 `main`（Vercel 时代、
+> 没有 `output: "export"`）构建，得到「输出目录 `out` 不存在」的失败，或产出错误站点。
+
+发布后的常规检查：
+- **Functions Metrics**（Pages 项目 → Functions Metrics）的 `requests` 图 = 计入免费额度的调用数；
+  24h 总量接近 5 万就该考虑 Workers Paid（$5/月）。出现错误码 **1027** 即已撞上限。
+- 高峰期若发现 `requests` 远多于 PV，说明有静态路径没被 `public/_routes.json` 排除（见 §7.2）。
 
