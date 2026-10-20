@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "preview": "npx --yes wrangler pages dev out --port 8788",
     "lint": "eslint",
     "brand": "node scripts/brand.mjs"
   },

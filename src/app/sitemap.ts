@@ -2,6 +2,10 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { PAGE_PATHS, SITE_URL } from "@/lib/seo";
 
+// Required by `output: "export"` — metadata routes are emitted as static files
+// at build time instead of being served by a Node runtime.
+export const dynamic = "force-static";
+
 /**
  * 10 locales × 12 pages = 120 URLs, each with its own hreflang alternates block
  * (including x-default) so the locale variants are not treated as duplicates.

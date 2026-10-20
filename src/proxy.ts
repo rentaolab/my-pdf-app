@@ -6,6 +6,10 @@ import { routing } from './i18n/routing';
  *
  * Note: `middleware.ts` was renamed to `proxy.ts` in Next.js 16. This file is
  * the direct replacement and is picked up automatically by the framework.
+ *
+ * Cloudflare: the site is deployed as a static export (`output: "export"`), so
+ * this middleware only runs under `next dev`. Production redirects are handled
+ * by `functions/_middleware.ts` (Pages Functions) — keep the two in sync.
  */
 export default createMiddleware(routing);
 

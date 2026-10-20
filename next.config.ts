@@ -7,24 +7,17 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   /**
-   * Baseline hardening. `frame-ancestors 'self'` stops third-party sites from
-   * embedding the tools in an iframe — the cheapest way for a clone to consume
-   * our Vercel bandwidth and edge-request quota while serving its own ads.
-   * Same header set as reeff.app (the brand site).
+   * Static export for Cloudflare Pages.
+   *
+   * The app has no runtime server needs: no route handlers, no server actions,
+   * no `cookies()` / `headers()` reads, and every page is prerendered (10 locales
+   * × 12 pages). The only server-side logic was locale negotiation, which now
+   * lives in `functions/_middleware.ts` (Pages Functions).
+   *
+   * Consequence: `next start` no longer works — use `npm run preview`
+   * (`wrangler pages dev out`) to check the real Pages behaviour locally.
    */
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        ],
-      },
-    ];
-  },
+  output: "export",
 };
 
 export default withNextIntl(nextConfig);

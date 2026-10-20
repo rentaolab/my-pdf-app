@@ -1,0 +1,20 @@
+# Cloudflare Pages headers for pdf.reeff.app
+#
+# `next.config.ts` `headers()` is ignored with `output: "export"`, so the
+# baseline hardening that used to live there is declared here instead.
+#
+# - `frame-ancestors 'self'` stops clones from iframing the tools to burn our
+#   bandwidth while serving their own ads (same set as reeff.app).
+# - Hashed build assets are immutable, so they can be cached for a year.
+
+/*
+  Content-Security-Policy: frame-ancestors 'self'
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/brand/*
+  Cache-Control: public, max-age=604800

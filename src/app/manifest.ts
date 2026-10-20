@@ -1,5 +1,8 @@
 import type { MetadataRoute } from 'next';
 
+// Required by `output: "export"` (see src/app/sitemap.ts).
+export const dynamic = 'force-static';
+
 /**
  * PWA manifest. Icons are emitted by `npm run brand`, which derives every size
  * from `public/brand/mark.svg` (see scripts/brand.mjs).
