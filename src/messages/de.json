@@ -657,5 +657,81 @@
       "pdfToImage": "Ausgabeformat und Auflösung wählen",
       "imageToPdf": "Bilder sortieren und Papierformat wählen"
     }
+  },
+  "Legal": {
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Wie Reeff.PDF mit Ihren Dateien und Daten umgeht: Alle Werkzeuge laufen im Browser, Ihre PDFs werden nie hochgeladen.",
+      "lastUpdated": "Zuletzt aktualisiert: 20. Oktober 2026",
+      "intro": "Reeff.PDF (pdf.reeff.app) ist eine kostenlose Sammlung von PDF-Werkzeugen, die im Browser laufen. Diese Seite erklärt, was mit Ihren Dateien geschieht und welche begrenzten Informationen wir und unsere Partner bei der Nutzung der Website verarbeiten.",
+      "contactLabel": "Fragen zu dieser Erklärung oder Ihren Daten? Schreiben Sie uns:",
+      "sections": [
+        {
+          "heading": "Ihre Dateien verlassen Ihr Gerät nicht",
+          "body": "Jede PDF und jedes Bild, das Sie öffnen, wird von Code gelesen, bearbeitet und gespeichert, der in Ihrem Browser läuft. Es gibt keinen Upload-Schritt und keine serverseitige Verarbeitung: Ihre Dokumente werden weder an uns noch an Dritte gesendet."
+        },
+        {
+          "heading": "Was unsere Server sehen",
+          "body": "Es gibt keine Benutzerkonten und keinen Speicher für Ihre Dateien, deren Namen oder Inhalte – es kommt nichts an, also gibt es nichts zu speichern. Wie bei jeder Website erreichen Anfragen unseren Hoster (Cloudflare), der kurzlebige technische Protokolle (IP-Adresse, Browser, angeforderte Seite) führt, um Seiten auszuliefern und Missbrauch abzuwehren. Wir sehen nur aggregierte, nicht identifizierende Zahlen (Aufrufe je Werkzeug und Sprache), um Verbesserungen zu entscheiden."
+        },
+        {
+          "heading": "Cookies und lokaler Speicher",
+          "body": "Die Werkzeuge funktionieren ohne Cookies. Ihr Browser kann kleine Einstellungen lokal speichern, etwa die gewählte Sprache. Wenn Werbung aktiviert ist, können unsere Werbepartner eigene Cookies setzen oder Gerätekennungen lesen; siehe nächster Abschnitt."
+        },
+        {
+          "heading": "Werbung und Google AdSense",
+          "body": "Die Website ist kostenlos, weil sie durch Werbung finanziert wird. Drittanbieter, einschließlich Google, verwenden Cookies, um Anzeigen auf Grundlage Ihrer früheren Besuche dieser und anderer Websites auszuliefern. Durch die Verwendung von Werbe-Cookies durch Google können Google und seine Partner Ihnen Anzeigen auf Grundlage Ihrer Besuche zeigen. Sie können personalisierte Werbung in den Google-Anzeigeneinstellungen (https://www.google.com/settings/ads) oder unter https://www.aboutads.info/choices deaktivieren. Besucher im EWR, im Vereinigten Königreich und in der Schweiz werden vor dem Setzen jeglicher Werbe-Cookies um Einwilligung gebeten."
+        },
+        {
+          "heading": "Dienste Dritter",
+          "body": "Für Hosting, DNS und Auslieferung nutzen wir Cloudflare, für Werbung – wenn Anzeigen erscheinen – Google und seine Partner. Diese Unternehmen verarbeiten Daten nach ihren eigenen Datenschutzerklärungen. Links zu anderen Websites liegen außerhalb unseres Einflussbereichs."
+        },
+        {
+          "heading": "Kinder",
+          "body": "Das Angebot richtet sich nicht an Kinder unter 13 Jahren (16 Jahren im EWR und im Vereinigten Königreich), und wir erheben wissentlich keine personenbezogenen Daten von ihnen."
+        },
+        {
+          "heading": "Ihre Rechte und Änderungen dieser Erklärung",
+          "body": "Wir speichern keine eigenen personenbezogenen Daten, daher betreffen Auskunfts-, Berichtigungs- oder Löschungsersuchen in der Regel unseren Hoster oder die Werbepartner; schreiben Sie uns, und wir helfen beim Weiterleiten. Wenn Sie im EWR, im Vereinigten Königreich, in Kalifornien oder einer anderen Region mit Datenschutzrecht sind, können Sie uns jederzeit kontaktieren. Wir aktualisieren diese Seite, wenn sich unsere Praktiken ändern; das Datum oben zeigt stets die aktuelle Fassung."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "description": "Die Bedingungen für die Nutzung der kostenlosen PDF-Werkzeuge von Reeff.PDF im Browser.",
+      "lastUpdated": "Zuletzt aktualisiert: 20. Oktober 2026",
+      "intro": "Diese Bedingungen gelten für Ihre Nutzung von Reeff.PDF (pdf.reeff.app). Mit der Nutzung der Website akzeptieren Sie sie – bitte lesen Sie sie zuerst.",
+      "contactLabel": "Fragen zu diesen Bedingungen? Schreiben Sie uns:",
+      "sections": [
+        {
+          "heading": "Der Dienst",
+          "body": "Reeff.PDF ist eine kostenlose Sammlung von Werkzeugen, die PDF-Dateien in Ihrem Browser lesen, bearbeiten und speichern. Der Dienst wird wie besehen bereitgestellt, erfordert kein Konto und kann jederzeit Funktionen erhalten, sich ändern oder eingestellt werden."
+        },
+        {
+          "heading": "Zulässige Nutzung",
+          "body": "Sie dürfen die Werkzeuge für private oder geschäftliche Dokumentarbeit nutzen. Nicht zulässig ist die Verwendung für Inhalte, die Sie nicht bearbeiten dürfen, für rechtswidrige Zwecke oder für Angriffe auf den Dienst – etwa automatisiertes Auslesen, Versuche, unsere Bandbreite zu erschöpfen, oder Störungen anderer Nutzer."
+        },
+        {
+          "heading": "Ihre Dateien und Inhalte",
+          "body": "Was Sie in den Werkzeugen öffnen, bleibt Ihr Eigentum. Wir beanspruchen keine Lizenz und kein Eigentum an Ihren Dokumenten, und da sie uns nie erreichen, könnten wir sie auch grundsätzlich nicht einsehen."
+        },
+        {
+          "heading": "Keine Gewährleistung",
+          "body": "Die Werkzeuge werden ohne jegliche Gewährleistung bereitgestellt. PDF-Darstellung und -Bearbeitung können unvollkommen sein: Bewahren Sie stets eine Kopie der Originaldatei auf und prüfen Sie das Ergebnis, bevor Sie sich darauf verlassen."
+        },
+        {
+          "heading": "Haftungsbeschränkung",
+          "body": "Soweit gesetzlich zulässig, haften wir nicht für Datenverlust, entgangenen Gewinn oder mittelbare Schäden aus der Nutzung oder Nichtnutzbarkeit dieser Website. Zwingende Verbraucherrechte bleiben unberührt."
+        },
+        {
+          "heading": "Werbung",
+          "body": "Der Dienst ist kostenlos und wird durch Werbung finanziert. Anzeigen stammen von Dritten; deren Inhalte befürworten wir nicht. Werbeblocker sind technisch möglich, entziehen dem Projekt aber die Unterstützung, die es am Laufen hält."
+        },
+        {
+          "heading": "Änderungen und Kontakt",
+          "body": "Wir können diese Bedingungen aktualisieren; das Datum oben zeigt die aktuelle Fassung, und die weitere Nutzung nach einer Änderung gilt als Zustimmung. Fragen? Schreiben Sie uns unten."
+        }
+      ]
+    }
   }
 }

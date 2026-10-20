@@ -29,6 +29,22 @@ export const TOOLS = [
 export const PAGE_PATHS: string[] = ["", ...TOOLS.map((tool) => tool.path)];
 
 /**
+ * Legal pages. They are localized like everything else (so hreflang and the
+ * language switcher keep working) and sitemapped with a low priority; AdSense
+ * and most ad networks require both to exist and be reachable.
+ */
+export const LEGAL_PATHS = ["/privacy", "/terms"] as const;
+
+/** Everything that belongs in `sitemap.xml`. */
+export const SITEMAP_PATHS: string[] = [...PAGE_PATHS, ...LEGAL_PATHS];
+
+/**
+ * Contact address shown on the legal pages and required by ad networks.
+ * Single constant on purpose: change it here and every locale follows.
+ */
+export const CONTACT_EMAIL = "support@reeff.app";
+
+/**
  * Canonical + hreflang for one page.
  *
  * Every locale gets its own URL (`localePrefix: 'always'`), so each page is

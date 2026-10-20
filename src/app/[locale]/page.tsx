@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Navbar from '@/components/layout/Navbar';
+import SiteFooter from '@/components/layout/SiteFooter';
 import { alternatesFor } from '@/lib/seo';
 import {
   Layers,
@@ -114,14 +115,8 @@ export default function Home() {
         </div>
       </main>
 
-      {/* 页脚 */}
-      <footer className="border-t border-slate-200/60 bg-white py-6 text-center text-[11px] text-slate-400">
-        {t.rich('HomePage.footer', {
-          brand: (chunks) => (
-            <span className="font-bold text-slate-700">{chunks}</span>
-          ),
-        })}
-      </footer>
+      {/* 页脚：版权 + 隐私/条款（广告平台要求从主页可达） */}
+      <SiteFooter />
     </div>
   );
 }

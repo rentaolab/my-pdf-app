@@ -657,5 +657,81 @@
       "pdfToImage": "Escolha o formato de saída e a resolução",
       "imageToPdf": "Ordene as imagens e escolha o tamanho da página"
     }
+  },
+  "Legal": {
+    "privacy": {
+      "title": "Política de Privacidade",
+      "description": "Como o Reeff.PDF trata os seus ficheiros e dados: todas as ferramentas correm no seu navegador e os seus PDF nunca são carregados.",
+      "lastUpdated": "Última atualização: 20 de outubro de 2026",
+      "intro": "O Reeff.PDF (pdf.reeff.app) é um conjunto gratuito de ferramentas PDF que funcionam no navegador. Esta página explica o que acontece aos seus ficheiros e que informação limitada nós e os nossos parceiros tratamos quando utiliza o site.",
+      "contactLabel": "Dúvidas sobre esta política ou os seus dados? Escreva-nos:",
+      "sections": [
+        {
+          "heading": "Os seus ficheiros nunca saem do seu dispositivo",
+          "body": "Cada PDF e imagem que abre é lido, editado e guardado por código que corre dentro do seu navegador. Não existe passo de carregamento nem processamento no servidor: os seus documentos nunca são enviados para nós nem para mais ninguém."
+        },
+        {
+          "heading": "O que os nossos servidores veem",
+          "body": "Não há contas nem armazenamento para os seus ficheiros, nomes ou conteúdos — nada chega, por isso não há nada para guardar. Como em qualquer site, os pedidos chegam ao nosso alojador (Cloudflare), que mantém registos técnicos de curta duração (endereço IP, navegador, página pedida) para entregar as páginas e travar abusos. Só consultamos números agregados e não identificativos (visitas por ferramenta e por idioma) para decidir o que melhorar."
+        },
+        {
+          "heading": "Cookies e armazenamento local",
+          "body": "As ferramentas funcionam sem cookies. O seu navegador pode guardar localmente pequenas preferências, como o idioma escolhido. Quando a publicidade está ativa, os nossos parceiros publicitários podem definir os seus próprios cookies ou ler identificadores do dispositivo; ver a secção seguinte."
+        },
+        {
+          "heading": "Publicidade e Google AdSense",
+          "body": "O site é gratuito porque é sustentado por publicidade. Fornecedores terceiros, incluindo a Google, utilizam cookies para apresentar anúncios com base nas suas visitas anteriores a este e a outros sites. O uso de cookies publicitários pela Google permite a ela e aos seus parceiros mostrar anúncios com base nas suas visitas. Pode desativar a publicidade personalizada nas Definições de anúncios da Google (https://www.google.com/settings/ads) ou em https://www.aboutads.info/choices. Aos visitantes do EEE, do Reino Unido e da Suíça é pedido consentimento antes de qualquer cookie publicitário."
+        },
+        {
+          "heading": "Serviços de terceiros",
+          "body": "Dependemos da Cloudflare para alojamento, DNS e entrega de conteúdo e, quando há anúncios, da Google e dos seus parceiros. Essas empresas tratam os dados segundo as suas próprias políticas de privacidade. As ligações para outros sites estão fora do nosso controlo."
+        },
+        {
+          "heading": "Crianças",
+          "body": "O serviço não se destina a crianças com menos de 13 anos (16 no EEE e no Reino Unido) e não recolhemos conscientemente dados pessoais das mesmas."
+        },
+        {
+          "heading": "Os seus direitos e alterações a esta política",
+          "body": "Não guardamos dados pessoais próprios, pelo que os pedidos de acesso, correção ou eliminação dizem normalmente respeito ao nosso alojador ou aos parceiros publicitários; escreva-nos e ajudamos a encaminhá-los. Se estiver no EEE, no Reino Unido, na Califórnia ou noutra região com lei de proteção de dados, pode contactar-nos a qualquer momento. Atualizamos esta página quando as nossas práticas mudam e a data acima indica sempre a versão em vigor."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Termos de Utilização",
+      "description": "As condições aplicáveis à utilização das ferramentas PDF gratuitas do Reeff.PDF no navegador.",
+      "lastUpdated": "Última atualização: 20 de outubro de 2026",
+      "intro": "Estes termos regem a sua utilização do Reeff.PDF (pdf.reeff.app). Ao usar o site, aceita-os, por isso leia-os primeiro.",
+      "contactLabel": "Dúvidas sobre estes termos? Escreva-nos:",
+      "sections": [
+        {
+          "heading": "O serviço",
+          "body": "O Reeff.PDF é um conjunto gratuito de ferramentas que leem, editam e guardam ficheiros PDF dentro do seu navegador. É fornecido tal como está, não exige conta e pode ganhar funcionalidades, mudar ou ser descontinuado a qualquer momento."
+        },
+        {
+          "heading": "Utilização aceitável",
+          "body": "Pode usar as ferramentas para trabalho documental pessoal ou comercial. Não pode usá-las com conteúdo que não tenha o direito de tratar, para fins ilícitos nem para atacar o serviço — por exemplo, extração automatizada, tentativas de esgotar a nossa largura de banda ou interferência com outros utilizadores."
+        },
+        {
+          "heading": "Os seus ficheiros e conteúdos",
+          "body": "Tudo o que abrir nas ferramentas continua a ser seu. Não reclamamos qualquer licença ou propriedade sobre os seus documentos e, como nunca chegam até nós, também não poderíamos inspecioná-los."
+        },
+        {
+          "heading": "Sem garantias",
+          "body": "As ferramentas são fornecidas sem garantias de qualquer tipo. A renderização e a edição de PDF podem ser imperfeitas: guarde sempre uma cópia do ficheiro original e verifique o resultado antes de confiar nele para algo importante."
+        },
+        {
+          "heading": "Limitação de responsabilidade",
+          "body": "Na medida permitida por lei, não somos responsáveis por perda de dados, lucros cessantes ou danos indiretos resultantes do uso, ou da impossibilidade de uso, deste site. Nada aqui limita os direitos que lhe assistem ao abrigo de normas imperativas de defesa do consumidor."
+        },
+        {
+          "heading": "Publicidade",
+          "body": "O serviço é gratuito e financiado por publicidade. Os anúncios vêm de terceiros e o seu conteúdo não é por nós endossado. Bloqueá-los é tecnicamente possível, mas retira o apoio que mantém o projeto a funcionar."
+        },
+        {
+          "heading": "Alterações e contacto",
+          "body": "Podemos atualizar estes termos; a data acima indica a versão em vigor e continuar a usar o site após uma alteração significa aceitá-la. Dúvidas? Escreva-nos abaixo."
+        }
+      ]
+    }
   }
 }

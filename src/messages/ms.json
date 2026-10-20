@@ -657,5 +657,81 @@
       "pdfToImage": "Pilih format output dan resolusi",
       "imageToPdf": "Susun imej dan pilih saiz halaman"
     }
+  },
+  "Legal": {
+    "privacy": {
+      "title": "Dasar Privasi",
+      "description": "Cara Reeff.PDF mengendalikan fail dan data anda: semua alat berjalan dalam pelayar anda dan PDF anda tidak pernah dimuat naik.",
+      "lastUpdated": "Kemas kini terakhir: 20 Oktober 2026",
+      "intro": "Reeff.PDF (pdf.reeff.app) ialah koleksi alat PDF percuma yang berjalan dalam pelayar. Halaman ini menerangkan apa yang berlaku kepada fail anda, dan maklumat terhad yang kami serta rakan kongsi kami proses apabila anda menggunakan laman ini.",
+      "contactLabel": "Ada soalan tentang dasar ini atau data anda? Hubungi kami:",
+      "sections": [
+        {
+          "heading": "Fail anda tidak pernah meninggalkan peranti anda",
+          "body": "Setiap PDF dan imej yang anda buka dibaca, disunting dan disimpan oleh kod yang berjalan di dalam pelayar anda. Tiada langkah muat naik dan tiada pemprosesan di pelayan: dokumen anda tidak pernah dihantar kepada kami atau kepada sesiapa pun."
+        },
+        {
+          "heading": "Apa yang pelayan kami lihat",
+          "body": "Tiada akaun dan tiada storan untuk fail, nama fail atau kandungannya — tiada apa yang sampai untuk disimpan. Seperti mana-mana laman web, permintaan sampai kepada hos kami (Cloudflare), yang menyimpan log teknikal jangka pendek seperti alamat IP, pelayar dan halaman yang diminta untuk menyampaikan halaman dan menyekat penyalahgunaan. Kami hanya melihat angka agregat tanpa pengenalan (paparan halaman mengikut alat dan bahasa) untuk menentukan apa yang perlu diperbaiki."
+        },
+        {
+          "heading": "Kuki dan storan setempat",
+          "body": "Alat ini berfungsi tanpa kuki. Pelayar anda mungkin menyimpan keutamaan kecil secara setempat, seperti bahasa yang anda pilih. Jika pengiklanan diaktifkan, rakan kongsi pengiklanan kami mungkin menetapkan kuki mereka sendiri atau membaca pengecam peranti; lihat bahagian seterusnya."
+        },
+        {
+          "heading": "Pengiklanan dan Google AdSense",
+          "body": "Laman ini percuma kerana disokong iklan. Vendor pihak ketiga, termasuk Google, menggunakan kuki untuk menyampaikan iklan berdasarkan lawatan anda sebelum ini ke laman ini dan laman lain. Penggunaan kuki pengiklanan oleh Google membolehkannya dan rakan kongsinya menyampaikan iklan kepada anda berdasarkan lawatan anda. Anda boleh memilih keluar daripada iklan diperibadikan dalam Tetapan Iklan Google di https://www.google.com/settings/ads atau di https://www.aboutads.info/choices. Pelawat di EEA, UK dan Switzerland diminta persetujuan sebelum sebarang kuki pengiklanan ditetapkan."
+        },
+        {
+          "heading": "Perkhidmatan pihak ketiga",
+          "body": "Kami bergantung pada Cloudflare untuk pengehosan, DNS dan penyampaian kandungan, dan — apabila iklan dipaparkan — pada Google serta rakan kongsinya untuk pengiklanan. Syarikat tersebut mengendalikan data di bawah dasar privasi mereka sendiri. Pautan ke laman web lain di luar kawalan kami."
+        },
+        {
+          "heading": "Kanak-kanak",
+          "body": "Perkhidmatan ini tidak ditujukan kepada kanak-kanak di bawah 13 tahun (16 tahun di EEA dan UK), dan kami tidak mengumpul data peribadi mereka dengan pengetahuan."
+        },
+        {
+          "heading": "Hak anda dan perubahan dasar ini",
+          "body": "Kami tidak menyimpan data peribadi kami sendiri, jadi permintaan akses, pembetulan atau pemadaman biasanya berkaitan hos atau rakan kongsi pengiklanan kami; hubungi kami dan kami akan membantu menyalurkannya. Jika anda berada di EEA, UK, California atau wilayah lain yang mempunyai undang-undang perlindungan data, anda boleh menghubungi kami pada bila-bila masa. Kami mengemas kini halaman ini apabila amalan kami berubah, dan tarikh di atas sentiasa menunjukkan versi semasa."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terma Penggunaan",
+      "description": "Terma yang terpakai apabila anda menggunakan alat PDF percuma Reeff.PDF dalam pelayar.",
+      "lastUpdated": "Kemas kini terakhir: 20 Oktober 2026",
+      "intro": "Terma ini meliputi penggunaan anda terhadap Reeff.PDF (pdf.reeff.app). Dengan menggunakan laman ini anda menerimanya, jadi sila baca dahulu.",
+      "contactLabel": "Ada soalan tentang terma ini? Hubungi kami:",
+      "sections": [
+        {
+          "heading": "Perkhidmatan ini",
+          "body": "Reeff.PDF ialah koleksi alat percuma yang membaca, menyunting dan menyimpan fail PDF di dalam pelayar anda. Ia disediakan sebagaimana adanya, tidak memerlukan akaun, dan boleh mendapat ciri baharu, berubah atau dihentikan pada bila-bila masa."
+        },
+        {
+          "heading": "Penggunaan yang boleh diterima",
+          "body": "Anda boleh menggunakan alat ini untuk kerja dokumen peribadi atau komersial. Anda tidak boleh menggunakannya untuk kandungan yang anda tiada hak untuk mengendalikan, untuk apa-apa yang menyalahi undang-undang, atau untuk menyerang perkhidmatan — contohnya pengikisan automatik, cubaan menghabiskan lebar jalur kami, atau gangguan kepada pengguna lain."
+        },
+        {
+          "heading": "Fail dan kandungan anda",
+          "body": "Apa sahaja yang anda buka dalam alat ini kekal milik anda. Kami tidak menuntut apa-apa lesen atau pemilikan ke atas dokumen anda, dan kerana ia tidak pernah sampai kepada kami, kami tidak dapat memeriksanya secara prinsip."
+        },
+        {
+          "heading": "Tiada jaminan",
+          "body": "Alat ini disediakan tanpa sebarang jaminan. Paparan dan penyuntingan PDF mungkin tidak sempurna: sentiasa simpan salinan fail asal dan semak hasilnya sebelum bergantung padanya untuk perkara penting."
+        },
+        {
+          "heading": "Had liabiliti",
+          "body": "Setakat yang dibenarkan undang-undang, kami tidak bertanggungjawab atas kehilangan data, kehilangan keuntungan atau kerosakan tidak langsung akibat penggunaan, atau ketidakupayaan menggunakan, laman ini. Tiada apa dalam terma ini mengehadkan hak anda di bawah undang-undang pengguna yang wajib."
+        },
+        {
+          "heading": "Pengiklanan",
+          "body": "Perkhidmatan ini percuma dan dibiayai oleh iklan. Iklan datang daripada pihak ketiga dan kandungannya tidak disokong oleh kami. Menyekatnya secara teknikal boleh dilakukan, tetapi ia menghapuskan sokongan yang memastikan projek ini berjalan."
+        },
+        {
+          "heading": "Perubahan dan hubungan",
+          "body": "Kami boleh mengemas kini terma ini; tarikh di atas menunjukkan versi semasa dan penggunaan berterusan selepas perubahan bermakna anda menerimanya. Ada soalan? Hubungi kami di bawah."
+        }
+      ]
+    }
   }
 }

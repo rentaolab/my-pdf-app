@@ -1,0 +1,12 @@
+# ads.txt for pdf.reeff.app — https://iabtechlab.com/ads-txt/
+#
+# Google AdSense requires this file at the site root once the account is
+# approved. Nothing is served to browsers from here, so it costs nothing to
+# keep in the repo — it just needs the real publisher ID before launch.
+#
+# TODO(publisher): replace the placeholder below with the AdSense publisher ID
+# (AdSense → Account → Settings → Account information) and uncomment the line.
+# The record must stay commented out until then: declaring a made-up seller ID
+# would make Google report an "unauthorized seller" instead of "not configured".
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0

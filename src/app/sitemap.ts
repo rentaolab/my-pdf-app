@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { PAGE_PATHS, SITE_URL } from "@/lib/seo";
+import { LEGAL_PATHS, SITE_URL, SITEMAP_PATHS } from "@/lib/seo";
 
 // Required by `output: "export"` — metadata routes are emitted as static files
 // at build time instead of being served by a Node runtime.
 export const dynamic = "force-static";
 
 /**
- * 10 locales × 12 pages = 120 URLs, each with its own hreflang alternates block
- * (including x-default) so the locale variants are not treated as duplicates.
+ * 10 locales × 14 pages = 140 URLs (12 tools/home + privacy + terms), each with
+ * its own hreflang alternates block (including x-default) so the locale
+ * variants are not treated as duplicates.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
@@ -18,12 +19,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "x-default": `${SITE_URL}/${routing.defaultLocale}${path}`,
   });
 
+  const isLegal = (path: string) => (LEGAL_PATHS as readonly string[]).includes(path);
+
   return routing.locales.flatMap((locale) =>
-    PAGE_PATHS.map((path) => ({
+    SITEMAP_PATHS.map((path) => ({
       url: `${SITE_URL}/${locale}${path}`,
       lastModified,
-      changeFrequency: path === "" ? ("weekly" as const) : ("monthly" as const),
-      priority: path === "" ? 1 : 0.8,
+      changeFrequency: path === "" ? ("weekly" as const) : isLegal(path) ? ("yearly" as const) : ("monthly" as const),
+      priority: path === "" ? 1 : isLegal(path) ? 0.3 : 0.8,
       alternates: { languages: languagesFor(path) },
     })),
   );

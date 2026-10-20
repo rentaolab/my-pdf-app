@@ -657,5 +657,81 @@
       "pdfToImage": "Pick an output format and resolution.",
       "imageToPdf": "Drag the images into order and pick a page size."
     }
+  },
+  "Legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "How Reeff.PDF handles your files and data: every tool runs in your browser and your PDFs are never uploaded.",
+      "lastUpdated": "Last updated: 20 October 2026",
+      "intro": "Reeff.PDF (pdf.reeff.app) is a free set of browser-based PDF tools. This page explains what happens to your files, and what limited information we and our partners process when you use the site.",
+      "contactLabel": "Questions about this policy or your data? Write to us:",
+      "sections": [
+        {
+          "heading": "Your files never leave your device",
+          "body": "Every PDF and image you open is read, edited and saved by code running inside your browser. There is no upload step and no server-side processing: your documents are never sent to us or to anyone else."
+        },
+        {
+          "heading": "What our servers see",
+          "body": "There are no accounts and no storage for your files, their names or their contents — nothing ever arrives to be stored. Like any website, requests reach our host (Cloudflare), which keeps short-lived technical logs such as IP address, browser and page requested in order to deliver pages and block abuse. We look at aggregate, non-identifying figures (page views per tool and per language) to decide what to improve."
+        },
+        {
+          "heading": "Cookies and local storage",
+          "body": "The tools work without cookies. Your browser may keep small preferences locally, such as the language you picked. Where advertising is enabled, our advertising partners may set their own cookies or read device identifiers; see the next section."
+        },
+        {
+          "heading": "Advertising and Google AdSense",
+          "body": "The site is free because it is supported by ads. Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this and other websites. Google's use of advertising cookies lets it and its partners show you ads based on your visits. You can opt out of personalised advertising in Google Ads Settings at https://www.google.com/settings/ads or at https://www.aboutads.info/choices. Visitors in the EEA, the UK and Switzerland are asked for consent before any advertising cookie is set."
+        },
+        {
+          "heading": "Third-party services",
+          "body": "We rely on Cloudflare for hosting, DNS and content delivery, and — when ads are shown — on Google and its partners for advertising. Those companies handle data under their own privacy policies. Links to other websites are outside our control."
+        },
+        {
+          "heading": "Children",
+          "body": "The service is not directed at children under 13 (16 in the EEA and the UK), and we do not knowingly collect personal data from them."
+        },
+        {
+          "heading": "Your rights and changes to this policy",
+          "body": "We do not keep personal data of our own, so access, correction or deletion requests usually concern our host or advertising partners; write to us and we will help you route them. If you are in the EEA, the UK, California or another region with data-protection law, you can contact us at any time. We update this page when our practices change, and the date above always shows the current version."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "description": "The terms that apply when you use the free browser-based PDF tools on Reeff.PDF.",
+      "lastUpdated": "Last updated: 20 October 2026",
+      "intro": "These terms cover your use of Reeff.PDF (pdf.reeff.app). By using the site you accept them, so please read them first.",
+      "contactLabel": "Questions about these terms? Write to us:",
+      "sections": [
+        {
+          "heading": "The service",
+          "body": "Reeff.PDF is a free collection of tools that read, edit and save PDF files inside your browser. It is offered as it is, needs no account, and may gain features, change or be discontinued at any time."
+        },
+        {
+          "heading": "Acceptable use",
+          "body": "You may use the tools for personal or commercial document work. You may not use them for content you have no right to handle, for anything unlawful, or to attack the service — for example automated scraping, attempts to exhaust our bandwidth, or interference with other users."
+        },
+        {
+          "heading": "Your files and content",
+          "body": "Whatever you open in the tools stays yours. We claim no licence over your documents and no ownership of them, and because they never reach us we could not inspect them even in principle."
+        },
+        {
+          "heading": "No warranty",
+          "body": "The tools are provided without warranty of any kind. PDF rendering and editing can be imperfect: keep a copy of the original file and check the result before relying on it for anything important."
+        },
+        {
+          "heading": "Limitation of liability",
+          "body": "To the extent the law allows, we are not liable for lost data, lost profits or indirect damages resulting from the use of, or the inability to use, this site. Nothing here limits rights you have under mandatory consumer law."
+        },
+        {
+          "heading": "Advertising",
+          "body": "The service is free and funded by advertising. Ads come from third parties and their content is not endorsed by us. Blocking them is technically possible, but it removes the support that keeps the project running."
+        },
+        {
+          "heading": "Changes and contact",
+          "body": "We may update these terms; the date above shows the current version and continued use after a change means you accept it. Questions? Write to us below."
+        }
+      ]
+    }
   }
 }
