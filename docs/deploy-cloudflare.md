@@ -180,4 +180,9 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 
 预算参考：收紧后约 1 次调用/页面浏览 → 免费额度可支撑约 10 万 PV/天；超过后升 Workers Paid（$5/月，含 1000 万请求/月）。
 
+> 调试注意：CF 对 `.txt` 有默认边缘缓存（`max-age=14400`）。若只改了排除规则而同名文件内容没变，ETag 命中会让边缘
+> 继续返回**旧响应头**最长 4 小时 —— 用 `curl "$URL/robots.txt?nocache=1"` 绕过缓存即可看到新行为。HTML 是
+> `max-age=0`，不会被边缘缓存，所以 `noindex` 这类头不会滞留。
+
+
 
