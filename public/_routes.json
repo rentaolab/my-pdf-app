@@ -1,5 +1,18 @@
 {
   "version": 1,
   "include": ["/*"],
-  "exclude": ["/_next/*", "/brand/*"]
+  "exclude": [
+    "/_next/*",
+    "/brand/*",
+    "/*.txt",
+    "/*.xml",
+    "/*.json",
+    "/*.webmanifest",
+    "/*.png",
+    "/*.svg",
+    "/*.ico",
+    "/*.jpg",
+    "/*.jpeg",
+    "/*.webp"
+  ]
 }

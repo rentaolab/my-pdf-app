@@ -159,3 +159,25 @@ const pdfjsLib = await getPdfjs();   // 首次调用才 import('pdfjs-dist')，�
 2. pdf.js（约 400 KB）从首屏 chunk 移到独立异步 chunk，只在真正打开 PDF 时才下载
 3. worker 路径只在浏览器里设置一次，不会在 Node 中触发 `GlobalWorkerOptions` 副作用
 
+### 7.2 `_routes.json` 与 Functions 免费额度（100k 请求/天）
+
+橙云代理生效后，**每一次 Pages Functions 调用都计入 Free 档的 100,000 请求/天**，超了直接报错（不是降级）。
+
+静态导出的产物里有 **605 个 `.txt`**（Next.js 的 RSC payload），客户端导航/预取会抓它们；再加上 `sitemap.xml`、
+`robots.txt`、各类图标。中间件只有在「路径含 `.`」时才 `context.next()` 透传，所以这些请求**不需要**进 Function，
+但没有排除前它们照样消耗额度，单次浏览可能 3–12 次调用。
+
+因此 `public/_routes.json` 排除了它们（`include: ["/*"]` + 扩展名黑名单）。判定方式：
+
+```bash
+# 1 = 进了 Function（计费）；0 = 静态直出（不计费）
+curl -sI https://staging.pdf.reeff.app/en/merge-pdf.txt | grep -ci x-robots-tag   # 期望 0
+curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag   # 期望 1
+```
+
+> 注意：排除规则只匹配**请求路径**，不影响 Pages 把 `/en` 解析到 `en.html` 的 pretty URL 行为；
+> `/en`、`/`、尾斜杠 301、404 仍然全部走 Function（它们需要语言协商与 noindex 改写）。
+
+预算参考：收紧后约 1 次调用/页面浏览 → 免费额度可支撑约 10 万 PV/天；超过后升 Workers Paid（$5/月，含 1000 万请求/月）。
+
+
