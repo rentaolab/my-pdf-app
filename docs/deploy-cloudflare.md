@@ -107,6 +107,30 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 | `/_next/static/*` | `public, max-age=31536000, immutable` ✅ |
 | `*.pages.dev` 索引状态 | `X-Robots-Tag: noindex, nofollow` ✅（`pdf.reeff.app` 不带此头） |
 
+### 5.2 2026-10-20 11:02 UTC 生产切换 `pdf.reeff.app` 验收结果
+
+| 用例 | 结果 |
+|---|---|
+| DNS | `2606:4700:3031::ac43:d749` 等 → Cloudflare anycast（不再是 `vercel-dns-017.com`）✅ |
+| 证书 | Google Trust Services WE1，`CN=pdf.reeff.app`，11:02:53 签发，2027-01-18 到期 ✅ |
+| **`X-Robots-Tag`** | **生产域无此头**；`pages.dev` 与 `staging.` 仍为 `noindex, nofollow` ✅ |
+| `<meta name="robots">` | 无残留 noindex ✅ |
+| `x-vercel-*` | 已全部消失 ✅ |
+| 语言协商 | `en-US→/en` `zh-CN→/zh` `ja-JP→/ja` `ms-MY→/ms` `ko-KR→/ko` ✅ |
+| Cookie 优先级 | `Cookie: NEXT_LOCALE=ko` + `Accept-Language: en-US` → `/ko/merge-pdf`（cookie 胜）✅ |
+| 无前缀深层页 | `/merge-pdf` + `de` → 302 `/de/merge-pdf` ✅ |
+| 11 个工具（en） | 全部 200 ✅ |
+| 10 个语言根 | 全部 200 ✅ |
+| 未知路径 | 404 且渲染出 404 页 ✅ |
+| 尾斜杠 | `/en/merge-pdf/` → 301 `https://pdf.reeff.app/en/merge-pdf` ✅ |
+| 安全头 | CSP `frame-ancestors 'self'` / `SAMEORIGIN` / `nosniff` / `strict-origin-when-cross-origin` ✅ |
+| sitemap / robots | 120 条 URL / `Allow: /` ✅ |
+| 静态资源 | `_next/static/*` → `max-age=31536000, immutable` ✅ |
+| RSC payload | `/en/merge-pdf.txt` → 200，内容为 `1:"$Sreact.fragment"` ✅ |
+| 缓存行为 | HTML 与 302 均 `cf-cache-status: DYNAMIC` + `max-age=0`（noindex/重定向不会滞留边缘）✅ |
+| HTTP→HTTPS | 301 → `https://pdf.reeff.app/en` ✅ |
+
+
 浏览器手测（**必做**，静态导出对客户端行为最敏感）：
 
 - [ ] 11 个工具全部走通：上传 → 处理 → 导出（`edit` / `organize` 最重）
