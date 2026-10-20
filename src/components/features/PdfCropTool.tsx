@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { cropPDFPagesCustom, cropPDFPagesToZip, CropRect } from '@/lib/pdf-crop';
-import * as pdfjsLib from 'pdfjs-dist';
+import { getPdfjs } from '@/lib/pdfjs';
 import {
   Upload,
   Download,
@@ -92,6 +92,7 @@ export default function PdfCropTool() {
         setSelectedExportPages(allIndices);
 
         // 获取 PDF 真实 pt 尺寸
+        const pdfjsLib = await getPdfjs();
         const arrayBuffer = await currentFile.arrayBuffer();
         const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
         const firstPage = await pdfDoc.getPage(1);

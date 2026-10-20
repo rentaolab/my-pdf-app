@@ -1,13 +1,11 @@
 import { PDFDocument, degrees } from 'pdf-lib';
-import * as pdfjsLib from 'pdfjs-dist';
-
-// 设置 PDF.js Worker 路径
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+import { getPdfjs } from '@/lib/pdfjs';
 
 /**
  * 渲染 PDF 页面为图片 DataURL 列表（用于网格预览）
  */
 export async function renderPDFToImages(file: File): Promise<string[]> {
+  const pdfjsLib = await getPdfjs();
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
   const imageUrls: string[] = [];
@@ -70,6 +68,7 @@ export async function renderSinglePDFPageHighRes(
   file: File,
   pageIndex: number
 ): Promise<string> {
+  const pdfjsLib = await getPdfjs();
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
   const page = await pdf.getPage(pageIndex + 1); // pdf.js 页面从 1 开始

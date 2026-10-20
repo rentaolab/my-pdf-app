@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { renderPDFToImages } from '@/lib/pdf-edit';
 import { crossMergePDFPages, SelectedPageItem } from '@/lib/pdf-cross-merge';
-import * as pdfjsLib from 'pdfjs-dist';
+import { getPdfjs } from '@/lib/pdfjs';
 import {
   Upload,
   Download,
@@ -331,6 +331,7 @@ export default function PdfOrganizeTool() {
       setIsParsingOutline(true);
       setShowOutlineModal(true);
 
+      const pdfjsLib = await getPdfjs();
       const arrayBuffer = await files[activeFileIndex].arrayBuffer();
       const pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       const rawOutline = await pdfDoc.getOutline();

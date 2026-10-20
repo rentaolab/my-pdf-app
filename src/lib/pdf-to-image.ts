@@ -1,8 +1,6 @@
-import * as pdfjsLib from 'pdfjs-dist';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 import JSZip from 'jszip';
-
-// 设置 PDF.js Worker 路径（与 pdf-edit.ts 保持一致，浏览器端零上传）
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+import { getPdfjs } from '@/lib/pdfjs';
 
 /** 支持的导出图片格式 */
 export type ImageFormat = 'png' | 'jpeg' | 'webp';
@@ -64,7 +62,7 @@ function canvasToBlob(
  * 先用白色打底，保证导出 JPG / WebP 时透明区域不会变成黑色。
  */
 async function renderPageToCanvas(
-  pdf: pdfjsLib.PDFDocumentProxy,
+  pdf: PDFDocumentProxy,
   pageNumber: number,
   dpi: number
 ): Promise<HTMLCanvasElement> {
@@ -104,6 +102,7 @@ export async function renderPDFPageToImageBlob(
   pageIndex: number,
   options: PdfImageRenderOptions
 ): Promise<Blob> {
+  const pdfjsLib = await getPdfjs();
   const data = await file.arrayBuffer();
   const loadingTask = pdfjsLib.getDocument({ data });
   const pdf = await loadingTask.promise;
@@ -138,6 +137,7 @@ export async function renderPDFPagesToZip(
     throw new Error('请至少选择一页进行导出。');
   }
 
+  const pdfjsLib = await getPdfjs();
   const data = await file.arrayBuffer();
   const loadingTask = pdfjsLib.getDocument({ data });
   const pdf = await loadingTask.promise;

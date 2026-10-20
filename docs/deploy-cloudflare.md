@@ -41,7 +41,11 @@ npm run preview   # npx wrangler pages dev out —— 静态 + Functions 全真�
 2. Project name：`reeff-pdf`（决定 `<name>.pages.dev`）
 3. **Production branch**：迁移期填 `feature/cloudflare-migration`（验证通过后再改成 `main`）
 4. Build command：`npx next build`；**Build output directory：`out`**
-5. 环境变量：`NODE_VERSION=20`
+5. 环境变量：**`NODE_VERSION=22`**
+   > ⚠️ 必须是 22 或更高。`pdfjs-dist@6` 声明 `engines: node >=22.13.0`，且在模块顶层就求值
+   > `Iterator.prototype` 的 polyfill；Node 20 没有全局 `Iterator`，预渲染 `/crop-pdf`、
+   > `/organize-pdf`、`/pdf-to-image` 时会直接 `ReferenceError: Iterator is not defined` 并中断构建。
+   > 仓库里已放 `.node-version` / `.nvmrc`（均为 `22`），Dashboard 的变量是双保险。
 6. **Save and Deploy** → 得到 `https://reeff-pdf.pages.dev`
 7. 跑 §5 验收清单 → 绑 `staging.pdf.reeff.app` → 再绑 `pdf.reeff.app`
 
@@ -106,8 +110,30 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i 'content-security-policy'  #
 
 | 风险 | 对策 |
 |---|---|
+| **构建环境 Node < 22.13**（最易踩） | 症状：`ReferenceError: Iterator is not defined` + 预渲染失败。对策：`NODE_VERSION=22` + 仓库内 `.node-version`/`.nvmrc`；代码层已改为惰性加载 pdf.js（见 §7.1），即使 Node 20 也能构建 |
 | Pages 构建内存/时间超限 | 本地 `npm run build` + `wrangler pages deploy out` |
 | 未知 locale 路径（`/xx/merge-pdf`） | 重定向到 `/en/xx/merge-pdf` → 404 页（与迁移前一致） |
 | Function 调用量 | `_routes.json` 已排除 `/_next/*`、`/brand/*`；免费额度 10 万次/天 |
 | SEO 抖动 | 迁移后立刻重提 sitemap，并在 GSC 观察 2 周；canonical / hreflang 不变 |
 | 回滚 | CNAME 改回 `cname.vercel-dns.com`（Vercel 项目保留 2 周） |
+
+### 7.1 为什么 pdf.js 改成惰性加载
+
+`pdfjs-dist@6` 在模块顶层就执行 `Iterator.prototype.join` 的 polyfill 与 worker 路径设置，而**客户端组件在
+预渲染时也会被 Node 求值**（SSR 成 HTML）。原来 4 个文件是顶层 `import * as pdfjsLib from 'pdfjs-dist'`：
+
+- `src/lib/pdf-edit.ts`、`src/lib/pdf-to-image.ts`
+- `src/components/features/PdfCropTool.tsx`、`src/components/features/PdfOrganizeTool.tsx`
+
+于是构建期的 Node 版本直接决定了构建能否通过。现在统一改为 `src/lib/pdfjs.ts` 的
+
+```ts
+const pdfjsLib = await getPdfjs();   // 首次调用才 import('pdfjs-dist')，并顺手设置 workerSrc
+```
+
+收益：
+
+1. 构建不再求值 pdf.js → 换 Node 版本不会再炸；`out/` 与服务端 chunk 更小
+2. pdf.js（约 400 KB）从首屏 chunk 移到独立异步 chunk，只在真正打开 PDF 时才下载
+3. worker 路径只在浏览器里设置一次，不会在 Node 中触发 `GlobalWorkerOptions` 副作用
+
