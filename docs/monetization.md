@@ -20,6 +20,14 @@
 > `PdfCrossMerge.upload.prompt` 的 "(VIP)" 后缀）也一并移除，10 个语言同步。
 > 现在**代码层面不存在任何文件数 / 拆分点 / DPI / 导出方式限制**。
 > 将来若重启会员，按附录 A 重新引入，不要恢复配额与激励广告。
+>
+> **广告骨架（同一天完成，Step 2 + Step 3 的版位已就位，默认全关）：**
+> `src/lib/ads.ts`（配置源）、`src/lib/ads-script.ts`（按需加载）、`src/lib/ads-consent.ts`（兜底 CMP 状态）、
+> `src/components/ads/{AdProvider,AdSlot,ConsentBanner}.tsx`；P1/P2 接在 `ToolPageShell`，P3 接在首页；
+> 工具页补上了页脚（隐私政策可达性）。
+> 由于 `NEXT_PUBLIC_ADS_ENABLED` 默认 `false`，当前构建**零广告 DOM、零广告脚本、零请求**；
+> 拿到 ad unit id 后按 §3.5 填环境变量即可逐版位开启，不需要改代码。
+> P4（移动锚定）按 §9 #2 的决定暂不实现。
 
 ---
 
@@ -115,22 +123,29 @@
 
 | 文件 | 职责 |
 |---|---|
-| `src/lib/ads.ts` | **单一配置源**：`ADS_ENABLED`、`NETWORK_CODE`、版位表（`p1`/`p2`/`p3`/`anchor` → ad unit path + 尺寸组） |
-| `src/components/ads/AdSlot.tsx` | 客户端组件：懒加载 → `defineSlot` → `display` → 高度预留；`enabled=false` 时**渲染 `null`**（不留 DOM） |
-| `src/components/ads/AdProvider.tsx` | 提供 `enabled`（现在恒 `true`）；将来读到会员 `adFree` 即置 `false` → **广告组件零改动** |
-| `src/components/ads/ConsentBanner.tsx` | CMP（EEA / 英国）；未同意前**不加载任何广告脚本** |
+| `src/lib/ads.ts` | **单一配置源**：`ADS_ENABLED`、`ADS_CLIENT`（默认取 ads.txt 的 `pub-`）、`ADS_CMP`、版位表（`p1`/`p2`/`p3` → ad unit id + 尺寸组 + 预留高度）、`isPlacementReady()`、`pushAd()` |
+| `src/lib/ads-script.ts` | **按需**注入 `adsbygoogle.js`（`id="reeff-ads"` 幂等）；由第一个真正渲染的广告位调用 → 无广告位的页面零请求 |
+| `src/lib/ads-consent.ts` | 兜底 CMP 的同意状态存储（`useSyncExternalStore` + `localStorage['reeff.ads.consent.v1']`，跨标签页同步） |
+| `src/components/ads/AdSlot.tsx` | 客户端组件：「Advertisement」标签 → 高度预留 → `push({})` → 观测 `data-ad-status`；未启用 / 未配置该版位时**渲染 `null`**（不留 DOM）；无填充、被拦截、4 秒无回应都折叠 |
+| `src/components/ads/AdProvider.tsx` | 提供 `enabled` / `canServe`（现在恒 `true`）；将来读到会员 `adFree` 即置 `false` → **广告组件零改动** |
+| `src/components/ads/ConsentBanner.tsx` | 兜底 CMP（仅 `ADS_CMP=builtin`）；未同意前**不加载任何广告脚本**。生产默认 `google`，由 Funding Choices 承担 |
 | `public/ads.txt` | 授权卖方清单（必须落在 `pdf.reeff.app/ads.txt` 根路径） |
 
-### 3.3 GPT 生命周期（Next 客户端路由的坑，必须逐条照做）
+### 3.3 广告生命周期（Next 客户端路由的坑，必须逐条照做）
 
-| 要求 | 原因 |
+> 当前实现走 **AdSense 手动版位**（client `ca-pub-4891040014815847`，与 `ads.txt` 一致）。
+> 下表按实现逐条列出，右侧是代码位置；将来迁到 GAM 只需替换 `AdSlot` 内部，
+> 版位表与外层布局都不用动。
+
+| 要求 | 实现位置 / 原因 |
 |---|---|
-| `googletag` 脚本与 `enableServices()` **全站只执行一次**（`window.__reeffAds` 单例守卫） | 重复 `enableServices` 会导致 slot 行为异常 |
-| 路由变化（`usePathname()`）时：先 `destroySlots(旧 slot)` → 再 `defineSlot` + `display` 新容器 | 否则旧 slot 残留在新页面（"广告串页"） |
-| `defineSlot` 的 `divId` 每次唯一（`useId()`） | 复用 id 会拿到已销毁的空容器 |
-| 组件卸载时 `return () => destroySlots(...)` | 防内存泄漏与幽灵曝光 |
-| **不要**用 `refresh()` 硬刷同一 slot 制造曝光 | 可能被判无效流量（扣款风险） |
-| 逻辑只在客户端（`"use client"`），SSR 阶段不触碰 `window.googletag` | 静态导出后必须保证首屏不报错 |
+| 广告脚本**全站只执行一次** | `lib/ads-script.ts` 用 `#reeff-ads` 幂等注入；重复注入会让 slot 行为异常 |
+| 脚本只在**真的有广告位**时才加载 | `AdSlot` 的 effect 里调用 → `/privacy`、`/terms`、404 零请求 |
+| 路由变化时**换新的 `<ins>`**，不复用旧容器 | `key={pathname}` + `requestedFor` 记录 `${pathname}::${placement}`；否则旧广告残留在新页面（"广告串页"） |
+| 每个容器的 id / 槽位**不重复** | `<ins data-ad-slot>` 固定 + React 每次重新挂载；AdSense 不允许同一 `<ins>` 被 push 两次 |
+| 组件卸载时**清理观测器与定时器** | effect 返回 `clearTimeout` + `observer.disconnect()`，防幽灵曝光 |
+| **不要**为了多曝光而重复 `push({})` | 可能被判无效流量（扣款风险） |
+| 逻辑只在客户端 | `"use client"` + `typeof document` 守卫，SSR 阶段不触碰 `document`，静态导出首屏不报错 |
 
 ### 3.4 性能与 CLS（必须达标）
 
@@ -145,8 +160,20 @@
 
 ### 3.5 开关
 
-- `NEXT_PUBLIC_ADS_ENABLED`：`false` → 全站**零广告请求**（本地开发、staging、紧急关闭用）
-- 会员预留：`AdProvider.enabled` 现在恒 `true`；将来 = `!session.isAdFree`
+| 变量 | 默认 | 作用 |
+|---|---|---|
+| `NEXT_PUBLIC_ADS_ENABLED` | 未设 = `false` | 总开关；`false` → 全站**零广告 DOM、零广告脚本、零请求**（本地开发、staging、紧急关闭用） |
+| `NEXT_PUBLIC_ADS_CLIENT` | `ca-pub-4891040014815847`（与 `ads.txt` 一致） | 发布商 ID |
+| `NEXT_PUBLIC_ADS_SLOT_P1/P2/P3` | 空 | 各版位 ad unit id；**留空的版位直接不渲染**，所以可以先上线 2 个版位 |
+| `NEXT_PUBLIC_ADS_CMP` | `google` | `google` = Funding Choices 负责同意；`builtin` = 用内置 `ConsentBanner` 闸门（非 TCF 认证，EEA 不要用） |
+| `NEXT_PUBLIC_ADS_TEST` | 未设 | `true` → 加 `data-adtest="on"`，只出测试广告，别用来验收 RPM |
+
+- 会员预留：`AdProvider.enabled` 现在恒等于「开关打开且 client 存在」；将来 = `!session.isAdFree`。
+- `NEXT_PUBLIC_*` 是**构建期内联**：CF Pages 在 Settings → Environment variables 里配好再 redeploy。
+- **每次构建后跑** `npm run check:ads`（`scripts/check-ads.mjs`）：按当前环境变量断言每页广告数
+  （工具页 2 / 首页 1 / 法务页 0）、确认脚本没有进静态 HTML、P2 与工具卡片保持 96px + 分隔线。
+- **上线顺序**：先在 AdSense 建 3 个 ad unit → 填 `ADS_SLOT_*` → 在 Privacy & messaging 开启 CMP → 才把 `ADS_ENABLED=true`。
+  若 CMP 还没配好就要先看效果，用 `ADS_CMP=builtin`，此时未点「接受」不会加载任何广告脚本。
 
 ---
 
@@ -191,14 +218,14 @@
 - 非 EEA 用户：至少提供"隐私设置"入口，可随时撤回同意
 - 同意状态必须**与广告请求联动**（Consent Mode），不能只是弹个窗了事
 
-### 4.4 隐私政策与条款（当前缺口）
+### 4.4 隐私政策与条款
 
 | 现状 | 需要做 |
 |---|---|
-| ⚠️ `pdf.reeff.app` **没有** `/privacy`、`/terms` 页面，页脚也没有链接（品牌页在 `reeff.app` 根域，属另一个仓库） | ① 在子域新增 `/privacy`、`/terms`（10 语言，至少 en + zh 完整）② 或在页脚链接到 `https://reeff.app/privacy`；**广告审核时同域更稳，建议子域也放一份** |
-| 隐私政策需新增的内容 | 第三方广告（Google）Cookie 与标识符、个性化广告说明与 opt-out 入口、CMP 同意记录、数据保留期、联系方式 |
-| 现有 `ToolContent.privacy` 文案（"文件不离开设备"） | ✅ **依然正确，不要改**；只需补充一句"广告由 Google 提供，与文件处理无关" |
-| `/terms` | 免费、无 SLA、页面含广告、第三方链接免责 |
+| ✅ `/privacy`、`/terms` 已存在（10 语言），首页与**所有工具页**页脚均有链接（工具页页脚是随广告骨架一起补上的） | 无（保持随实现更新） |
+| ✅ 隐私政策已含：Google 广告 Cookie 与标识符、个性化广告说明、Google Ads Settings 与 aboutads.info 两个 opt-out 入口、EEA/UK/CH 先同意后写 Cookie | 等 Funding Choices 真正开启后，再补一句同意记录方式 |
+| 现有 `ToolContent.privacy` 文案（"文件不离开设备"） | ✅ **依然正确，不要改**；广告与文件处理无关，页面广告标签已足够说明 |
+| `/terms` | ✅ 已含免费、无 SLA、页面含广告、第三方链接免责 |
 
 ---
 
@@ -257,15 +284,20 @@
 - Ad Manager（推荐）或 AdSense；提交站点 `pdf.reeff.app`
 - **验收**：审核通过，拿到 `pub-` ID 与至少 1 个 ad unit
 
-### Step 2 · 广告组件骨架（可在拿到 ID 前完成）
-- 产出：`src/lib/ads.ts`、`AdProvider`、`AdSlot`、`ConsentBanner` 骨架、`NEXT_PUBLIC_ADS_ENABLED` 开关
+### Step 2 · 广告组件骨架（可在拿到 ID 前完成）✅ 2026-10-21
+- 产出：`src/lib/ads.ts`、`src/lib/ads-script.ts`、`src/lib/ads-consent.ts`、
+  `AdProvider`、`AdSlot`、`ConsentBanner`、`NEXT_PUBLIC_ADS_ENABLED` 开关
 - **验收**：`ADS_ENABLED=false` 时全站**零**广告 DOM、零外部请求
   （DevTools Network 过滤 `googlesyndication` / `doubleclick` 结果为 0）
+  → 已用 jsdom 行为用例 + 静态产物 grep 双向验证（110 个语言页均为 0 个 `<ins>`、0 个脚本标签）
 
-### Step 3 · 接入 3 个版位
-- 产出：`ToolPageShell` 接 P1 + P2；首页接 P3；移动端 P4
+### Step 3 · 接入 3 个版位 ✅ 2026-10-21（版位就位，等 ad unit id）
+- 产出：`ToolPageShell` 接 P1 + P2；首页接 P3；移动端 P4（暂缓，见 §9 #2）
 - **验收**：任一工具页广告数 ≤2（桌面）/ ≤3（移动）；**导出按钮 96px 内无任何广告容器**；
   Lighthouse 移动端 **CLS < 0.1**
+  → 广告数为 2 / 1 / 0（工具页 / 首页 / 法务页）已用构建产物逐页断言；
+    P2 位于工具卡片之外并保留 `mt-24` + 分隔线；P4 未实现所以不存在遮挡风险；
+    开广告后的 CLS 仍需在真实 ad unit 上跑一次 Lighthouse（Step 5）。
 
 ### Step 4 · 合规补齐
 - 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查

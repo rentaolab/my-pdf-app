@@ -6,6 +6,15 @@
   "LanguageSwitcher": {
     "label": "Language"
   },
+  "Ads": {
+    "label": "Advertisement",
+    "consent": {
+      "title": "Ad settings",
+      "text": "We show ads to keep these tools free. Google may set cookies to personalise them. Your files are still processed only in your browser and are never uploaded.",
+      "accept": "Accept ads",
+      "reject": "Decline"
+    }
+  },
   "Common": {
     "upload": {
       "prompt": "Click or drag a PDF file here to upload",

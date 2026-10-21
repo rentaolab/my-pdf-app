@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { alternatesFor } from "@/lib/seo";
+import AdProvider from "@/components/ads/AdProvider";
+import ConsentBanner from "@/components/ads/ConsentBanner";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -83,7 +85,15 @@ export default async function LocaleLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {/* Advertising is off unless NEXT_PUBLIC_ADS_ENABLED=true, in which
+              case AdProvider loads the AdSense runtime and ConsentBanner (only
+              in `builtin` CMP mode) can appear. Both are inert otherwise. */}
+          <AdProvider>
+            {children}
+            <ConsentBanner />
+          </AdProvider>
+        </NextIntlClientProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

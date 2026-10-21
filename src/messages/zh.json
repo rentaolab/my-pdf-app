@@ -6,6 +6,15 @@
   "LanguageSwitcher": {
     "label": "选择语言"
   },
+  "Ads": {
+    "label": "广告",
+    "consent": {
+      "title": "广告设置",
+      "text": "我们通过展示广告让这些工具保持免费。Google 可能会设置 Cookie 以提供个性化广告。你的文件始终只在本机浏览器中处理，不会被上传。",
+      "accept": "接受广告",
+      "reject": "拒绝"
+    }
+  },
   "Common": {
     "upload": {
       "prompt": "点击或拖拽 PDF 文件到此处上传",

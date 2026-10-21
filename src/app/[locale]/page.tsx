@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { useTranslations } from 'next-intl';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import AdSlot from '@/components/ads/AdSlot';
 import Navbar from '@/components/layout/Navbar';
 import SiteFooter from '@/components/layout/SiteFooter';
 import { alternatesFor } from '@/lib/seo';
@@ -113,6 +114,11 @@ export default function Home() {
             );
           })}
         </div>
+
+        {/* P3: one in-article unit at the end of the page, so the tool grid
+            stays untouched and the ad appears only after the visitor has seen
+            the tools. Renders nothing unless advertising is enabled. */}
+        <AdSlot placement="p3" className="mt-24 border-t border-slate-200/60 pt-8" />
       </main>
 
       {/* 页脚：版权 + 隐私/条款（广告平台要求从主页可达） */}

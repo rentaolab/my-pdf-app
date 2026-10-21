@@ -6,6 +6,15 @@
   "LanguageSwitcher": {
     "label": "Bahasa"
   },
+  "Ads": {
+    "label": "Iklan",
+    "consent": {
+      "title": "Tetapan iklan",
+      "text": "Kami memaparkan iklan supaya alat ini kekal percuma. Google mungkin menetapkan kuki untuk iklan diperibadikan. Fail anda masih diproses hanya dalam pelayar dan tidak pernah dimuat naik.",
+      "accept": "Terima iklan",
+      "reject": "Tolak"
+    }
+  },
   "Common": {
     "upload": {
       "prompt": "Klik atau seret fail PDF ke sini untuk memuat naik",

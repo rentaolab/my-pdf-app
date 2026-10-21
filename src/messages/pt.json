@@ -6,6 +6,15 @@
   "LanguageSwitcher": {
     "label": "Idioma"
   },
+  "Ads": {
+    "label": "Anúncio",
+    "consent": {
+      "title": "Definições de anúncios",
+      "text": "Mostramos anúncios para manter estas ferramentas gratuitas. O Google pode usar cookies para personalizá-los. Os seus ficheiros são processados apenas no navegador e nunca são enviados.",
+      "accept": "Aceitar anúncios",
+      "reject": "Recusar"
+    }
+  },
   "Common": {
     "upload": {
       "prompt": "Clique ou arraste um arquivo PDF aqui para enviar",
