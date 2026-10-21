@@ -4,9 +4,11 @@
 # approved. Nothing is served to browsers from here, so it costs nothing to
 # keep in the repo — it just needs the real publisher ID before launch.
 #
-# TODO(publisher): replace the placeholder below with the AdSense publisher ID
-# (AdSense → Account → Settings → Account information) and uncomment the line.
-# The record must stay commented out until then: declaring a made-up seller ID
-# would make Google report an "unauthorized seller" instead of "not configured".
+# Authorized sellers for this domain. The publisher ID must match the AdSense
+# account the ad units belong to, otherwise Google reports an "unauthorized
+# seller" instead of "not configured".
 #
-# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# Format: <ad system>, <publisher ID>, <DIRECT|RESELLER>, <TAG cert authority ID>
+# After editing, check https://pdf.reeff.app/ads.txt returns this line as
+# text/plain with no redirect.
+google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0
