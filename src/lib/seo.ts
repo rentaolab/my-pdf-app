@@ -42,7 +42,7 @@ export const SITEMAP_PATHS: string[] = [...PAGE_PATHS, ...LEGAL_PATHS];
  * Contact address shown on the legal pages and required by ad networks.
  * Single constant on purpose: change it here and every locale follows.
  */
-export const CONTACT_EMAIL = "support@reeff.app";
+export const CONTACT_EMAIL = "reeff.app@proton.me";
 
 /**
  * Canonical + hreflang for one page.
