@@ -260,8 +260,8 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 | 隐私政策 | `/[locale]/privacy` | 10 语言各一份，文案在 `src/messages/*.json` 的 `Legal.privacy` |
 | 使用条款 | `/[locale]/terms` | 同上，`Legal.terms` |
 | 页脚入口 | `src/components/layout/SiteFooter.tsx` | 首页与两个法律页渲染；工具页暂未加（首页一键可达） |
-| `ads.txt` | `public/ads.txt` | **目前只有注释**：拿到 AdSense 发布商 ID 后，把 `google.com, pub-…` 那一行取消注释并填 ID |
-| 联系方式 | `src/lib/seo.ts` 的 `CONTACT_EMAIL` | 现为 `support@reeff.app`，如实际邮箱不同只改这一处 |
+| `ads.txt` | `public/ads.txt` | **已上线**：`google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0`（IAB 标准格式，TAG 认证机构 ID 固定为 `f08c47fec0942fa0`） |
+| 联系方式 | `src/lib/seo.ts` 的 `CONTACT_EMAIL` | 现为 `reeff.app@proton.me`，只此一处，10 语言法律页自动跟随 |
 
 要点：
 
