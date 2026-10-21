@@ -1,14 +1,18 @@
+google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0
 # ads.txt for pdf.reeff.app — https://iabtechlab.com/ads-txt/
 #
-# Google AdSense requires this file at the site root once the account is
-# approved. Nothing is served to browsers from here, so it costs nothing to
-# keep in the repo — it just needs the real publisher ID before launch.
+# Two copies exist on purpose:
+# - https://pdf.reeff.app/ads.txt (this file, Cloudflare Pages) authorizes the
+#   inventory that actually carries the ad units;
+# - https://reeff.app/ads.txt (reeff-home, Vercel) covers the registrable domain
+#   that AdSense's "Sites" list requires (its "Add site" form rejects subdomains).
 #
-# Authorized sellers for this domain. The publisher ID must match the AdSense
-# account the ad units belong to, otherwise Google reports an "unauthorized
-# seller" instead of "not configured".
+# The publisher ID must match the AdSense account the ad units belong to,
+# otherwise Google reports an "unauthorized seller" instead of "not configured".
 #
 # Format: <ad system>, <publisher ID>, <DIRECT|RESELLER>, <TAG cert authority ID>
+# The record stays on the first line: "#" comments are legal, but record-first is
+# what AdSense's snippet generator produces.
 # After editing, check https://pdf.reeff.app/ads.txt returns this line as
 # text/plain with no redirect.
-google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0
+

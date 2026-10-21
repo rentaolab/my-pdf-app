@@ -129,7 +129,7 @@
 | `src/components/ads/AdSlot.tsx` | 客户端组件：「Advertisement」标签 → 高度预留 → `push({})` → 观测 `data-ad-status`；未启用 / 未配置该版位时**渲染 `null`**（不留 DOM）；无填充、被拦截、4 秒无回应都折叠 |
 | `src/components/ads/AdProvider.tsx` | 提供 `enabled` / `canServe`（现在恒 `true`）；将来读到会员 `adFree` 即置 `false` → **广告组件零改动** |
 | `src/components/ads/ConsentBanner.tsx` | 兜底 CMP（仅 `ADS_CMP=builtin`）；未同意前**不加载任何广告脚本**。生产默认 `google`，由 Funding Choices 承担 |
-| `public/ads.txt` | 授权卖方清单（必须落在 `pdf.reeff.app/ads.txt` 根路径） |
+| `public/ads.txt` | 授权卖方清单，**两个域各一份**：`pdf.reeff.app/ads.txt`（本仓库 → CF Pages）+ `reeff.app/ads.txt`（`reeff-home` → Vercel）。AdSense「添加网站」只接受注册域，根域那份决定账户里的站点状态 |
 
 ### 3.3 广告生命周期（Next 客户端路由的坑，必须逐条照做）
 
@@ -174,6 +174,10 @@
   （工具页 2 / 首页 1 / 法务页 0）、确认脚本没有进静态 HTML、P2 与工具卡片保持 96px + 分隔线。
 - **上线顺序**：先在 AdSense 建 3 个 ad unit → 填 `ADS_SLOT_*` → 在 Privacy & messaging 开启 CMP → 才把 `ADS_ENABLED=true`。
   若 CMP 还没配好就要先看效果，用 `ADS_CMP=builtin`，此时未点「接受」不会加载任何广告脚本。
+- **站点必须是根域**：AdSense 表单拒收子域 → 账户里的站点是 `reeff.app`；`pdf.reeff.app` 的放量
+  依赖根域审核通过。根域 `ads.txt`（`reeff-home`）与子域 `ads.txt`（本仓库）必须同时在线且 pub id 一致。
+- 根域站点刻意**不迁到 Cloudflare**：它就是一份静态 `ads.txt` 的需求，迁移 Next 16 应用到
+  `@opennextjs/cloudflare` 要重建构建链、换域名与环境变量，风险与收益不成比例。
 
 ---
 
@@ -281,8 +285,13 @@
 > 每一步独立可验收后再进入下一步。
 
 ### Step 1 · 申请与账号（今天提交，等审核）
-- Ad Manager（推荐）或 AdSense；提交站点 `pdf.reeff.app`
-- **验收**：审核通过，拿到 `pub-` ID 与至少 1 个 ad unit
+- Ad Manager（推荐）或 AdSense；提交站点 —— **AdSense 的「添加网站」表单只收注册域**，
+  子域会被拒绝，所以站点填 `reeff.app`（不是 `pdf.reeff.app`），审核看的是根域首页。
+- 根域 `ads.txt` 必须可达：`https://reeff.app/ads.txt`（`reeff-home` 仓库 `public/ads.txt`，
+  Vercel）。没有它「网站」页会一直报「ads.txt 未找到」。
+- **验收**：审核通过 → 站点状态「就绪」+ ads.txt「已授权」；拿到 `pub-` ID 与至少 1 个 ad unit。
+- **审核通过后必查**：`pdf.reeff.app` 是否真的放量（AdSense「网站」/报告里应出现该子域的请求）。
+  若被标「站点未获批准」，先重试添加子域，再联系支持（子域与根域同一主体）。
 
 ### Step 2 · 广告组件骨架（可在拿到 ID 前完成）✅ 2026-10-21
 - 产出：`src/lib/ads.ts`、`src/lib/ads-script.ts`、`src/lib/ads-consent.ts`、
@@ -301,7 +310,8 @@
 
 ### Step 4 · 合规补齐
 - 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查
-- **验收**：`curl -I https://pdf.reeff.app/ads.txt` → `200`；
+- **验收**：`curl -I https://pdf.reeff.app/ads.txt` → `200`；`curl -I https://reeff.app/ads.txt` → `200`
+  （根域那份在 `reeff-home`，两处必须同一 pub id、`text/plain`、无跳转）；
   `/en/privacy` 可访问且含广告 Cookie 说明；`robots.txt` 不屏蔽 `/`（当前已 `allow: "/"` ✅）
 
 ### Step 5 · 灰度上线
@@ -328,7 +338,8 @@
 | 9 | 无填充（Ad Manager 测试流量或强制） | 容器折叠，不留灰块，不遮挡内容 |
 | 10 | 移动端 anchor | 可关闭；不遮挡导出按钮与正文关键操作 |
 | 11 | Lighthouse（移动） | CLS < 0.1；LCP 相对关广告回归 < 10% |
-| 12 | `ads.txt` | `https://pdf.reeff.app/ads.txt` → 200 且含授权行 |
+| 12 | `ads.txt` | `https://pdf.reeff.app/ads.txt` 与 `https://reeff.app/ads.txt` → 均 200、含同一授权行、`text/plain` |
+| 13 | 根域站点 → 子域放量 | AdSense 站点为 `reeff.app`；审核通过后 `pdf.reeff.app` 能正常出广告（见 Step 1） |
 
 ---
 
@@ -342,6 +353,7 @@
 | 4 | 是否接第二个广告网络（瀑布流） | 暂不接；先看单一网络的填充率与 RPM |
 | 5 | 会员启动时点 | 见 §6.1 门槛，不设死日期 |
 | 6 | 广告是否按语言/地区差异化 | 先统一；看 Ad Manager 报表里各语言的 RPM 差异再定 |
+| 7 | 站点只能用根域时，子域能不能放量 | 待验证（AdSense 表单拒子域，但 API 的 Site 定义含 subdomain）。审核通过后 24h 内查「网站」/报告；不放量则先重试添加子域 → 联系支持 → 最后才考虑把工具站迁到根域路径 |
 
 ---
 

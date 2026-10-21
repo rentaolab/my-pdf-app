@@ -114,6 +114,12 @@ export default function AdSlot({
           key={pathname}
           ref={insRef}
           className="adsbygoogle block w-full"
+          // Mirrors the snippet AdSense generates: `display:block` must not
+          // depend on our stylesheet, in-article units are centre-aligned.
+          style={{
+            display: "block",
+            textAlign: config.layout === "in-article" ? "center" : undefined,
+          }}
           data-ad-client={ADS_CLIENT}
           data-ad-slot={config.slot}
           data-ad-format={config.format}
