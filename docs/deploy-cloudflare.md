@@ -195,8 +195,11 @@ const pdfjsLib = await getPdfjs();   // 首次调用才 import('pdfjs-dist')，�
 现在：
 
 - `scripts/sync-pdf-worker.mjs` 在 `predev` / `prebuild` 把 `node_modules/pdfjs-dist/build/pdf.worker.min.mjs`
-  复制成 `public/pdf.worker.<version>.min.mjs`，并删除旧版本残留。该文件**不入库**（`.gitignore`），
-  每次构建/R安装后重新生成，永远不会出现「API 与 Worker 版本不一致」。
+  复制成 `public/pdf.worker.<version>.min.mjs`，并删除旧版本残留，永远不会出现「API 与 Worker 版本不一致」。
+- 该文件**入库**（不再 gitignore）。原因：它是静态导出的一部分，而 CF Pages 的构建跳过了 npm lifecycle
+  scripts（2026-10-21 事故：`prebuild` 没跑 → `out/` 里没有 worker → 线上 404 → `crop` / `organize` /
+  `pdf-to-image` / `edit` 四个工具全部失效，页面本身却一切正常，只有点开 PDF 才暴露）。入库后构建不依赖
+  lifecycle 钩子；升级 pdfjs-dist 时脚本会重写它，**把新文件一起提交**即可。
 - `src/lib/pdfjs.ts` 里 `workerSrc = /pdf.worker.${mod.version}.min.mjs`（同源绝对路径）。
 - 文件名带版本 → `public/_headers` 可以放心给 `immutable`（1 年）；升级 pdfjs 后 URL 变化，不会命中旧 worker。
 - `public/_routes.json` 增加 `/*.mjs`，保证这个 1.2 MB 的请求**不进 Function**（不计配额）。

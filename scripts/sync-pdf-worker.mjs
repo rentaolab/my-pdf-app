@@ -16,7 +16,10 @@
  * immutably without pinning users to a stale worker after an upgrade.
  *
  * Runs from `predev` and `prebuild`, so the copy in `public/` always matches the
- * installed version. The generated file is git-ignored on purpose.
+ * installed version. The copy in `public/` is committed on purpose: it is part of
+ * the static export, and a build that skips lifecycle scripts (Cloudflare Pages
+ * did) would otherwise ship without it, leaving every pdf.js tool broken with a
+ * 404 worker. Upgrade pdfjs-dist, run any npm script, and commit the new file.
  */
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
