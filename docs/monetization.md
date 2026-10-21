@@ -308,11 +308,13 @@
     P2 位于工具卡片之外并保留 `mt-24` + 分隔线；P4 未实现所以不存在遮挡风险；
     开广告后的 CLS 仍需在真实 ad unit 上跑一次 Lighthouse（Step 5）。
 
-### Step 4 · 合规补齐
+### Step 4 · 合规补齐 ✅ 2026-10-21
 - 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查
 - **验收**：`curl -I https://pdf.reeff.app/ads.txt` → `200`；`curl -I https://reeff.app/ads.txt` → `200`
   （根域那份在 `reeff-home`，两处必须同一 pub id、`text/plain`、无跳转）；
   `/en/privacy` 可访问且含广告 Cookie 说明；`robots.txt` 不屏蔽 `/`（当前已 `allow: "/"` ✅）
+  → 实测：两个 `ads.txt` 均 `200 text/plain`、授权行在**第一行**、无跳转；
+    工具站 140 个语言页均有页脚隐私链接；根域 `/en/privacy` 200、首页含工具站入口。
 
 ### Step 5 · 灰度上线
 - 产出：先只在 2 个高流量工具页开广告 → 观察 1 周 → 全量
