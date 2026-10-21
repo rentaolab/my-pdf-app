@@ -13,6 +13,7 @@
     "preview": "npx --yes wrangler pages dev out --port 8788",
     "lint": "eslint",
     "check:ads": "node scripts/check-ads.mjs",
+    "check:ads:live": "node scripts/check-ads-live.mjs",
     "brand": "node scripts/brand.mjs"
   },
   "dependencies": {

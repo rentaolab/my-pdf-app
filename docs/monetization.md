@@ -311,7 +311,7 @@
   （DevTools Network 过滤 `googlesyndication` / `doubleclick` 结果为 0）
   → 已用 jsdom 行为用例 + 静态产物 grep 双向验证（140 个语言页均为 0 个 `<ins>`、0 个脚本标签）
 
-### Step 3 · 接入 3 个版位 🟡 2026-10-21（P1/P2 已放量，P3 待补 slot id）
+### Step 3 · 接入 3 个版位 ✅ 2026-10-21（P1/P2/P3 全部放量）
 - 产出：`ToolPageShell` 接 P1 + P2；首页接 P3；移动端 P4（暂缓，见 §9 #2）
 - **ad unit 建表**（名称只是后台标签，不进代码；代码只认 10 位 slot id）：
 
@@ -319,7 +319,7 @@
   |---|---|---|---|---|
   | P1 | `P1 · 工具页顶栏` | 展示广告 | 自适应 | `8169674524` ✅ |
   | P2 | `P2 · 工具页下方` | 展示广告 | 自适应 | `5623227227` ✅ |
-  | P3 | `P3 · 首页正文内嵌` | **文章内嵌 In-article** | 自适应 | ⏳ 未进构建 |
+  | P3 | `P3 · 首页正文内嵌` | **文章内嵌 In-article** | 自适应 | `1115724748` ✅ |
 
   > ⚠️ P3 建错类型（建成「展示广告」）时 `layout="in-article"` 拿不到 fluid 素材，**必须删掉重建**再换 id；
   > 「按网站 → 自动广告」保持**关闭**，否则它会自己插版位、绕过 §2 的预算与导出按钮 96px 约束。
@@ -328,12 +328,13 @@
   → 广告数为 2 / 1 / 0（工具页 / 首页 / 法务页）已用构建产物逐页断言；
     P2 位于工具卡片之外并保留 `mt-24` + 分隔线；P4 未实现所以不存在遮挡风险；
     开广告后的 CLS 仍在真实 ad unit 上跑一次 Lighthouse（Step 5）。
-  → **线上实测（2026-10-21）**：`/en/merge-pdf`、`/zh/merge-pdf` 各 2 个 `<ins>`，
-    slot 分别为 P1 `8169674524`（`data-ad-format="horizontal"`）与 P2 `5623227227`（`rectangle`）；
-    `/en`、`/en/privacy` 均为 0；预渲染 HTML 里没有 `pagead2.googlesyndication.com`（脚本按需注入）。
-  → **遗留**：首页 P3 未渲染 → 构建时 `NEXT_PUBLIC_ADS_SLOT_P3` 缺失（`out/` 里 `slot:""` 可证），
-    不是代码问题。补变量（名字逐字符核对 `NEXT_PUBLIC_ADS_SLOT_P3`，Environment=Production）→
-    Retry deployment → 复验 `curl -s https://pdf.reeff.app/en | grep -c 'data-ad-slot'` 应为 `1`。
+  → **线上全量实测（2026-10-21，`npm run check:ads:live`）**：sitemap 140 页全绿 ——
+    首页 10 × P3 `1115724748`（`data-ad-format="fluid"` + `data-ad-layout="in-article"`）、
+    工具页 110 × (P1 `8169674524` horizontal + P2 `5623227227` rectangle)、法务页 20 × 0；
+    预渲染 HTML 里没有 `pagead2.googlesyndication.com`（脚本按需注入）。
+  → **踩过的坑**：P3 首次部署没出来，原因是 CF Pages 变量名末尾多了个空格（`NEXT_PUBLIC_ADS_SLOT_P3 `）——
+    界面不报错、`P1/P2` 正常，只有首页静默少一个版位。**改完变量必须 Retry deployment**，
+    再用 `npm run check:ads:live` 复核；静态检查 `check:ads` 只读本地 `out/`，看不出线上配置错。
 
 ### Step 4 · 合规补齐 ✅ 2026-10-21
 - 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查
@@ -376,7 +377,9 @@ AdSense → **隐私权与消息 → GDPR → 创建消息 / 管理**，实际�
   curl -s https://pdf.reeff.app/en | grep -c 'pagead2.googlesyndication.com'      # 期望 0（按需注入）
   curl -sI 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4891040014815847' | head -1
   ```
-  再加本地 `npm run build && npm run check:ads`（用与部署同一组 env）。
+  再加本地两条：`npm run check:ads`（读 `out/`，用与部署同一组 env）
+  与 `npm run check:ads:live`（爬线上 sitemap 140 页，抓 CF Pages 配错变量这类**只有线上才看得见**的问题；
+  staging 上断言零广告用 `npm run check:ads:live -- <url> --off`）。
 - **验收通过后**：删掉 `NEXT_PUBLIC_ADS_TEST` → 再 Retry deployment（否则一直在出测试广告）。
 
 ### Step 6 · 观察 4 周 → 会员决策
