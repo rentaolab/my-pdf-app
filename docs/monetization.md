@@ -169,9 +169,18 @@
 | `NEXT_PUBLIC_ADS_TEST` | 未设 | `true` → 加 `data-adtest="on"`，只出测试广告，别用来验收 RPM |
 
 - 会员预留：`AdProvider.enabled` 现在恒等于「开关打开且 client 存在」；将来 = `!session.isAdFree`。
-- `NEXT_PUBLIC_*` 是**构建期内联**：CF Pages 在 Settings → Environment variables 里配好再 redeploy。
+- **`NEXT_PUBLIC_*` 是构建期内联**，本站又是纯静态导出（`out/`），广告 `<ins>` 是**构建时烧进 HTML** 的：
+  只改变量不重建 = 线上零变化。CF Pages 的准确路径：
+  ```
+  Workers & Pages → my-pdf-app → Settings → Variables and Secrets
+    → Add（Type: Text，不要选 Secret）→ Environment: Production（Preview 需另加一遍）→ Save
+    → Deployments → 最新部署右侧 "…" → Retry deployment
+  ```
+  本地等价：`NEXT_PUBLIC_ADS_ENABLED=true … npm run build && npx wrangler pages deploy out --project-name my-pdf-app`。
+  变量清单见仓库根 `.env.example`（不会被 Next 读取，仅作模板，避免 `builtin` 误上生产）。
 - **每次构建后跑** `npm run check:ads`（`scripts/check-ads.mjs`）：按当前环境变量断言每页广告数
   （工具页 2 / 首页 1 / 法务页 0）、确认脚本没有进静态 HTML、P2 与工具卡片保持 96px + 分隔线。
+  它**读的是构建产物**，所以必须与部署用同一组环境变量跑，否则断言的是上一次的配置。
 - **上线顺序**：先在 AdSense 建 3 个 ad unit → 填 `ADS_SLOT_*` → 在 Privacy & messaging 开启 CMP → 才把 `ADS_ENABLED=true`。
   若 CMP 还没配好就要先看效果，用 `ADS_CMP=builtin`，此时未点「接受」不会加载任何广告脚本。
 - **站点必须是根域**：AdSense 表单拒收子域 → 账户里的站点是 `reeff.app`；`pdf.reeff.app` 的放量
@@ -215,12 +224,14 @@
   （形如 `google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0`）
 - **按 host 生效**：`pdf.reeff.app` 与 `reeff.app` 是不同 host，各自需要自己的 `ads.txt`
 
-### 4.3 CMP 与同意（EEA / 英国）
+### 4.3 CMP 与同意（EEA / 英国 / 瑞士）
 
 - 必须使用 **Google 认证的 CMP**（TCF v2.2）；**未取得同意前不得加载广告脚本或写广告 Cookie**
-- 建议直接用 GAM 内置的 **Privacy & messaging / Funding Choices**（免费、合规、零开发）
-- 非 EEA 用户：至少提供"隐私设置"入口，可随时撤回同意
-- 同意状态必须**与广告请求联动**（Consent Mode），不能只是弹个窗了事
+- 已采用 AdSense 内置的 **Privacy & messaging / Funding Choices**（免费、合规、零开发），
+  具体填值见 §7 Step 4.5
+- 非 EEA 用户：至少提供"隐私设置"入口，可随时撤回同意（Funding Choices 消息自带「隐私设置」链接）
+- 同意状态必须**与广告请求联动**（Consent Mode），不能只是弹个窗了事；因此生产固定
+  `NEXT_PUBLIC_ADS_CMP=google`，内置 `ConsentBanner` 只用于 CMP 就绪前的自测
 
 ### 4.4 隐私政策与条款
 
@@ -298,15 +309,31 @@
   `AdProvider`、`AdSlot`、`ConsentBanner`、`NEXT_PUBLIC_ADS_ENABLED` 开关
 - **验收**：`ADS_ENABLED=false` 时全站**零**广告 DOM、零外部请求
   （DevTools Network 过滤 `googlesyndication` / `doubleclick` 结果为 0）
-  → 已用 jsdom 行为用例 + 静态产物 grep 双向验证（110 个语言页均为 0 个 `<ins>`、0 个脚本标签）
+  → 已用 jsdom 行为用例 + 静态产物 grep 双向验证（140 个语言页均为 0 个 `<ins>`、0 个脚本标签）
 
-### Step 3 · 接入 3 个版位 ✅ 2026-10-21（版位就位，等 ad unit id）
+### Step 3 · 接入 3 个版位 🟡 2026-10-21（P1/P2 已放量，P3 待补 slot id）
 - 产出：`ToolPageShell` 接 P1 + P2；首页接 P3；移动端 P4（暂缓，见 §9 #2）
+- **ad unit 建表**（名称只是后台标签，不进代码；代码只认 10 位 slot id）：
+
+  | 版位 | AdSense 名称 | **类型（创建后不可改）** | 格式 | 线上 `data-ad-slot` |
+  |---|---|---|---|---|
+  | P1 | `P1 · 工具页顶栏` | 展示广告 | 自适应 | `8169674524` ✅ |
+  | P2 | `P2 · 工具页下方` | 展示广告 | 自适应 | `5623227227` ✅ |
+  | P3 | `P3 · 首页正文内嵌` | **文章内嵌 In-article** | 自适应 | ⏳ 未进构建 |
+
+  > ⚠️ P3 建错类型（建成「展示广告」）时 `layout="in-article"` 拿不到 fluid 素材，**必须删掉重建**再换 id；
+  > 「按网站 → 自动广告」保持**关闭**，否则它会自己插版位、绕过 §2 的预算与导出按钮 96px 约束。
 - **验收**：任一工具页广告数 ≤2（桌面）/ ≤3（移动）；**导出按钮 96px 内无任何广告容器**；
   Lighthouse 移动端 **CLS < 0.1**
   → 广告数为 2 / 1 / 0（工具页 / 首页 / 法务页）已用构建产物逐页断言；
     P2 位于工具卡片之外并保留 `mt-24` + 分隔线；P4 未实现所以不存在遮挡风险；
-    开广告后的 CLS 仍需在真实 ad unit 上跑一次 Lighthouse（Step 5）。
+    开广告后的 CLS 仍在真实 ad unit 上跑一次 Lighthouse（Step 5）。
+  → **线上实测（2026-10-21）**：`/en/merge-pdf`、`/zh/merge-pdf` 各 2 个 `<ins>`，
+    slot 分别为 P1 `8169674524`（`data-ad-format="horizontal"`）与 P2 `5623227227`（`rectangle`）；
+    `/en`、`/en/privacy` 均为 0；预渲染 HTML 里没有 `pagead2.googlesyndication.com`（脚本按需注入）。
+  → **遗留**：首页 P3 未渲染 → 构建时 `NEXT_PUBLIC_ADS_SLOT_P3` 缺失（`out/` 里 `slot:""` 可证），
+    不是代码问题。补变量（名字逐字符核对 `NEXT_PUBLIC_ADS_SLOT_P3`，Environment=Production）→
+    Retry deployment → 复验 `curl -s https://pdf.reeff.app/en | grep -c 'data-ad-slot'` 应为 `1`。
 
 ### Step 4 · 合规补齐 ✅ 2026-10-21
 - 产出：`/privacy`、`/terms`（至少 en + zh 完整）、页脚链接、`public/ads.txt`、robots 复查
@@ -316,9 +343,41 @@
   → 实测：两个 `ads.txt` 均 `200 text/plain`、授权行在**第一行**、无跳转；
     工具站 140 个语言页均有页脚隐私链接；根域 `/en/privacy` 200、首页含工具站入口。
 
+### Step 4.5 · GDPR 消息（Funding Choices）✅ 2026-10-21
+> 必须性：自 **2024-01-16**（EEA + 英国）、**2024-07-31**（瑞士）起，面向这些地区投放必须使用
+> **Google 认证的 CMP**；没有它这些地区的广告请求会被丢弃（甚至不投放）。本站 10 语种、
+> de/fr/es/pt 都会带来 EEA 流量，**不能跳过**。
+
+AdSense → **隐私权与消息 → GDPR → 创建消息 / 管理**，实际填值：
+
+| 字段 | 值 | 说明 |
+|---|---|---|
+| 消息名称 | `GDPR · reeff.app` | 任意 |
+| **隐私权政策网址** | `https://pdf.reeff.app/en/privacy` | 实测 `200` 且含 AdSense/Cookie 说明；**不要**用 `/privacy`（302 跳转，Google 要求直达） |
+| **徽标** | `public/brand/icon-512.png` | 可选；正方形 PNG/JPG，尺寸/大小上限见界面提示 |
+| **语言** | 默认 `English` + 添加 `zh ja ko hi ms es pt de fr` | 非必填但强烈建议：Google 按访客浏览器语言匹配，缺失回退默认语言 |
+| 应用网站 | 所有网站 | 子域 `pdf.reeff.app` 一并覆盖（站点登记为根域） |
+| 发布 | 必点 | 保存 ≠ 生效；发布后几分钟内上线 |
+
+- 代码侧配合：`NEXT_PUBLIC_ADS_CMP` 保持默认 `google`（`src/lib/ads.ts`）；**生产禁止** `builtin`
+  —— 内置 `ConsentBanner` 不是 TCF 认证 CMP。
+- **验收**：EEA 节点 + 无痕窗口打开工具页 → 出现同意弹窗；拒绝后 DevTools 里
+  `googlesyndication` 请求应显著减少/无个性化广告；同意后广告位出图。
+- 可选但推荐：**美国州隐私消息**（CCPA/CPRA），不影响投放，只影响合规覆盖面。
+
 ### Step 5 · 灰度上线
 - 产出：先只在 2 个高流量工具页开广告 → 观察 1 周 → 全量
-- **验收**：Ad Manager 有曝光；CLS / LCP 未回归；GSC 无异常波动
+- **验收**：AdSense 有曝光；CLS / LCP 未回归；GSC 无异常波动
+- 部署后 4 条机器可查的检查（`ADS_TEST=true` 阶段也适用）：
+
+  ```bash
+  curl -s https://pdf.reeff.app/en/merge-pdf | grep -o 'data-ad-slot' | wc -l   # 期望 2
+  curl -s https://pdf.reeff.app/en            | grep -o 'data-ad-slot' | wc -l   # 期望 1
+  curl -s https://pdf.reeff.app/en | grep -c 'pagead2.googlesyndication.com'      # 期望 0（按需注入）
+  curl -sI 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4891040014815847' | head -1
+  ```
+  再加本地 `npm run build && npm run check:ads`（用与部署同一组 env）。
+- **验收通过后**：删掉 `NEXT_PUBLIC_ADS_TEST` → 再 Retry deployment（否则一直在出测试广告）。
 
 ### Step 6 · 观察 4 周 → 会员决策
 - **验收**：产出《广告 4 周报告》（PV、曝光、RPM、完成率、CLS），并给出"是否启动会员"的结论
