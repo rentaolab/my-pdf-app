@@ -45,7 +45,6 @@
     "preview": {
       "title": "Pratonton langsung"
     },
-    "unlimited": "Tanpa had",
     "relatedTools": "Alat berkaitan"
   },
   "Tools": {
@@ -150,20 +149,11 @@
     "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Kerja-kerja kecil pejabat, serahkan pada Reeff"
   },
   "PdfMerge": {
-    "dev": {
-      "modeLabel": "Mod ujian pembangun: anda kini sebagai",
-      "vip": "Pengguna VIP",
-      "free": "Pengguna percuma (maks {max} fail)",
-      "switchTo": "Tukar kepada",
-      "freeMode": "Mod percuma",
-      "vipMode": "Mod VIP"
-    },
     "upload": {
-      "vipHint": "Pengguna VIP boleh menggabungkan fail tanpa had",
-      "freeHint": "Pelan percuma membenarkan gabungan sehingga {max} fail"
+      "hint": "Tambah dua atau lebih PDF, kemudian seret pemegang di kiri untuk menyusun semula"
     },
     "list": {
-      "selected": "Dipilih ({count} / {max})",
+      "selected": "Dipilih ({count})",
       "dragHint": "(seret pemegang di kiri untuk menyusun semula)"
     },
     "actions": {
@@ -171,11 +161,7 @@
       "mergeDownload": "Gabung dan muat turun",
       "generating": "Menjana dan memuat turun..."
     },
-    "footer": {
-      "limitReached": "Had gabungan percuma dicapai. Buka VIP untuk lebih banyak fail."
-    },
     "errors": {
-      "freeLimit": "Pengguna percuma boleh menggabungkan sehingga {max} fail PDF pada satu masa!\nNaik taraf ke VIP untuk gabungan tanpa had.",
       "minFiles": "Sila muat naik sekurang-kurangnya 2 fail PDF.",
       "mergeFailed": "Sesuatu tidak kena semasa menggabungkan."
     }
@@ -325,7 +311,7 @@
     },
     "status": {
       "parsing": "Menjana pratonton halaman...",
-      "splitPoints": "Titik pemisah: {count} / {max}"
+      "splitPoints": "Titik pemisah: {count}"
     },
     "actions": {
       "exportSelected": "Eksport bahagian terpilih ({selected}/{total})",
@@ -353,17 +339,8 @@
       "perPartLabel": "Masukkan nama fail untuk setiap bahagian:"
     },
     "errors": {
-      "freeLimit": "Pelan percuma membenarkan sehingga {max} titik pemisah.\nTukar ke mod VIP untuk pemisahan tanpa had!",
       "readFailed": "Gagal membaca PDF.",
       "noPartsSelected": "Pilih sekurang-kurangnya satu bahagian untuk dieksport."
-    },
-    "dev": {
-      "modeLabel": "Pelan semasa:",
-      "vip": "Pengguna VIP (pemisahan tanpa had)",
-      "free": "Pengguna percuma ({max} titik pemisah)",
-      "switchTo": "Tukar kepada",
-      "freeMode": "Mod percuma",
-      "vipMode": "Mod VIP"
     }
   },
   "PdfCrossMerge": {
@@ -372,7 +349,7 @@
       "basketWithFile": "#{index} dalam bakul ({name})"
     },
     "upload": {
-      "prompt": "Muat naik berbilang PDF untuk pemasangan rentas dokumen (VIP)",
+      "prompt": "Muat naik berbilang PDF untuk pemasangan rentas dokumen",
       "hint": "Pilih mana-mana halaman daripada dokumen berbeza dan bina PDF baharu"
     },
     "sources": {

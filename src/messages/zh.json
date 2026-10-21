@@ -45,7 +45,6 @@
     "preview": {
       "title": "实时大图预览"
     },
-    "unlimited": "无限",
     "relatedTools": "相关工具"
   },
   "Tools": {
@@ -150,20 +149,11 @@
     "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 办公杂活，交给 Reeff"
   },
   "PdfMerge": {
-    "dev": {
-      "modeLabel": "开发测试模式：当前身份为",
-      "vip": "VIP 高级用户",
-      "free": "免费标准用户 (限 {max} 个文件)",
-      "switchTo": "切换为",
-      "freeMode": "免费模式",
-      "vipMode": "VIP 模式"
-    },
     "upload": {
-      "vipHint": "VIP 用户享无限多文件合并",
-      "freeHint": "免费版最多支持合并 {max} 个文件"
+      "hint": "添加两个或以上的 PDF，可拖动左侧手柄调整顺序"
     },
     "list": {
-      "selected": "已选择 ({count} / {max})",
+      "selected": "已选择 ({count})",
       "dragHint": "（可按住左侧手柄拖拽调整顺序）"
     },
     "actions": {
@@ -171,11 +161,7 @@
       "mergeDownload": "合并并下载",
       "generating": "正在生成并下载..."
     },
-    "footer": {
-      "limitReached": "已达免费合并上限，需更多文件请解锁 VIP"
-    },
     "errors": {
-      "freeLimit": "免费用户一次最多合并 {max} 个 PDF 文件！\n升级 VIP 即可无限量批量合并。",
       "minFiles": "请至少上传 2 个 PDF 文件！",
       "mergeFailed": "合并过程发生错误。"
     }
@@ -325,7 +311,7 @@
     },
     "status": {
       "parsing": "正在解析页面预览...",
-      "splitPoints": "拆分点：{count} / {max}"
+      "splitPoints": "拆分点：{count}"
     },
     "actions": {
       "exportSelected": "导出选中的部分 ({selected}/{total})",
@@ -353,17 +339,8 @@
       "perPartLabel": "分别输入各 Part 的导出文件名："
     },
     "errors": {
-      "freeLimit": "免费版最多插入 {max} 个拆分符。\n切换为 VIP 模式解锁无限拆分！",
       "readFailed": "读取 PDF 失败",
       "noPartsSelected": "请至少勾选一个需要导出的文档区块！"
-    },
-    "dev": {
-      "modeLabel": "当前权限为：",
-      "vip": "VIP 高级用户 (无上限切分)",
-      "free": "免费标准用户 (限 {max} 个切分点)",
-      "switchTo": "切换为",
-      "freeMode": "免费模式",
-      "vipMode": "VIP 模式"
     }
   },
   "PdfCrossMerge": {
@@ -372,7 +349,7 @@
       "basketWithFile": "篮中 #{index} ({name})"
     },
     "upload": {
-      "prompt": "上传多个 PDF 进行跨文档交叉拼装 (VIP 专享)",
+      "prompt": "上传多个 PDF 进行跨文档交叉拼装",
       "hint": "可自由挑拣不同文档里的任意页面，拼装为一个全新的 PDF"
     },
     "sources": {

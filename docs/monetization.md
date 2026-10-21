@@ -12,6 +12,14 @@
 > `src/lib/ads.ts`（版位与开关）、`src/components/ads/*`、`src/messages/*.json`（广告标签）、
 > `/privacy` 与 `/terms`（子域当前**尚无**这两个页面，见 §4.4）。
 > 相关文档：`docs/brand-brief.md`（品牌定位与 Never-do 清单）。
+>
+> **实现现状（2026-10-21）：** v1 遗留的配额分支已从代码中彻底移除——
+> `src/lib/plan.ts`（free 版 `mergeMaxFiles: 2` / `splitMaxBreaks: 1` / `pdfToImageMaxDpi: 150` / `zipExport: false`）
+> 与仅供调试切换套餐的 `src/lib/flags.ts` 已删除；合并 / 拆分 / 转图片三个工具里的
+> VIP 升级文案（`PdfMerge.dev|upload|footer|errors.freeLimit`、`PdfSplit.dev|errors.freeLimit`、
+> `PdfCrossMerge.upload.prompt` 的 "(VIP)" 后缀）也一并移除，10 个语言同步。
+> 现在**代码层面不存在任何文件数 / 拆分点 / DPI / 导出方式限制**。
+> 将来若重启会员，按附录 A 重新引入，不要恢复配额与激励广告。
 
 ---
 

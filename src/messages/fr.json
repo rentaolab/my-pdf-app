@@ -45,7 +45,6 @@
     "preview": {
       "title": "Aperçu en direct"
     },
-    "unlimited": "Illimité",
     "relatedTools": "Outils associés"
   },
   "Tools": {
@@ -150,20 +149,11 @@
     "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Petites tâches de bureau, réglées."
   },
   "PdfMerge": {
-    "dev": {
-      "modeLabel": "Mode test développeur : votre rôle actuel est",
-      "vip": "Utilisateur VIP",
-      "free": "Utilisateur gratuit (max. {max} fichiers)",
-      "switchTo": "Passer à",
-      "freeMode": "Mode gratuit",
-      "vipMode": "Mode VIP"
-    },
     "upload": {
-      "vipHint": "Les utilisateurs VIP peuvent fusionner un nombre illimité de fichiers",
-      "freeHint": "L'offre gratuite permet de fusionner jusqu'à {max} fichiers"
+      "hint": "Ajoutez au moins deux PDF, puis faites glisser la poignée à gauche pour les réordonner"
     },
     "list": {
-      "selected": "Sélectionnés ({count} / {max})",
+      "selected": "Sélectionnés ({count})",
       "dragHint": "(faites glisser la poignée à gauche pour réordonner)"
     },
     "actions": {
@@ -171,11 +161,7 @@
       "mergeDownload": "Fusionner et télécharger",
       "generating": "Génération et téléchargement..."
     },
-    "footer": {
-      "limitReached": "Limite gratuite de fusion atteinte. Débloquez VIP pour plus de fichiers."
-    },
     "errors": {
-      "freeLimit": "Les utilisateurs gratuits peuvent fusionner jusqu'à {max} fichiers PDF à la fois !\nPassez à VIP pour une fusion illimitée.",
       "minFiles": "Veuillez téléverser au moins 2 fichiers PDF.",
       "mergeFailed": "Une erreur est survenue lors de la fusion."
     }
@@ -325,7 +311,7 @@
     },
     "status": {
       "parsing": "Génération des aperçus de pages...",
-      "splitPoints": "Points de coupe : {count} / {max}"
+      "splitPoints": "Points de coupe : {count}"
     },
     "actions": {
       "exportSelected": "Exporter les parties sélectionnées ({selected}/{total})",
@@ -353,17 +339,8 @@
       "perPartLabel": "Saisissez un nom de fichier pour chaque partie :"
     },
     "errors": {
-      "freeLimit": "L'offre gratuite permet jusqu'à {max} points de coupe.\nPassez en mode VIP pour un découpage illimité !",
       "readFailed": "Impossible de lire le PDF.",
       "noPartsSelected": "Sélectionnez au moins une partie à exporter."
-    },
-    "dev": {
-      "modeLabel": "Formule actuelle :",
-      "vip": "Utilisateur VIP (divisions illimitées)",
-      "free": "Utilisateur gratuit ({max} point de coupe)",
-      "switchTo": "Passer à",
-      "freeMode": "Mode gratuit",
-      "vipMode": "Mode VIP"
     }
   },
   "PdfCrossMerge": {
@@ -372,7 +349,7 @@
       "basketWithFile": "#{index} dans le panier ({name})"
     },
     "upload": {
-      "prompt": "Téléversez plusieurs PDF pour un assemblage multi-documents (VIP)",
+      "prompt": "Téléversez plusieurs PDF pour un assemblage multi-documents",
       "hint": "Choisissez des pages de différents documents et créez un nouveau PDF"
     },
     "sources": {

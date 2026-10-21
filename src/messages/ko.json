@@ -45,7 +45,6 @@
     "preview": {
       "title": "실시간 미리보기"
     },
-    "unlimited": "무제한",
     "relatedTools": "관련 도구"
   },
   "Tools": {
@@ -150,20 +149,11 @@
     "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · 사무실 잡무는 Reeff에게"
   },
   "PdfMerge": {
-    "dev": {
-      "modeLabel": "개발 테스트 모드: 현재 권한",
-      "vip": "VIP 사용자",
-      "free": "무료 사용자 (최대 {max}개 파일)",
-      "switchTo": "전환:",
-      "freeMode": "무료 모드",
-      "vipMode": "VIP 모드"
-    },
     "upload": {
-      "vipHint": "VIP 사용자는 파일 수 제한 없이 병합할 수 있습니다",
-      "freeHint": "무료 버전은 최대 {max}개 파일까지 병합할 수 있습니다"
+      "hint": "PDF를 2개 이상 추가한 뒤 왼쪽 핸들을 끌어 순서를 바꿀 수 있습니다"
     },
     "list": {
-      "selected": "선택됨 ({count} / {max})",
+      "selected": "선택됨 ({count})",
       "dragHint": "(왼쪽 핸들을 끌어 순서 변경)"
     },
     "actions": {
@@ -171,11 +161,7 @@
       "mergeDownload": "병합 후 다운로드",
       "generating": "생성 및 다운로드 중..."
     },
-    "footer": {
-      "limitReached": "무료 병합 한도에 도달했습니다. 더 많은 파일은 VIP로 해제하세요."
-    },
     "errors": {
-      "freeLimit": "무료 사용자는 한 번에 최대 {max}개의 PDF 파일을 병합할 수 있습니다!\nVIP로 업그레이드하면 무제한으로 병합할 수 있습니다.",
       "minFiles": "PDF 파일을 최소 2개 업로드해 주세요.",
       "mergeFailed": "병합 중 오류가 발생했습니다."
     }
@@ -325,7 +311,7 @@
     },
     "status": {
       "parsing": "페이지 미리보기를 불러오는 중...",
-      "splitPoints": "분할 지점: {count} / {max}"
+      "splitPoints": "분할 지점: {count}"
     },
     "actions": {
       "exportSelected": "선택한 부분 내보내기 ({selected}/{total})",
@@ -353,17 +339,8 @@
       "perPartLabel": "각 파트의 파일 이름 입력:"
     },
     "errors": {
-      "freeLimit": "무료 버전은 최대 {max}개의 분할 지점까지 가능합니다.\nVIP 모드로 전환하면 무제한 분할이 가능합니다!",
       "readFailed": "PDF를 읽지 못했습니다.",
       "noPartsSelected": "내보낼 부분을 최소 하나 선택하세요."
-    },
-    "dev": {
-      "modeLabel": "현재 권한:",
-      "vip": "VIP 사용자 (무제한 분할)",
-      "free": "무료 사용자 (분할 지점 {max}개)",
-      "switchTo": "전환:",
-      "freeMode": "무료 모드",
-      "vipMode": "VIP 모드"
     }
   },
   "PdfCrossMerge": {
@@ -372,7 +349,7 @@
       "basketWithFile": "바구니 #{index} ({name})"
     },
     "upload": {
-      "prompt": "여러 PDF를 업로드해 문서 간 교차 조립 (VIP 전용)",
+      "prompt": "여러 PDF를 업로드해 문서 간 교차 조립",
       "hint": "서로 다른 문서에서 원하는 페이지를 골라 새 PDF로 조립"
     },
     "sources": {

@@ -45,7 +45,6 @@
     "preview": {
       "title": "Live preview"
     },
-    "unlimited": "Unlimited",
     "relatedTools": "Related tools"
   },
   "Tools": {
@@ -150,20 +149,11 @@
     "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Office chores, sorted."
   },
   "PdfMerge": {
-    "dev": {
-      "modeLabel": "Developer test mode: you are signed in as",
-      "vip": "VIP user",
-      "free": "Free user ({max} files max)",
-      "switchTo": "Switch to",
-      "freeMode": "Free mode",
-      "vipMode": "VIP mode"
-    },
     "upload": {
-      "vipHint": "VIP users can merge unlimited files",
-      "freeHint": "The free plan allows merging up to {max} files"
+      "hint": "Add two or more PDFs, then drag the handle on the left to reorder them"
     },
     "list": {
-      "selected": "Selected ({count} / {max})",
+      "selected": "Selected ({count})",
       "dragHint": "(drag the handle on the left to reorder)"
     },
     "actions": {
@@ -171,11 +161,7 @@
       "mergeDownload": "Merge and download",
       "generating": "Generating and downloading..."
     },
-    "footer": {
-      "limitReached": "Free merge limit reached. Unlock VIP for more files."
-    },
     "errors": {
-      "freeLimit": "Free users can merge up to {max} PDF files at a time!\nUpgrade to VIP for unlimited merging.",
       "minFiles": "Please upload at least 2 PDF files.",
       "mergeFailed": "Something went wrong while merging."
     }
@@ -325,7 +311,7 @@
     },
     "status": {
       "parsing": "Rendering page previews...",
-      "splitPoints": "Break points: {count} / {max}"
+      "splitPoints": "Break points: {count}"
     },
     "actions": {
       "exportSelected": "Export selected parts ({selected}/{total})",
@@ -353,17 +339,8 @@
       "perPartLabel": "Enter a file name for each part:"
     },
     "errors": {
-      "freeLimit": "The free plan allows up to {max} break points.\nSwitch to VIP mode for unlimited splitting!",
       "readFailed": "Failed to read the PDF.",
       "noPartsSelected": "Select at least one part to export."
-    },
-    "dev": {
-      "modeLabel": "Current plan:",
-      "vip": "VIP user (unlimited splits)",
-      "free": "Free user ({max} break point)",
-      "switchTo": "Switch to",
-      "freeMode": "Free mode",
-      "vipMode": "VIP mode"
     }
   },
   "PdfCrossMerge": {
@@ -372,7 +349,7 @@
       "basketWithFile": "#{index} in basket ({name})"
     },
     "upload": {
-      "prompt": "Upload multiple PDFs for cross-document assembly (VIP)",
+      "prompt": "Upload multiple PDFs for cross-document assembly",
       "hint": "Pick any pages from different documents and assemble a brand-new PDF"
     },
     "sources": {

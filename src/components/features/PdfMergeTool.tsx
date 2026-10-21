@@ -3,9 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { mergePDFs } from '@/lib/pdf-merge';
-import { DEFAULT_PLAN, PLAN_LIMITS, isUnlimited, type Plan } from '@/lib/plan';
-import { SHOW_DEV_BAR } from '@/lib/flags';
-import { Upload, Trash2, FileText, Download, Sparkles, GripVertical, X, Merge } from 'lucide-react';
+import { Upload, Trash2, FileText, Download, GripVertical, X, Merge } from 'lucide-react';
 
 export default function PdfMergeTool() {
   const t = useTranslations('PdfMerge');
@@ -20,12 +18,7 @@ export default function PdfMergeTool() {
   const [showFilenameModal, setShowFilenameModal] = useState(false);
   const [customFilename, setCustomFilename] = useState('');
 
-  // 当前套餐：Phase 0 仍为本地状态，后续由签名许可证 / 账号权益接管
-  const [plan, setPlan] = useState<Plan>(DEFAULT_PLAN);
-  const isProUser = plan === 'pro';
-  const maxAllowedFiles = PLAN_LIMITS[plan].mergeMaxFiles;
-
-  // 处理文件上传与数量拦截
+  // 处理文件上传：不做数量限制（全部工具永久免费、无限次使用）
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
@@ -33,15 +26,7 @@ export default function PdfMergeTool() {
       (file) => file.type === 'application/pdf'
     );
 
-    const currentTotal = files.length + selectedFiles.length;
-
-    if (currentTotal > maxAllowedFiles) {
-      alert(t('errors.freeLimit', { max: maxAllowedFiles }));
-      const remainingSlots = Math.max(0, maxAllowedFiles - files.length);
-      if (remainingSlots > 0) {
-        setFiles((prev) => [...prev, ...selectedFiles.slice(0, remainingSlots)]);
-      }
-    } else {
+    if (selectedFiles.length > 0) {
       setFiles((prev) => [...prev, ...selectedFiles]);
     }
 
@@ -106,27 +91,6 @@ export default function PdfMergeTool() {
 
   return (
     <div className="space-y-6">
-      {/* 开发调试 Bar：仅在 NEXT_PUBLIC_SHOW_DEV_BAR=1 时渲染 */}
-      {SHOW_DEV_BAR && (
-        <div className="bg-amber-50 border border-amber-200 p-3 rounded-xl flex items-center justify-between text-xs text-amber-800">
-          <div className="flex items-center space-x-2">
-            <Sparkles className="w-4 h-4 text-amber-600" />
-            <span>
-              {t('dev.modeLabel')}{' '}
-              <strong>
-                {isProUser ? t('dev.vip') : t('dev.free', { max: maxAllowedFiles })}
-              </strong>
-            </span>
-          </div>
-          <button
-            onClick={() => setPlan(isProUser ? 'free' : 'pro')}
-            className="bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold hover:bg-amber-700 transition-colors"
-          >
-            {t('dev.switchTo')} {isProUser ? t('dev.freeMode') : t('dev.vipMode')}
-          </button>
-        </div>
-      )}
-
       {/* 上传区域 */}
       <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center bg-white hover:border-red-500 transition-colors cursor-pointer relative">
         <input
@@ -142,9 +106,7 @@ export default function PdfMergeTool() {
           </div>
           <div>
             <p className="text-base font-medium text-slate-700">{tCommon('upload.promptMultiple')}</p>
-            <p className="text-xs text-slate-500 mt-1">
-              {isProUser ? t('upload.vipHint') : t('upload.freeHint', { max: maxAllowedFiles })}
-            </p>
+            <p className="text-xs text-slate-500 mt-1">{t('upload.hint')}</p>
           </div>
         </div>
       </div>
@@ -161,10 +123,7 @@ export default function PdfMergeTool() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-white">
-                    {t('list.selected', {
-                      count: files.length,
-                      max: isUnlimited(maxAllowedFiles) ? tCommon('unlimited') : maxAllowedFiles,
-                    })}
+                    {t('list.selected', { count: files.length })}
                   </p>
                   <p className="text-[11px] text-slate-400">
                     {(files.reduce((sum, item) => sum + item.size, 0) / 1024 / 1024).toFixed(2)} MB
@@ -190,19 +149,6 @@ export default function PdfMergeTool() {
                   <span>{t('actions.mergeDownload')}</span>
                 </button>
               </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-800 pt-4">
-              <p className="flex items-center space-x-1.5 text-[11px] text-slate-400">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>
-                  {!isProUser && files.length >= 2
-                    ? t('footer.limitReached')
-                    : isProUser
-                    ? t('upload.vipHint')
-                    : t('upload.freeHint', { max: maxAllowedFiles })}
-                </span>
-              </p>
             </div>
           </div>
 
