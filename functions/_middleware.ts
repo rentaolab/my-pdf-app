@@ -10,9 +10,17 @@
  *   2. Trailing slashes are stripped with a 301, so `/en/` and `/en/merge-pdf/`
  *      land on `out/en.html` and `out/en/merge-pdf.html`.
  *   3. Locale-prefixed paths are served as-is.
- *   4. Everything else (`/`, `/merge-pdf`) is negotiated from the `NEXT_LOCALE`
- *      cookie, then `Accept-Language`, then the default locale, and 302'd.
- *   5. Any host that is not the production domain gets `X-Robots-Tag: noindex`
+ *   4. Legacy un-prefixed paths (`/merge-pdf`, the pre-i18n URL shape) are 301'd
+ *      to `/{default}{path}`. The target deliberately ignores `Accept-Language`:
+ *      a cached 301 would otherwise pin every later visitor to the locale of
+ *      whichever client filled the cache first.
+ *   5. The root `/` is negotiated from the `NEXT_LOCALE` cookie, then
+ *      `Accept-Language`, then the default locale, and 302'd — temporary on
+ *      purpose, because the same URL resolves to different locales.
+ *   6. Framework error routes (`/404`, `/_not-found`) are never negotiated, and
+ *      their status is forced back to 404 — Cloudflare otherwise serves the
+ *      exported `404.html` with status 200, which is a soft 404.
+ *   7. Any host that is not the production domain gets `X-Robots-Tag: noindex`
  *      so `*.pages.dev` / staging previews never compete with pdf.reeff.app.
  *
  * Types are declared locally to avoid pulling in `@cloudflare/workers-types`,
@@ -80,6 +88,36 @@ function firstSegment(pathname: string): string {
   return pathname.split("/")[1] ?? "";
 }
 
+/**
+ * Framework error routes. Cloudflare serves the exported `404.html` at `/404`
+ * (and `_not-found.html` at `/_not-found`) with status 200, so these are passed
+ * through and then forced back to 404 by `handleRequest`.
+ */
+const UNLOCALIZED_PATHS = ["/404", "/_not-found"] as const;
+
+/**
+ * Paths that existed before the i18n migration, when the site served them
+ * without a locale prefix. Only these get a 301; unknown paths fall through to
+ * a real 404 instead of a redirect that dead-ends one hop later.
+ *
+ * Keep in sync with `PAGE_PATHS` + `LEGAL_PATHS` in `src/lib/seo.ts`.
+ */
+const LEGACY_PATHS = new Set([
+  "/organize-pdf",
+  "/merge-pdf",
+  "/split-pdf",
+  "/rotate-pdf",
+  "/reorder-pdf-pages",
+  "/delete-pdf-pages",
+  "/extract-pdf-pages",
+  "/crop-pdf",
+  "/edit-pdf",
+  "/pdf-to-image",
+  "/image-to-pdf",
+  "/privacy",
+  "/terms",
+]);
+
 export const onRequest = async (context: PagesContext): Promise<Response> => {
   const response = await handleRequest(context);
   const { hostname } = new URL(context.request.url);
@@ -113,18 +151,51 @@ async function handleRequest(context: PagesContext): Promise<Response> {
   // 3. Already localized.
   if (isLocale(firstSegment(pathname))) return context.next();
 
-  // 4. Negotiate and remember the choice (next-intl used to do both).
+  // 4. Framework error routes must reach the export as-is. Cloudflare serves
+  //    `out/404.html` at `/404` (and `out/_not-found.html` at `/_not-found`)
+  //    with status 200, which is a soft 404 — keep the branded body but force
+  //    the status back to 404.
+  if ((UNLOCALIZED_PATHS as readonly string[]).includes(pathname)) {
+    const response = await context.next();
+
+    if (response.status !== 200) return response;
+
+    return new Response(response.body, {
+      status: 404,
+      statusText: "Not Found",
+      headers: response.headers,
+    });
+  }
+
+  // 5. Legacy un-prefixed paths are a permanent move, so 301 — but always to the
+  //    default locale. Picking the locale per request here would make the 301
+  //    target vary with `Accept-Language`, and a cached 301 would then lock every
+  //    later visitor into whichever locale reached the edge first.
+  if (LEGACY_PATHS.has(pathname)) {
+    return new Response(null, {
+      status: 301,
+      headers: {
+        Location: `/${DEFAULT_LOCALE}${pathname}${url.search}`,
+        Vary: "Accept-Language, Cookie",
+      },
+    });
+  }
+
+  // 6. Anything else does not exist. Serving it as-is produces a real 404;
+  //    redirecting to `/en{path}` would add a hop that still ends in 404.
+  if (pathname !== "/") return context.next();
+
+  // 7. Root: negotiate and remember the choice (next-intl used to do both).
   const locale =
     fromCookie(context.request.headers.get("cookie")) ??
     fromAcceptLanguage(context.request.headers.get("accept-language")) ??
     DEFAULT_LOCALE;
 
-  const target = pathname === "/" ? `/${locale}` : `/${locale}${pathname}`;
-
   return new Response(null, {
     status: 302,
     headers: {
-      Location: `${target}${url.search}`,
+      Location: `/${locale}${url.search}`,
+      Vary: "Accept-Language, Cookie",
       "Set-Cookie": `${LOCALE_COOKIE}=${locale}; Path=/; Max-Age=31536000; SameSite=Lax`,
     },
   });

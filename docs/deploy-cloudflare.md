@@ -100,11 +100,12 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 | 用例 | 结果 |
 |---|---|
 | `/` + `en-US` / `zh-CN` / `ja-JP` / `ms-MY` | 302 → `/en` `/zh` `/ja` `/ms` ✅ |
-| `/merge-pdf` + `ko` | 302 → `/ko/merge-pdf` ✅ |
-| `Set-Cookie` | `NEXT_LOCALE=ko; Path=/; Max-Age=31536000; SameSite=Lax` ✅ |
+| `/merge-pdf`（无前缀遗留路径） | **301** → `/en/merge-pdf` ✅（目标固定 `en`，避免被浏览器缓存成某个语言） |
+| `Set-Cookie` | `NEXT_LOCALE=ko; Path=/; Max-Age=31536000; SameSite=Lax` ✅（仅 `/` 协商时下发） |
 | 9 个抽查页面（含 `edit` / `organize` / `crop` / `pdf-to-image`、`zh`/`ja`/`de`） | 全部 **200** ✅ |
 | `/en/merge-pdf/` | **301** → 无尾斜杠 ✅ |
-| `/en/not-a-tool` | **404** ✅ |
+| `/en/not-a-tool` | **404** ✅（未知路径直接 404，不再先 302 到 `/en/not-a-tool`） |
+| `/404` / `/_not-found` | **404** ✅（保留品牌 404 页；CF 默认会把 `out/404.html` 以 200 返回，属软 404） |
 | `robots.txt` / `sitemap.xml` | 正常 / **120** 条 URL ✅ |
 | 安全头 | `frame-ancestors 'self'`、`nosniff`、`SAMEORIGIN`、`strict-origin-when-cross-origin` ✅ |
 | canonical / og:image / hreflang | 均指向 `https://pdf.reeff.app/...` ✅ |
@@ -162,7 +163,7 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 |---|---|
 | **构建环境 Node < 22.13**（最易踩） | 症状：`ReferenceError: Iterator is not defined` + 预渲染失败。对策：`NODE_VERSION=22` + 仓库内 `.node-version`/`.nvmrc`；代码层已改为惰性加载 pdf.js（见 §7.1），即使 Node 20 也能构建 |
 | Pages 构建内存/时间超限 | 本地 `npm run build` + `wrangler pages deploy out` |
-| 未知 locale 路径（`/xx/merge-pdf`） | 重定向到 `/en/xx/merge-pdf` → 404 页（与迁移前一致） |
+| 未知路径（`/xx/merge-pdf`、`/foo`） | 直接 **404**（不再 307/302 到 `/en{path}` 再 404，避免 GSC 同时记一条重定向和一条 404） |
 | Function 调用量 | `_routes.json` 已排除 `/_next/*`、`/brand/*`；免费额度 10 万次/天 |
 | SEO 抖动 | 迁移后立刻重提 sitemap，并在 GSC 观察 2 周；canonical / hreflang 不变 |
 | 回滚 | CNAME 改回 `cname.vercel-dns.com`（Vercel 项目保留 2 周） |
