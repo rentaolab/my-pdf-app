@@ -136,7 +136,7 @@ npm run check            # 两者串跑（需要先 build 出 out/）
 
 仍需浏览器完成的部分：第 2 节 8 项人工验收、第 3 节 PSI 数值、第 4 节 GSC 收录状态。
 
-## 7. P2-B / P2-C 增量的验收（待下次部署填数）
+## 7. P2-B / P2-C / P2-D 增量的验收（2026-10-31，commit `f8a93cd`）
 
 本轮改动只增加内容与两个页面，不改工具逻辑、不新增请求。断言集中在「少的没少、多的都在」：
 
@@ -150,14 +150,18 @@ curl -s $BASE/en/merge-pdf | grep -o 'href="/en/\(about\|how-it-works\)"' | sort
 curl -s $BASE/zh/merge-pdf | grep -c '<dt'                        # 7（4 通用 + 1 工具 + 2 长尾）
 ```
 
-| 断言 | 结果 |
+| 断言 | 结果（2026-10-31 线上实测） |
 |---|---|
-| `sitemap.xml` `<loc>` 条数 | 160（10 × 16） |
-| `/en/about`、`/en/how-it-works` | 200，各 1 个 `<h1>`，canonical 自指 |
-| 工具页可见 FAQ | 7 个 `<dt>` = FAQPage 的 7 个 `Question` |
-| 工具页徽章 | 标题下 🟢 `Runs locally`，10 语言均已翻译 |
-| 页脚内链 | 关于 / 工作原理 出现在全部 160 个 URL |
-| 首页 + 工具页 gzip | 与 §6 基线对比，增幅 < 2 KB |
+| `sitemap.xml` `<loc>` 条数 | **160**（10 × 16） |
+| `/en/about`、`/en/how-it-works` | **200**；各 1 个 `<h1>`；canonical 自指；11 条 hreflang（10 + x-default） |
+| 抽检 5 个语言的两页 | `zh` / `ja` / `hi` / `ms` / `de` 的 about 与 how-it-works 均 **200** |
+| 工具页可见 FAQ | `/en/merge-pdf` **7 个 `<dt>` = 7 条 `Question`** |
+| 工具页徽章 | `/en/merge-pdf` 有 🟢 `Runs locally`，`/zh/merge-pdf` 显示「本机运行」，`/ja` 无英文残留 |
+| 页脚内链 | `/en/merge-pdf` 同时输出 `/en/about` 与 `/en/how-it-works` |
+| gzip 体积 | `/en` 16,226 B（§6 基线 15,840，**+386 B**）· `/en/merge-pdf` 13,947 B · `/en/about` 11,683 B · `/en/how-it-works` 12,504 B · `/zh/merge-pdf` 15,215 B |
+
+收尾动作：GSC / Bing 各重提一次 `sitemap.xml`，并在「网页」报告里确认
+`/about`、`/how-it-works` 进入「已发现」；两页的 `lastmod` 为 2026-10-31。
 
 > 说明：`lastmod` 已在 `src/app/sitemap.ts` 手工推进到 2026-10-31，不要再被 `new Date()` 覆盖。
 
