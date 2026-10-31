@@ -31,6 +31,7 @@ const TOOL_KEYS = [
   "edit",
   "pdfToImage",
   "imageToPdf",
+  "compress",
 ];
 
 /** SEO budget. Title stays under ~60 chars, description in the 90–165 range. */

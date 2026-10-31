@@ -7,7 +7,7 @@ import { INFO_PATHS, LEGAL_PATHS, SITE_URL, SITEMAP_PATHS, hreflangFor } from "@
 export const dynamic = "force-static";
 
 /**
- * 10 locales × 16 pages = 160 URLs (home + 11 tools + about + how-it-works +
+ * 10 locales × 17 pages = 170 URLs (home + 12 tools + about + how-it-works +
  * privacy + terms), each with its own hreflang alternates block (including
  * x-default) so the locale variants are not treated as duplicates.
  *

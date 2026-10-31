@@ -42,6 +42,7 @@ const TOOL_KEYS = [
   "edit",
   "pdfToImage",
   "imageToPdf",
+  "compress",
 ];
 
 /** Extra questions each locale has to provide per tool. */

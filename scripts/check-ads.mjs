@@ -10,7 +10,7 @@
  *
  * It asserts the placement budget instead of trusting code review:
  * - ads off  → zero ad markup anywhere (no `<ins>`, no `data-ad-slot`, no script);
- * - ads on   → tool pages 1× P1 + 1× P2, home 1× P3, legal pages 0;
+ * - ads on   → tool pages 1× P1 + 1× P2, home 1× P3, legal/info pages 0;
  * - no ad script in prerendered HTML (it is injected client-side on demand);
  * - P2 keeps a ≥96px gap (`mt-24`) and a divider from the tool card.
  */
@@ -45,6 +45,9 @@ const check = (ok, message) => {
   if (!ok) problems.push(message);
 };
 
+/** `/about`, `/how-it-works` use `InfoPageShell`, which carries no ad slot. */
+const INFO_PAGES = /\/(about|how-it-works)$/;
+
 let checked = 0;
 for (const file of files.sort()) {
   const rel = "/" + path.relative(root, file).replace(/\.html$/, "");
@@ -54,6 +57,7 @@ for (const file of files.sort()) {
   const html = fs.readFileSync(file, "utf8");
   const isLegal = /\/(privacy|terms)$/.test(rel);
   const isHome = /^\/[a-z]{2}$/.test(rel);
+  const isInfo = INFO_PAGES.test(rel);
   const ins = count(html, 'class="adsbygoogle');
   const script = count(html, "adsbygoogle.js");
 
@@ -72,11 +76,11 @@ for (const file of files.sort()) {
       .map(([placement, id]) => [placement, count(html, `data-ad-slot="${id}"`)]),
   );
 
-  const expected = isLegal ? 0 : isHome ? (found.p3 !== undefined ? 1 : 0) : 2;
+  const expected = isLegal || isInfo ? 0 : isHome ? (found.p3 !== undefined ? 1 : 0) : 2;
   check(ins === expected, `${rel}: ${ins} ad slot(s), expected ${expected}`);
 
-  if (isLegal) {
-    check(Object.values(found).every((n) => n === 0), `${rel}: placement on a legal page`);
+  if (isLegal || isInfo) {
+    check(!html.includes("data-ad-slot"), `${rel}: placement on a page without ad slots`);
   } else if (isHome) {
     check((found.p1 ?? 0) === 0 && (found.p2 ?? 0) === 0, `${rel}: only P3 belongs on the home page`);
   } else {
