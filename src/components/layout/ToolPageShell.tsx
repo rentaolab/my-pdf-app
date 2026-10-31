@@ -13,18 +13,23 @@ import { breadcrumbFor, faqSchema, SITE_NAME } from "@/lib/seo";
 const COMMON_FAQ_KEYS = ["free", "privacy", "sizeLimit", "mobile"] as const;
 
 /**
- * Only these four tools rasterise or edit pages through pdf.js. The other seven
+ * Only these four tools rasterise or edit pages through pdf.js. The others
  * rewrite the document structure with `pdf-lib` and never start a worker, so
  * warming it for them would download 1.2 MB that is then never executed.
+ *
+ * `compress` is deliberately absent even though its image levels do use pdf.js:
+ * the default lossless level does not, and the worker is fetched lazily by
+ * `getPdfjs()` the moment a visitor picks an image level. Prefetching here would
+ * charge everyone 1.2 MB for an opt-in step most documents do not need.
  */
 const PDFJS_TOOL_KEYS = new Set(["organize", "crop", "edit", "pdfToImage"]);
 
 /**
- * Shared shell for all 11 tool pages: navbar → P1 ad → breadcrumb → icon/title/
+ * Shared shell for all 12 tool pages: navbar → P1 ad → breadcrumb → icon/title/
  * description header → the tool itself → P2 ad → related-tools internal links →
  * BreadcrumbList + FAQPage JSON-LD → footer.
  *
- * Keeping this in one place means the 11 pages stay identical in structure and
+ * Keeping this in one place means the 12 pages stay identical in structure and
  * future additions (badges, per-page content sections, FAQ) land in a single file.
  *
  * Ad positions follow docs/monetization.md §2: P1 above the workspace, P2 after
@@ -107,8 +112,8 @@ export default function ToolPageShell({
           <div>
             <h1 className="text-xl font-bold text-slate-900">{title}</h1>
             <p className="text-xs text-slate-500 mt-0.5">{t(`${toolKey}.description`)}</p>
-            {/* Trust badge (see `docs/brand-brief.md` §7) — all 11 tools process
-                in the browser, so the label is the same on every page. */}
+            {/* Trust badge (see `docs/brand-brief.md` §7) — all twelve tools
+                process in the browser, so the label is the same on every page. */}
             <div className="mt-1.5">
               <ToolBadge />
             </div>

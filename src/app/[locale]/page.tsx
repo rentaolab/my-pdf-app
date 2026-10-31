@@ -18,6 +18,7 @@ import {
   FileImage,
   Images,
   GripHorizontal,
+  Minimize2,
   ArrowUpRight,
 } from 'lucide-react';
 
@@ -48,6 +49,7 @@ export default function Home() {
     { key: 'edit', href: '/edit-pdf', icon: Edit3 },
     { key: 'pdfToImage', href: '/pdf-to-image', icon: FileImage },
     { key: 'imageToPdf', href: '/image-to-pdf', icon: Images },
+    { key: 'compress', href: '/compress-pdf', icon: Minimize2 },
   ] as const;
 
   // Long-form home sections. The dictionary holds them as arrays/objects, so

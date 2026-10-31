@@ -3,11 +3,12 @@ import { Link } from "@/i18n/navigation";
 import { TOOLS } from "@/lib/seo";
 
 /**
- * Internal-link block: every tool page links to the other ten.
+ * Internal-link block: every tool page links to all the others.
  *
- * 11 pages × 10 links = 110 contextual internal links, which is the cheapest
+ * 12 pages × 11 links = 132 contextual internal links, which is the cheapest
  * crawl-depth win available — the pages already exist, they just were not
- * pointing at each other.
+ * pointing at each other. The list comes from `TOOLS`, so a new tool joins it
+ * without touching this file.
  */
 export default function RelatedTools({ currentPath }: { currentPath: string }) {
   const t = useTranslations("Tools");

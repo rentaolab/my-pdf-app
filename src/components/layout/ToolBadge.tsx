@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
  * local processing, and the label comes from the `Badges` namespace so it stays
  * translated in all ten locales.
  *
- * All eleven tools currently process in the browser, so this is rendered
+ * All twelve tools currently process in the browser, so this is rendered
  * unconditionally. The moment a tool gains a server-side step it must stop using
  * this component and render the "needs internet" state (`how-it-works` explains
  * both), because a wrong badge is worse than no badge.

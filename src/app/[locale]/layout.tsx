@@ -50,6 +50,7 @@ const CLIENT_NAMESPACES = [
   // One workspace dictionary per tool page; only the matching page renders it.
   "ImageToPdf",
   "PdfCrop",
+  "PdfCompress",
   "PdfCrossMerge",
   "PdfDelete",
   "PdfEdit",

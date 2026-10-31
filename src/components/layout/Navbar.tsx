@@ -14,6 +14,7 @@ import {
   FileImage,
   Images,
   GripHorizontal,
+  Minimize2,
   ChevronDown,
   Menu,
   X,
@@ -33,6 +34,7 @@ const tools = [
   { key: 'edit', href: '/edit-pdf', icon: Edit3 },
   { key: 'pdfToImage', href: '/pdf-to-image', icon: FileImage },
   { key: 'imageToPdf', href: '/image-to-pdf', icon: Images },
+  { key: 'compress', href: '/compress-pdf', icon: Minimize2 },
 ] as const;
 
 export default function Navbar() {

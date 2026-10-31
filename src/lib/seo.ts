@@ -27,6 +27,7 @@ export const TOOLS = [
   { key: "edit", path: "/edit-pdf" },
   { key: "pdfToImage", path: "/pdf-to-image" },
   { key: "imageToPdf", path: "/image-to-pdf" },
+  { key: "compress", path: "/compress-pdf" },
 ] as const;
 
 /** Home + all tool pages. */
