@@ -107,3 +107,27 @@ npm run check            # 两者串跑（需要先 build 出 out/）
 新增页面或工具时，本节无需改动；但 sitemap 页数期望在
 `scripts/check-seo.mjs` 里是 `LOCALES.length * 14`，新增路由要同步改这个数字，
 否则会以「sitemap 广告了不存在的 HTML」或「URL 数不符」报出。
+
+## 6. 本次上线实测（2026-10-31，commit `b8dfb19`）
+
+第 1 节的自动断言已全部在线上跑过，结果留存于此作为下次改动的对照基线。
+
+| 断言 | 结果 |
+|---|---|
+| `/` | 302 → `/en`（locale 协商，预期行为） |
+| `/zh/merge-pdf` | 200 |
+| `/de/rotate-pdf/` | 301 → `https://pdf.reeff.app/de/rotate-pdf` |
+| `/zh/does-not-exist` | 404（硬 404，非软 404） |
+| `/pdf.worker.6.3.289.min.mjs` | 200 · `application/javascript` · `max-age=31536000, immutable` |
+| CSP / XFO / nosniff / referrer | `frame-ancestors 'self'` / `SAMEORIGIN` / `nosniff` / `strict-origin-when-cross-origin` |
+| sitemap | 140 条 `<loc>` |
+| robots.txt | `Sitemap: https://pdf.reeff.app/sitemap.xml` |
+| 首页传输量 | gzip 15,840 B，TTFB 0.18 s |
+| `/zh/merge-pdf` 传输量 | gzip 14,515 B |
+| 首页字体 preload | 1 个 |
+| worker prefetch | `/zh/organize-pdf` 有，`/zh/merge-pdf` 无（范围正确） |
+| `/zh/merge-pdf` 结构化数据 | `BreadcrumbList`、`FAQPage`(5 Q&A)、`SoftwareApplication`+`Offer`、`WebSite` |
+| 可见 FAQ | 5 个 `<dt>`，与 JSON-LD 的 5 个 `Question` 一一对应 |
+| `<h1>` | 恰好 1 个 |
+
+仍需浏览器完成的部分：第 2 节 8 项人工验收、第 3 节 PSI 数值、第 4 节 GSC 收录状态。
