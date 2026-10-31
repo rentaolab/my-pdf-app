@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "Comprimir PDF",
+      "desc": "Reduce un PDF escaneado sin subirlo a ningún sitio"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "Comprimir PDF",
+      "description": "Haz un PDF más pequeño en tu navegador: sin subirlo, sin colas",
+      "seoTitle": "Comprimir PDF gratis: reducir sin subir el archivo",
+      "seoDescription": "Reduce un PDF en tu navegador. El nivel sin pérdidas mantiene el texto seleccionable; los niveles de imagen pueden dejar un escaneo a la mitad. Elige un nivel y quédate con el archivo menor."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Haz un PDF más pequeño sin enviarlo a ningún servidor. El nivel sin pérdidas reescribe la estructura y mantiene el texto seleccionable; los niveles de imagen pueden reducir un escaneo a la mitad, a cambio de convertir sus páginas en imágenes."
+    },
+    "stepAction": {
+      "compress": "Elige un nivel y comprime; prueba otro si no baja lo suficiente."
+    },
+    "useCases": {
+      "compress": [
+        "Adjuntos de correo que rebotan por el límite de tamaño.",
+        "Contratos y informes escaneados que guardas en un móvil con poco espacio.",
+        "Portales de subida que rechazan archivos de más de 5 MB."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "¿Comprimir deja el texto borroso?",
+        "a": "En el nivel sin pérdidas, no: solo se reescribe la estructura del archivo, así que el texto y las imágenes quedan intactos. Los niveles de imagen sí bajan la resolución, por eso conviene revisar el resultado antes de borrar el original."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Haz clic o arrastra aquí un PDF para reducirlo",
+      "hint": "Sin pérdidas mantiene el texto seleccionable; los niveles de imagen son los que más reducen un escaneo"
+    },
+    "levels": {
+      "label": "Nivel de compresión",
+      "light": "Sin pérdidas",
+      "lightBody": "Reescribe la estructura del archivo. El texto sigue siendo seleccionable; suele ganar unos pocos por ciento.",
+      "balanced": "Equilibrado",
+      "balancedBody": "Renderiza cada página a 150 DPI como JPEG. El texto pasa a ser imagen.",
+      "strong": "Fuerte",
+      "strongBody": "110 DPI y menos calidad. El resultado más pequeño, el texto más suave."
+    },
+    "actions": {
+      "compress": "Comprimir",
+      "download": "Descargar el PDF más pequeño",
+      "retry": "Probar otro nivel"
+    },
+    "status": {
+      "working": "Reescribiendo la estructura del archivo…",
+      "progress": "Página {done} de {total}"
+    },
+    "result": {
+      "heading": "Resultado",
+      "before": "Antes",
+      "after": "Después",
+      "saved": "{percent}% más pequeño",
+      "notSmaller": "Con este nivel el archivo no puede bajar más: el resultado mide igual o más, así que no se ofrece descarga. Si necesitas bajar de un límite, prueba Equilibrado o Fuerte.",
+      "rasterNote": "Ahora cada página es una imagen. Guarda el original si puede que necesites buscar, seleccionar o editar el texto.",
+      "losslessNote": "El texto no se ha tocado: sigue siendo seleccionable y buscable."
+    },
+    "warning": {
+      "heavy": "Los archivos grandes tardan en renderizarse. Deja esta pestaña abierta; puedes cancelar entre páginas."
+    },
+    "errors": {
+      "encrypted": "Este PDF está protegido con contraseña. Ábrelo una vez con ella, guarda una copia sin contraseña y comprime esa copia.",
+      "readFailed": "No se ha podido leer este archivo como PDF. Prueba con otro.",
+      "compressFailed": "Algo ha fallado al comprimir. El archivo original no se ha modificado."
+    }
+  }
+}

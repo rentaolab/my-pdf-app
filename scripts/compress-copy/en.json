@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "Compress PDF",
+      "desc": "Shrink a scanned PDF without uploading it anywhere"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "Compress PDF",
+      "description": "Make a PDF smaller in your browser — no upload, no queue",
+      "seoTitle": "Compress PDF Free – Shrink a PDF Without Uploading",
+      "seoDescription": "Shrink a PDF in your browser. The lossless level keeps text selectable; the image levels can halve a scan. Pick a level, compare both sizes, keep the smaller file."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Make a PDF smaller without sending it anywhere. The lossless level repacks the file and keeps the text selectable; the image levels can halve a scan, at the cost of turning its pages into pictures."
+    },
+    "stepAction": {
+      "compress": "Pick a level and compress; try another level if the first one is not enough."
+    },
+    "useCases": {
+      "compress": [
+        "Email attachments that bounce because of an inbox size limit.",
+        "Scanned contracts and reports kept on a phone with little storage.",
+        "Upload portals that reject a CV or an invoice above 5 MB."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "Will compressing make the text blurry?",
+        "a": "On the lossless level, no: only the file structure is rewritten, so text and images are untouched. The image levels do lower the resolution, which is exactly what makes them work — check the result before you delete the original."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Click or drag a PDF file here to make it smaller",
+      "hint": "Lossless keeps the text selectable; the image levels shrink scans the most"
+    },
+    "levels": {
+      "label": "Compression level",
+      "light": "Lossless",
+      "lightBody": "Rewrites the file structure. Text stays selectable — expect a few percent.",
+      "balanced": "Balanced",
+      "balancedBody": "Renders each page at 150 DPI as JPEG. Text becomes an image.",
+      "strong": "Strong",
+      "strongBody": "110 DPI at lower quality. Smallest result, softest text."
+    },
+    "actions": {
+      "compress": "Compress",
+      "download": "Download smaller PDF",
+      "retry": "Try another level"
+    },
+    "status": {
+      "working": "Rewriting the file structure…",
+      "progress": "Page {done} of {total}"
+    },
+    "result": {
+      "heading": "Result",
+      "before": "Before",
+      "after": "After",
+      "saved": "{percent}% smaller",
+      "notSmaller": "This file cannot get smaller at this level: the result is the same size or larger, so there is nothing to download. Try Balanced or Strong if you really need it under a limit.",
+      "rasterNote": "Every page is now a picture. Keep the original if you may need to search, select or edit the text later.",
+      "losslessNote": "The text was not touched — it is still selectable and searchable."
+    },
+    "warning": {
+      "heavy": "Large files take a while to render. Keep this tab open; you can cancel between pages."
+    },
+    "errors": {
+      "encrypted": "This PDF is password-protected. Open it once with its password, save an unlocked copy, then compress that.",
+      "readFailed": "This file could not be read as a PDF. Please try another one.",
+      "compressFailed": "Something went wrong while compressing. The original file is untouched."
+    }
+  }
+}

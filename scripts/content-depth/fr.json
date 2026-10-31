@@ -11,7 +11,8 @@
     "crop": "Le recadrage resserre la zone visible sans réécrire la page, le texte dans le cadre reste donc sélectionnable. C'est la solution honnête au bord noir du scanner, à une diapositive exportée trop large ou à l'en-tête du navigateur imprimé dans le PDF ; ce qui est hors du cadre est masqué et non supprimé, d'où une taille de fichier presque inchangée.",
     "edit": "L'éditeur couvre de petits ajouts sur un PDF terminé : remplir un champ d'un formulaire non interactif, signer sans imprimante, masquer une ancienne adresse avant de transmettre un document. Il ne recompose pas le texte — les ajouts se posent au-dessus de la page, une phrase de remplacement longue peut donc ne pas tenir dans l'espace d'origine.",
     "pdfToImage": "Convertissez en image quand la destination n'affiche pas de PDF : une messagerie, une présentation, le champ d'import d'un CMS. Le rendu se fait à la résolution choisie : 150 DPI suffisent pour les écrans et le chat, 300 DPI sont ce qu'attendent l'impression et l'OCR, et au-delà le fichier ne fait que grossir.",
-    "imageToPdf": "Image en PDF, c'est le trajet retour : photos de reçus, maquettes exportées, captures d'une conversation. Chaque page étant construite à partir d'une image, le fichier exporté ne contient pas de texte recherchable ; lancez un OCR sur le résultat si le document doit être indexé ou cité."
+    "imageToPdf": "Image en PDF, c'est le trajet retour : photos de reçus, maquettes exportées, captures d'une conversation. Chaque page étant construite à partir d'une image, le fichier exporté ne contient pas de texte recherchable ; lancez un OCR sur le résultat si le document doit être indexé ou cité.",
+    "compress": "À utiliser quand un PDF est trop lourd pour être envoyé ou stocké et que le compromis est acceptable. Le niveau sans perte ne fait que reconditionner la structure du fichier : le texte reste sélectionnable et rien ne change à l'écran, mais un document exporté par un logiciel récent n'a plus grand-chose à retirer, donc quelques pour cent est un résultat normal. Les niveaux image reconstruisent chaque page en JPEG : c'est ce qui réduit vraiment un scan, et c'est aussi ce qui transforme son texte en image. Compressez la copie que vous allez imprimer ou envoyer, et gardez l'original pour tout ce que vous devrez peut-être encore rechercher ou modifier."
   },
   "faqExtra": {
     "organize": [
@@ -57,6 +58,10 @@
     "imageToPdf": [
       { "q": "Les images sont-elles recompressées ?", "a": "Elles sont intégrées sans seconde compression : les photos nettes le restent et le PDF grossit d'autant, c'est normal." },
       { "q": "Un PDF peut-il mélanger plusieurs formats de page ?", "a": "Le format choisi s'applique à tout le lot. Pour des formats mixtes, créez deux PDF puis fusionnez-les : chaque page garde sa taille." }
+    ],
+    "compress": [
+      { "q": "Pourquoi mon fichier n'a-t-il presque pas diminué ?", "a": "La compression sans perte ne retire que la redondance de la façon dont le fichier est stocké. Un PDF exporté par un outil récent n'a plus grand-chose à retirer : quelques pour cent est un résultat normal, pas un échec." },
+      { "q": "La compression supprime-t-elle les métadonnées ou les permissions ?", "a": "Le niveau sans perte laisse les deux intactes. Les niveaux image reconstruisent le document à partir des pages rendues, donc les anciennes métadonnées et les indicateurs de permissions ne suivent pas — pratique pour un scan qui porte encore le nom de la personne qui l'a numérisé." }
     ]
   }
 }

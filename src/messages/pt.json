@@ -100,6 +100,10 @@
     "imageToPdf": {
       "name": "Imagem para PDF",
       "desc": "Combine várias imagens PNG, JPG ou WebP em um único PDF"
+    },
+    "compress": {
+      "name": "Comprimir PDF",
+      "desc": "Reduza um PDF escaneado sem enviá-lo para lugar nenhum"
     }
   },
   "ToolPages": {
@@ -168,6 +172,12 @@
       "description": "Envie imagens, reordene e gere um PDF padrão",
       "seoTitle": "Imagem para PDF – Una JPG e PNG Grátis",
       "seoDescription": "Crie um único PDF a partir de imagens PNG, JPG ou WebP. Arraste para ordenar e defina tamanho da página, orientação e margem antes de exportar. Sem upload."
+    },
+    "compress": {
+      "title": "Comprimir PDF",
+      "description": "Deixe um PDF menor no navegador — sem envio, sem fila",
+      "seoTitle": "Comprimir PDF grátis — reduzir sem enviar o arquivo",
+      "seoDescription": "Reduza um PDF no navegador. O nível sem perda mantém o texto selecionável; os níveis de imagem podem reduzir um escaneamento pela metade. Compare os tamanhos e fique com o menor."
     }
   },
   "Navbar": {
@@ -684,7 +694,8 @@
       "crop": "Corte as margens ou uma região em todas as páginas com oito alças. Aplique o corte ao documento inteiro, às páginas pares ou ímpares, ou só à sua seleção.",
       "edit": "Adicione caixas de texto, blocos de branco e uma assinatura à mão em um PDF, e baixe o arquivo editado.",
       "pdfToImage": "Converta páginas de PDF em imagens PNG, JPG ou WebP em alta resolução. Escolha a resolução, até 300 DPI, e baixe páginas avulsas ou tudo em ZIP.",
-      "imageToPdf": "Monte um único PDF a partir de imagens PNG, JPG ou WebP. Arraste as imagens para ordenar e defina o tamanho da página, a orientação e a margem."
+      "imageToPdf": "Monte um único PDF a partir de imagens PNG, JPG ou WebP. Arraste as imagens para ordenar e defina o tamanho da página, a orientação e a margem.",
+      "compress": "Deixe um PDF menor sem enviá-lo para nenhum servidor. O nível sem perda reescreve a estrutura e mantém o texto selecionável; os níveis de imagem podem reduzir um escaneamento pela metade, mas transformam as páginas em imagens."
     },
     "stepAction": {
       "organize": "Arraste os cartões para a ordem desejada",
@@ -697,7 +708,8 @@
       "crop": "Arraste as alças ao redor da área a manter",
       "edit": "Posicione uma caixa de texto ou desenhe sua assinatura",
       "pdfToImage": "Escolha o formato de saída e a resolução",
-      "imageToPdf": "Ordene as imagens e escolha o tamanho da página"
+      "imageToPdf": "Ordene as imagens e escolha o tamanho da página",
+      "compress": "Escolha um nível e comprima; tente outro se o resultado não for suficiente."
     },
     "useCases": {
       "heading": "Usos comuns",
@@ -755,6 +767,11 @@
         "Transforme fotos de documentos em um único PDF.",
         "Junte recibos digitalizados em um arquivo de despesas.",
         "Crie um PDF de portfólio com imagens de design."
+      ],
+      "compress": [
+        "Anexos de e-mail devolvidos por causa do limite de tamanho da caixa.",
+        "Contratos e relatórios escaneados guardados num celular com pouco espaço.",
+        "Portais de envio que recusam arquivos acima de 5 MB."
       ]
     },
     "detailHeading": "Quando usar",
@@ -769,7 +786,8 @@
       "crop": "Cortar estreita a área visível sem reescrever a página, então o texto dentro da moldura continua selecionável. É a solução honesta para a borda preta do scanner, um slide exportado largo demais ou o cabeçalho do navegador que fica ao imprimir para PDF; o que está fora da moldura é ocultado, não apagado, e por isso o tamanho quase não muda.",
       "edit": "O editor cobre pequenos acréscimos num PDF pronto: preencher um campo de formulário não interativo, assinar sem impressora, cobrir um endereço antigo antes de reenviar um documento. Ele não reflui o texto — o que é adicionado fica sobre a página, então uma frase de substituição longa pode não caber no espaço original.",
       "pdfToImage": "Converta para imagem quando o destino não exibe PDF: um app de mensagens, uma apresentação, o campo de upload de um CMS. A renderização acontece na resolução que você escolher: 150 DPI basta para telas e chat, 300 DPI é o que impressão e OCR pedem, e valores maiores só inflam o arquivo.",
-      "imageToPdf": "Imagem para PDF é a viagem de volta: fotos de recibos, frames de design exportados, capturas de uma conversa. Como cada página é construída a partir de uma imagem, o arquivo exportado não tem texto pesquisável; rode OCR no resultado se o documento precisar ser indexado ou citado."
+      "imageToPdf": "Imagem para PDF é a viagem de volta: fotos de recibos, frames de design exportados, capturas de uma conversa. Como cada página é construída a partir de uma imagem, o arquivo exportado não tem texto pesquisável; rode OCR no resultado se o documento precisar ser indexado ou citado.",
+      "compress": "Use quando um PDF pesa demais para enviar ou guardar e você aceita uma troca. O nível sem perda apenas reempacota a estrutura do arquivo: o texto continua selecionável e nada muda na aparência, mas um documento exportado por software recente já tem pouca redundância, então alguns por cento é um resultado normal. Os níveis de imagem renderizam cada página como JPEG, o que de fato reduz um escaneamento e também o que transforma o texto em imagem. Comprima a cópia que vai imprimir ou enviar e guarde o original para o que talvez precise buscar ou editar."
     }
   },
   "Legal": {
@@ -912,6 +930,10 @@
       "imageToPdf": {
         "q": "Quais formatos de imagem são aceitos?",
         "a": "PNG, JPG e WebP. Outros formatos são convertidos no navegador antes de gerar o PDF."
+      },
+      "compress": {
+        "q": "Comprimir deixa o texto borrado?",
+        "a": "No nível sem perda, não: só a estrutura do arquivo é reescrita, então texto e imagens ficam intactos. Os níveis de imagem reduzem a resolução, por isso vale conferir o resultado antes de apagar o original."
       }
     },
     "toolExtra": {
@@ -1024,6 +1046,16 @@
           "q": "Um PDF pode misturar tamanhos de página?",
           "a": "O tamanho escolhido vale para o lote inteiro. Para formatos mistos, gere dois PDFs e una-os, assim cada página mantém o seu."
         }
+      ],
+      "compress": [
+        {
+          "q": "Por que meu arquivo diminuiu tão pouco?",
+          "a": "A compressão sem perda só remove a redundância de como o arquivo está guardado. Um PDF exportado por uma ferramenta moderna tem pouco a remover, então alguns por cento é um resultado normal, não uma falha."
+        },
+        {
+          "q": "Comprimir remove metadados ou permissões?",
+          "a": "O nível sem perda deixa os dois como estão. Os níveis de imagem reconstroem o documento a partir das páginas renderizadas, então metadados antigos e marcações de permissão não passam — útil num escaneamento que ainda traz o nome de quem digitalizou."
+        }
       ]
     }
   },
@@ -1035,7 +1067,7 @@
       "sections": [
         {
           "heading": "O que é este site",
-          "body": "Onze ferramentas para as tarefas com PDF que aparecem mesmo num escritório: ordenar páginas, juntar, dividir, girar, apagar, extrair, recortar, editar texto e converter de e para imagens. Cada uma faz uma coisa só, numa página só, sem painel de configurações para aprender primeiro."
+          "body": "Doze ferramentas para as tarefas com PDF que aparecem mesmo num escritório: ordenar páginas, juntar, dividir, girar, apagar, extrair, recortar, editar texto, comprimir um arquivo e converter de e para imagens. Cada uma faz uma coisa só, numa página só, sem painel de configurações para aprender primeiro."
         },
         {
           "heading": "Por que é feito assim",
@@ -1094,5 +1126,46 @@
     "runsLocallyMeaning": "O ficheiro é processado dentro do navegador e nunca é carregado.",
     "needsInternetMeaning": "Este passo envia o ficheiro para um servidor. É sempre indicado e nunca é o comportamento predefinido.",
     "betaMeaning": "Função experimental: o resultado pode mudar e o feedback é bem-vindo."
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Clique ou arraste um PDF aqui para deixá-lo menor",
+      "hint": "Sem perda mantém o texto selecionável; os níveis de imagem são os que mais reduzem um escaneamento"
+    },
+    "levels": {
+      "label": "Nível de compressão",
+      "light": "Sem perda",
+      "lightBody": "Reescreve a estrutura do arquivo. O texto continua selecionável — em geral, alguns por cento.",
+      "balanced": "Equilibrado",
+      "balancedBody": "Renderiza cada página em JPEG a 150 DPI. O texto vira imagem.",
+      "strong": "Forte",
+      "strongBody": "110 DPI e qualidade menor. O menor resultado, o texto mais suave."
+    },
+    "actions": {
+      "compress": "Comprimir",
+      "download": "Baixar o PDF menor",
+      "retry": "Tentar outro nível"
+    },
+    "status": {
+      "working": "Reescrevendo a estrutura do arquivo…",
+      "progress": "Página {done} de {total}"
+    },
+    "result": {
+      "heading": "Resultado",
+      "before": "Antes",
+      "after": "Depois",
+      "saved": "{percent}% menor",
+      "notSmaller": "Neste nível o arquivo não fica menor: o resultado tem o mesmo tamanho ou mais, por isso não há download. Se precisar ficar abaixo de um limite, tente Equilibrado ou Forte.",
+      "rasterNote": "Agora cada página é uma imagem. Guarde o original se um dia precisar buscar, selecionar ou editar o texto.",
+      "losslessNote": "O texto não foi alterado: continua selecionável e pesquisável."
+    },
+    "warning": {
+      "heavy": "Arquivos grandes demoram para renderizar. Mantenha esta aba aberta; dá para cancelar entre as páginas."
+    },
+    "errors": {
+      "encrypted": "Este PDF está protegido por senha. Abra-o uma vez com a senha, salve uma cópia sem proteção e comprima essa cópia.",
+      "readFailed": "Não foi possível ler este arquivo como PDF. Tente outro.",
+      "compressFailed": "Algo deu errado ao comprimir. O arquivo original não foi alterado."
+    }
   }
 }

@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "Comprimir PDF",
+      "desc": "Reduza um PDF escaneado sem enviá-lo para lugar nenhum"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "Comprimir PDF",
+      "description": "Deixe um PDF menor no navegador — sem envio, sem fila",
+      "seoTitle": "Comprimir PDF grátis — reduzir sem enviar o arquivo",
+      "seoDescription": "Reduza um PDF no navegador. O nível sem perda mantém o texto selecionável; os níveis de imagem podem reduzir um escaneamento pela metade. Compare os tamanhos e fique com o menor."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Deixe um PDF menor sem enviá-lo para nenhum servidor. O nível sem perda reescreve a estrutura e mantém o texto selecionável; os níveis de imagem podem reduzir um escaneamento pela metade, mas transformam as páginas em imagens."
+    },
+    "stepAction": {
+      "compress": "Escolha um nível e comprima; tente outro se o resultado não for suficiente."
+    },
+    "useCases": {
+      "compress": [
+        "Anexos de e-mail devolvidos por causa do limite de tamanho da caixa.",
+        "Contratos e relatórios escaneados guardados num celular com pouco espaço.",
+        "Portais de envio que recusam arquivos acima de 5 MB."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "Comprimir deixa o texto borrado?",
+        "a": "No nível sem perda, não: só a estrutura do arquivo é reescrita, então texto e imagens ficam intactos. Os níveis de imagem reduzem a resolução, por isso vale conferir o resultado antes de apagar o original."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Clique ou arraste um PDF aqui para deixá-lo menor",
+      "hint": "Sem perda mantém o texto selecionável; os níveis de imagem são os que mais reduzem um escaneamento"
+    },
+    "levels": {
+      "label": "Nível de compressão",
+      "light": "Sem perda",
+      "lightBody": "Reescreve a estrutura do arquivo. O texto continua selecionável — em geral, alguns por cento.",
+      "balanced": "Equilibrado",
+      "balancedBody": "Renderiza cada página em JPEG a 150 DPI. O texto vira imagem.",
+      "strong": "Forte",
+      "strongBody": "110 DPI e qualidade menor. O menor resultado, o texto mais suave."
+    },
+    "actions": {
+      "compress": "Comprimir",
+      "download": "Baixar o PDF menor",
+      "retry": "Tentar outro nível"
+    },
+    "status": {
+      "working": "Reescrevendo a estrutura do arquivo…",
+      "progress": "Página {done} de {total}"
+    },
+    "result": {
+      "heading": "Resultado",
+      "before": "Antes",
+      "after": "Depois",
+      "saved": "{percent}% menor",
+      "notSmaller": "Neste nível o arquivo não fica menor: o resultado tem o mesmo tamanho ou mais, por isso não há download. Se precisar ficar abaixo de um limite, tente Equilibrado ou Forte.",
+      "rasterNote": "Agora cada página é uma imagem. Guarde o original se um dia precisar buscar, selecionar ou editar o texto.",
+      "losslessNote": "O texto não foi alterado: continua selecionável e pesquisável."
+    },
+    "warning": {
+      "heavy": "Arquivos grandes demoram para renderizar. Mantenha esta aba aberta; dá para cancelar entre as páginas."
+    },
+    "errors": {
+      "encrypted": "Este PDF está protegido por senha. Abra-o uma vez com a senha, salve uma cópia sem proteção e comprima essa cópia.",
+      "readFailed": "Não foi possível ler este arquivo como PDF. Tente outro.",
+      "compressFailed": "Algo deu errado ao comprimir. O arquivo original não foi alterado."
+    }
+  }
+}

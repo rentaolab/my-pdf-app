@@ -100,6 +100,10 @@
     "imageToPdf": {
       "name": "Bild zu PDF",
       "desc": "Mehrere PNG-, JPG- oder WebP-Bilder zu einer PDF zusammenfassen"
+    },
+    "compress": {
+      "name": "PDF komprimieren",
+      "desc": "Gescannte PDFs verkleinern, ohne sie hochzuladen"
     }
   },
   "ToolPages": {
@@ -168,6 +172,12 @@
       "description": "Bilder hochladen, sortieren und eine Standard-PDF erstellen",
       "seoTitle": "Bild in PDF umwandeln – JPG und PNG kostenlos",
       "seoDescription": "Aus PNG-, JPG- oder WebP-Bildern ein einziges PDF erstellen. Per Drag & Drop sortieren und Papierformat, Ausrichtung und Rand vor dem Export festlegen."
+    },
+    "compress": {
+      "title": "PDF komprimieren",
+      "description": "PDF im Browser verkleinern – ohne Upload, ohne Warteschlange",
+      "seoTitle": "PDF online komprimieren – kostenlos, ohne Upload",
+      "seoDescription": "Verkleinern Sie ein PDF im Browser. Die verlustfreie Stufe lässt Text markierbar; die Bildstufen halbieren oft einen Scan. Stufe wählen, beide Größen vergleichen und die kleinere Datei behalten."
     }
   },
   "Navbar": {
@@ -684,7 +694,8 @@
       "crop": "Beschneide Ränder oder einen Bereich auf jeder Seite mit acht Griffen. Der Zuschnitt gilt für das ganze Dokument, gerade oder ungerade Seiten oder deine Auswahl.",
       "edit": "Füge Textboxen, weiße Abdeckungen und eine handschriftliche Unterschrift ins PDF ein und lade die Datei direkt herunter.",
       "pdfToImage": "Wandle PDF-Seiten in hochauflösende PNG-, JPG- oder WebP-Bilder um. Wähle die Auflösung bis 300 DPI und lade einzelne Seiten oder alles als ZIP.",
-      "imageToPdf": "Erzeuge ein einzelnes PDF aus PNG-, JPG- oder WebP-Bildern. Ziehe die Bilder in die richtige Reihenfolge und lege Format, Ausrichtung und Rand fest."
+      "imageToPdf": "Erzeuge ein einzelnes PDF aus PNG-, JPG- oder WebP-Bildern. Ziehe die Bilder in die richtige Reihenfolge und lege Format, Ausrichtung und Rand fest.",
+      "compress": "Machen Sie ein PDF kleiner, ohne es irgendwohin zu schicken. Die verlustfreie Stufe schreibt nur die Dateistruktur neu, Text bleibt markierbar; die Bildstufen halbieren einen Scan, machen aus den Seiten aber Bilder."
     },
     "stepAction": {
       "organize": "Seitenkarten in die gewünschte Reihenfolge ziehen",
@@ -697,7 +708,8 @@
       "crop": "Mit den Griffen den gewünschten Bereich aufziehen",
       "edit": "Textbox platzieren oder Unterschrift zeichnen",
       "pdfToImage": "Ausgabeformat und Auflösung wählen",
-      "imageToPdf": "Bilder sortieren und Papierformat wählen"
+      "imageToPdf": "Bilder sortieren und Papierformat wählen",
+      "compress": "Stufe wählen und komprimieren; reicht das nicht, eine andere Stufe testen."
     },
     "useCases": {
       "heading": "Typische Anwendungen",
@@ -755,6 +767,11 @@
         "Handyfotos von Dokumenten zu einem PDF machen.",
         "Gescannte Belege in einer Spesen-Datei sammeln.",
         "Ein Portfolio-PDF aus exportierten Designbildern bauen."
+      ],
+      "compress": [
+        "E-Mail-Anhänge, die am Größenlimit des Postfachs scheitern.",
+        "Gescannte Verträge und Berichte auf einem Handy mit wenig Speicher.",
+        "Upload-Portale, die Dateien über 5 MB ablehnen."
       ]
     },
     "detailHeading": "Wann du es brauchst",
@@ -769,7 +786,8 @@
       "crop": "Zuschneiden verengt den sichtbaren Bereich, ohne die Seite neu zu schreiben, deshalb bleibt Text im Rahmen markierbar. Es ist die ehrliche Lösung für den schwarzen Scannerrand, eine zu breit exportierte Folie oder den Browserkopf, der beim Drucken in PDF entsteht; was außerhalb des Rahmens liegt, wird verdeckt statt gelöscht – daher ändert sich die Dateigröße kaum.",
       "edit": "Der Editor deckt kleine Ergänzungen an einem fertigen PDF ab: ein Feld in einem nicht interaktiven Formular ausfüllen, ohne Drucker unterschreiben, eine alte Adresse überdecken, bevor ein Dokument weitergeht. Er fließt Text nicht neu – Ergänzungen liegen über der Seite, ein langer Ersatzsatz passt deshalb vielleicht nicht in den ursprünglichen Platz.",
       "pdfToImage": "In ein Bild umwandeln, wenn das Ziel kein PDF anzeigen kann: ein Messenger, eine Präsentation, das Upload-Feld eines CMS. Gerendert wird in der gewählten Auflösung: 150 DPI reichen für Bildschirm und Chat, 300 DPI brauchen Druck und OCR, höhere Werte blähen nur die Datei auf.",
-      "imageToPdf": "Bild zu PDF ist die Rückreise: Fotos von Belegen, exportierte Designframes, Screenshots einer Unterhaltung. Weil jede Seite aus einem Bild entsteht, hat die exportierte Datei keinen durchsuchbaren Text – lass bei Bedarf OCR über das Ergebnis laufen, wenn das Dokument indexiert oder zitiert werden soll."
+      "imageToPdf": "Bild zu PDF ist die Rückreise: Fotos von Belegen, exportierte Designframes, Screenshots einer Unterhaltung. Weil jede Seite aus einem Bild entsteht, hat die exportierte Datei keinen durchsuchbaren Text – lass bei Bedarf OCR über das Ergebnis laufen, wenn das Dokument indexiert oder zitiert werden soll.",
+      "compress": "Nutzen Sie das, wenn ein PDF zu schwer zum Versenden oder Speichern ist und ein Kompromiss in Ordnung geht. Die verlustfreie Stufe packt nur die Dateistruktur neu: Text bleibt markierbar und sichtbar ändert sich nichts, aber ein Dokument aus aktueller Software hat wenig Redundanz übrig, ein paar Prozent sind also ein normales Ergebnis. Die Bildstufen rendern jede Seite als JPEG — das verkleinert einen Scan wirklich und macht seinen Text zum Bild. Komprimieren Sie die Kopie, die Sie drucken oder verschicken wollen, und behalten Sie das Original für alles, was Sie später suchen oder bearbeiten möchten."
     }
   },
   "Legal": {
@@ -912,6 +930,10 @@
       "imageToPdf": {
         "q": "Welche Bildformate werden unterstützt?",
         "a": "PNG, JPG und WebP. Andere Formate werden im Browser konvertiert, bevor das PDF entsteht."
+      },
+      "compress": {
+        "q": "Wird der Text durch das Komprimieren unscharf?",
+        "a": "In der verlustfreien Stufe nicht: dort wird nur die Dateistruktur neu geschrieben, Text und Bilder bleiben unangetastet. Die Bildstufen senken die Auflösung, deshalb lohnt ein Blick auf das Ergebnis, bevor das Original gelöscht wird."
       }
     },
     "toolExtra": {
@@ -1024,6 +1046,16 @@
           "q": "Kann ein PDF verschiedene Seitengrößen mischen?",
           "a": "Die gewählte Größe gilt für den ganzen Stapel. Für gemischte Formate baue zwei PDFs und füge sie zusammen, dann behält jede Seite ihre Größe."
         }
+      ],
+      "compress": [
+        {
+          "q": "Warum ist meine Datei kaum kleiner geworden?",
+          "a": "Verlustfreie Kompression entfernt nur Redundanz in der Art, wie die Datei gespeichert ist. Ein PDF aus einem modernen Programm hat kaum noch etwas abzugeben, ein paar Prozent sind ein normales Ergebnis und kein Fehler."
+        },
+        {
+          "q": "Entfernt das Komprimieren Metadaten oder Berechtigungen?",
+          "a": "Die verlustfreie Stufe lässt beides unverändert. Die Bildstufen bauen das Dokument aus gerenderten Seiten neu auf, deshalb gehen alte Metadaten und Berechtigungsflags verloren — praktisch bei einem Scan, der noch den Namen der scannenden Person trägt."
+        }
       ]
     }
   },
@@ -1035,7 +1067,7 @@
       "sections": [
         {
           "heading": "Was diese Seite ist",
-          "body": "Elf Werkzeuge für die PDF-Kleinarbeit, die im Büro tatsächlich anfällt: Seiten ordnen, zusammenfügen, teilen, drehen, löschen, herausziehen, zuschneiden, Text bearbeiten und in Bilder umwandeln – in beide Richtungen. Jedes Werkzeug erledigt eine Aufgabe auf einer Seite, ohne Einstellungsdialog, den man erst lernen muss."
+          "body": "Zwölf Werkzeuge für die PDF-Kleinarbeit, die im Büro tatsächlich anfällt: Seiten ordnen, zusammenfügen, teilen, drehen, löschen, herausziehen, zuschneiden, Text bearbeiten, Dateien komprimieren und in Bilder umwandeln – in beide Richtungen. Jedes Werkzeug erledigt eine Aufgabe auf einer Seite, ohne Einstellungsdialog, den man erst lernen muss."
         },
         {
           "heading": "Warum es so gebaut ist",
@@ -1094,5 +1126,46 @@
     "runsLocallyMeaning": "Die Datei wird im Browser verarbeitet und nie hochgeladen.",
     "needsInternetMeaning": "Dieser Schritt schickt die Datei an einen Server. Er wird immer gekennzeichnet und ist nie das Standardverhalten.",
     "betaMeaning": "Versuchsweise: Das Ergebnis kann sich noch ändern, Rückmeldung ist willkommen."
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "PDF hier ablegen oder klicken, um es zu verkleinern",
+      "hint": "Verlustfrei lässt den Text markierbar; die Bildstufen bringen bei Scans am meisten"
+    },
+    "levels": {
+      "label": "Kompressionsstufe",
+      "light": "Verlustfrei",
+      "lightBody": "Schreibt die Dateistruktur neu. Text bleibt markierbar – meist nur wenige Prozent Gewinn.",
+      "balanced": "Ausgewogen",
+      "balancedBody": "Rendert jede Seite mit 150 DPI als JPEG. Der Text wird zum Bild.",
+      "strong": "Stark",
+      "strongBody": "110 DPI bei geringerer Qualität. Kleinstes Ergebnis, weichster Text."
+    },
+    "actions": {
+      "compress": "Komprimieren",
+      "download": "Kleineres PDF herunterladen",
+      "retry": "Andere Stufe testen"
+    },
+    "status": {
+      "working": "Dateistruktur wird neu geschrieben…",
+      "progress": "Seite {done} von {total}"
+    },
+    "result": {
+      "heading": "Ergebnis",
+      "before": "Vorher",
+      "after": "Nachher",
+      "saved": "{percent} % kleiner",
+      "notSmaller": "Auf dieser Stufe wird die Datei nicht kleiner: das Ergebnis ist gleich groß oder größer, deshalb gibt es keinen Download. Wenn ein Limit eingehalten werden muss, testen Sie Ausgewogen oder Stark.",
+      "rasterNote": "Jede Seite ist jetzt ein Bild. Behalten Sie das Original, wenn Sie den Text später suchen, markieren oder bearbeiten wollen.",
+      "losslessNote": "Der Text wurde nicht angefasst – er bleibt markierbar und durchsuchbar."
+    },
+    "warning": {
+      "heavy": "Große Dateien brauchen zum Rendern Zeit. Lassen Sie diesen Tab offen; zwischen zwei Seiten können Sie abbrechen."
+    },
+    "errors": {
+      "encrypted": "Dieses PDF ist passwortgeschützt. Öffnen Sie es einmal mit dem Passwort, speichern Sie eine ungeschützte Kopie und komprimieren Sie diese.",
+      "readFailed": "Diese Datei ließ sich nicht als PDF lesen. Bitte eine andere versuchen.",
+      "compressFailed": "Beim Komprimieren ist etwas schiefgegangen. Die Originaldatei bleibt unverändert."
+    }
   }
 }

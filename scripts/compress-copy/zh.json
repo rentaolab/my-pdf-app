@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "压缩 PDF",
+      "desc": "在本机把扫描版 PDF 变小，不上传"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "压缩 PDF",
+      "description": "在浏览器里把 PDF 变小——不上传、不排队",
+      "seoTitle": "在线压缩 PDF 免费 – 不上传也能让文件更小",
+      "seoDescription": "在浏览器里压缩 PDF。无损档保留可选中文字；图像档能把扫描件压掉一半。选一档、对比压缩前后的体积，留下更小的那个文件。"
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "把 PDF 变小，文件不离开你的设备。无损档只重写文件结构，文字仍可选中；图像档最多能把扫描件压掉一半，代价是页面变成图片。"
+    },
+    "stepAction": {
+      "compress": "选一个档位再压缩；不够小就换一档重试。"
+    },
+    "useCases": {
+      "compress": [
+        "邮件附件因为大小上限被退回。",
+        "手机存储紧张时保存的扫描合同和报告。",
+        "只收 5 MB 以内文件的网上提交入口。"
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "压缩之后文字会变模糊吗？",
+        "a": "无损档不会：它只重写文件结构，文字和图片都没动过。图像档确实会降低分辨率，这也正是它有效的原因——确认效果之后再删原始文件。"
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "点击或拖入 PDF 文件，把它压小",
+      "hint": "无损档保留可选中文字；图像档对扫描件效果最好"
+    },
+    "levels": {
+      "label": "压缩档位",
+      "light": "无损",
+      "lightBody": "重写文件结构。文字仍可选中，通常只能小几个百分点。",
+      "balanced": "均衡",
+      "balancedBody": "每页按 150 DPI 渲染为 JPEG。文字会变成图片。",
+      "strong": "更强",
+      "strongBody": "110 DPI、更低质量。体积最小，文字最软。"
+    },
+    "actions": {
+      "compress": "压缩",
+      "download": "下载更小的 PDF",
+      "retry": "换个档位再试"
+    },
+    "status": {
+      "working": "正在重写文件结构…",
+      "progress": "第 {done} / {total} 页"
+    },
+    "result": {
+      "heading": "结果",
+      "before": "压缩前",
+      "after": "压缩后",
+      "saved": "小了 {percent}%",
+      "notSmaller": "这一档没法再小了：结果和原文件一样大甚至更大，所以不提供下载。如果必须压到某个上限以下，试试均衡或更强档。",
+      "rasterNote": "每一页现在都是图片。如果你之后还需要搜索、选中或编辑文字，请保留原文件。",
+      "losslessNote": "文字没有动过，仍然可以选中和搜索。"
+    },
+    "warning": {
+      "heavy": "大文件渲染需要一些时间。请保持此标签页打开，你可以在页与页之间取消。"
+    },
+    "errors": {
+      "encrypted": "这个 PDF 有密码保护。先用密码打开一次、另存为无密码副本，再压缩那份副本。",
+      "readFailed": "这个文件无法作为 PDF 读取，请换一个试试。",
+      "compressFailed": "压缩时出错了，原文件没有被改动。"
+    }
+  }
+}

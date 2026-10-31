@@ -11,7 +11,8 @@
     "crop": "Zuschneiden verengt den sichtbaren Bereich, ohne die Seite neu zu schreiben, deshalb bleibt Text im Rahmen markierbar. Es ist die ehrliche Lösung für den schwarzen Scannerrand, eine zu breit exportierte Folie oder den Browserkopf, der beim Drucken in PDF entsteht; was außerhalb des Rahmens liegt, wird verdeckt statt gelöscht – daher ändert sich die Dateigröße kaum.",
     "edit": "Der Editor deckt kleine Ergänzungen an einem fertigen PDF ab: ein Feld in einem nicht interaktiven Formular ausfüllen, ohne Drucker unterschreiben, eine alte Adresse überdecken, bevor ein Dokument weitergeht. Er fließt Text nicht neu – Ergänzungen liegen über der Seite, ein langer Ersatzsatz passt deshalb vielleicht nicht in den ursprünglichen Platz.",
     "pdfToImage": "In ein Bild umwandeln, wenn das Ziel kein PDF anzeigen kann: ein Messenger, eine Präsentation, das Upload-Feld eines CMS. Gerendert wird in der gewählten Auflösung: 150 DPI reichen für Bildschirm und Chat, 300 DPI brauchen Druck und OCR, höhere Werte blähen nur die Datei auf.",
-    "imageToPdf": "Bild zu PDF ist die Rückreise: Fotos von Belegen, exportierte Designframes, Screenshots einer Unterhaltung. Weil jede Seite aus einem Bild entsteht, hat die exportierte Datei keinen durchsuchbaren Text – lass bei Bedarf OCR über das Ergebnis laufen, wenn das Dokument indexiert oder zitiert werden soll."
+    "imageToPdf": "Bild zu PDF ist die Rückreise: Fotos von Belegen, exportierte Designframes, Screenshots einer Unterhaltung. Weil jede Seite aus einem Bild entsteht, hat die exportierte Datei keinen durchsuchbaren Text – lass bei Bedarf OCR über das Ergebnis laufen, wenn das Dokument indexiert oder zitiert werden soll.",
+    "compress": "Nutzen Sie das, wenn ein PDF zu schwer zum Versenden oder Speichern ist und ein Kompromiss in Ordnung geht. Die verlustfreie Stufe packt nur die Dateistruktur neu: Text bleibt markierbar und sichtbar ändert sich nichts, aber ein Dokument aus aktueller Software hat wenig Redundanz übrig, ein paar Prozent sind also ein normales Ergebnis. Die Bildstufen rendern jede Seite als JPEG — das verkleinert einen Scan wirklich und macht seinen Text zum Bild. Komprimieren Sie die Kopie, die Sie drucken oder verschicken wollen, und behalten Sie das Original für alles, was Sie später suchen oder bearbeiten möchten."
   },
   "faqExtra": {
     "organize": [
@@ -57,6 +58,10 @@
     "imageToPdf": [
       { "q": "Werden die Bilder neu komprimiert?", "a": "Sie werden ohne zweite Kompression eingebettet, scharfe Fotos bleiben also scharf und das PDF wächst mit – das ist zu erwarten." },
       { "q": "Kann ein PDF verschiedene Seitengrößen mischen?", "a": "Die gewählte Größe gilt für den ganzen Stapel. Für gemischte Formate baue zwei PDFs und füge sie zusammen, dann behält jede Seite ihre Größe." }
+    ],
+    "compress": [
+      { "q": "Warum ist meine Datei kaum kleiner geworden?", "a": "Verlustfreie Kompression entfernt nur Redundanz in der Art, wie die Datei gespeichert ist. Ein PDF aus einem modernen Programm hat kaum noch etwas abzugeben, ein paar Prozent sind ein normales Ergebnis und kein Fehler." },
+      { "q": "Entfernt das Komprimieren Metadaten oder Berechtigungen?", "a": "Die verlustfreie Stufe lässt beides unverändert. Die Bildstufen bauen das Dokument aus gerenderten Seiten neu auf, deshalb gehen alte Metadaten und Berechtigungsflags verloren — praktisch bei einem Scan, der noch den Namen der scannenden Person trägt." }
     ]
   }
 }

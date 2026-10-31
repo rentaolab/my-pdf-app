@@ -11,7 +11,8 @@
     "crop": "Potong menyempitkan kawasan yang kelihatan tanpa menulis semula halaman, jadi teks dalam bingkai masih boleh dipilih. Ia penyelesaian jujur untuk bingkai hitam pengimbas, slaid yang dieksport terlalu lebar atau pengepala pelayar yang terlekat semasa cetak ke PDF; bahagian di luar bingkai disembunyikan, bukan dihapuskan, sebab itu saiz fail hampir tidak berubah.",
     "edit": "Editor menampung tambahan kecil pada PDF siap: mengisi ruang pada borang tidak interaktif, menandatangan tanpa pencetak, menutup alamat lama sebelum dokumen dihantar. Ia tidak mengalirkan semula teks, tambahan diletakkan di atas halaman, jadi ayat pengganti yang panjang mungkin tidak muat di ruang asal.",
     "pdfToImage": "Tukar kepada imej apabila penerima tidak boleh memaparkan PDF: aplikasi sembang, slaid, ruang muat naik CMS. Render berlaku pada resolusi yang anda pilih: 150 DPI memadai untuk skrin dan sembang, 300 DPI diperlukan untuk cetakan dan OCR, dan lebih tinggi hanya membesarkan fail.",
-    "imageToPdf": "Imej ke PDF ialah perjalanan balik: foto resit, bingkai reka bentuk yang dieksport, tangkapan skrin perbualan. Kerana setiap halaman dibina daripada imej, fail yang dieksport tiada teks yang boleh dicari; jalankan OCR pada hasilnya jika dokumen perlu diindeks atau dipetik."
+    "imageToPdf": "Imej ke PDF ialah perjalanan balik: foto resit, bingkai reka bentuk yang dieksport, tangkapan skrin perbualan. Kerana setiap halaman dibina daripada imej, fail yang dieksport tiada teks yang boleh dicari; jalankan OCR pada hasilnya jika dokumen perlu diindeks atau dipetik.",
+    "compress": "Gunakan ini apabila PDF terlalu berat untuk dihantar atau disimpan dan anda boleh menerima pertukaran. Tahap tanpa rugi hanya membungkus semula struktur fail: teks kekal boleh dipilih dan tiada yang berubah pada paparan, tetapi dokumen yang dieksport oleh perisian terkini sudah tidak banyak berulang, jadi penurunan beberapa peratus ialah hasil biasa. Tahap imej memaparkan semula setiap halaman sebagai JPEG — itulah yang benar-benar mengecilkan imbasan, dan itulah yang menjadikan teksnya gambar. Mampatkan salinan yang akan dicetak atau dihantar, dan simpan fail asal untuk apa-apa yang mungkin perlu dicari atau disunting kemudian."
   },
   "faqExtra": {
     "organize": [
@@ -57,6 +58,10 @@
     "imageToPdf": [
       { "q": "Adakah imej dimampatkan semula?", "a": "Ia dimasukkan tanpa pusingan mampatan kedua, jadi foto tajam kekal tajam dan PDF membesar bersamanya, itu dijangka." },
       { "q": "Bolehkah satu PDF mencampur saiz halaman?", "a": "Saiz yang dipilih dikenakan pada keseluruhan kelompok. Untuk format bercampur, bina dua PDF dan gabungkan supaya setiap halaman mengekalkan saiznya." }
+    ],
+    "compress": [
+      { "q": "Mengapa fail saya hanya mengecil sedikit?", "a": "Pemampatan tanpa rugi hanya membuang lebihan dalam cara fail disimpan. PDF daripada alat moden sudah tidak banyak lebihan, jadi beberapa peratus ialah hasil biasa, bukan kegagalan." },
+      { "q": "Adakah pemampatan membuang metadata atau kebenaran?", "a": "Tahap tanpa rugi membiarkan kedua-duanya seperti sedia ada. Tahap imej membina semula dokumen daripada halaman yang dipaparkan, jadi metadata lama dan penanda kebenaran tidak dibawa — berguna untuk imbasan yang masih menyebut nama orang yang mengimbasnya." }
     ]
   }
 }

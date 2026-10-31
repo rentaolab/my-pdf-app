@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "Compresser un PDF",
+      "desc": "Réduire un PDF scanné sans l'envoyer nulle part"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "Compresser un PDF",
+      "description": "Réduisez un PDF dans votre navigateur — sans envoi, sans file d'attente",
+      "seoTitle": "Compresser un PDF gratuitement, sans envoi",
+      "seoDescription": "Réduisez un PDF dans votre navigateur. Le niveau sans perte garde le texte sélectionnable ; les niveaux image divisent un scan par deux. Comparez les tailles, gardez le plus léger."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Réduisez un PDF sans l'envoyer ailleurs. Le niveau sans perte réécrit seulement la structure du fichier, le texte reste sélectionnable ; les niveaux image peuvent diviser un scan par deux, au prix de pages transformées en images."
+    },
+    "stepAction": {
+      "compress": "Choisissez un niveau puis compressez ; essayez-en un autre si le résultat ne suffit pas."
+    },
+    "useCases": {
+      "compress": [
+        "Pièces jointes refusées à cause de la limite de taille d'une boîte mail.",
+        "Contrats et rapports scannés stockés sur un téléphone au stockage limité.",
+        "Portails de dépôt qui refusent tout fichier au-delà de 5 Mo."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "La compression rend-elle le texte flou ?",
+        "a": "Pas au niveau sans perte : seule la structure du fichier est réécrite, le texte et les images restent intacts. Les niveaux image réduisent la résolution, d'où l'intérêt de vérifier le résultat avant de supprimer l'original."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Cliquez ou déposez un PDF ici pour l'alléger",
+      "hint": "Sans perte garde le texte sélectionnable ; les niveaux image sont les plus efficaces sur un scan"
+    },
+    "levels": {
+      "label": "Niveau de compression",
+      "light": "Sans perte",
+      "lightBody": "Réécrit la structure du fichier. Le texte reste sélectionnable — quelques pour cent en général.",
+      "balanced": "Équilibré",
+      "balancedBody": "Rend chaque page en JPEG à 150 DPI. Le texte devient une image.",
+      "strong": "Fort",
+      "strongBody": "110 DPI, qualité plus basse. Résultat le plus léger, texte le plus doux."
+    },
+    "actions": {
+      "compress": "Compresser",
+      "download": "Télécharger le PDF allégé",
+      "retry": "Essayer un autre niveau"
+    },
+    "status": {
+      "working": "Réécriture de la structure du fichier…",
+      "progress": "Page {done} sur {total}"
+    },
+    "result": {
+      "heading": "Résultat",
+      "before": "Avant",
+      "after": "Après",
+      "saved": "{percent} % de moins",
+      "notSmaller": "À ce niveau, le fichier ne peut pas devenir plus léger : le résultat est de taille égale ou supérieure, donc aucun téléchargement n'est proposé. S'il faut passer sous une limite, essayez Équilibré ou Fort.",
+      "rasterNote": "Chaque page est désormais une image. Gardez l'original si vous devrez un jour rechercher, sélectionner ou modifier le texte.",
+      "losslessNote": "Le texte n'a pas été touché : il reste sélectionnable et indexable."
+    },
+    "warning": {
+      "heavy": "Les fichiers volumineux mettent du temps à être rendus. Gardez cet onglet ouvert ; l'annulation se fait entre deux pages."
+    },
+    "errors": {
+      "encrypted": "Ce PDF est protégé par mot de passe. Ouvrez-le une fois avec ce mot de passe, enregistrez une copie non protégée, puis compressez cette copie.",
+      "readFailed": "Ce fichier n'a pas pu être lu comme un PDF. Essayez-en un autre.",
+      "compressFailed": "Une erreur est survenue pendant la compression. Le fichier d'origine est intact."
+    }
+  }
+}

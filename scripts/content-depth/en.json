@@ -11,7 +11,8 @@
     "crop": "Cropping narrows the visible area without rewriting the page, so text inside the frame stays selectable. It is the honest fix for a scanner border, an over-wide slide export or a browser header baked in by print-to-PDF; whatever sits outside the frame is hidden rather than deleted, which is why the file size barely moves.",
     "edit": "The editor covers small additions to a finished PDF: filling a field on a non-interactive form, signing without a printer, covering an old address before a document is forwarded. It does not reflow text — additions sit on top of the page, so a long replacement sentence may not fit the space the original occupied.",
     "pdfToImage": "Convert to an image when the destination cannot display a PDF: a chat app, a slide deck, a CMS upload field. Rendering happens at the resolution you choose, so 150 DPI suits screens and chat, 300 DPI is what print and OCR want, and higher settings only inflate the file.",
-    "imageToPdf": "Image-to-PDF is the return trip: photos of receipts, exported design frames, screenshots of a conversation. Because each page is built from an image, the exported file has no searchable text — run OCR on the result if the document has to be indexed or quoted."
+    "imageToPdf": "Image-to-PDF is the return trip: photos of receipts, exported design frames, screenshots of a conversation. Because each page is built from an image, the exported file has no searchable text — run OCR on the result if the document has to be indexed or quoted.",
+    "compress": "Use this when a PDF is too heavy to send or store and you can accept a trade-off. Lossless rewriting only repacks the file structure: text stays selectable and nothing visible changes, but a document exported by recent software has little redundancy left, so a few percent is a normal outcome. The image levels re-render every page as a JPEG, which is what actually shrinks a scan and also what turns its text into a picture. Compress the copy you are about to print or attach and keep the original for anything you may still need to search or edit."
   },
   "faqExtra": {
     "organize": [
@@ -122,6 +123,16 @@
       {
         "q": "Can one PDF mix page sizes?",
         "a": "The size you pick applies to the whole batch. For mixed formats, build two PDFs and merge them so each page keeps its own size."
+      }
+    ],
+    "compress": [
+      {
+        "q": "Why did my file shrink so little?",
+        "a": "Lossless compression can only remove redundancy in how the file is stored. A modern tool has little left to remove, so a few percent is a normal result, not a failure."
+      },
+      {
+        "q": "Does compressing remove metadata or permissions?",
+        "a": "The lossless level leaves both as they are. The image levels rebuild the document from rendered pages, so old metadata and permission flags do not carry over — handy for a scan that still names whoever scanned it."
       }
     ]
   }

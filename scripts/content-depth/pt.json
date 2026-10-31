@@ -11,7 +11,8 @@
     "crop": "Cortar estreita a área visível sem reescrever a página, então o texto dentro da moldura continua selecionável. É a solução honesta para a borda preta do scanner, um slide exportado largo demais ou o cabeçalho do navegador que fica ao imprimir para PDF; o que está fora da moldura é ocultado, não apagado, e por isso o tamanho quase não muda.",
     "edit": "O editor cobre pequenos acréscimos num PDF pronto: preencher um campo de formulário não interativo, assinar sem impressora, cobrir um endereço antigo antes de reenviar um documento. Ele não reflui o texto — o que é adicionado fica sobre a página, então uma frase de substituição longa pode não caber no espaço original.",
     "pdfToImage": "Converta para imagem quando o destino não exibe PDF: um app de mensagens, uma apresentação, o campo de upload de um CMS. A renderização acontece na resolução que você escolher: 150 DPI basta para telas e chat, 300 DPI é o que impressão e OCR pedem, e valores maiores só inflam o arquivo.",
-    "imageToPdf": "Imagem para PDF é a viagem de volta: fotos de recibos, frames de design exportados, capturas de uma conversa. Como cada página é construída a partir de uma imagem, o arquivo exportado não tem texto pesquisável; rode OCR no resultado se o documento precisar ser indexado ou citado."
+    "imageToPdf": "Imagem para PDF é a viagem de volta: fotos de recibos, frames de design exportados, capturas de uma conversa. Como cada página é construída a partir de uma imagem, o arquivo exportado não tem texto pesquisável; rode OCR no resultado se o documento precisar ser indexado ou citado.",
+    "compress": "Use quando um PDF pesa demais para enviar ou guardar e você aceita uma troca. O nível sem perda apenas reempacota a estrutura do arquivo: o texto continua selecionável e nada muda na aparência, mas um documento exportado por software recente já tem pouca redundância, então alguns por cento é um resultado normal. Os níveis de imagem renderizam cada página como JPEG, o que de fato reduz um escaneamento e também o que transforma o texto em imagem. Comprima a cópia que vai imprimir ou enviar e guarde o original para o que talvez precise buscar ou editar."
   },
   "faqExtra": {
     "organize": [
@@ -57,6 +58,10 @@
     "imageToPdf": [
       { "q": "As imagens são recomprimidas?", "a": "São embutidas sem uma segunda compressão, então fotos nítidas continuam nítidas e o PDF cresce junto — isso é esperado." },
       { "q": "Um PDF pode misturar tamanhos de página?", "a": "O tamanho escolhido vale para o lote inteiro. Para formatos mistos, gere dois PDFs e una-os, assim cada página mantém o seu." }
+    ],
+    "compress": [
+      { "q": "Por que meu arquivo diminuiu tão pouco?", "a": "A compressão sem perda só remove a redundância de como o arquivo está guardado. Um PDF exportado por uma ferramenta moderna tem pouco a remover, então alguns por cento é um resultado normal, não uma falha." },
+      { "q": "Comprimir remove metadados ou permissões?", "a": "O nível sem perda deixa os dois como estão. Os níveis de imagem reconstroem o documento a partir das páginas renderizadas, então metadados antigos e marcações de permissão não passam — útil num escaneamento que ainda traz o nome de quem digitalizou." }
     ]
   }
 }

@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "PDF komprimieren",
+      "desc": "Gescannte PDFs verkleinern, ohne sie hochzuladen"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "PDF komprimieren",
+      "description": "PDF im Browser verkleinern – ohne Upload, ohne Warteschlange",
+      "seoTitle": "PDF online komprimieren – kostenlos, ohne Upload",
+      "seoDescription": "Verkleinern Sie ein PDF im Browser. Die verlustfreie Stufe lässt Text markierbar; die Bildstufen halbieren oft einen Scan. Stufe wählen, beide Größen vergleichen und die kleinere Datei behalten."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Machen Sie ein PDF kleiner, ohne es irgendwohin zu schicken. Die verlustfreie Stufe schreibt nur die Dateistruktur neu, Text bleibt markierbar; die Bildstufen halbieren einen Scan, machen aus den Seiten aber Bilder."
+    },
+    "stepAction": {
+      "compress": "Stufe wählen und komprimieren; reicht das nicht, eine andere Stufe testen."
+    },
+    "useCases": {
+      "compress": [
+        "E-Mail-Anhänge, die am Größenlimit des Postfachs scheitern.",
+        "Gescannte Verträge und Berichte auf einem Handy mit wenig Speicher.",
+        "Upload-Portale, die Dateien über 5 MB ablehnen."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "Wird der Text durch das Komprimieren unscharf?",
+        "a": "In der verlustfreien Stufe nicht: dort wird nur die Dateistruktur neu geschrieben, Text und Bilder bleiben unangetastet. Die Bildstufen senken die Auflösung, deshalb lohnt ein Blick auf das Ergebnis, bevor das Original gelöscht wird."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "PDF hier ablegen oder klicken, um es zu verkleinern",
+      "hint": "Verlustfrei lässt den Text markierbar; die Bildstufen bringen bei Scans am meisten"
+    },
+    "levels": {
+      "label": "Kompressionsstufe",
+      "light": "Verlustfrei",
+      "lightBody": "Schreibt die Dateistruktur neu. Text bleibt markierbar – meist nur wenige Prozent Gewinn.",
+      "balanced": "Ausgewogen",
+      "balancedBody": "Rendert jede Seite mit 150 DPI als JPEG. Der Text wird zum Bild.",
+      "strong": "Stark",
+      "strongBody": "110 DPI bei geringerer Qualität. Kleinstes Ergebnis, weichster Text."
+    },
+    "actions": {
+      "compress": "Komprimieren",
+      "download": "Kleineres PDF herunterladen",
+      "retry": "Andere Stufe testen"
+    },
+    "status": {
+      "working": "Dateistruktur wird neu geschrieben…",
+      "progress": "Seite {done} von {total}"
+    },
+    "result": {
+      "heading": "Ergebnis",
+      "before": "Vorher",
+      "after": "Nachher",
+      "saved": "{percent} % kleiner",
+      "notSmaller": "Auf dieser Stufe wird die Datei nicht kleiner: das Ergebnis ist gleich groß oder größer, deshalb gibt es keinen Download. Wenn ein Limit eingehalten werden muss, testen Sie Ausgewogen oder Stark.",
+      "rasterNote": "Jede Seite ist jetzt ein Bild. Behalten Sie das Original, wenn Sie den Text später suchen, markieren oder bearbeiten wollen.",
+      "losslessNote": "Der Text wurde nicht angefasst – er bleibt markierbar und durchsuchbar."
+    },
+    "warning": {
+      "heavy": "Große Dateien brauchen zum Rendern Zeit. Lassen Sie diesen Tab offen; zwischen zwei Seiten können Sie abbrechen."
+    },
+    "errors": {
+      "encrypted": "Dieses PDF ist passwortgeschützt. Öffnen Sie es einmal mit dem Passwort, speichern Sie eine ungeschützte Kopie und komprimieren Sie diese.",
+      "readFailed": "Diese Datei ließ sich nicht als PDF lesen. Bitte eine andere versuchen.",
+      "compressFailed": "Beim Komprimieren ist etwas schiefgegangen. Die Originaldatei bleibt unverändert."
+    }
+  }
+}

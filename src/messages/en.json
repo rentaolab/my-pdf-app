@@ -100,6 +100,10 @@
     "imageToPdf": {
       "name": "Image to PDF",
       "desc": "Combine PNG, JPG or WebP images into a single PDF"
+    },
+    "compress": {
+      "name": "Compress PDF",
+      "desc": "Shrink a scanned PDF without uploading it anywhere"
     }
   },
   "ToolPages": {
@@ -168,6 +172,12 @@
       "description": "Upload images, drag to reorder and build one standard PDF",
       "seoTitle": "JPG to PDF – Combine Images into One PDF Free",
       "seoDescription": "Build a single PDF from PNG, JPG or WebP images. Drag them into order and set the page size, orientation and margin before exporting. Free, no upload."
+    },
+    "compress": {
+      "title": "Compress PDF",
+      "description": "Make a PDF smaller in your browser — no upload, no queue",
+      "seoTitle": "Compress PDF Free – Shrink a PDF Without Uploading",
+      "seoDescription": "Shrink a PDF in your browser. The lossless level keeps text selectable; the image levels can halve a scan. Pick a level, compare both sizes, keep the smaller file."
     }
   },
   "Navbar": {
@@ -684,7 +694,8 @@
       "crop": "Trim margins or cut to a region on every page with eight drag handles. Apply the crop to the whole document, odd or even pages, or just the pages you select.",
       "edit": "Add text boxes, white-out blocks and a handwritten signature to a PDF, then download the edited file.",
       "pdfToImage": "Turn PDF pages into high-resolution PNG, JPG or WebP images. Choose the resolution you need, up to 300 DPI, then download single pages or the whole set as a ZIP.",
-      "imageToPdf": "Build a single PDF from PNG, JPG or WebP images. Drag the images into order and set the page size, orientation and margin."
+      "imageToPdf": "Build a single PDF from PNG, JPG or WebP images. Drag the images into order and set the page size, orientation and margin.",
+      "compress": "Make a PDF smaller without sending it anywhere. The lossless level repacks the file and keeps the text selectable; the image levels can halve a scan, at the cost of turning its pages into pictures."
     },
     "stepAction": {
       "organize": "Drag the page cards into the order you want.",
@@ -697,7 +708,8 @@
       "crop": "Drag the handles around the area to keep.",
       "edit": "Place a text box or draw your signature.",
       "pdfToImage": "Pick an output format and resolution.",
-      "imageToPdf": "Drag the images into order and pick a page size."
+      "imageToPdf": "Drag the images into order and pick a page size.",
+      "compress": "Pick a level and compress; try another level if the first one is not enough."
     },
     "useCases": {
       "heading": "Common ways to use it",
@@ -755,6 +767,11 @@
         "Turn phone photos of documents into one PDF.",
         "Collect scanned receipts into a single expense file.",
         "Build a portfolio PDF from exported design images."
+      ],
+      "compress": [
+        "Email attachments that bounce because of an inbox size limit.",
+        "Scanned contracts and reports kept on a phone with little storage.",
+        "Upload portals that reject a CV or an invoice above 5 MB."
       ]
     },
     "detailHeading": "When to use it",
@@ -769,7 +786,8 @@
       "crop": "Cropping narrows the visible area without rewriting the page, so text inside the frame stays selectable. It is the honest fix for a scanner border, an over-wide slide export or a browser header baked in by print-to-PDF; whatever sits outside the frame is hidden rather than deleted, which is why the file size barely moves.",
       "edit": "The editor covers small additions to a finished PDF: filling a field on a non-interactive form, signing without a printer, covering an old address before a document is forwarded. It does not reflow text — additions sit on top of the page, so a long replacement sentence may not fit the space the original occupied.",
       "pdfToImage": "Convert to an image when the destination cannot display a PDF: a chat app, a slide deck, a CMS upload field. Rendering happens at the resolution you choose, so 150 DPI suits screens and chat, 300 DPI is what print and OCR want, and higher settings only inflate the file.",
-      "imageToPdf": "Image-to-PDF is the return trip: photos of receipts, exported design frames, screenshots of a conversation. Because each page is built from an image, the exported file has no searchable text — run OCR on the result if the document has to be indexed or quoted."
+      "imageToPdf": "Image-to-PDF is the return trip: photos of receipts, exported design frames, screenshots of a conversation. Because each page is built from an image, the exported file has no searchable text — run OCR on the result if the document has to be indexed or quoted.",
+      "compress": "Use this when a PDF is too heavy to send or store and you can accept a trade-off. Lossless rewriting only repacks the file structure: text stays selectable and nothing visible changes, but a document exported by recent software has little redundancy left, so a few percent is a normal outcome. The image levels re-render every page as a JPEG, which is what actually shrinks a scan and also what turns its text into a picture. Compress the copy you are about to print or attach and keep the original for anything you may still need to search or edit."
     }
   },
   "Legal": {
@@ -912,6 +930,10 @@
       "imageToPdf": {
         "q": "Which image formats are supported?",
         "a": "PNG, JPG and WebP. Other formats are converted in your browser before the PDF is built."
+      },
+      "compress": {
+        "q": "Will compressing make the text blurry?",
+        "a": "On the lossless level, no: only the file structure is rewritten, so text and images are untouched. The image levels do lower the resolution, which is exactly what makes them work — check the result before you delete the original."
       }
     },
     "toolExtra": {
@@ -1024,6 +1046,16 @@
           "q": "Can one PDF mix page sizes?",
           "a": "The size you pick applies to the whole batch. For mixed formats, build two PDFs and merge them so each page keeps its own size."
         }
+      ],
+      "compress": [
+        {
+          "q": "Why did my file shrink so little?",
+          "a": "Lossless compression can only remove redundancy in how the file is stored. A modern tool has little left to remove, so a few percent is a normal result, not a failure."
+        },
+        {
+          "q": "Does compressing remove metadata or permissions?",
+          "a": "The lossless level leaves both as they are. The image levels rebuild the document from rendered pages, so old metadata and permission flags do not carry over — handy for a scan that still names whoever scanned it."
+        }
       ]
     }
   },
@@ -1035,7 +1067,7 @@
       "sections": [
         {
           "heading": "What this site is",
-          "body": "Eleven tools for the PDF chores that actually come up in an office: putting pages in order, merging, splitting, rotating, deleting, extracting, cropping, editing text, and converting to and from images. Each one does a single job on a single page, with no settings panel to learn first."
+          "body": "Twelve tools for the PDF chores that actually come up in an office: putting pages in order, merging, splitting, rotating, deleting, extracting, cropping, editing text, compressing a file, and converting to and from images. Each one does a single job on a single page, with no settings panel to learn first."
         },
         {
           "heading": "Why it is built this way",
@@ -1094,5 +1126,46 @@
     "runsLocallyMeaning": "The file is processed inside your browser and is never uploaded.",
     "needsInternetMeaning": "This step sends your file to a server. It is always labelled, and it is never the default.",
     "betaMeaning": "Experimental: the result may still change, and feedback is welcome."
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Click or drag a PDF file here to make it smaller",
+      "hint": "Lossless keeps the text selectable; the image levels shrink scans the most"
+    },
+    "levels": {
+      "label": "Compression level",
+      "light": "Lossless",
+      "lightBody": "Rewrites the file structure. Text stays selectable — expect a few percent.",
+      "balanced": "Balanced",
+      "balancedBody": "Renders each page at 150 DPI as JPEG. Text becomes an image.",
+      "strong": "Strong",
+      "strongBody": "110 DPI at lower quality. Smallest result, softest text."
+    },
+    "actions": {
+      "compress": "Compress",
+      "download": "Download smaller PDF",
+      "retry": "Try another level"
+    },
+    "status": {
+      "working": "Rewriting the file structure…",
+      "progress": "Page {done} of {total}"
+    },
+    "result": {
+      "heading": "Result",
+      "before": "Before",
+      "after": "After",
+      "saved": "{percent}% smaller",
+      "notSmaller": "This file cannot get smaller at this level: the result is the same size or larger, so there is nothing to download. Try Balanced or Strong if you really need it under a limit.",
+      "rasterNote": "Every page is now a picture. Keep the original if you may need to search, select or edit the text later.",
+      "losslessNote": "The text was not touched — it is still selectable and searchable."
+    },
+    "warning": {
+      "heavy": "Large files take a while to render. Keep this tab open; you can cancel between pages."
+    },
+    "errors": {
+      "encrypted": "This PDF is password-protected. Open it once with its password, save an unlocked copy, then compress that.",
+      "readFailed": "This file could not be read as a PDF. Please try another one.",
+      "compressFailed": "Something went wrong while compressing. The original file is untouched."
+    }
   }
 }

@@ -100,6 +100,10 @@
     "imageToPdf": {
       "name": "Imej ke PDF",
       "desc": "Gabungkan beberapa imej PNG, JPG atau WebP menjadi satu PDF"
+    },
+    "compress": {
+      "name": "Mampatkan PDF",
+      "desc": "Kecilkan PDF imbasan tanpa memuat naiknya"
     }
   },
   "ToolPages": {
@@ -168,6 +172,12 @@
       "description": "Muat naik imej, susun semula dan hasilkan satu PDF standard",
       "seoTitle": "Imej ke PDF – Gabung JPG dan PNG Percuma",
       "seoDescription": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret ke susunan dan tetapkan saiz halaman, orientasi serta jidar sebelum eksport. Fail tidak dimuat naik."
+    },
+    "compress": {
+      "title": "Mampatkan PDF",
+      "description": "Kecilkan PDF dalam pelayar — tanpa muat naik, tanpa baris gilir",
+      "seoTitle": "Mampatkan PDF Percuma – Kecilkan Tanpa Muat Naik",
+      "seoDescription": "Kecilkan PDF dalam pelayar anda. Tahap tanpa rugi mengekalkan teks boleh dipilih; tahap imej boleh mengurangkan imbasan sehingga separuh. Pilih tahap dan simpan fail yang lebih kecil."
     }
   },
   "Navbar": {
@@ -684,7 +694,8 @@
       "crop": "Potong margin atau satu kawasan pada setiap halaman dengan lapan pemegang. Gunakan potongan pada seluruh dokumen, halaman ganjil atau genap, atau pilihan anda sahaja.",
       "edit": "Tambah kotak teks, blok penutup putih dan tandatangan tulisan tangan pada PDF, kemudian muat turun fail yang telah diedit.",
       "pdfToImage": "Tukar halaman PDF kepada imej PNG, JPG atau WebP resolusi tinggi. Pilih resolusi sehingga 300 DPI, kemudian muat turun halaman tunggal atau kesemuanya dalam ZIP.",
-      "imageToPdf": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret imej untuk susun atur dan tetapkan saiz halaman, orientasi dan margin."
+      "imageToPdf": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret imej untuk susun atur dan tetapkan saiz halaman, orientasi dan margin.",
+      "compress": "Kecilkan PDF tanpa menghantarnya ke mana-mana. Tahap tanpa rugi hanya menulis semula struktur fail, jadi teks masih boleh dipilih; tahap imej boleh mengurangkan imbasan separuh, tetapi halamannya menjadi gambar."
     },
     "stepAction": {
       "organize": "Seret kad halaman ke susunan yang dikehendaki",
@@ -697,7 +708,8 @@
       "crop": "Seret pemegang mengelilingi kawasan yang mahu dikekalkan",
       "edit": "Letakkan kotak teks atau lukis tandatangan anda",
       "pdfToImage": "Pilih format output dan resolusi",
-      "imageToPdf": "Susun imej dan pilih saiz halaman"
+      "imageToPdf": "Susun imej dan pilih saiz halaman",
+      "compress": "Pilih satu tahap dan mampatkan; cuba tahap lain jika belum cukup kecil."
     },
     "useCases": {
       "heading": "Cara biasa menggunakannya",
@@ -755,6 +767,11 @@
         "Tukar foto dokumen dari telefon menjadi satu PDF.",
         "Kumpulkan resit imbasan dalam satu fail tuntutan.",
         "Bina PDF portfolio daripada imej reka bentuk."
+      ],
+      "compress": [
+        "Lampiran e-mel yang dipulangkan kerana had saiz peti masuk.",
+        "Kontrak dan laporan imbasan yang disimpan dalam telefon berstoran kecil.",
+        "Portal muat naik yang menolak fail melebihi 5 MB."
       ]
     },
     "detailHeading": "Bila hendak digunakan",
@@ -769,7 +786,8 @@
       "crop": "Potong menyempitkan kawasan yang kelihatan tanpa menulis semula halaman, jadi teks dalam bingkai masih boleh dipilih. Ia penyelesaian jujur untuk bingkai hitam pengimbas, slaid yang dieksport terlalu lebar atau pengepala pelayar yang terlekat semasa cetak ke PDF; bahagian di luar bingkai disembunyikan, bukan dihapuskan, sebab itu saiz fail hampir tidak berubah.",
       "edit": "Editor menampung tambahan kecil pada PDF siap: mengisi ruang pada borang tidak interaktif, menandatangan tanpa pencetak, menutup alamat lama sebelum dokumen dihantar. Ia tidak mengalirkan semula teks, tambahan diletakkan di atas halaman, jadi ayat pengganti yang panjang mungkin tidak muat di ruang asal.",
       "pdfToImage": "Tukar kepada imej apabila penerima tidak boleh memaparkan PDF: aplikasi sembang, slaid, ruang muat naik CMS. Render berlaku pada resolusi yang anda pilih: 150 DPI memadai untuk skrin dan sembang, 300 DPI diperlukan untuk cetakan dan OCR, dan lebih tinggi hanya membesarkan fail.",
-      "imageToPdf": "Imej ke PDF ialah perjalanan balik: foto resit, bingkai reka bentuk yang dieksport, tangkapan skrin perbualan. Kerana setiap halaman dibina daripada imej, fail yang dieksport tiada teks yang boleh dicari; jalankan OCR pada hasilnya jika dokumen perlu diindeks atau dipetik."
+      "imageToPdf": "Imej ke PDF ialah perjalanan balik: foto resit, bingkai reka bentuk yang dieksport, tangkapan skrin perbualan. Kerana setiap halaman dibina daripada imej, fail yang dieksport tiada teks yang boleh dicari; jalankan OCR pada hasilnya jika dokumen perlu diindeks atau dipetik.",
+      "compress": "Gunakan ini apabila PDF terlalu berat untuk dihantar atau disimpan dan anda boleh menerima pertukaran. Tahap tanpa rugi hanya membungkus semula struktur fail: teks kekal boleh dipilih dan tiada yang berubah pada paparan, tetapi dokumen yang dieksport oleh perisian terkini sudah tidak banyak berulang, jadi penurunan beberapa peratus ialah hasil biasa. Tahap imej memaparkan semula setiap halaman sebagai JPEG — itulah yang benar-benar mengecilkan imbasan, dan itulah yang menjadikan teksnya gambar. Mampatkan salinan yang akan dicetak atau dihantar, dan simpan fail asal untuk apa-apa yang mungkin perlu dicari atau disunting kemudian."
     }
   },
   "Legal": {
@@ -912,6 +930,10 @@
       "imageToPdf": {
         "q": "Format imej apa yang disokong?",
         "a": "PNG, JPG dan WebP. Format lain ditukar dalam pelayar sebelum PDF dibina."
+      },
+      "compress": {
+        "q": "Adakah pemampatan menjadikan teks kabur?",
+        "a": "Pada tahap tanpa rugi, tidak: hanya struktur fail ditulis semula, jadi teks dan imej tidak berubah. Tahap imej memang merendahkan resolusi, jadi semak hasilnya sebelum memadam fail asal."
       }
     },
     "toolExtra": {
@@ -1024,6 +1046,16 @@
           "q": "Bolehkah satu PDF mencampur saiz halaman?",
           "a": "Saiz yang dipilih dikenakan pada keseluruhan kelompok. Untuk format bercampur, bina dua PDF dan gabungkan supaya setiap halaman mengekalkan saiznya."
         }
+      ],
+      "compress": [
+        {
+          "q": "Mengapa fail saya hanya mengecil sedikit?",
+          "a": "Pemampatan tanpa rugi hanya membuang lebihan dalam cara fail disimpan. PDF daripada alat moden sudah tidak banyak lebihan, jadi beberapa peratus ialah hasil biasa, bukan kegagalan."
+        },
+        {
+          "q": "Adakah pemampatan membuang metadata atau kebenaran?",
+          "a": "Tahap tanpa rugi membiarkan kedua-duanya seperti sedia ada. Tahap imej membina semula dokumen daripada halaman yang dipaparkan, jadi metadata lama dan penanda kebenaran tidak dibawa — berguna untuk imbasan yang masih menyebut nama orang yang mengimbasnya."
+        }
       ]
     }
   },
@@ -1035,7 +1067,7 @@
       "sections": [
         {
           "heading": "Apa itu laman ini",
-          "body": "Sebelas alat untuk kerja PDF yang memang timbul di pejabat: menyusun halaman, menggabung, memisah, memutar, memadam, mengeluarkan, memangkas, menyunting teks, dan menukar antara PDF dengan imej. Setiap alat melakukan satu kerja pada satu halaman, tanpa panel tetapan yang perlu dipelajari dahulu."
+          "body": "Dua belas alat untuk kerja PDF yang memang timbul di pejabat: menyusun halaman, menggabung, memisah, memutar, memadam, mengeluarkan, memangkas, menyunting teks, memampatkan fail, dan menukar antara PDF dengan imej. Setiap alat melakukan satu kerja pada satu halaman, tanpa panel tetapan yang perlu dipelajari dahulu."
         },
         {
           "heading": "Mengapa dibina begini",
@@ -1094,5 +1126,46 @@
     "runsLocallyMeaning": "Fail diproses di dalam pelayar anda dan tidak pernah dimuat naik.",
     "needsInternetMeaning": "Langkah ini menghantar fail ke pelayan. Ia sentiasa ditanda dan tidak pernah menjadi tetapan lalai.",
     "betaMeaning": "Percubaan: hasilnya mungkin berubah, maklum balas amat dialu-alukan."
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Klik atau seret fail PDF ke sini untuk mengecilkannya",
+      "hint": "Tanpa rugi mengekalkan teks boleh dipilih; tahap imej paling berkesan pada imbasan"
+    },
+    "levels": {
+      "label": "Tahap pemampatan",
+      "light": "Tanpa rugi",
+      "lightBody": "Menulis semula struktur fail. Teks kekal boleh dipilih — biasanya beberapa peratus sahaja.",
+      "balanced": "Seimbang",
+      "balancedBody": "Memaparkan setiap halaman pada 150 DPI sebagai JPEG. Teks menjadi gambar.",
+      "strong": "Kuat",
+      "strongBody": "110 DPI dengan kualiti lebih rendah. Hasil terkecil, teks paling lembut."
+    },
+    "actions": {
+      "compress": "Mampatkan",
+      "download": "Muat turun PDF lebih kecil",
+      "retry": "Cuba tahap lain"
+    },
+    "status": {
+      "working": "Menulis semula struktur fail…",
+      "progress": "Halaman {done} daripada {total}"
+    },
+    "result": {
+      "heading": "Hasil",
+      "before": "Sebelum",
+      "after": "Selepas",
+      "saved": "{percent}% lebih kecil",
+      "notSmaller": "Fail ini tidak boleh menjadi lebih kecil pada tahap ini: hasilnya sama saiz atau lebih besar, jadi tiada muat turun. Cuba Seimbang atau Kuat jika perlu di bawah had tertentu.",
+      "rasterNote": "Setiap halaman kini gambar. Simpan fail asal jika anda mungkin perlu mencari, memilih atau menyunting teks nanti.",
+      "losslessNote": "Teks tidak disentuh — masih boleh dipilih dan dicari."
+    },
+    "warning": {
+      "heavy": "Fail besar mengambil masa untuk dipaparkan. Biarkan tab ini terbuka; anda boleh batalkan antara halaman."
+    },
+    "errors": {
+      "encrypted": "PDF ini dilindungi kata laluan. Buka sekali dengan kata laluannya, simpan salinan tanpa kunci, kemudian mampatkan salinan itu.",
+      "readFailed": "Fail ini tidak dapat dibaca sebagai PDF. Sila cuba fail lain.",
+      "compressFailed": "Ada masalah semasa memampatkan. Fail asal tidak diubah."
+    }
   }
 }

@@ -1,0 +1,80 @@
+{
+  "Tools": {
+    "compress": {
+      "name": "Mampatkan PDF",
+      "desc": "Kecilkan PDF imbasan tanpa memuat naiknya"
+    }
+  },
+  "ToolPages": {
+    "compress": {
+      "title": "Mampatkan PDF",
+      "description": "Kecilkan PDF dalam pelayar — tanpa muat naik, tanpa baris gilir",
+      "seoTitle": "Mampatkan PDF Percuma – Kecilkan Tanpa Muat Naik",
+      "seoDescription": "Kecilkan PDF dalam pelayar anda. Tahap tanpa rugi mengekalkan teks boleh dipilih; tahap imej boleh mengurangkan imbasan sehingga separuh. Pilih tahap dan simpan fail yang lebih kecil."
+    }
+  },
+  "ToolContent": {
+    "intro": {
+      "compress": "Kecilkan PDF tanpa menghantarnya ke mana-mana. Tahap tanpa rugi hanya menulis semula struktur fail, jadi teks masih boleh dipilih; tahap imej boleh mengurangkan imbasan separuh, tetapi halamannya menjadi gambar."
+    },
+    "stepAction": {
+      "compress": "Pilih satu tahap dan mampatkan; cuba tahap lain jika belum cukup kecil."
+    },
+    "useCases": {
+      "compress": [
+        "Lampiran e-mel yang dipulangkan kerana had saiz peti masuk.",
+        "Kontrak dan laporan imbasan yang disimpan dalam telefon berstoran kecil.",
+        "Portal muat naik yang menolak fail melebihi 5 MB."
+      ]
+    }
+  },
+  "Faq": {
+    "tool": {
+      "compress": {
+        "q": "Adakah pemampatan menjadikan teks kabur?",
+        "a": "Pada tahap tanpa rugi, tidak: hanya struktur fail ditulis semula, jadi teks dan imej tidak berubah. Tahap imej memang merendahkan resolusi, jadi semak hasilnya sebelum memadam fail asal."
+      }
+    }
+  },
+  "PdfCompress": {
+    "upload": {
+      "prompt": "Klik atau seret fail PDF ke sini untuk mengecilkannya",
+      "hint": "Tanpa rugi mengekalkan teks boleh dipilih; tahap imej paling berkesan pada imbasan"
+    },
+    "levels": {
+      "label": "Tahap pemampatan",
+      "light": "Tanpa rugi",
+      "lightBody": "Menulis semula struktur fail. Teks kekal boleh dipilih — biasanya beberapa peratus sahaja.",
+      "balanced": "Seimbang",
+      "balancedBody": "Memaparkan setiap halaman pada 150 DPI sebagai JPEG. Teks menjadi gambar.",
+      "strong": "Kuat",
+      "strongBody": "110 DPI dengan kualiti lebih rendah. Hasil terkecil, teks paling lembut."
+    },
+    "actions": {
+      "compress": "Mampatkan",
+      "download": "Muat turun PDF lebih kecil",
+      "retry": "Cuba tahap lain"
+    },
+    "status": {
+      "working": "Menulis semula struktur fail…",
+      "progress": "Halaman {done} daripada {total}"
+    },
+    "result": {
+      "heading": "Hasil",
+      "before": "Sebelum",
+      "after": "Selepas",
+      "saved": "{percent}% lebih kecil",
+      "notSmaller": "Fail ini tidak boleh menjadi lebih kecil pada tahap ini: hasilnya sama saiz atau lebih besar, jadi tiada muat turun. Cuba Seimbang atau Kuat jika perlu di bawah had tertentu.",
+      "rasterNote": "Setiap halaman kini gambar. Simpan fail asal jika anda mungkin perlu mencari, memilih atau menyunting teks nanti.",
+      "losslessNote": "Teks tidak disentuh — masih boleh dipilih dan dicari."
+    },
+    "warning": {
+      "heavy": "Fail besar mengambil masa untuk dipaparkan. Biarkan tab ini terbuka; anda boleh batalkan antara halaman."
+    },
+    "errors": {
+      "encrypted": "PDF ini dilindungi kata laluan. Buka sekali dengan kata laluannya, simpan salinan tanpa kunci, kemudian mampatkan salinan itu.",
+      "readFailed": "Fail ini tidak dapat dibaca sebagai PDF. Sila cuba fail lain.",
+      "compressFailed": "Ada masalah semasa memampatkan. Fail asal tidak diubah."
+    }
+  }
+}
