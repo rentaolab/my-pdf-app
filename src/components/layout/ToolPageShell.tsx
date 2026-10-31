@@ -5,10 +5,18 @@ import RelatedTools from "@/components/layout/RelatedTools";
 import SiteFooter from "@/components/layout/SiteFooter";
 import ToolContent from "@/components/layout/ToolContent";
 import { Link } from "@/i18n/navigation";
+import { PDF_WORKER_PATH } from "@/lib/pdf-worker-path";
 import { breadcrumbFor, faqSchema, SITE_NAME } from "@/lib/seo";
 
 /** FAQ entries reused on every tool page (translated once per locale). */
 const COMMON_FAQ_KEYS = ["free", "privacy", "sizeLimit", "mobile"] as const;
+
+/**
+ * Only these four tools rasterise or edit pages through pdf.js. The other seven
+ * rewrite the document structure with `pdf-lib` and never start a worker, so
+ * warming it for them would download 1.2 MB that is then never executed.
+ */
+const PDFJS_TOOL_KEYS = new Set(["organize", "crop", "edit", "pdfToImage"]);
 
 /**
  * Shared shell for all 11 tool pages: navbar → P1 ad → breadcrumb → icon/title/
@@ -58,6 +66,13 @@ export default function ToolPageShell({
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
+      {/* The 1.2 MB pdf.js worker is only needed once a file is chosen, so it must
+          not block the first screen — but a cold fetch at that moment is exactly
+          when the visitor is waiting. `prefetch` lets the browser pull it at low
+          priority while the page is being read, so the first upload finds it in
+          the HTTP cache (served immutable by `public/_headers`). Emitted only on
+          the four pages that actually use pdf.js. */}
+      {PDFJS_TOOL_KEYS.has(toolKey) && <link rel="prefetch" href={PDF_WORKER_PATH} />}
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
         <AdSlot placement="p1" />

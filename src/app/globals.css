@@ -12,15 +12,26 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* There is no dark palette: every page paints a fixed light surface
+   (`bg-[#F8FAFC]`), so a `prefers-color-scheme: dark` override only darkened the
+   body behind that surface and produced a dark flash on the first paint of
+   dark-mode systems. Removed on purpose — add a real dark theme instead if one is
+   ever wanted. */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Geist covers Latin and falls back to whatever face the OS uses for the
+     script at hand. Naming `system-ui` before Arial matters for the seven
+     non-Latin locales: Windows and macOS otherwise start with a Latin face that
+     has no CJK/Devanagari glyphs and fall back per glyph, which mixes metrics
+     mid-sentence and makes text reflow after the fonts settle. */
+  font-family:
+    var(--font-geist-sans),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
 }

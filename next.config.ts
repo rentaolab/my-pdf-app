@@ -18,6 +18,15 @@ const nextConfig: NextConfig = {
    * (`wrangler pages dev out`) to check the real Pages behaviour locally.
    */
   output: "export",
+  experimental: {
+    /**
+     * Rewrites barrel-file imports into per-module ones. `lucide-react` alone
+     * ships ~1,500 icons and its index re-exports all of them; without this the
+     * tool pages pull far more icon modules into the client graph than the
+     * dozen they render.
+     */
+    optimizePackageImports: ["lucide-react"],
+  },
 };
 
 export default withNextIntl(nextConfig);

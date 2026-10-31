@@ -1,3 +1,4 @@
+import { PDFJS_VERSION, PDF_WORKER_PATH } from "./pdf-worker-path";
 import type * as PdfjsModule from "pdfjs-dist";
 
 /**
@@ -31,7 +32,11 @@ export function getPdfjs(): Promise<typeof PdfjsModule> {
       // Same origin means no third-party CDN can block page rendering, and the
       // version in the file name always matches this module's `mod.version` —
       // pdf.js throws "API version does not match the Worker version" otherwise.
-      mod.GlobalWorkerOptions.workerSrc = `/pdf.worker.${mod.version}.min.mjs`;
+      // `PDF_WORKER_PATH` is the same string at build time, so the `<link
+      // rel="prefetch">` in `ToolPageShell` warms exactly this URL; the fallback
+      // covers a checkout whose generated constant predates an npm install.
+      mod.GlobalWorkerOptions.workerSrc =
+        mod.version === PDFJS_VERSION ? PDF_WORKER_PATH : `/pdf.worker.${mod.version}.min.mjs`;
       return mod;
     });
   }
