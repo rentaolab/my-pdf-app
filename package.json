@@ -15,6 +15,7 @@
     "lint": "eslint",
     "check:ads": "node scripts/check-ads.mjs",
     "check:ads:live": "node scripts/check-ads-live.mjs",
+    "check:deploy": "node scripts/check-deploy.mjs",
     "check:messages": "node scripts/check-messages.mjs",
     "check:seo": "node scripts/check-seo.mjs",
     "check": "npm run check:messages && npm run check:seo",
