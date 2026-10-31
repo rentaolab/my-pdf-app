@@ -73,8 +73,16 @@ worker 请求若返回 404，说明 `public/pdf.worker.*.min.mjs` 没随构建�
    以 CrUX（Search Console → Core Web Vitals）为准。
 2. 广告开启后 P1 版位在工具区上方，是 LCP 的主要竞争者。`AdSlot` 已按尺寸组预留高度
    （CLS 安全）并有 4 s 无填充看门狗，但如果 LCP 明显变差，先怀疑广告而不是工具代码。
-3. 本地产物指标（首页 HTML 85.5 KB / gzip 17.3 KB，字体 preload 1 个，首页 JS gzip 193 KB）
-   只能用来判断"有没有回退"，不能当作线上分数。
+3. 本地产物指标只能用来判断"有没有回退"，不能当作线上分数。当前基线
+   （`out/zh.html`）：
+
+   | 指标 | 值 | 说明 |
+   |---|---|---|
+   | HTML 字符数 | 85,501 | 改造前 112,518（−24%），同口径对比 |
+   | HTML 字节数 | 94,256 | 中文 3 字节/字，字符数与字节数不可混用 |
+   | HTML gzip | 17,276 B | Cloudflare 实际传输量级 |
+   | 字体 preload | 1 个 | 改造前 2 个（mono 已移出关键路径） |
+   | 首页 JS gzip | 193 KB | 框架基线，页面自身仅多 2 KB |
 
 ## 4. Search Console / Bing
 
