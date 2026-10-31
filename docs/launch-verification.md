@@ -104,10 +104,12 @@ npm run check:messages   # 字典：10 语言键位、长度预算、FAQ/useCase
 npm run check:seo        # 产物：title/description/canonical/hreflang/og/JSON-LD/单一 h1/
                          # sitemap 每条 URL 都有 HTML
 npm run check            # 两者串跑（需要先 build 出 out/）
+npm run check:deploy     # 线上：out/ 与 pdf.reeff.app 逐页比对（sitemap 集合与 lastmod、
+                         # 每页 h1 / FAQ dt / 首页工具链接），见 deploy-cloudflare.md §8.1
 ```
 
 新增页面或工具时，本节无需改动；但 sitemap 页数期望在
-`scripts/check-seo.mjs` 里是 `LOCALES.length * 14`，新增路由要同步改这个数字，
+`scripts/check-seo.mjs` 里是 `LOCALES.length * 17`（10 × 17 = 170），新增路由要同步改这个数字，
 否则会以「sitemap 广告了不存在的 HTML」或「URL 数不符」报出。
 
 ## 6. 本次上线实测（2026-10-31，commit `b8dfb19`）

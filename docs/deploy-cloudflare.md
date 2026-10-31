@@ -245,12 +245,44 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 1. 在特性分支开发 → 推送到 GitHub。
 2. `git checkout main && git merge --ff-only <branch>` → `git push origin main`。
 3. CF Pages 自动用 `main` 构建（约 1–2 分钟），**构建成功才切换流量，失败则旧部署继续在线**。
-4. 验收关键四项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、
-   `sitemap.xml` **170 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
+4. 验收跑 `npm run check:deploy`（§8.1），再补两个手检项：`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag`
+   **无输出**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
    （pdf.js 升级后这里的版本号要跟着变）。
 
 > ⚠️ 历史教训：**先合并 `main`，再去改 CF 的 Production branch**。反过来做会让 CF 用旧 `main`（Vercel 时代、
 > 没有 `output: "export"`）构建，得到「输出目录 `out` 不存在」的失败，或产出错误站点。
+
+### 8.1 构建变绿 ≠ 线上已经更新（2026-10-31 实例）
+
+当天推完 `/compress-pdf` 前的一轮改动后，GitHub 上 `Cloudflare Pages` 的 check 连续三次 `success`，
+线上却仍是旧内容：`sitemap.xml` 只有 **140** 条（缺 about / how-it-works）、`lastmod` 还是旧
+`new Date()` 代码留下的毫秒时间戳、工具页没有 FAQ 的 `<dt>`、`/en/compress-pdf` 404 —— 但
+`/en/about` 却已经 200。也就是说**同一份部署里 HTML 是新的、sitemap 和热门工具页还是旧的**：
+静态资源是按 URL 分别失效的，热门文件会继续命中旧副本。
+
+| 观察 | 含义 |
+|---|---|
+| check 绿 | 只说明 bundle 上传完成，不代表边缘已替换**全部**文件 |
+| 旧 sitemap + 新 about | 典型的部分失效，不要用「抽一页看看」下结论 |
+| sitemap `lastmod` 与本地不同 | 最快判据：`LAST_MODIFIED` 是手写常量，线上对不上就是旧产物 |
+
+所以推送后别只看 check 颜色，跑：
+
+```bash
+npm run build && npm run check:deploy                        # 默认比对 https://pdf.reeff.app
+npm run check:deploy -- https://my-pdf-app.pages.dev         # 或比对 preview 域名
+```
+
+`scripts/check-deploy.mjs` 以 `out/` 为基准，逐项比：sitemap 的 URL 集合与 `lastmod`、每个 URL 的 200、
+`en`/`zh` 每页的 `<h1>` 文本 / FAQ `<dt>` 数 / 首页工具链接集合，任一项不同即 exit 1。
+本地构建没开广告时（`ADS_ENABLED` 未设）会跳过广告位比对，线上广告预算归 `check:ads:live` 管。
+
+失败时的排查顺序：
+
+1. 等 2 分钟重跑一次 —— 边缘是滚动替换的，刚部署完可能有几十秒窗口；
+2. Deployments 列表确认最新一条的 commit 与 **Production** 标记（不是 Preview）；
+3. Caching → **Purge Everything**，再跑 `check:deploy`；
+4. 仍然不对：`npm run build && npx wrangler pages deploy out --project-name my-pdf-app` 直接上传产物。
 
 发布后的常规检查：
 - **Functions Metrics**（Pages 项目 → Functions Metrics）的 `requests` 图 = 计入免费额度的调用数；
