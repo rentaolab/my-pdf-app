@@ -9,7 +9,7 @@
 npm run build            # prebuild = 字典门禁, postbuild = 产物 SEO 审计
 ```
 
-- 构建输出必须出现两行绿色：`✓ 10 locales, 508 keys each`、`✓ 140 pages audited`。
+- 构建输出必须出现两行绿色：`✓ 10 locales, 598 keys each`、`✓ 160 pages audited`。
   任一失败说明 Cloudflare Pages 也不会部署成功，先修本地。
 - 本次新增的可选环境变量（不设置则不输出对应 meta 标签）：
   - `NEXT_PUBLIC_GSC_VERIFICATION` → `google-site-verification`
@@ -27,7 +27,9 @@ curl -sI $BASE/zh/does-not-exist | head -1                  # 404（不是 200 �
 curl -sI $BASE/pdf.worker.6.3.289.min.mjs | grep -iE '^(HTTP|cache-control|content-type)'
                                                             # 200 + immutable + javascript
 curl -sI $BASE/ | grep -i content-security-policy            # frame-ancestors 'self'
-curl -s $BASE/sitemap.xml | grep -c '<loc>'                  # 140
+curl -sI $BASE/en/about | head -1                            # 200（介绍页）
+curl -sI $BASE/en/how-it-works | head -1                     # 200（工作原理页）
+curl -s $BASE/sitemap.xml | grep -c '<loc>'                  # 160
 curl -s $BASE/robots.txt | grep -i sitemap                   # 存在
 ```
 
@@ -131,3 +133,31 @@ npm run check            # 两者串跑（需要先 build 出 out/）
 | `<h1>` | 恰好 1 个 |
 
 仍需浏览器完成的部分：第 2 节 8 项人工验收、第 3 节 PSI 数值、第 4 节 GSC 收录状态。
+
+仍需浏览器完成的部分：第 2 节 8 项人工验收、第 3 节 PSI 数值、第 4 节 GSC 收录状态。
+
+## 7. P2-B / P2-C 增量的验收（待下次部署填数）
+
+本轮改动只增加内容与两个页面，不改工具逻辑、不新增请求。断言集中在「少的没少、多的都在」：
+
+```bash
+BASE=https://pdf.reeff.app
+curl -s $BASE/sitemap.xml | grep -c '<loc>'                       # 160
+curl -s $BASE/en/about | grep -o '<h1[^>]*>[^<]*</h1>'            # About these PDF tools
+curl -s $BASE/en/how-it-works | grep -c 'Runs locally'            # ≥1（徽章说明）
+curl -s $BASE/en/merge-pdf | grep -c 'Runs locally'               # 1（工具页徽章）
+curl -s $BASE/en/merge-pdf | grep -o 'href="/en/\(about\|how-it-works\)"' | sort -u   # 两条页脚链接
+curl -s $BASE/zh/merge-pdf | grep -c '<dt'                        # 7（4 通用 + 1 工具 + 2 长尾）
+```
+
+| 断言 | 结果 |
+|---|---|
+| `sitemap.xml` `<loc>` 条数 | 160（10 × 16） |
+| `/en/about`、`/en/how-it-works` | 200，各 1 个 `<h1>`，canonical 自指 |
+| 工具页可见 FAQ | 7 个 `<dt>` = FAQPage 的 7 个 `Question` |
+| 工具页徽章 | 标题下 🟢 `Runs locally`，10 语言均已翻译 |
+| 页脚内链 | 关于 / 工作原理 出现在全部 160 个 URL |
+| 首页 + 工具页 gzip | 与 §6 基线对比，增幅 < 2 KB |
+
+> 说明：`lastmod` 已在 `src/app/sitemap.ts` 手工推进到 2026-10-31，不要再被 `new Date()` 覆盖。
+

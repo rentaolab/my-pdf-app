@@ -1,0 +1,70 @@
+{
+  "InfoPages": {
+    "about": {
+      "title": "Tentang alat PDF ini",
+      "description": "Reeff.PDF ialah satu set alat PDF percuma yang berjalan dalam pelayar: apa yang ia buat, apa yang sengaja ditinggalkan dan bagaimana ia kekal percuma.",
+      "intro": "Reeff.PDF ialah sebahagian daripada alat pejabat Reeff: kerja-kerja PDF yang selesai dalam pelayar, tanpa memasang apa-apa, tanpa mencipta akaun dan tanpa menunggu fail pergi ke pelayan lalu kembali.",
+      "sections": [
+        {
+          "heading": "Apa itu laman ini",
+          "body": "Sebelas alat untuk kerja PDF yang memang timbul di pejabat: menyusun halaman, menggabung, memisah, memutar, memadam, mengeluarkan, memangkas, menyunting teks, dan menukar antara PDF dengan imej. Setiap alat melakukan satu kerja pada satu halaman, tanpa panel tetapan yang perlu dipelajari dahulu."
+        },
+        {
+          "heading": "Mengapa dibina begini",
+          "body": "Seluruh kerja — membuka fail, mengubahnya, menyimpannya — berlaku di dalam pelayar, jadi ia selesai mengikut kelajuan peranti anda, bukan kelajuan muat naik. Sebab itu juga tiada baris gilir, tiada kuota harian, dan tiada apa-apa yang perlu dibersihkan di pelayan selepas itu."
+        },
+        {
+          "heading": "Apa yang sengaja tidak dibuat",
+          "body": "Tiada storan awan, tiada sejarah akaun, tiada pengecaman teks untuk halaman yang diimbas, tiada tandatangan elektronik dan tiada ringkasan AI. Semua itu memerlukan pelayan, dan menambahnya secara senyap akan mematahkan janji di atas; apabila tiba masanya, ciri itu akan ditanda dengan lencana pada halamannya, dan alat setempat kekal setempat."
+        },
+        {
+          "heading": "Bagaimana ia dibiayai",
+          "body": "Alat yang berjalan dalam pelayar adalah percuma dan tanpa had. Sesetengah halaman memaparkan iklan, dan sebarang ciri masa depan yang memerlukan pelayan dicaj mengikut penggunaan, bukan melalui kuota percuma yang dikira. Tiada kiraan detik, dan tiada ciri percuma yang dipindahkan ke belakang bayaran."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Cara alat PDF ini berfungsi",
+      "description": "Ke mana fail anda pergi apabila anda memilih alat, apa maksud 'diproses setempat', langkah mana yang memerlukan internet, dan sebesar mana PDF yang mampu diendali pelayar.",
+      "intro": "Semua alat Reeff.PDF mengikut tiga langkah yang sama, dan tiada satu pun daripadanya memuat naik dokumen anda.",
+      "steps": [
+        {
+          "title": "Pilih alat",
+          "body": "Buka halaman bagi kerja yang anda ada. Ia dimuatkan seperti laman web biasa: tanpa sambungan pelayar, tanpa aplikasi desktop dan tanpa borang pendaftaran."
+        },
+        {
+          "title": "Pelayar anda melakukan kerja",
+          "body": "Halaman memuat turun kod yang membaca dan menulis semula PDF, dan kod itu berjalan pada peranti anda sendiri. Fail dibaca dari cakera ke dalam memori dan tidak keluar dari tab."
+        },
+        {
+          "title": "Simpan hasilnya",
+          "body": "Dokumen yang disunting dijana dalam memori dan diserahkan semula kepada pelayar sebagai muat turun. Tutup tab dan tiada apa yang tinggal — di pelayan memang tidak pernah ada salinan untuk dipadam."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "'Setempat' bermaksud tiada permintaan muat naik",
+          "body": "Apabila anda memilih fail, pelayar membacanya terus dari cakera dan bukannya menghantarnya ke sesuatu titik akhir, jadi tiada pemindahan untuk ditunggu dan tiada had saiz yang ditetapkan pelayan. Had sebenar ialah memori peranti: beberapa ratus halaman selesa pada komputer riba, manakala dokumen imbasan yang panjang pada telefon akan terasa perlahan."
+        },
+        {
+          "heading": "Bila sesuatu langkah memerlukan internet",
+          "body": "Halaman itu sendiri perlu dimuatkan sekali, dan menukar bahasa juga memerlukan sambungan. Selepas itu, alat yang sudah terbuka terus berfungsi walaupun tanpa rangkaian. Sebarang ciri masa depan yang benar-benar memerlukan pelayan — OCR awan, contohnya — akan ditanda sebagai memerlukan internet pada halamannya sendiri, bukan dihuraikan sebagai setempat."
+        },
+        {
+          "heading": "Fail dan pelayar yang disokong",
+          "body": "Chrome, Edge, Firefox dan Safari versi terkini pada desktop dan telefon. PDF yang dilindungi kata laluan terbuka selepas kata laluan dimasukkan; halaman imbasan dianggap imej, jadi teks di dalamnya tidak boleh dipilih atau disunting. Semua hasil alat ialah PDF piawai yang boleh dibuka di mana-mana."
+        }
+      ]
+    },
+    "contactLabel": "Ada soalan, pepijat untuk dilaporkan, atau alat yang anda mahukan? Tulis kepada kami:"
+  },
+  "Badges": {
+    "legendHeading": "Maksud lencana",
+    "runsLocally": "Diproses setempat",
+    "needsInternet": "Perlukan internet",
+    "beta": "Beta",
+    "runsLocallyMeaning": "Fail diproses di dalam pelayar anda dan tidak pernah dimuat naik.",
+    "needsInternetMeaning": "Langkah ini menghantar fail ke pelayan. Ia sentiasa ditanda dan tidak pernah menjadi tetapan lalai.",
+    "betaMeaning": "Percubaan: hasilnya mungkin berubah, maklum balas amat dialu-alukan."
+  }
+}

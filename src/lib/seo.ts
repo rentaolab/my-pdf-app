@@ -33,6 +33,13 @@ export const TOOLS = [
 export const PAGE_PATHS: string[] = ["", ...TOOLS.map((tool) => tool.path)];
 
 /**
+ * Standalone content pages (`/about`, `/how-it-works`). They are self-canonical
+ * and localized like everything else, and they give the footer — which every
+ * page renders — a second internal link target besides the legal pages.
+ */
+export const INFO_PATHS = ["/about", "/how-it-works"] as const;
+
+/**
  * Legal pages. They are localized like everything else (so hreflang and the
  * language switcher keep working) and sitemapped with a low priority; AdSense
  * and most ad networks require both to exist and be reachable.
@@ -40,7 +47,7 @@ export const PAGE_PATHS: string[] = ["", ...TOOLS.map((tool) => tool.path)];
 export const LEGAL_PATHS = ["/privacy", "/terms"] as const;
 
 /** Everything that belongs in `sitemap.xml`. */
-export const SITEMAP_PATHS: string[] = [...PAGE_PATHS, ...LEGAL_PATHS];
+export const SITEMAP_PATHS: string[] = [...PAGE_PATHS, ...INFO_PATHS, ...LEGAL_PATHS];
 
 /**
  * Contact address shown on the legal pages and required by ad networks.

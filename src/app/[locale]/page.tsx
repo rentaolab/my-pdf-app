@@ -145,6 +145,15 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            {/* The mechanics live on their own page; linking from here keeps the
+                home page copy short and gives the crawler a second entry point. */}
+            <Link
+              href="/how-it-works"
+              className="mt-5 inline-flex items-center gap-1 text-xs font-bold text-slate-700 transition-colors hover:text-red-600"
+            >
+              {t('InfoPages.howItWorks.title')}
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6">

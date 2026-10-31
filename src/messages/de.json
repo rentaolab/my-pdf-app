@@ -1026,5 +1026,73 @@
         }
       ]
     }
+  },
+  "InfoPages": {
+    "about": {
+      "title": "Über diese PDF-Werkzeuge",
+      "description": "Reeff.PDF ist eine kostenlose Sammlung von PDF-Werkzeugen im Browser: was sie leistet, was sie bewusst weglässt und wie sie kostenlos bleibt.",
+      "intro": "Reeff.PDF gehört zu den Reeff-Bürowerkzeugen: PDF-Aufgaben, die im Browser erledigt werden – ohne Installation, ohne Konto und ohne darauf zu warten, dass eine Datei zu einem Server wandert und zurückkommt.",
+      "sections": [
+        {
+          "heading": "Was diese Seite ist",
+          "body": "Elf Werkzeuge für die PDF-Kleinarbeit, die im Büro tatsächlich anfällt: Seiten ordnen, zusammenfügen, teilen, drehen, löschen, herausziehen, zuschneiden, Text bearbeiten und in Bilder umwandeln – in beide Richtungen. Jedes Werkzeug erledigt eine Aufgabe auf einer Seite, ohne Einstellungsdialog, den man erst lernen muss."
+        },
+        {
+          "heading": "Warum es so gebaut ist",
+          "body": "Die ganze Arbeit – Datei öffnen, ändern, speichern – läuft im Browser und ist damit so schnell wie Ihr Rechner, nicht wie Ihre Upload-Leitung. Deshalb gibt es auch keine Warteschlange, kein Tageslimit und nichts, was auf einem Server hinterher aufgeräumt werden müsste."
+        },
+        {
+          "heading": "Was es bewusst nicht tut",
+          "body": "Es gibt keinen Cloud-Speicher, keinen Kontoverlauf, keine Texterkennung für Scans, keine elektronische Signatur und keine KI-Zusammenfassung. All das braucht einen Server, und es stillschweigend hinzuzufügen würde das Versprechen oben brechen. Kommt so etwas, wird es auf der jeweiligen Seite mit einem Badge gekennzeichnet, und die lokalen Werkzeuge bleiben lokal."
+        },
+        {
+          "heading": "Wie es sich trägt",
+          "body": "Die Werkzeuge im Browser sind kostenlos und unbegrenzt. Einige Seiten zeigen Werbung, und künftige Serverfunktionen werden pro Nutzung abgerechnet statt über ein kostenloses Kontingent mit Zähler. Keine Countdowns und keine kostenlosen Funktionen, die plötzlich hinter einer Bezahlung liegen."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "So funktionieren diese PDF-Werkzeuge",
+      "description": "Wohin Ihre Datei geht, wenn Sie ein Werkzeug wählen, was „lokal verarbeitet“ bedeutet, welche Schritte Internet brauchen und wie große PDFs der Browser schafft.",
+      "intro": "Alle Werkzeuge von Reeff.PDF folgen denselben drei Schritten, und in keinem davon wird Ihr Dokument hochgeladen.",
+      "steps": [
+        {
+          "title": "Werkzeug wählen",
+          "body": "Öffnen Sie die Seite für die Aufgabe, die ansteht. Sie lädt wie jede andere Webseite: ohne Erweiterung, ohne Desktop-Programm, ohne Registrierungsformular."
+        },
+        {
+          "title": "Ihr Browser erledigt die Arbeit",
+          "body": "Die Seite lädt den Code herunter, der PDFs liest und neu schreibt, und dieser Code läuft auf Ihrem Gerät. Die Datei wandert von der Festplatte in den Arbeitsspeicher und verlässt den Tab nicht."
+        },
+        {
+          "title": "Ergebnis speichern",
+          "body": "Das bearbeitete Dokument entsteht im Speicher und kommt als Download zum Browser zurück. Schließen Sie den Tab, bleibt nichts zurück – auf einem Server gab es nie eine Kopie zum Löschen."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "„Lokal verarbeitet“ heißt: keine Upload-Anfrage",
+          "body": "Beim Auswählen liest der Browser die Datei von Ihrer Festplatte, statt sie an einen Endpunkt zu schicken. Es gibt also keine Übertragung, auf die man wartet, und keine Größenbegrenzung durch einen Server. Die reale Grenze ist der Arbeitsspeicher: Ein paar hundert Seiten sind auf einem Notebook unproblematisch, ein langes Scan-Dokument auf dem Handy wird spürbar langsamer."
+        },
+        {
+          "heading": "Wann ein Schritt Internet braucht",
+          "body": "Die Seite selbst muss einmal laden, und der Sprachwechsel braucht ebenfalls eine Verbindung. Danach funktioniert ein bereits geöffnetes Werkzeug auch ohne Netz weiter. Sollte eine Funktion wirklich einen Server brauchen – etwa Cloud-OCR –, wird sie auf ihrer Seite als internetpflichtig gekennzeichnet und nicht als lokal beschrieben."
+        },
+        {
+          "heading": "Unterstützte Dateien und Browser",
+          "body": "Aktuelle Versionen von Chrome, Edge, Firefox und Safari auf Desktop und Mobilgerät. Passwortgeschützte PDFs öffnen sich nach Eingabe des Passworts; eingescannte Seiten gelten als Bilder, ihr Text lässt sich also weder markieren noch bearbeiten. Was die Werkzeuge erzeugen, ist ein Standard-PDF, das überall aufgeht."
+        }
+      ]
+    },
+    "contactLabel": "Fragen, ein Fehlerbericht oder ein Werkzeug, das Ihnen fehlt? Schreiben Sie uns:"
+  },
+  "Badges": {
+    "legendHeading": "Was die Badges bedeuten",
+    "runsLocally": "Läuft lokal",
+    "needsInternet": "Braucht Internet",
+    "beta": "Beta",
+    "runsLocallyMeaning": "Die Datei wird im Browser verarbeitet und nie hochgeladen.",
+    "needsInternetMeaning": "Dieser Schritt schickt die Datei an einen Server. Er wird immer gekennzeichnet und ist nie das Standardverhalten.",
+    "betaMeaning": "Versuchsweise: Das Ergebnis kann sich noch ändern, Rückmeldung ist willkommen."
   }
 }

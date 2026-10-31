@@ -1026,5 +1026,73 @@
         }
       ]
     }
+  },
+  "InfoPages": {
+    "about": {
+      "title": "Sobre estas ferramentas PDF",
+      "description": "O Reeff.PDF é um conjunto gratuito de ferramentas PDF que funcionam no navegador: o que faz, o que deixa de fora de propósito e como se mantém gratuito.",
+      "intro": "O Reeff.PDF faz parte das ferramentas de escritório da Reeff: tarefas com PDF resolvidas dentro do navegador, sem instalar nada, sem criar conta e sem esperar que um ficheiro vá até um servidor e volte.",
+      "sections": [
+        {
+          "heading": "O que é este site",
+          "body": "Onze ferramentas para as tarefas com PDF que aparecem mesmo num escritório: ordenar páginas, juntar, dividir, girar, apagar, extrair, recortar, editar texto e converter de e para imagens. Cada uma faz uma coisa só, numa página só, sem painel de configurações para aprender primeiro."
+        },
+        {
+          "heading": "Por que é feito assim",
+          "body": "Todo o trabalho — abrir o ficheiro, alterá-lo, guardá-lo — acontece dentro do navegador, por isso termina à velocidade da sua máquina e não à da sua ligação. Daí também não haver fila, nem limite diário, nem nada para limpar num servidor depois."
+        },
+        {
+          "heading": "O que não faz, de propósito",
+          "body": "Não há armazenamento na nuvem, histórico de conta, reconhecimento de texto em páginas digitalizadas, assinatura eletrónica nem resumos com IA. Tudo isso exige um servidor, e acrescentá-lo em silêncio quebraria a promessa acima; quando alguma dessas funções chegar, terá um selo na própria página e as ferramentas locais continuam locais."
+        },
+        {
+          "heading": "Como se paga",
+          "body": "As ferramentas que correm no navegador são gratuitas e sem limite. Algumas páginas mostram publicidade e qualquer função futura que precise de servidor é cobrada por utilização, não através de um plano gratuito com contador. Sem contagens decrescentes e sem mover funções gratuitas para trás de um pagamento."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Como funcionam estas ferramentas PDF",
+      "description": "Para onde vai o seu ficheiro ao escolher uma ferramenta, o que significa «processado no seu dispositivo», que passos precisam de internet e que tamanho o navegador aguenta.",
+      "intro": "Todas as ferramentas do Reeff.PDF seguem os mesmos três passos e em nenhum deles o documento é carregado para um servidor.",
+      "steps": [
+        {
+          "title": "Escolher uma ferramenta",
+          "body": "Abra a página da tarefa que tem em mãos. Carrega como qualquer site: sem extensão, sem aplicação de secretária e sem formulário de registo."
+        },
+        {
+          "title": "O seu navegador faz o trabalho",
+          "body": "A página descarrega o código que lê e reescreve PDF, e esse código corre no seu próprio dispositivo. O ficheiro passa do disco para a memória e não sai do separador."
+        },
+        {
+          "title": "Guardar o resultado",
+          "body": "O documento editado é gerado em memória e devolvido ao navegador como descarga. Se fechar o separador não fica nada: num servidor nunca houve cópia para apagar."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "«No seu dispositivo» quer dizer sem pedido de upload",
+          "body": "Ao escolher o ficheiro, o navegador lê-o do seu disco em vez de o enviar para um endpoint, portanto não há transferência para esperar nem limite de tamanho imposto por um servidor. O limite real é a memória do equipamento: algumas centenas de páginas são tranquilas num portátil, enquanto um documento digitalizado e longo num telemóvel se vai notar lento."
+        },
+        {
+          "heading": "Quando um passo precisa de internet",
+          "body": "A página em si tem de carregar uma vez, e mudar de idioma também precisa de ligação. Depois disso, uma ferramenta já aberta continua a funcionar sem rede. Qualquer função futura que precise mesmo de servidor — OCR na nuvem, por exemplo — é assinalada como precisando de internet na sua própria página, em vez de ser descrita como local."
+        },
+        {
+          "heading": "Ficheiros e navegadores suportados",
+          "body": "Chrome, Edge, Firefox e Safari recentes, em computador e em telemóvel. PDF protegidos por palavra-passe abrem depois de a introduzir; páginas digitalizadas são tratadas como imagens, pelo que o texto nelas contido não pode ser selecionado nem editado. Tudo o que as ferramentas produzem é um PDF padrão que abre em qualquer lado."
+        }
+      ]
+    },
+    "contactLabel": "Dúvidas, um erro a comunicar ou uma ferramenta que gostaria de ter? Escreva-nos:"
+  },
+  "Badges": {
+    "legendHeading": "O que significam os selos",
+    "runsLocally": "Processado no seu dispositivo",
+    "needsInternet": "Precisa de internet",
+    "beta": "Beta",
+    "runsLocallyMeaning": "O ficheiro é processado dentro do navegador e nunca é carregado.",
+    "needsInternetMeaning": "Este passo envia o ficheiro para um servidor. É sempre indicado e nunca é o comportamento predefinido.",
+    "betaMeaning": "Função experimental: o resultado pode mudar e o feedback é bem-vindo."
   }
 }

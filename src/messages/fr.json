@@ -1026,5 +1026,73 @@
         }
       ]
     }
+  },
+  "InfoPages": {
+    "about": {
+      "title": "À propos de ces outils PDF",
+      "description": "Reeff.PDF est un ensemble gratuit d'outils PDF qui tournent dans le navigateur : ce qu'il fait, ce qu'il laisse volontairement de côté et comment il reste gratuit.",
+      "intro": "Reeff.PDF fait partie des outils de bureau Reeff : des tâches PDF réglées dans le navigateur, sans installation, sans compte et sans attendre qu'un fichier parte vers un serveur puis revienne.",
+      "sections": [
+        {
+          "heading": "Ce qu'est ce site",
+          "body": "Onze outils pour les petits travaux PDF qui surgissent vraiment au bureau : réordonner les pages, fusionner, découper, pivoter, supprimer, extraire, recadrer, modifier le texte et convertir depuis ou vers des images. Chacun fait une seule chose sur une seule page, sans panneau de réglages à apprendre d'abord."
+        },
+        {
+          "heading": "Pourquoi c'est conçu ainsi",
+          "body": "Tout le travail — ouvrir le fichier, le modifier, l'enregistrer — se passe dans le navigateur, donc il avance à la vitesse de votre machine, pas de votre débit montant. D'où l'absence de file d'attente, de quota quotidien et de quoi que ce soit à nettoyer ensuite sur un serveur."
+        },
+        {
+          "heading": "Ce qu'il ne fait pas, volontairement",
+          "body": "Pas de stockage cloud, pas d'historique de compte, pas de reconnaissance de texte sur les pages scannées, pas de signature électronique, pas de résumé par IA. Tout cela réclame un serveur, et les ajouter en silence briserait la promesse ci-dessus ; le jour où l'une de ces fonctions arrive, elle sera signalée par un badge sur sa page, et les outils locaux resteront locaux."
+        },
+        {
+          "heading": "Comment il est financé",
+          "body": "Les outils qui tournent dans le navigateur sont gratuits et sans limite. Quelques pages affichent de la publicité, et toute future fonction côté serveur sera facturée à l'usage plutôt que via un forfait gratuit au compteur. Pas de compte à rebours, pas de fonction gratuite déplacée derrière un paiement."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "Comment fonctionnent ces outils PDF",
+      "description": "Où va votre fichier quand vous choisissez un outil, ce que veut dire « traité localement », quelles étapes demandent internet et quel poids le navigateur supporte.",
+      "intro": "Tous les outils de Reeff.PDF suivent les mêmes trois étapes, et aucune d'elles n'envoie votre document sur un serveur.",
+      "steps": [
+        {
+          "title": "Choisir un outil",
+          "body": "Ouvrez la page correspondant au travail à faire. Elle se charge comme n'importe quel site : sans extension, sans logiciel de bureau, sans formulaire d'inscription."
+        },
+        {
+          "title": "Votre navigateur fait le travail",
+          "body": "La page télécharge le code qui lit et réécrit les PDF, et ce code s'exécute sur votre appareil. Le fichier passe du disque à la mémoire et ne quitte pas l'onglet."
+        },
+        {
+          "title": "Enregistrer le résultat",
+          "body": "Le document modifié est produit en mémoire puis rendu au navigateur en téléchargement. Fermez l'onglet et il ne reste rien : sur un serveur, il n'y a jamais eu de copie à effacer."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "« Localement » veut dire aucune requête d'envoi",
+          "body": "Quand vous choisissez un fichier, le navigateur le lit sur votre disque au lieu de le poster vers un point d'accès : pas de transfert à attendre, pas de taille maximale fixée par un serveur. La vraie limite est la mémoire de l'appareil : quelques centaines de pages passent sans problème sur un ordinateur portable, alors qu'un long document scanné sur un téléphone sera nettement plus lent."
+        },
+        {
+          "heading": "Quand une étape demande internet",
+          "body": "La page elle-même doit se charger une fois, et changer de langue demande aussi une connexion. Ensuite, un outil déjà ouvert continue de fonctionner sans réseau. Une future fonction qui aurait vraiment besoin d'un serveur — un OCR dans le cloud, par exemple — sera signalée comme nécessitant internet sur sa propre page, plutôt que décrite comme locale."
+        },
+        {
+          "heading": "Fichiers et navigateurs pris en charge",
+          "body": "Versions récentes de Chrome, Edge, Firefox et Safari sur ordinateur et mobile. Les PDF protégés par mot de passe s'ouvrent une fois celui-ci saisi ; les pages scannées sont traitées comme des images, leur texte ne peut donc être ni sélectionné ni modifié. Tout ce que produisent les outils est un PDF standard, lisible partout."
+        }
+      ]
+    },
+    "contactLabel": "Une question, un bug à signaler, un outil qui vous manque ? Écrivez-nous :"
+  },
+  "Badges": {
+    "legendHeading": "Ce que signifient les badges",
+    "runsLocally": "Traité localement",
+    "needsInternet": "Nécessite internet",
+    "beta": "Bêta",
+    "runsLocallyMeaning": "Le fichier est traité dans votre navigateur et n'est jamais envoyé.",
+    "needsInternetMeaning": "Cette étape envoie le fichier à un serveur. Elle est toujours signalée et n'est jamais le comportement par défaut.",
+    "betaMeaning": "Fonction expérimentale : le résultat peut encore changer, vos retours sont bienvenus."
   }
 }

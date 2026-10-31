@@ -121,12 +121,13 @@ for (const file of files) {
 }
 
 // Sitemap sanity: every URL it advertises must exist as a file, and the count
-// must match 10 locales × (home + 11 tools + privacy + terms).
+// must match 10 locales × (home + 11 tools + about + how-it-works + privacy +
+// terms).
 try {
   const sitemap = readFileSync(join(OUT_DIR, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
-  if (urls.length !== LOCALES.length * 14) {
-    warnings.push(`sitemap.xml has ${urls.length} URLs (expected ${LOCALES.length * 14})`);
+  if (urls.length !== LOCALES.length * 16) {
+    warnings.push(`sitemap.xml has ${urls.length} URLs (expected ${LOCALES.length * 16})`);
   }
   for (const url of urls) {
     const route = url.slice(SITE_URL.length) || "/";

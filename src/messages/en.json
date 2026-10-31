@@ -1026,5 +1026,73 @@
         }
       ]
     }
+  },
+  "InfoPages": {
+    "about": {
+      "title": "About these PDF tools",
+      "description": "Reeff.PDF is a free set of browser-based PDF tools for office chores — what it does, what it deliberately leaves out, and how it stays free.",
+      "intro": "Reeff.PDF is one of the Reeff office tools: PDF chores you can finish inside the browser, without installing anything, creating an account, or waiting for a file to travel to a server and back.",
+      "sections": [
+        {
+          "heading": "What this site is",
+          "body": "Eleven tools for the PDF chores that actually come up in an office: putting pages in order, merging, splitting, rotating, deleting, extracting, cropping, editing text, and converting to and from images. Each one does a single job on a single page, with no settings panel to learn first."
+        },
+        {
+          "heading": "Why it is built this way",
+          "body": "The whole job — open the file, change it, save it — happens inside your browser, so it finishes at the speed of your own machine instead of your upload speed. That also means no queue, no daily quota, and nothing left behind on a server to clean up afterwards."
+        },
+        {
+          "heading": "What it deliberately does not do",
+          "body": "There is no cloud storage, no account history, no text recognition for scanned pages, no e-signature and no AI summary. All of those need a server, and adding them quietly would break the promise above; if one ever arrives it is marked with a badge on its page, and the local tools stay local."
+        },
+        {
+          "heading": "How it is paid for",
+          "body": "The tools that run in the browser are free and unlimited. A few pages carry advertising, and any future feature that needs a server is priced per use rather than through a metered free tier. No countdown timers, and no free feature quietly moved behind a payment."
+        }
+      ]
+    },
+    "howItWorks": {
+      "title": "How these PDF tools work",
+      "description": "Where your file goes when you pick a tool, what \"runs locally\" actually means, which steps need the internet, and how large a PDF a browser can handle.",
+      "intro": "Every Reeff.PDF tool follows the same three steps, and none of them uploads your document.",
+      "steps": [
+        {
+          "title": "Pick a tool",
+          "body": "Open the page for the job you have at hand. It loads like any other web page: no extension, no desktop program, no sign-up form."
+        },
+        {
+          "title": "Your browser does the work",
+          "body": "The page downloads the code that reads and rewrites PDFs, and that code runs on your own device. Your file is read from disk into memory and never leaves the tab."
+        },
+        {
+          "title": "Save the result",
+          "body": "The edited document is produced in memory and handed back to your browser as a download. Close the tab and nothing is left anywhere — there was never a copy on a server to delete."
+        }
+      ],
+      "sections": [
+        {
+          "heading": "\"Runs locally\" means no upload request",
+          "body": "When you choose a file, the browser reads it from your disk instead of posting it to an endpoint, so there is no transfer to wait for and no size limit set by a server. The practical ceiling is your device's memory: a few hundred pages is comfortable on a laptop, while a long scanned document on a phone will feel noticeably slower."
+        },
+        {
+          "heading": "When a step needs the internet",
+          "body": "The page itself has to load once, and switching language needs a connection too. After that, an open tool keeps working with the network switched off. Any future feature that genuinely needs a server — cloud OCR, for example — is labelled as needing internet on its own page instead of being described as local."
+        },
+        {
+          "heading": "Files and browsers it handles",
+          "body": "Recent Chrome, Edge, Firefox and Safari on desktop and mobile. Password-protected PDFs open once you type the password; scanned pages are treated as images, so text inside them cannot be selected or edited. Everything the tools produce is a standard PDF that opens anywhere."
+        }
+      ]
+    },
+    "contactLabel": "Questions, a bug to report, or a tool you wish existed? Write to us:"
+  },
+  "Badges": {
+    "legendHeading": "What the badges mean",
+    "runsLocally": "Runs locally",
+    "needsInternet": "Needs internet",
+    "beta": "Beta",
+    "runsLocallyMeaning": "The file is processed inside your browser and is never uploaded.",
+    "needsInternetMeaning": "This step sends your file to a server. It is always labelled, and it is never the default.",
+    "betaMeaning": "Experimental: the result may still change, and feedback is welcome."
   }
 }

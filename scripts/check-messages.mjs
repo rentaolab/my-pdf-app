@@ -58,6 +58,24 @@ const MIN_USE_CASE_LENGTH = 15;
 const MIN_DETAIL_LENGTH = 150;
 const MIN_EXTRA_FAQ = 2;
 
+/**
+ * Standalone pages (`/about`, `/how-it-works`) and the badge vocabulary shared
+ * with the tool pages. The section/step counts are fixed per page so a locale
+ * cannot silently ship a structurally shorter page than the English reference.
+ */
+const INFO_SECTIONS = { about: 4, howItWorks: 3 };
+const INFO_STEPS = { howItWorks: 3 };
+const MIN_INFO_BODY = 120;
+const BADGE_KEYS = [
+  "legendHeading",
+  "runsLocally",
+  "needsInternet",
+  "beta",
+  "runsLocallyMeaning",
+  "needsInternetMeaning",
+  "betaMeaning",
+];
+
 const problems = [];
 
 function readDictionary(locale) {
@@ -246,6 +264,70 @@ for (const locale of LOCALES) {
       );
     }
   }
+  // `/about` and `/how-it-works` are indexed prose pages linked from every
+  // footer, so a locale that shortens them turns into thin content rather than
+  // an obvious build failure.
+  const infoBodyMin = isCjk ? Math.round(MIN_INFO_BODY * 0.4) : MIN_INFO_BODY;
+  if (!dictionary.InfoPages?.contactLabel) {
+    problems.push(`${locale}: InfoPages.contactLabel is missing`);
+  }
+  for (const [pageKey, expectedSections] of Object.entries(INFO_SECTIONS)) {
+    const page = dictionary.InfoPages?.[pageKey];
+    if (!page?.title || !page?.description || !page?.intro) {
+      problems.push(`${locale}: InfoPages.${pageKey} needs title, description and intro`);
+      continue;
+    }
+    if (page.title.length > TITLE_MAX) {
+      problems.push(`${locale}: InfoPages.${pageKey}.title is ${page.title.length} chars (max ${TITLE_MAX})`);
+    }
+    if (page.description.length < descriptionMin || page.description.length > DESCRIPTION_MAX) {
+      problems.push(
+        `${locale}: InfoPages.${pageKey}.description is ${page.description.length} chars (expected ${descriptionMin}–${DESCRIPTION_MAX})`,
+      );
+    }
+
+    const sections = page.sections;
+    if (!Array.isArray(sections) || sections.length !== expectedSections) {
+      problems.push(`${locale}: InfoPages.${pageKey}.sections needs exactly ${expectedSections} entries`);
+    } else {
+      sections.forEach((section, index) => {
+        if (!section?.heading || !section?.body) {
+          problems.push(`${locale}: InfoPages.${pageKey}.sections[${index}] needs heading and body`);
+        } else if (section.body.length < infoBodyMin) {
+          problems.push(
+            `${locale}: InfoPages.${pageKey}.sections[${index}].body is only ${section.body.length} chars (min ${infoBodyMin})`,
+          );
+        }
+      });
+    }
+
+    // `howItWorks` is built around its numbered steps; `about` deliberately has
+    // none, so a stray `steps` array there is a translation mistake.
+    const expectedSteps = INFO_STEPS[pageKey] ?? 0;
+    const steps = page.steps;
+    if (expectedSteps === 0) {
+      if (steps !== undefined) problems.push(`${locale}: InfoPages.${pageKey} must not define steps`);
+    } else if (!Array.isArray(steps) || steps.length !== expectedSteps) {
+      problems.push(`${locale}: InfoPages.${pageKey}.steps needs exactly ${expectedSteps} entries`);
+    } else {
+      steps.forEach((step, index) => {
+        if (!step?.title || !step?.body) {
+          problems.push(`${locale}: InfoPages.${pageKey}.steps[${index}] needs title and body`);
+        } else if (step.body.length < infoBodyMin * 0.5) {
+          problems.push(`${locale}: InfoPages.${pageKey}.steps[${index}].body is too short`);
+        }
+      });
+    }
+  }
+
+  // The same labels feed the tool-page badge and the legend on `/how-it-works`,
+  // so a single missing string shows up in two places at once.
+  for (const key of BADGE_KEYS) {
+    if (typeof dictionary.Badges?.[key] !== "string" || dictionary.Badges[key].length === 0) {
+      problems.push(`${locale}: Badges.${key} is missing`);
+    }
+  }
+
   if (!Array.isArray(dictionary.HomePage?.why) || dictionary.HomePage.why.length < 3) {
     problems.push(`${locale}: HomePage.why needs at least 3 items`);
   }

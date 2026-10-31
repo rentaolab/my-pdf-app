@@ -83,7 +83,7 @@ curl -sI https://staging.pdf.reeff.app/en/merge-pdf/ | head -1    # 301 → 无�
 
 # 元数据与安全头
 curl -s  https://staging.pdf.reeff.app/robots.txt                  # allow: /
-curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 140
+curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 160
 curl -sI https://staging.pdf.reeff.app/en | grep -i 'content-security-policy'  # frame-ancestors 'self'
 curl -s  https://staging.pdf.reeff.app/en/merge-pdf | grep -o 'rel="canonical" href="[^"]*"'  # https://pdf.reeff.app/...
 curl -sI https://staging.pdf.reeff.app/en/privacy | head -1            # 200（法律页）
@@ -246,7 +246,7 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 2. `git checkout main && git merge --ff-only <branch>` → `git push origin main`。
 3. CF Pages 自动用 `main` 构建（约 1–2 分钟），**构建成功才切换流量，失败则旧部署继续在线**。
 4. 验收关键四项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、
-   `sitemap.xml` **140 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
+   `sitemap.xml` **160 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
    （pdf.js 升级后这里的版本号要跟着变）。
 
 > ⚠️ 历史教训：**先合并 `main`，再去改 CF 的 Production branch**。反过来做会让 CF 用旧 `main`（Vercel 时代、
@@ -263,7 +263,8 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 |---|---|---|
 | 隐私政策 | `/[locale]/privacy` | 10 语言各一份，文案在 `src/messages/*.json` 的 `Legal.privacy` |
 | 使用条款 | `/[locale]/terms` | 同上，`Legal.terms` |
-| 页脚入口 | `src/components/layout/SiteFooter.tsx` | 首页与两个法律页渲染；工具页暂未加（首页一键可达） |
+| 页脚入口 | `src/components/layout/SiteFooter.tsx` | 全部页面（首页 / 11 个工具页 / 关于 / 工作原理 / 法律页）渲染：关于 · 工作原理 · 隐私 · 条款 |
+| 介绍页 / 工作原理 | `/[locale]/about`、`/[locale]/how-it-works` | 10 语言各一份，文案在 `InfoPages.about` / `InfoPages.howItWorks`；参与 hreflang / canonical / sitemap（priority 0.6）；页脚全站可达，给广告审核「内容深度」一项兜底 |
 | `ads.txt` | `public/ads.txt` | **已上线**：`google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0`（IAB 标准格式，TAG 认证机构 ID 固定为 `f08c47fec0942fa0`） |
 | 联系方式 | `src/lib/seo.ts` 的 `CONTACT_EMAIL` | 现为 `reeff.app@proton.me`，只此一处，10 语言法律页自动跟随 |
 
