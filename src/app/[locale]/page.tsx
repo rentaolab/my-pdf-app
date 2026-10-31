@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation';
 import AdSlot from '@/components/ads/AdSlot';
 import Navbar from '@/components/layout/Navbar';
 import SiteFooter from '@/components/layout/SiteFooter';
-import { alternatesFor } from '@/lib/seo';
+import { alternatesFor, faqSchema } from '@/lib/seo';
 import {
   Layers,
   Merge,
@@ -49,6 +49,21 @@ export default function Home() {
     { key: 'pdfToImage', href: '/pdf-to-image', icon: FileImage },
     { key: 'imageToPdf', href: '/image-to-pdf', icon: Images },
   ] as const;
+
+  // Long-form home sections. The dictionary holds them as arrays/objects, so
+  // `t.raw` is what keeps the structure instead of returning a joined string.
+  const why = t.raw('HomePage.why') as { title: string; body: string }[];
+  const groups = [
+    { key: 'organize', href: '/organize-pdf' },
+    { key: 'convert', href: '/pdf-to-image' },
+    { key: 'edit', href: '/edit-pdf' },
+  ] as const;
+  // Same four questions on every tool page; on the home page they are the
+  // visible half of the FAQPage block emitted at the bottom of this component.
+  const faqItems = ['free', 'privacy', 'sizeLimit', 'mobile'].map((key) => ({
+    q: t(`Faq.common.${key}.q`),
+    a: t(`Faq.common.${key}.a`),
+  }));
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans selection:bg-red-500 selection:text-white">
@@ -104,8 +119,9 @@ export default function Home() {
                       {t(`Tools.${card.key}.name`)}
                     </h3>
 
-                    {/* 悬浮态：晕染淡出的说明文字 */}
-                    <p className="text-[11px] text-slate-400 mt-1 opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-12 transition-all duration-300 ease-out leading-relaxed truncate">
+                    {/* Description is always visible: on touch devices there is no
+                        hover state, and search engines should see real prose. */}
+                    <p className="text-[11px] text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                       {t(`Tools.${card.key}.desc`)}
                     </p>
                   </div>
@@ -115,11 +131,68 @@ export default function Home() {
           })}
         </div>
 
+        {/* Why + task groups: long-form, indexable prose below the tool grid
+            plus a second layer of internal links grouped by task instead of by
+            tool, which is how people actually search for these jobs. */}
+        <section className="mt-16 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6">
+            <h2 className="text-sm font-bold text-slate-900">{t('HomePage.whyHeading')}</h2>
+            <ul className="mt-4 space-y-4">
+              {why.map((item) => (
+                <li key={item.title}>
+                  <h3 className="text-xs font-bold text-slate-900">{item.title}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600">{item.body}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-6">
+            <h2 className="text-sm font-bold text-slate-900">{t('HomePage.groups.heading')}</h2>
+            <ul className="mt-4 space-y-3">
+              {groups.map((group) => (
+                <li key={group.key}>
+                  <Link
+                    href={group.href}
+                    className="group flex items-start justify-between gap-4 rounded-xl border border-slate-200/70 p-4 transition-all hover:border-red-500/40 hover:shadow-sm"
+                  >
+                    <div>
+                      <h3 className="text-xs font-bold text-slate-900 transition-colors group-hover:text-red-600">
+                        {t(`HomePage.groups.${group.key}.title`)}
+                      </h3>
+                      <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                        {t(`HomePage.groups.${group.key}.body`)}
+                      </p>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-300 transition-all group-hover:text-red-600" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* FAQ: the visible Q&A that the FAQPage JSON-LD below refers to. */}
+        <section className="mt-16">
+          <h2 className="text-sm font-bold text-slate-900">{t('Faq.heading')}</h2>
+          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+            {faqItems.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-slate-200 bg-white p-5">
+                <dt className="text-xs font-bold text-slate-900">{item.q}</dt>
+                <dd className="mt-2 text-xs leading-relaxed text-slate-600">{item.a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
         {/* P3: one in-article unit at the end of the page, so the tool grid
             stays untouched and the ad appears only after the visitor has seen
             the tools. Renders nothing unless advertising is enabled. */}
         <AdSlot placement="p3" className="mt-24 border-t border-slate-200/60 pt-8" />
       </main>
+
+      {/* FAQPage structured data — mirrors the visible FAQ block above. */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }} />
 
       {/* 页脚：版权 + 隐私/条款（广告平台要求从主页可达） */}
       <SiteFooter />

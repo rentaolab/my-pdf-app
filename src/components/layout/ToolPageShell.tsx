@@ -1,15 +1,19 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import AdSlot from "@/components/ads/AdSlot";
 import Navbar from "@/components/layout/Navbar";
 import RelatedTools from "@/components/layout/RelatedTools";
 import SiteFooter from "@/components/layout/SiteFooter";
 import ToolContent from "@/components/layout/ToolContent";
-import { SITE_URL } from "@/lib/seo";
+import { Link } from "@/i18n/navigation";
+import { breadcrumbFor, faqSchema, SITE_NAME } from "@/lib/seo";
+
+/** FAQ entries reused on every tool page (translated once per locale). */
+const COMMON_FAQ_KEYS = ["free", "privacy", "sizeLimit", "mobile"] as const;
 
 /**
- * Shared shell for all 11 tool pages: navbar → P1 ad → icon/title/description
- * header → the tool itself → P2 ad → related-tools internal links →
- * BreadcrumbList JSON-LD → footer.
+ * Shared shell for all 11 tool pages: navbar → P1 ad → breadcrumb → icon/title/
+ * description header → the tool itself → P2 ad → related-tools internal links →
+ * BreadcrumbList + FAQPage JSON-LD → footer.
  *
  * Keeping this in one place means the 11 pages stay identical in structure and
  * future additions (badges, per-page content sections, FAQ) land in a single file.
@@ -31,22 +35,47 @@ export default function ToolPageShell({
   children: React.ReactNode;
 }) {
   const t = useTranslations("ToolPages");
+  const tTools = useTranslations("Tools");
+  const tFaq = useTranslations("Faq");
+  const locale = useLocale();
   const title = t(`${toolKey}.title`);
 
-  const breadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Reeff.PDF", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: title, item: `${SITE_URL}${path}` },
-    ],
-  };
+  // The item URL must include the locale prefix so it matches the canonical.
+  const breadcrumb = breadcrumbFor({ path, locale, title });
+
+  // `has()` keeps the build green while a locale is missing a FAQ translation;
+  // the JSON-LD is then simply emitted without that entry instead of the page
+  // failing to render.
+  const faqItems = [
+    ...COMMON_FAQ_KEYS.filter((key) => tFaq.has(`common.${key}.q`)).map((key) => ({
+      q: tFaq(`common.${key}.q`),
+      a: tFaq(`common.${key}.a`),
+    })),
+    ...(tFaq.has(`tool.${toolKey}.q`)
+      ? [{ q: tFaq(`tool.${toolKey}.q`), a: tFaq(`tool.${toolKey}.a`) }]
+      : []),
+  ];
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col font-sans">
       <Navbar />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-6">
         <AdSlot placement="p1" />
+
+        {/* Visible breadcrumb — mirrors the BreadcrumbList JSON-LD below. */}
+        <nav aria-label="Breadcrumb" className="text-[11px] text-slate-500">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link href="/" className="font-semibold hover:text-red-600 transition-colors">
+                {SITE_NAME}
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-slate-300">
+              /
+            </li>
+            <li className="font-semibold text-slate-700">{tTools(`${toolKey}.name`)}</li>
+          </ol>
+        </nav>
 
         <div className="flex items-center space-x-3 pb-4 border-b border-slate-200/60">
           <div className="p-2 bg-red-600 text-white rounded-xl shadow-sm">
@@ -69,10 +98,30 @@ export default function ToolPageShell({
 
         <ToolContent toolKey={toolKey} />
 
+        {/* Visible FAQ. Google requires the Q&A pairs in FAQPage JSON-LD to be
+            present on the page itself, so this block and the script below share
+            one `faqItems` array and can never drift apart. */}
+        {faqItems.length > 0 && (
+          <section className="space-y-4 border-t border-slate-200/60 pt-6">
+            <h2 className="text-sm font-bold text-slate-900">{tFaq("heading")}</h2>
+            <dl className="grid gap-4 md:grid-cols-2">
+              {faqItems.map((item) => (
+                <div key={item.q} className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <dt className="text-xs font-bold text-slate-900">{item.q}</dt>
+                  <dd className="mt-2 text-xs leading-relaxed text-slate-600">{item.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
         <RelatedTools currentPath={path} />
       </main>
       <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      {faqItems.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faqItems)) }} />
+      )}
     </div>
   );
 }
