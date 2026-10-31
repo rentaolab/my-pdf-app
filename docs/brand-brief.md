@@ -135,7 +135,7 @@ PDF 编辑/整理/转换 · 图片处理 · 音频处理（会议录音、格式
 | **Hero** | H1：办公杂活，交给 Reeff ／ 副句：轻 · 快 · 简 —— 不装软件、不用等上传、一个工具只做一件事 |
 | **产品矩阵** | 4 张卡：`Reeff.PDF`（已上线 → 直达）/ `Reeff.Image`、`Reeff.Audio`、`Reeff.Receipt`（Coming soon + waitlist 邮箱） |
 | **三支柱** | 打开就能用 ／ 不排队 ／ 交代清楚（配 🟢🔵 徽章示例） |
-| **工具目录** | 列出 PDF 的 11 个工具，内链到 `pdf.reeff.app/<locale>/...`（根域唯一该做的工具类内链中枢） |
+| **工具目录** | 列出 PDF 的 12 个工具，内链到 `pdf.reeff.app/<locale>/...`（根域唯一该做的工具类内链中枢） |
 | **家族 Footer** | Reeff.PDF · Image · Audio · Receipt + Privacy / Terms / Contact |
 | **结构化数据** | `Organization` + `WebSite` + `ItemList`（产品） |
 | **关键词分工** | 根域只抢品牌词与类别词（`reeff`、`reeff app`、`office tools`）；工具长尾词（`merge pdf` 等）留给子域，避免自相残杀 |
@@ -148,5 +148,5 @@ PDF 编辑/整理/转换 · 图片处理 · 音频处理（会议录音、格式
       （见 `docs/launch-verification.md` §7 记录）；仍建议上线后请母语者抽检 FAQ 长尾段落。
 - [ ] 根域 522 修复 + v0 上线（独立 repo / 独立 Vercel 项目）
 - [ ] 定价页文案（按需付费的具体档位与额度）在 Phase 2 与免费/付费矩阵一起定
-- [x] 工具页补齐徽章（🟢/🔵）—— 已上线 🟢 `Runs locally`（11 个工具全部本机处理，`src/components/layout/ToolBadge.tsx`）；
+- [x] 工具页补齐徽章（🟢/🔵）—— 已上线 🟢 `Runs locally`（12 个工具全部本机处理，`src/components/layout/ToolBadge.tsx`）；
   `how-it-works` 页附徽章说明。🔵 `Needs internet` 的文案与样式已就位，等第一个联网功能落地再启用。

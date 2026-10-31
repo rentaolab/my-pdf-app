@@ -83,7 +83,7 @@ curl -sI https://staging.pdf.reeff.app/en/merge-pdf/ | head -1    # 301 → 无�
 
 # 元数据与安全头
 curl -s  https://staging.pdf.reeff.app/robots.txt                  # allow: /
-curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 160
+curl -s  https://staging.pdf.reeff.app/sitemap.xml | grep -c '<url>'   # 170
 curl -sI https://staging.pdf.reeff.app/en | grep -i 'content-security-policy'  # frame-ancestors 'self'
 curl -s  https://staging.pdf.reeff.app/en/merge-pdf | grep -o 'rel="canonical" href="[^"]*"'  # https://pdf.reeff.app/...
 curl -sI https://staging.pdf.reeff.app/en/privacy | head -1            # 200（法律页）
@@ -124,12 +124,12 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 | 语言协商 | `en-US→/en` `zh-CN→/zh` `ja-JP→/ja` `ms-MY→/ms` `ko-KR→/ko` ✅ |
 | Cookie 优先级 | `Cookie: NEXT_LOCALE=ko` + `Accept-Language: en-US` → `/ko/merge-pdf`（cookie 胜）✅ |
 | 无前缀深层页 | `/merge-pdf` + `de` → 302 `/de/merge-pdf` ✅ |
-| 11 个工具（en） | 全部 200 ✅ |
+| 12 个工具（en） | 全部 200 ✅ |
 | 10 个语言根 | 全部 200 ✅ |
 | 未知路径 | 404 且渲染出 404 页 ✅ |
 | 尾斜杠 | `/en/merge-pdf/` → 301 `https://pdf.reeff.app/en/merge-pdf` ✅ |
 | 安全头 | CSP `frame-ancestors 'self'` / `SAMEORIGIN` / `nosniff` / `strict-origin-when-cross-origin` ✅ |
-| sitemap / robots | 120 条 URL / `Allow: /` ✅ |
+| sitemap / robots | 170 条 URL / `Allow: /` ✅ |
 | 静态资源 | `_next/static/*` → `max-age=31536000, immutable` ✅ |
 | RSC payload | `/en/merge-pdf.txt` → 200，内容为 `1:"$Sreact.fragment"` ✅ |
 | 缓存行为 | HTML 与 302 均 `cf-cache-status: DYNAMIC` + `max-age=0`（noindex/重定向不会滞留边缘）✅ |
@@ -138,7 +138,7 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 
 浏览器手测（**必做**，静态导出对客户端行为最敏感）：
 
-- [ ] 11 个工具全部走通：上传 → 处理 → 导出（`edit` / `organize` 最重）
+- [ ] 12 个工具全部走通：上传 → 处理 → 导出（`edit` / `organize` 最重）
 - [ ] 客户端路由切换（首页 → 工具 A → 工具 B → 首页）无白屏、无 404
 - [ ] 语言切换器切到 `ja` 后再刷新，仍是 `ja`（`NEXT_LOCALE` cookie）
 - [ ] 刷新深层页 `/ja/crop-pdf` 直接 200（不是 404）
@@ -246,7 +246,7 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 2. `git checkout main && git merge --ff-only <branch>` → `git push origin main`。
 3. CF Pages 自动用 `main` 构建（约 1–2 分钟），**构建成功才切换流量，失败则旧部署继续在线**。
 4. 验收关键四项：`/en` 200、`curl -sI https://pdf.reeff.app/en | grep -i x-robots-tag` **无输出**、
-   `sitemap.xml` **160 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
+   `sitemap.xml` **170 条**、`curl -sI https://pdf.reeff.app/pdf.worker.6.3.289.min.mjs` → `application/javascript`
    （pdf.js 升级后这里的版本号要跟着变）。
 
 > ⚠️ 历史教训：**先合并 `main`，再去改 CF 的 Production branch**。反过来做会让 CF 用旧 `main`（Vercel 时代、
@@ -263,7 +263,7 @@ curl -sI https://staging.pdf.reeff.app/en                | grep -ci x-robots-tag
 |---|---|---|
 | 隐私政策 | `/[locale]/privacy` | 10 语言各一份，文案在 `src/messages/*.json` 的 `Legal.privacy` |
 | 使用条款 | `/[locale]/terms` | 同上，`Legal.terms` |
-| 页脚入口 | `src/components/layout/SiteFooter.tsx` | 全部页面（首页 / 11 个工具页 / 关于 / 工作原理 / 法律页）渲染：关于 · 工作原理 · 隐私 · 条款 |
+| 页脚入口 | `src/components/layout/SiteFooter.tsx` | 全部页面（首页 / 12 个工具页 / 关于 / 工作原理 / 法律页）渲染：关于 · 工作原理 · 隐私 · 条款 |
 | 介绍页 / 工作原理 | `/[locale]/about`、`/[locale]/how-it-works` | 10 语言各一份，文案在 `InfoPages.about` / `InfoPages.howItWorks`；参与 hreflang / canonical / sitemap（priority 0.6）；页脚全站可达，给广告审核「内容深度」一项兜底 |
 | `ads.txt` | `public/ads.txt` | **已上线**：`google.com, pub-4891040014815847, DIRECT, f08c47fec0942fa0`（IAB 标准格式，TAG 认证机构 ID 固定为 `f08c47fec0942fa0`） |
 | 联系方式 | `src/lib/seo.ts` 的 `CONTACT_EMAIL` | 现为 `reeff.app@proton.me`，只此一处，10 语言法律页自动跟随 |

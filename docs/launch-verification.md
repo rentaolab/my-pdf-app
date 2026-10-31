@@ -9,7 +9,7 @@
 npm run build            # prebuild = 字典门禁, postbuild = 产物 SEO 审计
 ```
 
-- 构建输出必须出现两行绿色：`✓ 10 locales, 598 keys each`、`✓ 160 pages audited`。
+- 构建输出必须出现两行绿色：`✓ 10 locales, 641 keys each`、`✓ 170 pages audited`。
   任一失败说明 Cloudflare Pages 也不会部署成功，先修本地。
 - 本次新增的可选环境变量（不设置则不输出对应 meta 标签）：
   - `NEXT_PUBLIC_GSC_VERIFICATION` → `google-site-verification`
@@ -29,7 +29,7 @@ curl -sI $BASE/pdf.worker.6.3.289.min.mjs | grep -iE '^(HTTP|cache-control|conte
 curl -sI $BASE/ | grep -i content-security-policy            # frame-ancestors 'self'
 curl -sI $BASE/en/about | head -1                            # 200（介绍页）
 curl -sI $BASE/en/how-it-works | head -1                     # 200（工作原理页）
-curl -s $BASE/sitemap.xml | grep -c '<loc>'                  # 160
+curl -s $BASE/sitemap.xml | grep -c '<loc>'                  # 170
 curl -s $BASE/robots.txt | grep -i sitemap                   # 存在
 ```
 
@@ -40,7 +40,7 @@ worker 请求若返回 404，说明 `public/pdf.worker.*.min.mjs` 没随构建�
 
 | # | 项目 | 步骤 | 通过标准 |
 |---|---|---|---|
-| 1 | 工具端到端 | 11 个工具各上传一次真实 PDF，走完处理与导出 | 导出文件能打开、页数/顺序正确；`organize`/`edit` 最重，放最后测 |
+| 1 | 工具端到端 | 12 个工具各上传一次真实 PDF，走完处理与导出 | 导出文件能打开、页数/顺序正确；`organize`/`edit` 最重，放最后测；`compress` 的图片档位要确认导出比原文件小 |
 | 2 | 客户端路由 | 首页 → 工具 A → 工具 B → 首页（只用站内链接） | 无白屏、无 404、滚动位置正常；返回后工具状态干净 |
 | 3 | 语言持久化 | 切到 `ja` → 刷新 → 再切到 `de` | 刷新后仍是 `ja`（`NEXT_LOCALE` cookie），切换后 URL 前缀随之变化 |
 | 4 | 深链直开 | 新标签直接输入 `/ja/crop-pdf` | 200 且标题、面包屑、FAQ 均为日语 |
@@ -189,4 +189,30 @@ P2-B/P2-C 新增的印地语与马来语文案是手写的，其余旧文案一�
 - 「上传」类动词只保留在 FAQ / 隐私页里**说明不会上传**的句子中；按钮与提示改成「选择 / 打开」，
   否则界面一边说「不上传」一边让用户「上传」。
 - 缩略图、大纲、边距这类术语，10 语言各定一个说法，后续新增文案照抄表里的词。
+
+### 7.2 新增 `/compress-pdf`（P2-A，2026-10-31）
+
+第 12 个工具。与前面几轮不同的是，这一轮**新增了一条产品约束**：任何档位产出的文件都不允许
+比原文件大 —— 变大时报黄色提示并**不提供下载**，而不是把更大的文件当「压缩结果」递出去。
+
+本地构建实测（`npm run build` + `npm run check:seo` + `ADS_ENABLED=true … npm run check:ads`）：
+
+| 断言 | 结果（2026-10-31 本地构建） |
+|---|---|
+| 构建两行绿色 | `✓ 10 locales, 641 keys each`、`✓ 170 pages audited` |
+| `sitemap.xml` `<loc>` 条数 | **170**（10 × 17：首页 + 12 工具 + 关于 + 工作原理 + 隐私 + 条款） |
+| `/en/compress-pdf` | 200；1 个 `<h1>`（`Compress PDF`）；🟢 `Runs locally` 徽章在 |
+| 可见 FAQ | 7 个 `<dt>`（4 通用 + 1 `compress.detail` + 2 长尾），`en` / `zh` / `ja` 均为 7 |
+| 广告位 | 工具页 1× P1 + 1× P2；介绍页与法务页 0（`check:ads` 170 页全绿） |
+| 首页入口 | `/en` 有 1 个指向 `/en/compress-pdf` 的工具卡 |
+| gzip 体积 | `/en` 17,172 B · `/en/compress-pdf` 14,739 B · `/zh/compress-pdf` 16,319 B |
+
+功能侧口径（写进文案的就必须真做到）：
+
+- `light`（默认）= pdf-lib 重排对象与对象流，文字/链接/书签原样保留，体积收益现实里通常 **1–10%**
+  （结构老旧的 PDF 才可能到 30%+）；
+- `balanced` / `strong` = pdf.js 渲染成 JPEG 再组页，150 / 110 DPI，收益大但**丢文字层、链接、书签与元数据**，
+  页面文案（`levels.*Body` 与 `result.rasterNote`）必须与之对应；
+- 加密 PDF 报 `errors.encrypted`、读不出来的报 `errors.readFailed`，不做兜底「假装成功」；
+- 取消只在页与页之间检查（pdf.js 无法恢复被打断的渲染），文案里不承诺「立即中断」。
 
