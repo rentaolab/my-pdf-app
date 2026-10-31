@@ -1,0 +1,127 @@
+{
+  "faq": {
+    "heading": "Häufige Fragen",
+    "common": {
+      "free": {
+        "q": "Ist Reeff.PDF wirklich kostenlos?",
+        "a": "Ja. Alle Werkzeuge sind kostenlos und unbegrenzt: kein Konto, kein Wasserzeichen, keine Seiten- oder Dateigrenze."
+      },
+      "privacy": {
+        "q": "Werden meine Dateien hochgeladen?",
+        "a": "Nein. Die Werkzeuge laufen im Browser, das PDF verlässt Ihr Gerät also nie."
+      },
+      "sizeLimit": {
+        "q": "Gibt es eine Dateigrößenbegrenzung?",
+        "a": "Von uns nicht. Sehr große Dateien hängen nur vom Arbeitsspeicher des Geräts und vom Browser ab."
+      },
+      "mobile": {
+        "q": "Funktioniert es auf Handy oder Tablet?",
+        "a": "Ja. Es läuft in aktuellen mobilen Browsern; große Dokumente sind am Rechner bequemer."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Kann ich Seiten aus verschiedenen PDFs mischen?",
+        "a": "Ja. Beim Ordnen können Sie Seiten aus einer anderen Datei übernehmen und an beliebiger Stelle der neuen Reihenfolge einsetzen."
+      },
+      "merge": {
+        "q": "Wie viele PDFs kann ich auf einmal verbinden?",
+        "a": "Beliebig viele. Es gibt keine Dateigrenze; nur der Arbeitsspeicher des Geräts zählt."
+      },
+      "split": {
+        "q": "Kann ich ein PDF in einzelne Seiten teilen?",
+        "a": "Ja. Mit der Option für einzelne Seiten wird jede Seite als eigene Datei in einem ZIP exportiert."
+      },
+      "rotate": {
+        "q": "Verändert Drehen den Seiteninhalt?",
+        "a": "Nein. Nur die Ausrichtung ändert sich; Text, Bilder und Qualität bleiben gleich."
+      },
+      "reorderPages": {
+        "q": "Kann ich mehrere Seiten gleichzeitig verschieben?",
+        "a": "Seiten werden einzeln gezogen, aber Sie können einen Bereich markieren und dann drehen oder exportieren."
+      },
+      "deletePages": {
+        "q": "Kann ich eine gelöschte Seite zurückholen?",
+        "a": "Ja – gespeichert wird erst beim Export. Auswahl aufheben oder die Datei neu öffnen."
+      },
+      "extractPages": {
+        "q": "In welchem Format kommen extrahierte Seiten?",
+        "a": "Entweder ein neues PDF mit allen ausgewählten Seiten oder ein ZIP mit einem PDF pro Seite."
+      },
+      "crop": {
+        "q": "Wirkt der Zuschnitt auf alle Seiten?",
+        "a": "Sie entscheiden: ganzes Dokument, ungerade, gerade oder nur die ausgewählten Seiten."
+      },
+      "edit": {
+        "q": "Kann ich vorhandenen Text entfernen?",
+        "a": "Sie können ihn mit einem weißen Feld abdecken. Der Originaltext wird nicht umbrochen, das Layout bleibt erhalten."
+      },
+      "pdfToImage": {
+        "q": "Welche Auflösung kann ich exportieren?",
+        "a": "Bis 300 DPI. Mehr DPI bedeutet schärfere Bilder und größere Dateien."
+      },
+      "imageToPdf": {
+        "q": "Welche Bildformate werden unterstützt?",
+        "a": "PNG, JPG und WebP. Andere Formate werden im Browser konvertiert, bevor das PDF entsteht."
+      }
+    }
+  },
+  "useCases": {
+    "heading": "Typische Anwendungen",
+    "organize": [
+      "Einen gescannten Vertrag vor dem Versenden in die richtige Seitenfolge bringen.",
+      "Leere Seiten für Notizen oder beidseitigen Druck einfügen.",
+      "Die besten Seiten mehrerer Entwürfe zu einem sauberen Dokument bündeln."
+    ],
+    "merge": [
+      "Rechnungen oder Belege für die Buchhaltung in eine Datei zusammenführen.",
+      "Anschreiben, Lebenslauf und Referenzen zu einem Bewerbungs-PDF verbinden.",
+      "Einen Bericht aus einzeln exportierten Kapiteln zusammenstellen."
+    ],
+    "split": [
+      "Nur ein Kapitel aus einem dicken Handbuch herauslösen.",
+      "Einen Scan-Stapel in eine Datei pro Person aufteilen.",
+      "Nur die unterschriebenen Seiten eines Vertrags versenden."
+    ],
+    "rotate": [
+      "Handyfotos von Dokumenten korrigieren, die seitlich gespeichert wurden.",
+      "Querformat-Tabellen für den Druck wieder hochkant drehen.",
+      "Seiten aus einem Scanner geraderücken, der Papier kopfüber eingezogen hat."
+    ],
+    "reorderPages": [
+      "Eine verrutschte Seite an den Anfang eines Berichts holen.",
+      "Die Reihenfolge eines rückwärts gescannten Stapels umkehren.",
+      "Anhangseiten nach dem Zusammenstellen ans Ende setzen."
+    ],
+    "deletePages": [
+      "Leere Seiten entfernen, die beim beidseitigen Scannen entstehen.",
+      "Veraltete Preislisten vor dem Versand eines Katalogs weglassen.",
+      "Interne Entwurfsseiten aus einem Kundendokument streichen."
+    ],
+    "extractPages": [
+      "Nur die Preistabelle aus einem langen Angebot speichern.",
+      "Die unterschriebene Seite eines Vertrags für die Ablage herausziehen.",
+      "Seiten mit Diagrammen für eine Präsentation exportieren."
+    ],
+    "crop": [
+      "Den schwarzen Rand abschneiden, den der Scanner hinterlässt.",
+      "Ein PDF nach dem Drucken in PDF auf A4 oder Letter zuschneiden.",
+      "Eine Fußzeile oder Seitenleiste entfernen, die nicht gedruckt werden soll."
+    ],
+    "edit": [
+      "Ein Formular ausfüllen, das nicht interaktiv ist.",
+      "Ein PDF auf einem Gerät ohne Drucker unterschreiben.",
+      "Eine alte Adresse abdecken, bevor das Dokument geteilt wird."
+    ],
+    "pdfToImage": [
+      "PDF-Seiten in einer Präsentation oder auf einer Website nutzen.",
+      "Eine Seitenvorschau in sozialen Netzwerken posten.",
+      "Eine Seite als Bild in einem Messenger versenden."
+    ],
+    "imageToPdf": [
+      "Handyfotos von Dokumenten zu einem PDF machen.",
+      "Gescannte Belege in einer Spesen-Datei sammeln.",
+      "Ein Portfolio-PDF aus exportierten Designbildern bauen."
+    ]
+  }
+}

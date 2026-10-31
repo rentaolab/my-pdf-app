@@ -1,0 +1,127 @@
+{
+  "faq": {
+    "heading": "Frequently asked questions",
+    "common": {
+      "free": {
+        "q": "Is Reeff.PDF really free?",
+        "a": "Yes. Every tool is free and unlimited: no account, no watermark, no page or file cap."
+      },
+      "privacy": {
+        "q": "Are my files uploaded to a server?",
+        "a": "No. The tools run entirely in your browser, so your PDF never leaves your device."
+      },
+      "sizeLimit": {
+        "q": "Is there a file size limit?",
+        "a": "There is no cap imposed by us. Very large files are limited only by your device's memory and browser."
+      },
+      "mobile": {
+        "q": "Does it work on a phone or tablet?",
+        "a": "Yes. The tools work in current mobile browsers; larger documents are simply easier on a desktop."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Can I mix pages from different PDFs?",
+        "a": "Yes. While organizing you can pull pages in from another file and place them anywhere in the new order."
+      },
+      "merge": {
+        "q": "How many PDFs can I merge at once?",
+        "a": "As many as you like. There is no file-count limit; only your device's memory matters."
+      },
+      "split": {
+        "q": "Can I split a PDF into single pages?",
+        "a": "Yes. Choose the separate-pages option to export every page as its own file, delivered as a ZIP."
+      },
+      "rotate": {
+        "q": "Does rotating change the page content?",
+        "a": "No. Only the page orientation changes; text, images and quality stay exactly the same."
+      },
+      "reorderPages": {
+        "q": "Can I move several pages at once?",
+        "a": "You drag pages one by one, and you can select a range before applying a rotation or an export."
+      },
+      "deletePages": {
+        "q": "Can I undo a deleted page?",
+        "a": "Yes — nothing is written until you export. Deselect the page or reopen the file to bring it back."
+      },
+      "extractPages": {
+        "q": "Which format do extracted pages come in?",
+        "a": "Choose one new PDF containing all selected pages, or a ZIP with one PDF per page."
+      },
+      "crop": {
+        "q": "Does cropping affect every page?",
+        "a": "You decide: apply the crop to the whole document, odd or even pages, or only the pages you select."
+      },
+      "edit": {
+        "q": "Can I remove existing text?",
+        "a": "You can cover it with a white-out block. The original text is not reflowed, so the layout stays intact."
+      },
+      "pdfToImage": {
+        "q": "What resolution can I export at?",
+        "a": "Up to 300 DPI. A higher DPI means sharper images and larger files."
+      },
+      "imageToPdf": {
+        "q": "Which image formats are supported?",
+        "a": "PNG, JPG and WebP. Other formats are converted in your browser before the PDF is built."
+      }
+    }
+  },
+  "useCases": {
+    "heading": "Common ways to use it",
+    "organize": [
+      "Put a scanned contract back into the right page order before sending it out.",
+      "Add blank pages for notes or for double-sided printing.",
+      "Combine the best pages of several drafts into one clean document."
+    ],
+    "merge": [
+      "Join invoices or receipts into one file for bookkeeping.",
+      "Combine a cover letter, CV and references into a single application PDF.",
+      "Assemble a report from chapters exported as separate PDFs."
+    ],
+    "split": [
+      "Extract just one chapter from a long manual.",
+      "Separate a scanned batch into one file per person.",
+      "Send only the signed pages of a contract."
+    ],
+    "rotate": [
+      "Fix phone photos of documents that were saved sideways.",
+      "Turn landscape tables back to portrait for printing.",
+      "Correct pages from a scanner that fed paper upside down."
+    ],
+    "reorderPages": [
+      "Move a misplaced page to the front of a report.",
+      "Reverse the order of a scan that came out backwards.",
+      "Put appendix pages at the end after assembling a document."
+    ],
+    "deletePages": [
+      "Remove blank pages left by double-sided scanning.",
+      "Drop outdated price sheets before sending a catalogue.",
+      "Strip internal draft pages from a client-facing document."
+    ],
+    "extractPages": [
+      "Save only the price table from a long proposal.",
+      "Pull the signed page out of a contract for your records.",
+      "Export diagram pages for a slide deck."
+    ],
+    "crop": [
+      "Trim the black border left by a scanner.",
+      "Cut a PDF to A4 or Letter after printing to PDF.",
+      "Remove a footer or sidebar that should not be printed."
+    ],
+    "edit": [
+      "Fill in a form that is not interactive.",
+      "Add a signature on a device without a printer.",
+      "White out an old address before sharing a document."
+    ],
+    "pdfToImage": [
+      "Use PDF pages in a presentation or on a website.",
+      "Post a page preview on social media.",
+      "Send a page as an image in a chat app."
+    ],
+    "imageToPdf": [
+      "Turn phone photos of documents into one PDF.",
+      "Collect scanned receipts into a single expense file.",
+      "Build a portfolio PDF from exported design images."
+    ]
+  }
+}

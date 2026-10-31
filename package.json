@@ -8,12 +8,16 @@
   "scripts": {
     "predev": "node scripts/sync-pdf-worker.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/sync-pdf-worker.mjs",
+    "prebuild": "node scripts/sync-pdf-worker.mjs && node scripts/check-messages.mjs",
     "build": "next build",
+    "postbuild": "node scripts/check-seo.mjs",
     "preview": "npx --yes wrangler pages dev out --port 8788",
     "lint": "eslint",
     "check:ads": "node scripts/check-ads.mjs",
     "check:ads:live": "node scripts/check-ads-live.mjs",
+    "check:messages": "node scripts/check-messages.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
+    "check": "npm run check:messages && npm run check:seo",
     "brand": "node scripts/brand.mjs"
   },
   "dependencies": {

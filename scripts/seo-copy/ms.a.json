@@ -1,0 +1,84 @@
+{
+  "toolPages": {
+    "organize": {
+      "seoTitle": "Susun PDF Dalam Talian – Ubah Susunan, Putar, Sisip",
+      "seoDescription": "Bina semula PDF dalam pelayar: seret halaman ke susunan baharu, putarkan, sisip halaman kosong atau ambil halaman daripada fail lain. Percuma, tiada muat naik."
+    },
+    "merge": {
+      "seoTitle": "Gabung PDF Dalam Talian – Percuma, Tanpa Muat Naik",
+      "seoDescription": "Gabungkan beberapa PDF menjadi satu dokumen mengikut susunan pilihan anda. Lepaskan fail, seret untuk menyusun dan muat turun. Semuanya dalam pelayar anda."
+    },
+    "split": {
+      "seoTitle": "Pisah PDF Dalam Talian – Mengikut Julat Halaman",
+      "seoDescription": "Potong satu PDF kepada beberapa fail mengikut julat halaman, atau eksport setiap halaman berasingan. Tetapkan titik pemisah, pratonton dan muat turun bahagian yang perlu."
+    },
+    "rotate": {
+      "seoTitle": "Putar PDF Dalam Talian – Betulkan Halaman Senget",
+      "seoDescription": "Betulkan halaman yang diimbas senget atau terbalik. Putarkan halaman terpilih 90° atau 180°, atau cerminkan, kemudian muat turun PDF yang dibetulkan. Tiada muat naik."
+    },
+    "reorderPages": {
+      "seoTitle": "Susun Semula Halaman PDF – Seret dan Lepas",
+      "seoDescription": "Ubah susunan halaman mana-mana PDF pada grid visual: seret kad halaman, putarkan halaman tunggal dan eksport dalam susunan baharu. Percuma, dalam pelayar."
+    },
+    "deletePages": {
+      "seoTitle": "Padam Halaman PDF – Buang Halaman Dalam Talian",
+      "seoDescription": "Buang halaman yang tidak diperlukan dengan satu klik. Gunakan pintasan ganjil/genap dan medan julat pada dokumen panjang, kemudian muat turun PDF yang dipendekkan."
+    },
+    "extractPages": {
+      "seoTitle": "Ekstrak Halaman PDF – Simpan Halaman Terpilih",
+      "seoDescription": "Keluarkan halaman terpilih daripada PDF dan eksport sebagai satu dokumen baharu, atau ZIP fail satu halaman. Pilih halaman secara visual dan muat turun dalam beberapa saat."
+    },
+    "crop": {
+      "seoTitle": "Pangkas PDF Dalam Talian – Buang Jidar dan Sempadan",
+      "seoDescription": "Pangkas jidar atau potong ke kawasan tertentu dengan lapan pemegang seret. Gunakan pada keseluruhan dokumen, halaman ganjil, genap atau pilihan anda sahaja."
+    },
+    "edit": {
+      "seoTitle": "Edit PDF Dalam Talian – Tambah Teks dan Tandatangan",
+      "seoDescription": "Tambah kotak teks, blok putih dan tandatangan tulisan tangan pada mana-mana PDF, kemudian muat turun fail yang diedit. Tiada pemasangan, akaun atau muat naik."
+    },
+    "pdfToImage": {
+      "seoTitle": "PDF ke Imej – Eksport PNG, JPG atau WebP",
+      "seoDescription": "Tukar halaman PDF kepada imej beresolusi tinggi. Pilih resolusi sehingga 300 DPI, kemudian muat turun halaman tunggal atau keseluruhan dokumen sebagai ZIP."
+    },
+    "imageToPdf": {
+      "seoTitle": "Imej ke PDF – Gabung JPG dan PNG Percuma",
+      "seoDescription": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret ke susunan dan tetapkan saiz halaman, orientasi serta jidar sebelum eksport. Fail tidak dimuat naik."
+    }
+  },
+  "home": {
+    "whyHeading": "Mengapa guna Reeff.PDF",
+    "why": [
+      {
+        "title": "Fail anda kekal milik anda",
+        "body": "Semua diproses dalam pelayar, jadi tiada dokumen dimuat naik."
+      },
+      {
+        "title": "Tiada akaun, tiada had",
+        "body": "Buka alat dan mula. Tiada pendaftaran, tiada tera air, tiada kuota harian."
+      },
+      {
+        "title": "Satu alat, satu tugas",
+        "body": "Setiap halaman melakukan satu tugas dengan baik, tiada yang perlu dipelajari."
+      },
+      {
+        "title": "Sepuluh bahasa",
+        "body": "Antara muka tersedia dalam bahasa Melayu, Inggeris, Cina, Jerman dan enam lagi."
+      }
+    ],
+    "groups": {
+      "heading": "Cari alat mengikut tugasan",
+      "organize": {
+        "title": "Susun halaman",
+        "body": "Susun semula, putar, padam, ekstrak dan pangkas halaman."
+      },
+      "convert": {
+        "title": "Tukar format",
+        "body": "Tukar PDF kepada imej, atau imej kepada PDF."
+      },
+      "edit": {
+        "title": "Edit dan tandatangan",
+        "body": "Tambah teks, blok putih dan tandatangan tulisan tangan."
+      }
+    }
+  }
+}

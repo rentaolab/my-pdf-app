@@ -1,0 +1,84 @@
+{
+  "toolPages": {
+    "organize": {
+      "seoTitle": "Organizar PDF Online – Reordenar, Girar e Inserir Páginas",
+      "seoDescription": "Reconstrua qualquer PDF no navegador: arraste páginas para reordenar, gire, insira páginas em branco ou traga páginas de outro arquivo. Grátis, sem upload."
+    },
+    "merge": {
+      "seoTitle": "Juntar PDF Online Grátis – Sem Upload",
+      "seoDescription": "Combine vários PDFs em um único documento na ordem que quiser. Solte os arquivos, arraste para ordenar e baixe o resultado. Tudo acontece no seu navegador."
+    },
+    "split": {
+      "seoTitle": "Dividir PDF Online Grátis – Por Intervalo de Páginas",
+      "seoDescription": "Corte um PDF em vários arquivos por intervalo de páginas ou exporte cada página separadamente. Defina os pontos, visualize e baixe só o que precisa."
+    },
+    "rotate": {
+      "seoTitle": "Girar PDF Online Grátis – Corrija Páginas Deitadas",
+      "seoDescription": "Corrija páginas digitalizadas de lado ou de cabeça para baixo. Gire as páginas selecionadas 90° ou 180°, ou espelhe, e baixe o PDF corrigido. Nada é enviado."
+    },
+    "reorderPages": {
+      "seoTitle": "Reordenar Páginas do PDF – Arrastar e Soltar",
+      "seoDescription": "Mude a ordem das páginas em uma grade visual: arraste os cartões, gire páginas individuais e exporte na nova sequência. Grátis e no navegador."
+    },
+    "deletePages": {
+      "seoTitle": "Excluir Páginas do PDF – Remover Online Grátis",
+      "seoDescription": "Remova páginas indesejadas com um clique. Use o atalho de ímpares e pares e o campo de intervalo em documentos longos, depois baixe o PDF reduzido."
+    },
+    "extractPages": {
+      "seoTitle": "Extrair Páginas do PDF – Salve Só o Necessário",
+      "seoDescription": "Retire páginas específicas de um PDF e exporte como um novo documento ou como um ZIP com um arquivo por página. Escolha visualmente e baixe em segundos."
+    },
+    "crop": {
+      "seoTitle": "Recortar PDF Online – Remover Margens e Bordas",
+      "seoDescription": "Recorte margens ou uma área específica em cada página com oito alças. Aplique ao documento inteiro, às páginas ímpares, pares ou só à sua seleção."
+    },
+    "edit": {
+      "seoTitle": "Editar PDF Online Grátis – Texto e Assinatura",
+      "seoDescription": "Adicione caixas de texto, blocos brancos e assinatura à mão em qualquer PDF e baixe o arquivo editado. Sem instalação, sem conta, sem upload."
+    },
+    "pdfToImage": {
+      "seoTitle": "PDF para Imagem – Exporte PNG, JPG ou WebP",
+      "seoDescription": "Converta páginas do PDF em imagens de alta resolução. Escolha até 300 DPI e baixe páginas individuais ou o documento inteiro em um arquivo ZIP."
+    },
+    "imageToPdf": {
+      "seoTitle": "Imagem para PDF – Una JPG e PNG Grátis",
+      "seoDescription": "Crie um único PDF a partir de imagens PNG, JPG ou WebP. Arraste para ordenar e defina tamanho da página, orientação e margem antes de exportar. Sem upload."
+    }
+  },
+  "home": {
+    "whyHeading": "Por que usar o Reeff.PDF",
+    "why": [
+      {
+        "title": "Seus arquivos são seus",
+        "body": "Tudo é processado no navegador, então nenhum documento é enviado a um servidor."
+      },
+      {
+        "title": "Sem conta, sem limites",
+        "body": "Abra uma ferramenta e comece. Sem cadastro, sem marca d'água, sem cota diária."
+      },
+      {
+        "title": "Uma ferramenta, uma tarefa",
+        "body": "Cada página faz bem uma única coisa, então não há nada para aprender."
+      },
+      {
+        "title": "Dez idiomas",
+        "body": "A interface está disponível em português, inglês, chinês, alemão e mais seis idiomas."
+      }
+    ],
+    "groups": {
+      "heading": "Encontre ferramentas por tarefa",
+      "organize": {
+        "title": "Organizar páginas",
+        "body": "Reordene, gire, exclua, extraia e recorte páginas."
+      },
+      "convert": {
+        "title": "Converter",
+        "body": "Converta PDFs em imagens, ou imagens em um PDF."
+      },
+      "edit": {
+        "title": "Editar e assinar",
+        "body": "Adicione texto, blocos brancos e assinaturas à mão."
+      }
+    }
+  }
+}

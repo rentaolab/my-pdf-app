@@ -1,0 +1,127 @@
+{
+  "faq": {
+    "heading": "Perguntas frequentes",
+    "common": {
+      "free": {
+        "q": "O Reeff.PDF é realmente grátis?",
+        "a": "Sim. Todas as ferramentas são gratuitas e ilimitadas: sem conta, sem marca d'água, sem limite de páginas ou arquivos."
+      },
+      "privacy": {
+        "q": "Meus arquivos são enviados a um servidor?",
+        "a": "Não. As ferramentas rodam no seu navegador, então o PDF nunca sai do seu dispositivo."
+      },
+      "sizeLimit": {
+        "q": "Existe limite de tamanho?",
+        "a": "Não impomos nenhum. Arquivos muito grandes dependem apenas da memória do dispositivo e do navegador."
+      },
+      "mobile": {
+        "q": "Funciona no celular ou tablet?",
+        "a": "Sim. Funciona nos navegadores móveis atuais; documentos grandes são mais fáceis no computador."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Posso misturar páginas de PDFs diferentes?",
+        "a": "Sim. Durante a organização você pode trazer páginas de outro arquivo e colocá-las em qualquer posição da nova ordem."
+      },
+      "merge": {
+        "q": "Quantos PDFs posso juntar de uma vez?",
+        "a": "Quantos quiser. Não há limite de arquivos; só a memória do dispositivo importa."
+      },
+      "split": {
+        "q": "Posso dividir um PDF em páginas soltas?",
+        "a": "Sim. Escolha a opção de páginas separadas e cada página será exportada como arquivo próprio em um ZIP."
+      },
+      "rotate": {
+        "q": "Girar altera o conteúdo da página?",
+        "a": "Não. Só a orientação muda; texto, imagens e qualidade continuam iguais."
+      },
+      "reorderPages": {
+        "q": "Posso mover várias páginas de uma vez?",
+        "a": "As páginas são arrastadas uma a uma, mas você pode selecionar um intervalo antes de girar ou exportar."
+      },
+      "deletePages": {
+        "q": "Posso desfazer uma exclusão?",
+        "a": "Sim: nada é gravado até você exportar. Desmarque a página ou abra o arquivo novamente."
+      },
+      "extractPages": {
+        "q": "Em que formato saem as páginas extraídas?",
+        "a": "Você escolhe um novo PDF com todas as páginas selecionadas ou um ZIP com um PDF por página."
+      },
+      "crop": {
+        "q": "O recorte afeta todas as páginas?",
+        "a": "Você decide: aplique ao documento inteiro, às ímpares, às pares ou apenas às páginas selecionadas."
+      },
+      "edit": {
+        "q": "Posso remover texto existente?",
+        "a": "Você pode cobri-lo com um bloco branco. O texto original não é reorganizado, então o layout se mantém."
+      },
+      "pdfToImage": {
+        "q": "Qual resolução posso exportar?",
+        "a": "Até 300 DPI. Mais DPI significa imagens mais nítidas e arquivos maiores."
+      },
+      "imageToPdf": {
+        "q": "Quais formatos de imagem são aceitos?",
+        "a": "PNG, JPG e WebP. Outros formatos são convertidos no navegador antes de gerar o PDF."
+      }
+    }
+  },
+  "useCases": {
+    "heading": "Usos comuns",
+    "organize": [
+      "Recoloque um contrato digitalizado na ordem correta antes de enviar.",
+      "Insira páginas em branco para anotações ou impressão frente e verso.",
+      "Reúna as melhores páginas de vários rascunhos em um documento limpo."
+    ],
+    "merge": [
+      "Junte notas fiscais ou recibos em um arquivo para a contabilidade.",
+      "Combine carta de apresentação, currículo e referências em um só PDF.",
+      "Monte um relatório a partir de capítulos exportados separadamente."
+    ],
+    "split": [
+      "Extraia apenas um capítulo de um manual longo.",
+      "Separe um lote digitalizado em um arquivo por pessoa.",
+      "Envie só as páginas assinadas de um contrato."
+    ],
+    "rotate": [
+      "Corrija fotos de documentos salvas de lado.",
+      "Volte tabelas horizontais para vertical antes de imprimir.",
+      "Ajuste páginas digitalizadas com o papel virado."
+    ],
+    "reorderPages": [
+      "Leve para o início uma página que ficou fora de lugar.",
+      "Inverta a ordem de uma digitalização que saiu ao contrário.",
+      "Coloque os anexos no fim depois de montar o documento."
+    ],
+    "deletePages": [
+      "Remova páginas em branco da digitalização frente e verso.",
+      "Tire tabelas de preços antigas antes de enviar um catálogo.",
+      "Retire páginas de rascunho de um documento para o cliente."
+    ],
+    "extractPages": [
+      "Salve apenas a tabela de preços de uma proposta longa.",
+      "Separe a página assinada de um contrato para o arquivo.",
+      "Exporte páginas com diagramas para uma apresentação."
+    ],
+    "crop": [
+      "Recorte a borda preta deixada pelo scanner.",
+      "Ajuste o PDF para A4 ou Carta após imprimir em PDF.",
+      "Remova um rodapé ou barra lateral que não deve ser impresso."
+    ],
+    "edit": [
+      "Preencha um formulário que não é interativo.",
+      "Assine um PDF em um dispositivo sem impressora.",
+      "Cubra um endereço antigo antes de compartilhar o documento."
+    ],
+    "pdfToImage": [
+      "Use páginas do PDF em uma apresentação ou site.",
+      "Publique uma prévia da página nas redes sociais.",
+      "Envie uma página como imagem em um aplicativo de mensagens."
+    ],
+    "imageToPdf": [
+      "Transforme fotos de documentos em um único PDF.",
+      "Junte recibos digitalizados em um arquivo de despesas.",
+      "Crie um PDF de portfólio com imagens de design."
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "toolPages": {
+    "organize": {
+      "seoTitle": "Organiser un PDF en ligne – Réordonner, pivoter, insérer",
+      "seoDescription": "Reconstruisez n'importe quel PDF dans le navigateur : glissez les pages pour les réordonner, faites-les pivoter, insérez des pages blanches ou importez-en d'un autre fichier."
+    },
+    "merge": {
+      "seoTitle": "Fusionner des PDF en ligne – Gratuit, sans envoi",
+      "seoDescription": "Combinez plusieurs PDF en un seul document dans l'ordre voulu. Déposez les fichiers, glissez pour réordonner et téléchargez le résultat, sans quitter le navigateur."
+    },
+    "split": {
+      "seoTitle": "Diviser un PDF en ligne – Gratuit, par plages",
+      "seoDescription": "Découpez un PDF en plusieurs fichiers par plage de pages, ou exportez chaque page séparément. Placez les points de coupe, prévisualisez et ne téléchargez que le nécessaire."
+    },
+    "rotate": {
+      "seoTitle": "Pivoter un PDF en ligne – Redresser les pages",
+      "seoDescription": "Corrigez les pages scannées de travers ou à l'envers. Faites pivoter les pages sélectionnées de 90° ou 180°, ou retournez-les, puis téléchargez le PDF corrigé."
+    },
+    "reorderPages": {
+      "seoTitle": "Réorganiser les pages d'un PDF – Glisser-déposer",
+      "seoDescription": "Changez l'ordre des pages dans une grille visuelle : glissez les vignettes, faites pivoter une page et exportez dans le nouvel ordre. Gratuit, dans le navigateur."
+    },
+    "deletePages": {
+      "seoTitle": "Supprimer des pages PDF – En ligne et gratuit",
+      "seoDescription": "Supprimez les pages inutiles en un clic. Utilisez le raccourci impair/pair et le champ de plage sur les documents longs, puis téléchargez le PDF allégé."
+    },
+    "extractPages": {
+      "seoTitle": "Extraire des pages PDF – Ne garder que l'essentiel",
+      "seoDescription": "Sortez les pages choisies d'un PDF et exportez-les en un nouveau document, ou en ZIP avec un fichier par page. Sélectionnez visuellement et téléchargez en quelques secondes."
+    },
+    "crop": {
+      "seoTitle": "Recadrer un PDF en ligne – Marges et bordures",
+      "seoDescription": "Recadrez les marges ou une zone sur chaque page avec huit poignées. Appliquez au document entier, aux pages paires, impaires, ou seulement à votre sélection."
+    },
+    "edit": {
+      "seoTitle": "Modifier un PDF en ligne – Texte et signature",
+      "seoDescription": "Ajoutez des zones de texte, des blocs blancs et une signature manuscrite à n'importe quel PDF, puis téléchargez le fichier modifié. Sans installation ni compte."
+    },
+    "pdfToImage": {
+      "seoTitle": "PDF en image – Exporter en PNG, JPG ou WebP",
+      "seoDescription": "Convertissez les pages PDF en images haute résolution. Choisissez jusqu'à 300 DPI et téléchargez des pages isolées ou le document complet en une archive ZIP."
+    },
+    "imageToPdf": {
+      "seoTitle": "Image en PDF – Fusionner JPG et PNG gratuitement",
+      "seoDescription": "Créez un seul PDF à partir d'images PNG, JPG ou WebP. Glissez-les pour les ordonner et définissez format, orientation et marge avant l'export. Sans envoi."
+    }
+  },
+  "home": {
+    "whyHeading": "Pourquoi choisir Reeff.PDF",
+    "why": [
+      {
+        "title": "Vos fichiers restent les vôtres",
+        "body": "Tout est traité dans le navigateur : aucun document n'est envoyé à un serveur."
+      },
+      {
+        "title": "Sans compte ni limite",
+        "body": "Ouvrez un outil et commencez. Pas d'inscription, pas de filigrane, pas de quota quotidien."
+      },
+      {
+        "title": "Un outil, une tâche",
+        "body": "Chaque page fait bien une seule chose : il n'y a rien à apprendre."
+      },
+      {
+        "title": "Dix langues",
+        "body": "L'interface est disponible en français, anglais, chinois, allemand et six autres langues."
+      }
+    ],
+    "groups": {
+      "heading": "Trouver un outil par tâche",
+      "organize": {
+        "title": "Organiser les pages",
+        "body": "Réordonner, pivoter, supprimer, extraire et recadrer les pages."
+      },
+      "convert": {
+        "title": "Convertir",
+        "body": "Transformer un PDF en images, ou des images en PDF."
+      },
+      "edit": {
+        "title": "Modifier et signer",
+        "body": "Ajouter du texte, des blocs blancs et des signatures manuscrites."
+      }
+    }
+  }
+}

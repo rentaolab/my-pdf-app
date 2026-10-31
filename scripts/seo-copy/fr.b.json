@@ -1,0 +1,127 @@
+{
+  "faq": {
+    "heading": "Questions fréquentes",
+    "common": {
+      "free": {
+        "q": "Reeff.PDF est-il vraiment gratuit ?",
+        "a": "Oui. Tous les outils sont gratuits et illimités : pas de compte, pas de filigrane, pas de limite de pages ou de fichiers."
+      },
+      "privacy": {
+        "q": "Mes fichiers sont-ils envoyés à un serveur ?",
+        "a": "Non. Les outils fonctionnent dans votre navigateur : le PDF ne quitte jamais votre appareil."
+      },
+      "sizeLimit": {
+        "q": "Y a-t-il une limite de taille ?",
+        "a": "Aucune de notre part. Les fichiers très volumineux ne dépendent que de la mémoire de l'appareil et du navigateur."
+      },
+      "mobile": {
+        "q": "Cela fonctionne-t-il sur téléphone ou tablette ?",
+        "a": "Oui, dans les navigateurs mobiles récents ; les gros documents sont plus confortables sur ordinateur."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Puis-je mélanger des pages de PDF différents ?",
+        "a": "Oui. Pendant l'organisation, vous pouvez importer des pages d'un autre fichier et les placer où vous voulez dans le nouvel ordre."
+      },
+      "merge": {
+        "q": "Combien de PDF puis-je fusionner à la fois ?",
+        "a": "Autant que vous voulez. Aucune limite de nombre : seule la mémoire de l'appareil compte."
+      },
+      "split": {
+        "q": "Puis-je diviser un PDF en pages séparées ?",
+        "a": "Oui. Choisissez l'option pages séparées : chaque page est exportée dans son propre fichier, réuni dans un ZIP."
+      },
+      "rotate": {
+        "q": "La rotation modifie-t-elle le contenu ?",
+        "a": "Non. Seule l'orientation change ; le texte, les images et la qualité restent identiques."
+      },
+      "reorderPages": {
+        "q": "Puis-je déplacer plusieurs pages à la fois ?",
+        "a": "Les pages se glissent une par une, mais vous pouvez sélectionner une plage avant de pivoter ou d'exporter."
+      },
+      "deletePages": {
+        "q": "Puis-je annuler une suppression ?",
+        "a": "Oui : rien n'est enregistré avant l'export. Désélectionnez la page ou rouvrez le fichier."
+      },
+      "extractPages": {
+        "q": "Sous quel format sortent les pages extraites ?",
+        "a": "Un nouveau PDF contenant toutes les pages choisies, ou un ZIP avec un PDF par page."
+      },
+      "crop": {
+        "q": "Le recadrage touche-t-il toutes les pages ?",
+        "a": "C'est vous qui décidez : document entier, pages impaires, paires, ou seulement votre sélection."
+      },
+      "edit": {
+        "q": "Puis-je supprimer un texte existant ?",
+        "a": "Vous pouvez le masquer avec un bloc blanc. Le texte d'origine n'est pas recomposé, la mise en page reste intacte."
+      },
+      "pdfToImage": {
+        "q": "Quelle résolution puis-je exporter ?",
+        "a": "Jusqu'à 300 DPI. Plus le DPI est élevé, plus l'image est nette et le fichier lourd."
+      },
+      "imageToPdf": {
+        "q": "Quels formats d'image sont acceptés ?",
+        "a": "PNG, JPG et WebP. Les autres formats sont convertis dans le navigateur avant la création du PDF."
+      }
+    }
+  },
+  "useCases": {
+    "heading": "Usages courants",
+    "organize": [
+      "Remettre un contrat scanné dans le bon ordre avant de l'envoyer.",
+      "Insérer des pages blanches pour des notes ou une impression recto-verso.",
+      "Réunir les meilleures pages de plusieurs brouillons en un document propre."
+    ],
+    "merge": [
+      "Regrouper factures ou reçus dans un seul fichier pour la comptabilité.",
+      "Réunir lettre de motivation, CV et références en un PDF de candidature.",
+      "Assembler un rapport à partir de chapitres exportés séparément."
+    ],
+    "split": [
+      "Extraire un seul chapitre d'un manuel volumineux.",
+      "Séparer un lot scanné en un fichier par personne.",
+      "N'envoyer que les pages signées d'un contrat."
+    ],
+    "rotate": [
+      "Redresser des photos de documents enregistrées de travers.",
+      "Remettre à la verticale des tableaux paysage avant impression.",
+      "Corriger des pages scannées avec le papier à l'envers."
+    ],
+    "reorderPages": [
+      "Placer en tête une page qui s'était glissée au mauvais endroit.",
+      "Inverser l'ordre d'un scan sorti à l'envers.",
+      "Mettre les annexes à la fin après assemblage du document."
+    ],
+    "deletePages": [
+      "Supprimer les pages blanches laissées par un scan recto-verso.",
+      "Retirer un tarif obsolète avant d'envoyer un catalogue.",
+      "Ôter des pages de brouillon d'un document destiné au client."
+    ],
+    "extractPages": [
+      "Ne garder que le tableau des prix d'une longue proposition.",
+      "Isoler la page signée d'un contrat pour l'archivage.",
+      "Exporter des pages avec schémas pour une présentation."
+    ],
+    "crop": [
+      "Recadrer la bordure noire laissée par le scanner.",
+      "Ajuster un PDF en A4 ou Letter après une impression en PDF.",
+      "Supprimer un pied de page ou une barre latérale à ne pas imprimer."
+    ],
+    "edit": [
+      "Remplir un formulaire qui n'est pas interactif.",
+      "Signer un PDF sur un appareil sans imprimante.",
+      "Masquer une ancienne adresse avant de partager un document."
+    ],
+    "pdfToImage": [
+      "Utiliser des pages PDF dans une présentation ou sur un site.",
+      "Publier un aperçu de page sur les réseaux sociaux.",
+      "Envoyer une page en image dans une messagerie."
+    ],
+    "imageToPdf": [
+      "Transformer des photos de documents en un seul PDF.",
+      "Rassembler des reçus scannés dans un fichier de notes de frais.",
+      "Créer un PDF de portfolio à partir d'images de design."
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "faq": {
+    "heading": "Preguntas frecuentes",
+    "common": {
+      "free": {
+        "q": "¿Reeff.PDF es realmente gratis?",
+        "a": "Sí. Todas las herramientas son gratuitas y sin límite: sin cuenta, sin marca de agua, sin tope de páginas ni de archivos."
+      },
+      "privacy": {
+        "q": "¿Se suben mis archivos a un servidor?",
+        "a": "No. Las herramientas funcionan en tu navegador, así que el PDF nunca sale de tu dispositivo."
+      },
+      "sizeLimit": {
+        "q": "¿Hay límite de tamaño?",
+        "a": "No ponemos ninguno. Los archivos muy grandes solo dependen de la memoria del dispositivo y del navegador."
+      },
+      "mobile": {
+        "q": "¿Funciona en móvil o tablet?",
+        "a": "Sí. Funciona en navegadores móviles actuales; los documentos grandes son más cómodos en un ordenador."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "¿Puedo mezclar páginas de PDF distintos?",
+        "a": "Sí. Mientras organizas puedes traer páginas de otro archivo y colocarlas donde quieras en el nuevo orden."
+      },
+      "merge": {
+        "q": "¿Cuántos PDF puedo unir a la vez?",
+        "a": "Todos los que quieras. No hay límite de archivos; solo importa la memoria del dispositivo."
+      },
+      "split": {
+        "q": "¿Puedo dividir un PDF en páginas sueltas?",
+        "a": "Sí. Elige la opción de páginas separadas y cada página se exportará como archivo propio dentro de un ZIP."
+      },
+      "rotate": {
+        "q": "¿Rotar cambia el contenido?",
+        "a": "No. Solo cambia la orientación; el texto, las imágenes y la calidad se mantienen."
+      },
+      "reorderPages": {
+        "q": "¿Puedo mover varias páginas a la vez?",
+        "a": "Las páginas se arrastran de una en una, pero puedes seleccionar un rango antes de rotar o exportar."
+      },
+      "deletePages": {
+        "q": "¿Puedo deshacer un borrado?",
+        "a": "Sí: no se guarda nada hasta que exportas. Desmarca la página o vuelve a abrir el archivo."
+      },
+      "extractPages": {
+        "q": "¿En qué formato salen las páginas extraídas?",
+        "a": "Puedes elegir un PDF nuevo con todas las páginas seleccionadas o un ZIP con un PDF por página."
+      },
+      "crop": {
+        "q": "¿El recorte afecta a todas las páginas?",
+        "a": "Tú decides: aplícalo a todo el documento, a pares, a impares o solo a las páginas que selecciones."
+      },
+      "edit": {
+        "q": "¿Puedo quitar texto existente?",
+        "a": "Puedes taparlo con un bloque blanco. El texto original no se recompone, así que el diseño se mantiene."
+      },
+      "pdfToImage": {
+        "q": "¿Qué resolución puedo exportar?",
+        "a": "Hasta 300 DPI. Más DPI significa imágenes más nítidas y archivos más grandes."
+      },
+      "imageToPdf": {
+        "q": "¿Qué formatos de imagen admite?",
+        "a": "PNG, JPG y WebP. Otros formatos se convierten en el navegador antes de crear el PDF."
+      }
+    }
+  },
+  "useCases": {
+    "heading": "Usos habituales",
+    "organize": [
+      "Recupera el orden correcto de un contrato escaneado antes de enviarlo.",
+      "Añade páginas en blanco para notas o impresión a doble cara.",
+      "Reúne las mejores páginas de varios borradores en un documento limpio."
+    ],
+    "merge": [
+      "Une facturas o recibos en un archivo para la contabilidad.",
+      "Combina carta de presentación, CV y referencias en un solo PDF.",
+      "Monta un informe a partir de capítulos exportados por separado."
+    ],
+    "split": [
+      "Extrae solo un capítulo de un manual extenso.",
+      "Separa un lote escaneado en un archivo por persona.",
+      "Envía únicamente las páginas firmadas de un contrato."
+    ],
+    "rotate": [
+      "Corrige fotos de documentos guardadas de lado.",
+      "Devuelve a vertical las tablas horizontales para imprimir.",
+      "Arregla páginas escaneadas con el papel al revés."
+    ],
+    "reorderPages": [
+      "Lleva al principio una página que quedó fuera de lugar.",
+      "Invierte el orden de un escaneo que salió al revés.",
+      "Coloca los anexos al final tras montar el documento."
+    ],
+    "deletePages": [
+      "Elimina las páginas en blanco del escaneo a doble cara.",
+      "Quita las tarifas antiguas antes de enviar un catálogo.",
+      "Retira páginas de borrador de un documento para el cliente."
+    ],
+    "extractPages": [
+      "Guarda solo la tabla de precios de una propuesta larga.",
+      "Separa la página firmada de un contrato para tu archivo.",
+      "Exporta páginas con diagramas para una presentación."
+    ],
+    "crop": [
+      "Recorta el borde negro que deja el escáner.",
+      "Ajusta el PDF a A4 o Carta tras imprimir a PDF.",
+      "Quita un pie de página o barra lateral que no debe imprimirse."
+    ],
+    "edit": [
+      "Rellena un formulario que no es interactivo.",
+      "Firma un PDF en un dispositivo sin impresora.",
+      "Tapa una dirección antigua antes de compartir el documento."
+    ],
+    "pdfToImage": [
+      "Usa páginas del PDF en una presentación o web.",
+      "Publica una vista previa de la página en redes sociales.",
+      "Envía una página como imagen en una aplicación de mensajería."
+    ],
+    "imageToPdf": [
+      "Convierte fotos de documentos en un solo PDF.",
+      "Agrupa recibos escaneados en un archivo de gastos.",
+      "Crea un PDF de portafolio con imágenes de diseño."
+    ]
+  }
+}

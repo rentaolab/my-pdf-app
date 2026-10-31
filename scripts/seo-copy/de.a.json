@@ -1,0 +1,84 @@
+{
+  "toolPages": {
+    "organize": {
+      "seoTitle": "PDF online ordnen – Seiten sortieren, drehen, einfügen",
+      "seoDescription": "Jedes PDF im Browser neu aufbauen: Seiten per Drag & Drop sortieren, drehen, leere Seiten einfügen oder Seiten aus einer anderen Datei übernehmen. Ohne Upload."
+    },
+    "merge": {
+      "seoTitle": "PDF zusammenfügen online – kostenlos, ohne Upload",
+      "seoDescription": "Mehrere PDF in beliebiger Reihenfolge zu einem Dokument verbinden. Dateien ablegen, per Drag & Drop sortieren, Ergebnis herunterladen. Alles läuft im Browser."
+    },
+    "split": {
+      "seoTitle": "PDF teilen online – kostenlos nach Seitenbereich",
+      "seoDescription": "Ein PDF nach Seitenbereichen in mehrere Dateien teilen oder jede Seite einzeln exportieren. Trennstellen setzen, Vorschau prüfen und nur das Nötige laden."
+    },
+    "rotate": {
+      "seoTitle": "PDF drehen online – schiefe Seiten kostenlos fixen",
+      "seoDescription": "Seiten korrigieren, die seitlich oder kopfüber gescannt wurden. Ausgewählte Seiten um 90° oder 180° drehen oder spiegeln und das korrigierte PDF speichern."
+    },
+    "reorderPages": {
+      "seoTitle": "PDF-Seiten neu sortieren – per Drag & Drop",
+      "seoDescription": "Die Seitenreihenfolge in einem visuellen Raster ändern: Seitenkarten ziehen, einzelne Seiten drehen und in der neuen Reihenfolge exportieren. Kostenlos im Browser."
+    },
+    "deletePages": {
+      "seoTitle": "PDF-Seiten löschen – online und kostenlos",
+      "seoDescription": "Unerwünschte Seiten mit einem Klick entfernen. Bei langen Dokumenten helfen Ungerade/Gerade-Kürzel und das Bereichsfeld. Danach das gekürzte PDF speichern."
+    },
+    "extractPages": {
+      "seoTitle": "PDF-Seiten extrahieren – nur das Nötige speichern",
+      "seoDescription": "Bestimmte Seiten aus einem PDF herausziehen und als neues Dokument oder als ZIP mit einer Datei pro Seite exportieren. Seiten visuell wählen und sofort laden."
+    },
+    "crop": {
+      "seoTitle": "PDF zuschneiden online – Ränder und Rahmen entfernen",
+      "seoDescription": "Ränder oder einen Bereich auf jeder Seite mit acht Griffen zuschneiden. Auf das ganze Dokument, ungerade, gerade oder nur ausgewählte Seiten anwenden."
+    },
+    "edit": {
+      "seoTitle": "PDF bearbeiten online – Text hinzufügen und signieren",
+      "seoDescription": "Textfelder, weiße Abdeckfelder und eine handschriftliche Unterschrift in jedes PDF einfügen und die bearbeitete Datei speichern. Ohne Installation oder Konto."
+    },
+    "pdfToImage": {
+      "seoTitle": "PDF in Bild umwandeln – PNG, JPG, WebP kostenlos",
+      "seoDescription": "PDF-Seiten in hochauflösende Bilder umwandeln. Auflösung bis 300 DPI wählen und einzelne Seiten oder das ganze Dokument als ZIP herunterladen."
+    },
+    "imageToPdf": {
+      "seoTitle": "Bild in PDF umwandeln – JPG und PNG kostenlos",
+      "seoDescription": "Aus PNG-, JPG- oder WebP-Bildern ein einziges PDF erstellen. Per Drag & Drop sortieren und Papierformat, Ausrichtung und Rand vor dem Export festlegen."
+    }
+  },
+  "home": {
+    "whyHeading": "Warum Reeff.PDF",
+    "why": [
+      {
+        "title": "Ihre Dateien bleiben Ihre",
+        "body": "Alles wird im Browser verarbeitet, kein Dokument wird auf einen Server geladen."
+      },
+      {
+        "title": "Kein Konto, keine Grenzen",
+        "body": "Werkzeug öffnen und loslegen. Keine Anmeldung, kein Wasserzeichen, kein Tageslimit."
+      },
+      {
+        "title": "Ein Werkzeug, eine Aufgabe",
+        "body": "Jede Seite erledigt genau eine Sache gut, es gibt nichts zu lernen."
+      },
+      {
+        "title": "Zehn Sprachen",
+        "body": "Die Oberfläche gibt es auf Deutsch, Englisch, Chinesisch, Spanisch und sechs weiteren Sprachen."
+      }
+    ],
+    "groups": {
+      "heading": "Werkzeuge nach Aufgabe finden",
+      "organize": {
+        "title": "Seiten ordnen",
+        "body": "Seiten sortieren, drehen, löschen, extrahieren und zuschneiden."
+      },
+      "convert": {
+        "title": "Konvertieren",
+        "body": "PDF in Bilder umwandeln oder Bilder zu einem PDF machen."
+      },
+      "edit": {
+        "title": "Bearbeiten und signieren",
+        "body": "Text, weiße Abdeckfelder und handschriftliche Unterschriften einfügen."
+      }
+    }
+  }
+}

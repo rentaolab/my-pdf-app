@@ -1,0 +1,84 @@
+{
+  "toolPages": {
+    "organize": {
+      "seoTitle": "Organizar PDF Online – Reordenar, Rotar y Unir Páginas",
+      "seoDescription": "Reconstruye cualquier PDF en el navegador: arrastra páginas para reordenarlas, rótalas, inserta páginas en blanco o trae páginas de otro archivo. Gratis, sin subir nada."
+    },
+    "merge": {
+      "seoTitle": "Unir PDF Online Gratis – Sin Subir Archivos",
+      "seoDescription": "Combina varios PDF en un solo documento en el orden que quieras. Suelta los archivos, arrastra para ordenar y descarga el resultado. Todo ocurre en tu navegador."
+    },
+    "split": {
+      "seoTitle": "Dividir PDF Online Gratis – Por Rangos de Páginas",
+      "seoDescription": "Corta un PDF en varios archivos por rango de páginas o exporta cada página por separado. Define los cortes, previsualiza y descarga solo lo que necesitas."
+    },
+    "rotate": {
+      "seoTitle": "Rotar PDF Online Gratis – Corrige Páginas Giradas",
+      "seoDescription": "Corrige páginas escaneadas de lado o al revés. Rota las páginas seleccionadas 90° o 180°, o refléjalas, y descarga el PDF corregido. Sin subir archivos."
+    },
+    "reorderPages": {
+      "seoTitle": "Reordenar Páginas PDF – Arrastrar y Soltar",
+      "seoDescription": "Cambia el orden de las páginas en una cuadrícula visual: arrastra las tarjetas, rota páginas sueltas y exporta en la nueva secuencia. Gratis y en el navegador."
+    },
+    "deletePages": {
+      "seoTitle": "Eliminar Páginas PDF – Quitar Páginas Online",
+      "seoDescription": "Elimina páginas no deseadas con un clic. Usa el atajo de pares e impares y el campo de rango en documentos largos, y descarga el PDF reducido. Sin subir nada."
+    },
+    "extractPages": {
+      "seoTitle": "Extraer Páginas PDF – Guarda Solo lo Necesario",
+      "seoDescription": "Saca páginas concretas de un PDF y expórtalas como un documento nuevo o como un ZIP con un archivo por página. Elige las páginas visualmente y descarga en segundos."
+    },
+    "crop": {
+      "seoTitle": "Recortar PDF Online – Quitar Márgenes y Bordes",
+      "seoDescription": "Recorta márgenes o una zona concreta en cada página con ocho tiradores. Aplícalo a todo el documento, a las páginas pares o impares, o solo a tu selección."
+    },
+    "edit": {
+      "seoTitle": "Editar PDF Online Gratis – Texto y Firmas",
+      "seoDescription": "Añade cuadros de texto, bloques blancos y una firma manuscrita a cualquier PDF y descarga el archivo editado. Sin instalar nada, sin cuenta, sin subir archivos."
+    },
+    "pdfToImage": {
+      "seoTitle": "PDF a Imagen – Exporta PNG, JPG o WebP Gratis",
+      "seoDescription": "Convierte páginas PDF en imágenes de alta resolución. Elige hasta 300 DPI y descarga páginas sueltas o el documento completo en un único archivo ZIP."
+    },
+    "imageToPdf": {
+      "seoTitle": "Imagen a PDF – Une JPG y PNG Gratis",
+      "seoDescription": "Crea un solo PDF a partir de imágenes PNG, JPG o WebP. Ordénalas arrastrando y define tamaño de página, orientación y margen antes de exportar. Sin subir nada."
+    }
+  },
+  "home": {
+    "whyHeading": "Por qué usar Reeff.PDF",
+    "why": [
+      {
+        "title": "Tus archivos son tuyos",
+        "body": "Todo se procesa en el navegador, así que ningún documento se sube a un servidor."
+      },
+      {
+        "title": "Sin cuenta y sin límites",
+        "body": "Abre una herramienta y empieza. Sin registro, sin marca de agua, sin cuota diaria."
+      },
+      {
+        "title": "Una herramienta, una tarea",
+        "body": "Cada página hace bien una sola cosa, así que no hay nada que aprender."
+      },
+      {
+        "title": "Diez idiomas",
+        "body": "La interfaz está disponible en español, inglés, chino, alemán y seis idiomas más."
+      }
+    ],
+    "groups": {
+      "heading": "Busca herramientas por tarea",
+      "organize": {
+        "title": "Organizar páginas",
+        "body": "Reordena, rota, elimina, extrae y recorta páginas."
+      },
+      "convert": {
+        "title": "Convertir",
+        "body": "Convierte PDF en imágenes, o imágenes en un PDF."
+      },
+      "edit": {
+        "title": "Editar y firmar",
+        "body": "Añade texto, bloques blancos y firmas manuscritas."
+      }
+    }
+  }
+}
