@@ -49,6 +49,15 @@ const CJK_LOCALES = new Set(["zh", "ja", "ko"]);
 const MIN_ANSWER_LENGTH = 30;
 const MIN_USE_CASE_LENGTH = 15;
 
+/**
+ * Long-form copy added by `scripts/content-depth/`: one "when to use it"
+ * paragraph per tool plus two extra Q&A pairs. The pair count is fixed so the
+ * visible FAQ list and the FAQPage JSON-LD stay comparable across locales, and
+ * the paragraph budget is scaled for CJK like the other thresholds.
+ */
+const MIN_DETAIL_LENGTH = 150;
+const MIN_EXTRA_FAQ = 2;
+
 const problems = [];
 
 function readDictionary(locale) {
@@ -148,6 +157,11 @@ for (const locale of LOCALES) {
     if (!referenceKeys.has(key)) problems.push(`${locale}: key "${key}" does not exist in ${REFERENCE}`);
   }
 
+  if (!dictionary.ToolContent?.detailHeading) {
+    problems.push(`${locale}: ToolContent.detailHeading is missing`);
+  }
+  const detailMin = isCjk ? Math.round(MIN_DETAIL_LENGTH * 0.4) : MIN_DETAIL_LENGTH;
+
   for (const tool of TOOL_KEYS) {
     const page = dictionary.ToolPages?.[tool];
     if (!page) {
@@ -183,6 +197,30 @@ for (const locale of LOCALES) {
       useCases.forEach((entry, index) => {
         if (typeof entry !== "string" || entry.length < useCaseMin) {
           problems.push(`${locale}: ToolContent.useCases.${tool}[${index}] is too short`);
+        }
+      });
+    }
+
+    // The "when to use it" paragraph is the page's main body copy: a stub here
+    // means the page slipped back to thin content.
+    const detail = dictionary.ToolContent?.detail?.[tool];
+    if (typeof detail !== "string" || detail.length === 0) {
+      problems.push(`${locale}: ToolContent.detail.${tool} is missing`);
+    } else if (detail.length < detailMin) {
+      problems.push(`${locale}: ToolContent.detail.${tool} is only ${detail.length} chars (min ${detailMin})`);
+    }
+
+    // These pairs feed the same array as the tool FAQ, so a locale that drops
+    // one silently loses a FAQPage entry instead of failing loudly.
+    const extraFaq = dictionary.Faq?.toolExtra?.[tool];
+    if (!Array.isArray(extraFaq) || extraFaq.length < MIN_EXTRA_FAQ) {
+      problems.push(`${locale}: Faq.toolExtra.${tool} needs at least ${MIN_EXTRA_FAQ} entries`);
+    } else {
+      extraFaq.forEach((entry, index) => {
+        if (!entry?.q || !entry?.a) {
+          problems.push(`${locale}: Faq.toolExtra.${tool}[${index}] needs both q and a`);
+        } else if (entry.a.length < answerMin) {
+          problems.push(`${locale}: Faq.toolExtra.${tool}[${index}].a is too short (${entry.a.length} chars)`);
         }
       });
     }
