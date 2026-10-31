@@ -105,47 +105,69 @@
   "ToolPages": {
     "organize": {
       "title": "Organiser le PDF",
-      "description": "Tri visuel en grille, rotation, insertion de pages vierges et reconstruction"
+      "description": "Tri visuel en grille, rotation, insertion de pages vierges et reconstruction",
+      "seoTitle": "Organiser un PDF en ligne – Réordonner, pivoter, insérer",
+      "seoDescription": "Reconstruisez n'importe quel PDF dans le navigateur : glissez les pages pour les réordonner, faites-les pivoter, insérez des pages blanches ou importez-en d'un autre fichier."
     },
     "merge": {
       "title": "Fusionner des PDF",
-      "description": "Combinez plusieurs documents en un seul, dans l'ordre de votre choix"
+      "description": "Combinez plusieurs documents en un seul, dans l'ordre de votre choix",
+      "seoTitle": "Fusionner des PDF en ligne – Gratuit, sans envoi",
+      "seoDescription": "Combinez plusieurs PDF en un seul document dans l'ordre voulu. Déposez les fichiers, glissez pour réordonner et téléchargez le résultat, sans quitter le navigateur."
     },
     "split": {
       "title": "Diviser un PDF",
-      "description": "Divisez par plage de pages ou exportez chaque page séparément"
+      "description": "Divisez par plage de pages ou exportez chaque page séparément",
+      "seoTitle": "Diviser un PDF en ligne – Gratuit, par plages",
+      "seoDescription": "Découpez un PDF en plusieurs fichiers par plage de pages, ou exportez chaque page séparément. Placez les points de coupe, prévisualisez et ne téléchargez que le nécessaire."
     },
     "rotate": {
       "title": "Faire pivoter et retourner un PDF",
-      "description": "Faites pivoter en masse et retournez les pages horizontalement ou verticalement"
+      "description": "Faites pivoter en masse et retournez les pages horizontalement ou verticalement",
+      "seoTitle": "Pivoter un PDF en ligne – Redresser les pages",
+      "seoDescription": "Corrigez les pages scannées de travers ou à l'envers. Faites pivoter les pages sélectionnées de 90° ou 180°, ou retournez-les, puis téléchargez le PDF corrigé."
     },
     "reorderPages": {
       "title": "Réorganiser les pages d'un PDF",
-      "description": "Glissez les cartes pour changer l'ordre des pages, faites pivoter une page et exportez la sélection dans le nouvel ordre"
+      "description": "Glissez les cartes pour changer l'ordre des pages, faites pivoter une page et exportez la sélection dans le nouvel ordre",
+      "seoTitle": "Réorganiser les pages d'un PDF – Glisser-déposer",
+      "seoDescription": "Changez l'ordre des pages dans une grille visuelle : glissez les vignettes, faites pivoter une page et exportez dans le nouvel ordre. Gratuit, dans le navigateur."
     },
     "deletePages": {
       "title": "Supprimer des pages du PDF",
-      "description": "Cliquez sur une page pour la supprimer, avec raccourcis pairs/impairs et saisie de plages"
+      "description": "Cliquez sur une page pour la supprimer, avec raccourcis pairs/impairs et saisie de plages",
+      "seoTitle": "Supprimer des pages PDF – En ligne et gratuit",
+      "seoDescription": "Supprimez les pages inutiles en un clic. Utilisez le raccourci impair/pair et le champ de plage sur les documents longs, puis téléchargez le PDF allégé."
     },
     "extractPages": {
       "title": "Extraire des pages du PDF",
-      "description": "Exportez les pages sélectionnées en un nouveau PDF ou en ZIP page par page"
+      "description": "Exportez les pages sélectionnées en un nouveau PDF ou en ZIP page par page",
+      "seoTitle": "Extraire des pages PDF – Ne garder que l'essentiel",
+      "seoDescription": "Sortez les pages choisies d'un PDF et exportez-les en un nouveau document, ou en ZIP avec un fichier par page. Sélectionnez visuellement et téléchargez en quelques secondes."
     },
     "crop": {
       "title": "Recadrer un PDF",
-      "description": "Recadrage visuel à huit poignées pour tout le document, les pages paires/impaires ou une sélection personnalisée"
+      "description": "Recadrage visuel à huit poignées pour tout le document, les pages paires/impaires ou une sélection personnalisée",
+      "seoTitle": "Recadrer un PDF en ligne – Marges et bordures",
+      "seoDescription": "Recadrez les marges ou une zone sur chaque page avec huit poignées. Appliquez au document entier, aux pages paires, impaires, ou seulement à votre sélection."
     },
     "edit": {
       "title": "Modifier le contenu du PDF",
-      "description": "Ajoutez des zones de texte, des masques blancs et des signatures manuscrites fluides"
+      "description": "Ajoutez des zones de texte, des masques blancs et des signatures manuscrites fluides",
+      "seoTitle": "Modifier un PDF en ligne – Texte et signature",
+      "seoDescription": "Ajoutez des zones de texte, des blocs blancs et une signature manuscrite à n'importe quel PDF, puis téléchargez le fichier modifié. Sans installation ni compte."
     },
     "pdfToImage": {
       "title": "PDF en image",
-      "description": "Exportez les pages PDF en images PNG, JPG ou WebP haute résolution"
+      "description": "Exportez les pages PDF en images PNG, JPG ou WebP haute résolution",
+      "seoTitle": "PDF en image – Exporter en PNG, JPG ou WebP",
+      "seoDescription": "Convertissez les pages PDF en images haute résolution. Choisissez jusqu'à 300 DPI et téléchargez des pages isolées ou le document complet en une archive ZIP."
     },
     "imageToPdf": {
       "title": "Image en PDF",
-      "description": "Importez des images, réorganisez-les et créez un PDF standard"
+      "description": "Importez des images, réorganisez-les et créez un PDF standard",
+      "seoTitle": "Image en PDF – Fusionner JPG et PNG gratuitement",
+      "seoDescription": "Créez un seul PDF à partir d'images PNG, JPG ou WebP. Glissez-les pour les ordonner et définissez format, orientation et marge avant l'export. Sans envoi."
     }
   },
   "Navbar": {
@@ -155,7 +177,41 @@
   "HomePage": {
     "heroTitle": "Des <highlight>outils PDF gratuits</highlight> pour vos petites tâches de bureau",
     "heroSubtitle": "Légers, rapides, simples : pas d'installation, pas d'inscription, pas d'attente d'envoi. Un outil, une tâche, directement dans le navigateur.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Petites tâches de bureau, réglées."
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Petites tâches de bureau, réglées.",
+    "whyHeading": "Pourquoi choisir Reeff.PDF",
+    "why": [
+      {
+        "title": "Vos fichiers restent les vôtres",
+        "body": "Tout est traité dans le navigateur : aucun document n'est envoyé à un serveur."
+      },
+      {
+        "title": "Sans compte ni limite",
+        "body": "Ouvrez un outil et commencez. Pas d'inscription, pas de filigrane, pas de quota quotidien."
+      },
+      {
+        "title": "Un outil, une tâche",
+        "body": "Chaque page fait bien une seule chose : il n'y a rien à apprendre."
+      },
+      {
+        "title": "Dix langues",
+        "body": "L'interface est disponible en français, anglais, chinois, allemand et six autres langues."
+      }
+    ],
+    "groups": {
+      "heading": "Trouver un outil par tâche",
+      "organize": {
+        "title": "Organiser les pages",
+        "body": "Réordonner, pivoter, supprimer, extraire et recadrer les pages."
+      },
+      "convert": {
+        "title": "Convertir",
+        "body": "Transformer un PDF en images, ou des images en PDF."
+      },
+      "edit": {
+        "title": "Modifier et signer",
+        "body": "Ajouter du texte, des blocs blancs et des signatures manuscrites."
+      }
+    }
   },
   "PdfMerge": {
     "upload": {
@@ -642,6 +698,64 @@
       "edit": "Placez une zone de texte ou dessinez votre signature",
       "pdfToImage": "Choisissez le format et la résolution",
       "imageToPdf": "Réorganisez les images et choisissez un format de page"
+    },
+    "useCases": {
+      "heading": "Usages courants",
+      "organize": [
+        "Remettre un contrat scanné dans le bon ordre avant de l'envoyer.",
+        "Insérer des pages blanches pour des notes ou une impression recto-verso.",
+        "Réunir les meilleures pages de plusieurs brouillons en un document propre."
+      ],
+      "merge": [
+        "Regrouper factures ou reçus dans un seul fichier pour la comptabilité.",
+        "Réunir lettre de motivation, CV et références en un PDF de candidature.",
+        "Assembler un rapport à partir de chapitres exportés séparément."
+      ],
+      "split": [
+        "Extraire un seul chapitre d'un manuel volumineux.",
+        "Séparer un lot scanné en un fichier par personne.",
+        "N'envoyer que les pages signées d'un contrat."
+      ],
+      "rotate": [
+        "Redresser des photos de documents enregistrées de travers.",
+        "Remettre à la verticale des tableaux paysage avant impression.",
+        "Corriger des pages scannées avec le papier à l'envers."
+      ],
+      "reorderPages": [
+        "Placer en tête une page qui s'était glissée au mauvais endroit.",
+        "Inverser l'ordre d'un scan sorti à l'envers.",
+        "Mettre les annexes à la fin après assemblage du document."
+      ],
+      "deletePages": [
+        "Supprimer les pages blanches laissées par un scan recto-verso.",
+        "Retirer un tarif obsolète avant d'envoyer un catalogue.",
+        "Ôter des pages de brouillon d'un document destiné au client."
+      ],
+      "extractPages": [
+        "Ne garder que le tableau des prix d'une longue proposition.",
+        "Isoler la page signée d'un contrat pour l'archivage.",
+        "Exporter des pages avec schémas pour une présentation."
+      ],
+      "crop": [
+        "Recadrer la bordure noire laissée par le scanner.",
+        "Ajuster un PDF en A4 ou Letter après une impression en PDF.",
+        "Supprimer un pied de page ou une barre latérale à ne pas imprimer."
+      ],
+      "edit": [
+        "Remplir un formulaire qui n'est pas interactif.",
+        "Signer un PDF sur un appareil sans imprimante.",
+        "Masquer une ancienne adresse avant de partager un document."
+      ],
+      "pdfToImage": [
+        "Utiliser des pages PDF dans une présentation ou sur un site.",
+        "Publier un aperçu de page sur les réseaux sociaux.",
+        "Envoyer une page en image dans une messagerie."
+      ],
+      "imageToPdf": [
+        "Transformer des photos de documents en un seul PDF.",
+        "Rassembler des reçus scannés dans un fichier de notes de frais.",
+        "Créer un PDF de portfolio à partir d'images de design."
+      ]
     }
   },
   "Legal": {
@@ -718,6 +832,73 @@
           "body": "Nous pouvons mettre à jour ces conditions ; la date ci-dessus indique la version en vigueur et continuer d'utiliser le site après une modification vaut acceptation. Des questions ? Écrivez-nous ci-dessous."
         }
       ]
+    }
+  },
+  "Faq": {
+    "heading": "Questions fréquentes",
+    "common": {
+      "free": {
+        "q": "Reeff.PDF est-il vraiment gratuit ?",
+        "a": "Oui. Tous les outils sont gratuits et illimités : pas de compte, pas de filigrane, pas de limite de pages ou de fichiers."
+      },
+      "privacy": {
+        "q": "Mes fichiers sont-ils envoyés à un serveur ?",
+        "a": "Non. Les outils fonctionnent dans votre navigateur : le PDF ne quitte jamais votre appareil."
+      },
+      "sizeLimit": {
+        "q": "Y a-t-il une limite de taille ?",
+        "a": "Aucune de notre part. Les fichiers très volumineux ne dépendent que de la mémoire de l'appareil et du navigateur."
+      },
+      "mobile": {
+        "q": "Cela fonctionne-t-il sur téléphone ou tablette ?",
+        "a": "Oui, dans les navigateurs mobiles récents ; les gros documents sont plus confortables sur ordinateur."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Puis-je mélanger des pages de PDF différents ?",
+        "a": "Oui. Pendant l'organisation, vous pouvez importer des pages d'un autre fichier et les placer où vous voulez dans le nouvel ordre."
+      },
+      "merge": {
+        "q": "Combien de PDF puis-je fusionner à la fois ?",
+        "a": "Autant que vous voulez. Aucune limite de nombre : seule la mémoire de l'appareil compte."
+      },
+      "split": {
+        "q": "Puis-je diviser un PDF en pages séparées ?",
+        "a": "Oui. Choisissez l'option pages séparées : chaque page est exportée dans son propre fichier, réuni dans un ZIP."
+      },
+      "rotate": {
+        "q": "La rotation modifie-t-elle le contenu ?",
+        "a": "Non. Seule l'orientation change ; le texte, les images et la qualité restent identiques."
+      },
+      "reorderPages": {
+        "q": "Puis-je déplacer plusieurs pages à la fois ?",
+        "a": "Les pages se glissent une par une, mais vous pouvez sélectionner une plage avant de pivoter ou d'exporter."
+      },
+      "deletePages": {
+        "q": "Puis-je annuler une suppression ?",
+        "a": "Oui : rien n'est enregistré avant l'export. Désélectionnez la page ou rouvrez le fichier."
+      },
+      "extractPages": {
+        "q": "Sous quel format sortent les pages extraites ?",
+        "a": "Un nouveau PDF contenant toutes les pages choisies, ou un ZIP avec un PDF par page."
+      },
+      "crop": {
+        "q": "Le recadrage touche-t-il toutes les pages ?",
+        "a": "C'est vous qui décidez : document entier, pages impaires, paires, ou seulement votre sélection."
+      },
+      "edit": {
+        "q": "Puis-je supprimer un texte existant ?",
+        "a": "Vous pouvez le masquer avec un bloc blanc. Le texte d'origine n'est pas recomposé, la mise en page reste intacte."
+      },
+      "pdfToImage": {
+        "q": "Quelle résolution puis-je exporter ?",
+        "a": "Jusqu'à 300 DPI. Plus le DPI est élevé, plus l'image est nette et le fichier lourd."
+      },
+      "imageToPdf": {
+        "q": "Quels formats d'image sont acceptés ?",
+        "a": "PNG, JPG et WebP. Les autres formats sont convertis dans le navigateur avant la création du PDF."
+      }
     }
   }
 }

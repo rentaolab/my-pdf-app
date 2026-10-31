@@ -105,47 +105,69 @@
   "ToolPages": {
     "organize": {
       "title": "Organize PDF",
-      "description": "Visual grid sorting, rotation, blank page insertion and rebuilding"
+      "description": "Visual grid sorting, rotation, blank page insertion and rebuilding",
+      "seoTitle": "Organize PDF Online – Sort, Rotate & Rebuild Pages",
+      "seoDescription": "Rebuild any PDF in your browser: drag pages into order, rotate them, insert blank pages or pull pages in from another file. Free, no upload, no sign-up."
     },
     "merge": {
       "title": "Merge PDF",
-      "description": "Combine multiple documents into one, in any order"
+      "description": "Combine multiple documents into one, in any order",
+      "seoTitle": "Merge PDF Online – Free, No Upload Needed",
+      "seoDescription": "Combine several PDFs into one document in the order you want. Drop the files, drag to reorder and download the merged PDF — all locally in your browser."
     },
     "split": {
       "title": "Split PDF",
-      "description": "Split by page range or export every page separately"
+      "description": "Split by page range or export every page separately",
+      "seoTitle": "Split PDF Online – Free Page Range Splitter",
+      "seoDescription": "Cut one PDF into several files by page range, or export every page separately. Set break points, preview the parts and download only what you need."
     },
     "rotate": {
       "title": "Rotate & Flip PDF",
-      "description": "Rotate pages in bulk and mirror them horizontally or vertically"
+      "description": "Rotate pages in bulk and mirror them horizontally or vertically",
+      "seoTitle": "Rotate PDF Online – Fix Sideways Pages Free",
+      "seoDescription": "Fix pages that were scanned sideways or upside down. Rotate selected pages by 90° or 180°, or mirror them, then download the corrected PDF. Nothing is uploaded."
     },
     "reorderPages": {
       "title": "Reorder PDF Pages",
-      "description": "Drag page cards to change their order, rotate single pages and export the selected pages in the new sequence"
+      "description": "Drag page cards to change their order, rotate single pages and export the selected pages in the new sequence",
+      "seoTitle": "Reorder PDF Pages – Drag & Drop Page Order",
+      "seoDescription": "Change the page order of any PDF on a visual grid: drag page cards, rotate single pages and export them in the new sequence. Free, in your browser."
     },
     "deletePages": {
       "title": "Delete PDF Pages",
-      "description": "Click any page to remove it, with odd/even shortcuts and range input"
+      "description": "Click any page to remove it, with odd/even shortcuts and range input",
+      "seoTitle": "Delete PDF Pages – Remove Pages Online Free",
+      "seoDescription": "Remove unwanted pages from a PDF in one click. Use the odd/even shortcut and the range field on long documents, then download the shortened PDF. No upload."
     },
     "extractPages": {
       "title": "Extract PDF Pages",
-      "description": "Export selected pages as a new PDF or as a ZIP of single pages"
+      "description": "Export selected pages as a new PDF or as a ZIP of single pages",
+      "seoTitle": "Extract PDF Pages – Save Selected Pages Free",
+      "seoDescription": "Pull selected pages out of a PDF and export them as one new document, or as a ZIP of single-page files. Pick pages visually and download in seconds. Free."
     },
     "crop": {
       "title": "Crop PDF",
-      "description": "Eight-handle visual cropping for the whole document, odd/even pages or a custom selection"
+      "description": "Eight-handle visual cropping for the whole document, odd/even pages or a custom selection",
+      "seoTitle": "Crop PDF Online – Trim Margins & Resize Pages",
+      "seoDescription": "Trim margins or cut to a region on every page with eight drag handles. Apply the crop to the whole document, odd or even pages or just your selection."
     },
     "edit": {
       "title": "Edit PDF Content",
-      "description": "Add text boxes, white-out blocks and smooth handwritten signatures"
+      "description": "Add text boxes, white-out blocks and smooth handwritten signatures",
+      "seoTitle": "Edit PDF Online – Add Text & Sign for Free",
+      "seoDescription": "Add text boxes, white-out blocks and a handwritten signature to any PDF, then download the edited file. No installs, no account, nothing uploaded."
     },
     "pdfToImage": {
       "title": "PDF to Image",
-      "description": "Export PDF pages as high-resolution PNG, JPG or WebP images"
+      "description": "Export PDF pages as high-resolution PNG, JPG or WebP images",
+      "seoTitle": "PDF to JPG – Convert PDF Pages to Images Free",
+      "seoDescription": "Turn PDF pages into high-resolution PNG, JPG or WebP images. Choose the resolution up to 300 DPI, then download single pages or the whole set as a ZIP."
     },
     "imageToPdf": {
       "title": "Image to PDF",
-      "description": "Upload images, drag to reorder and build one standard PDF"
+      "description": "Upload images, drag to reorder and build one standard PDF",
+      "seoTitle": "JPG to PDF – Combine Images into One PDF Free",
+      "seoDescription": "Build a single PDF from PNG, JPG or WebP images. Drag them into order and set the page size, orientation and margin before exporting. Free, no upload."
     }
   },
   "Navbar": {
@@ -155,7 +177,41 @@
   "HomePage": {
     "heroTitle": "Free <highlight>PDF tools</highlight> for everyday office chores.",
     "heroSubtitle": "Light, fast, simple — no installs, no sign-up, no waiting for uploads. One tool does one job, right in your browser.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Office chores, sorted."
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Office chores, sorted.",
+    "whyHeading": "Why use Reeff.PDF",
+    "why": [
+      {
+        "title": "Private by design",
+        "body": "Your file is processed in the browser and never uploaded to a server."
+      },
+      {
+        "title": "No account, no limits",
+        "body": "Open a tool and use it. No sign-up, no watermark, no daily quota."
+      },
+      {
+        "title": "One tool, one job",
+        "body": "Each page does a single thing well, so there is nothing to learn."
+      },
+      {
+        "title": "Ten languages",
+        "body": "The interface is translated into ten languages, including English, Chinese, German and Spanish."
+      }
+    ],
+    "groups": {
+      "heading": "Browse tools by task",
+      "organize": {
+        "title": "Organize pages",
+        "body": "Reorder, rotate, delete, extract and crop pages."
+      },
+      "convert": {
+        "title": "Convert",
+        "body": "Turn PDFs into images, or images into a PDF."
+      },
+      "edit": {
+        "title": "Edit & sign",
+        "body": "Add text, white-out blocks and handwritten signatures."
+      }
+    }
   },
   "PdfMerge": {
     "upload": {
@@ -642,6 +698,64 @@
       "edit": "Place a text box or draw your signature.",
       "pdfToImage": "Pick an output format and resolution.",
       "imageToPdf": "Drag the images into order and pick a page size."
+    },
+    "useCases": {
+      "heading": "Common ways to use it",
+      "organize": [
+        "Put a scanned contract back into the right page order before sending it out.",
+        "Add blank pages for notes or for double-sided printing.",
+        "Combine the best pages of several drafts into one clean document."
+      ],
+      "merge": [
+        "Join invoices or receipts into one file for bookkeeping.",
+        "Combine a cover letter, CV and references into a single application PDF.",
+        "Assemble a report from chapters exported as separate PDFs."
+      ],
+      "split": [
+        "Extract just one chapter from a long manual.",
+        "Separate a scanned batch into one file per person.",
+        "Send only the signed pages of a contract."
+      ],
+      "rotate": [
+        "Fix phone photos of documents that were saved sideways.",
+        "Turn landscape tables back to portrait for printing.",
+        "Correct pages from a scanner that fed paper upside down."
+      ],
+      "reorderPages": [
+        "Move a misplaced page to the front of a report.",
+        "Reverse the order of a scan that came out backwards.",
+        "Put appendix pages at the end after assembling a document."
+      ],
+      "deletePages": [
+        "Remove blank pages left by double-sided scanning.",
+        "Drop outdated price sheets before sending a catalogue.",
+        "Strip internal draft pages from a client-facing document."
+      ],
+      "extractPages": [
+        "Save only the price table from a long proposal.",
+        "Pull the signed page out of a contract for your records.",
+        "Export diagram pages for a slide deck."
+      ],
+      "crop": [
+        "Trim the black border left by a scanner.",
+        "Cut a PDF to A4 or Letter after printing to PDF.",
+        "Remove a footer or sidebar that should not be printed."
+      ],
+      "edit": [
+        "Fill in a form that is not interactive.",
+        "Add a signature on a device without a printer.",
+        "White out an old address before sharing a document."
+      ],
+      "pdfToImage": [
+        "Use PDF pages in a presentation or on a website.",
+        "Post a page preview on social media.",
+        "Send a page as an image in a chat app."
+      ],
+      "imageToPdf": [
+        "Turn phone photos of documents into one PDF.",
+        "Collect scanned receipts into a single expense file.",
+        "Build a portfolio PDF from exported design images."
+      ]
     }
   },
   "Legal": {
@@ -718,6 +832,73 @@
           "body": "We may update these terms; the date above shows the current version and continued use after a change means you accept it. Questions? Write to us below."
         }
       ]
+    }
+  },
+  "Faq": {
+    "heading": "Frequently asked questions",
+    "common": {
+      "free": {
+        "q": "Is Reeff.PDF really free?",
+        "a": "Yes. Every tool is free and unlimited: no account, no watermark, no page or file cap."
+      },
+      "privacy": {
+        "q": "Are my files uploaded to a server?",
+        "a": "No. The tools run entirely in your browser, so your PDF never leaves your device."
+      },
+      "sizeLimit": {
+        "q": "Is there a file size limit?",
+        "a": "There is no cap imposed by us. Very large files are limited only by your device's memory and browser."
+      },
+      "mobile": {
+        "q": "Does it work on a phone or tablet?",
+        "a": "Yes. The tools work in current mobile browsers; larger documents are simply easier on a desktop."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Can I mix pages from different PDFs?",
+        "a": "Yes. While organizing you can pull pages in from another file and place them anywhere in the new order."
+      },
+      "merge": {
+        "q": "How many PDFs can I merge at once?",
+        "a": "As many as you like. There is no file-count limit; only your device's memory matters."
+      },
+      "split": {
+        "q": "Can I split a PDF into single pages?",
+        "a": "Yes. Choose the separate-pages option to export every page as its own file, delivered as a ZIP."
+      },
+      "rotate": {
+        "q": "Does rotating change the page content?",
+        "a": "No. Only the page orientation changes; text, images and quality stay exactly the same."
+      },
+      "reorderPages": {
+        "q": "Can I move several pages at once?",
+        "a": "You drag pages one by one, and you can select a range before applying a rotation or an export."
+      },
+      "deletePages": {
+        "q": "Can I undo a deleted page?",
+        "a": "Yes — nothing is written until you export. Deselect the page or reopen the file to bring it back."
+      },
+      "extractPages": {
+        "q": "Which format do extracted pages come in?",
+        "a": "Choose one new PDF containing all selected pages, or a ZIP with one PDF per page."
+      },
+      "crop": {
+        "q": "Does cropping affect every page?",
+        "a": "You decide: apply the crop to the whole document, odd or even pages, or only the pages you select."
+      },
+      "edit": {
+        "q": "Can I remove existing text?",
+        "a": "You can cover it with a white-out block. The original text is not reflowed, so the layout stays intact."
+      },
+      "pdfToImage": {
+        "q": "What resolution can I export at?",
+        "a": "Up to 300 DPI. A higher DPI means sharper images and larger files."
+      },
+      "imageToPdf": {
+        "q": "Which image formats are supported?",
+        "a": "PNG, JPG and WebP. Other formats are converted in your browser before the PDF is built."
+      }
     }
   }
 }

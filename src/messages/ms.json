@@ -105,47 +105,69 @@
   "ToolPages": {
     "organize": {
       "title": "Susun PDF (Organize)",
-      "description": "Susun, putar, sisip halaman kosong dan bina semula secara visual"
+      "description": "Susun, putar, sisip halaman kosong dan bina semula secara visual",
+      "seoTitle": "Susun PDF Dalam Talian – Ubah Susunan, Putar, Sisip",
+      "seoDescription": "Bina semula PDF dalam pelayar: seret halaman ke susunan baharu, putarkan, sisip halaman kosong atau ambil halaman daripada fail lain. Percuma, tiada muat naik."
     },
     "merge": {
       "title": "Gabung PDF (Merge)",
-      "description": "Gabungkan beberapa dokumen menjadi satu dalam sebarang urutan"
+      "description": "Gabungkan beberapa dokumen menjadi satu dalam sebarang urutan",
+      "seoTitle": "Gabung PDF Dalam Talian – Percuma, Tanpa Muat Naik",
+      "seoDescription": "Gabungkan beberapa PDF menjadi satu dokumen mengikut susunan pilihan anda. Lepaskan fail, seret untuk menyusun dan muat turun. Semuanya dalam pelayar anda."
     },
     "split": {
       "title": "Pisah PDF (Split)",
-      "description": "Pisah mengikut julat halaman atau eksport setiap halaman secara berasingan"
+      "description": "Pisah mengikut julat halaman atau eksport setiap halaman secara berasingan",
+      "seoTitle": "Pisah PDF Dalam Talian – Mengikut Julat Halaman",
+      "seoDescription": "Potong satu PDF kepada beberapa fail mengikut julat halaman, atau eksport setiap halaman berasingan. Tetapkan titik pemisah, pratonton dan muat turun bahagian yang perlu."
     },
     "rotate": {
       "title": "Putar PDF (Rotate & Flip)",
-      "description": "Putar secara pukal dan cermin halaman secara mendatar atau menegak"
+      "description": "Putar secara pukal dan cermin halaman secara mendatar atau menegak",
+      "seoTitle": "Putar PDF Dalam Talian – Betulkan Halaman Senget",
+      "seoDescription": "Betulkan halaman yang diimbas senget atau terbalik. Putarkan halaman terpilih 90° atau 180°, atau cerminkan, kemudian muat turun PDF yang dibetulkan. Tiada muat naik."
     },
     "reorderPages": {
       "title": "Susun semula halaman PDF",
-      "description": "Seret kad untuk mengubah urutan halaman, putar halaman secara individu dan eksport halaman terpilih dalam urutan baharu"
+      "description": "Seret kad untuk mengubah urutan halaman, putar halaman secara individu dan eksport halaman terpilih dalam urutan baharu",
+      "seoTitle": "Susun Semula Halaman PDF – Seret dan Lepas",
+      "seoDescription": "Ubah susunan halaman mana-mana PDF pada grid visual: seret kad halaman, putarkan halaman tunggal dan eksport dalam susunan baharu. Percuma, dalam pelayar."
     },
     "deletePages": {
       "title": "Padam Halaman PDF (Delete Pages)",
-      "description": "Klik mana-mana halaman untuk membuangnya, dengan pintasan ganjil/genap dan input julat"
+      "description": "Klik mana-mana halaman untuk membuangnya, dengan pintasan ganjil/genap dan input julat",
+      "seoTitle": "Padam Halaman PDF – Buang Halaman Dalam Talian",
+      "seoDescription": "Buang halaman yang tidak diperlukan dengan satu klik. Gunakan pintasan ganjil/genap dan medan julat pada dokumen panjang, kemudian muat turun PDF yang dipendekkan."
     },
     "extractPages": {
       "title": "Ekstrak Halaman PDF (Extract Pages)",
-      "description": "Eksport halaman terpilih sebagai PDF baharu atau ZIP bagi setiap halaman"
+      "description": "Eksport halaman terpilih sebagai PDF baharu atau ZIP bagi setiap halaman",
+      "seoTitle": "Ekstrak Halaman PDF – Simpan Halaman Terpilih",
+      "seoDescription": "Keluarkan halaman terpilih daripada PDF dan eksport sebagai satu dokumen baharu, atau ZIP fail satu halaman. Pilih halaman secara visual dan muat turun dalam beberapa saat."
     },
     "crop": {
       "title": "Pangkas PDF (Crop PDF)",
-      "description": "Lapan pemegang untuk pelarasan visual pada seluruh dokumen, halaman ganjil/genap atau pilihan tersuai"
+      "description": "Lapan pemegang untuk pelarasan visual pada seluruh dokumen, halaman ganjil/genap atau pilihan tersuai",
+      "seoTitle": "Pangkas PDF Dalam Talian – Buang Jidar dan Sempadan",
+      "seoDescription": "Pangkas jidar atau potong ke kawasan tertentu dengan lapan pemegang seret. Gunakan pada keseluruhan dokumen, halaman ganjil, genap atau pilihan anda sahaja."
     },
     "edit": {
       "title": "Edit Kandungan PDF (Edit PDF)",
-      "description": "Tambah kotak teks, penutup putih dan tandatangan tulisan tangan"
+      "description": "Tambah kotak teks, penutup putih dan tandatangan tulisan tangan",
+      "seoTitle": "Edit PDF Dalam Talian – Tambah Teks dan Tandatangan",
+      "seoDescription": "Tambah kotak teks, blok putih dan tandatangan tulisan tangan pada mana-mana PDF, kemudian muat turun fail yang diedit. Tiada pemasangan, akaun atau muat naik."
     },
     "pdfToImage": {
       "title": "PDF ke Imej",
-      "description": "Eksport halaman PDF sebagai imej PNG, JPG atau WebP resolusi tinggi"
+      "description": "Eksport halaman PDF sebagai imej PNG, JPG atau WebP resolusi tinggi",
+      "seoTitle": "PDF ke Imej – Eksport PNG, JPG atau WebP",
+      "seoDescription": "Tukar halaman PDF kepada imej beresolusi tinggi. Pilih resolusi sehingga 300 DPI, kemudian muat turun halaman tunggal atau keseluruhan dokumen sebagai ZIP."
     },
     "imageToPdf": {
       "title": "Imej ke PDF",
-      "description": "Muat naik imej, susun semula dan hasilkan satu PDF standard"
+      "description": "Muat naik imej, susun semula dan hasilkan satu PDF standard",
+      "seoTitle": "Imej ke PDF – Gabung JPG dan PNG Percuma",
+      "seoDescription": "Bina satu PDF daripada imej PNG, JPG atau WebP. Seret ke susunan dan tetapkan saiz halaman, orientasi serta jidar sebelum eksport. Fail tidak dimuat naik."
     }
   },
   "Navbar": {
@@ -155,7 +177,41 @@
   "HomePage": {
     "heroTitle": "<highlight>Alat PDF percuma</highlight> untuk kerja pejabat harian",
     "heroSubtitle": "Ringan, pantas, mudah — tiada pemasangan, tiada pendaftaran, tiada menunggu muat naik. Satu alat, satu tugas, terus dalam pelayar.",
-    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Kerja-kerja kecil pejabat, serahkan pada Reeff"
+    "footer": "© 2026 <brand>Reeff.PDF</brand> (reeff.app) · Kerja-kerja kecil pejabat, serahkan pada Reeff",
+    "whyHeading": "Mengapa guna Reeff.PDF",
+    "why": [
+      {
+        "title": "Fail anda kekal milik anda",
+        "body": "Semua diproses dalam pelayar, jadi tiada dokumen dimuat naik."
+      },
+      {
+        "title": "Tiada akaun, tiada had",
+        "body": "Buka alat dan mula. Tiada pendaftaran, tiada tera air, tiada kuota harian."
+      },
+      {
+        "title": "Satu alat, satu tugas",
+        "body": "Setiap halaman melakukan satu tugas dengan baik, tiada yang perlu dipelajari."
+      },
+      {
+        "title": "Sepuluh bahasa",
+        "body": "Antara muka tersedia dalam bahasa Melayu, Inggeris, Cina, Jerman dan enam lagi."
+      }
+    ],
+    "groups": {
+      "heading": "Cari alat mengikut tugasan",
+      "organize": {
+        "title": "Susun halaman",
+        "body": "Susun semula, putar, padam, ekstrak dan pangkas halaman."
+      },
+      "convert": {
+        "title": "Tukar format",
+        "body": "Tukar PDF kepada imej, atau imej kepada PDF."
+      },
+      "edit": {
+        "title": "Edit dan tandatangan",
+        "body": "Tambah teks, blok putih dan tandatangan tulisan tangan."
+      }
+    }
   },
   "PdfMerge": {
     "upload": {
@@ -642,6 +698,64 @@
       "edit": "Letakkan kotak teks atau lukis tandatangan anda",
       "pdfToImage": "Pilih format output dan resolusi",
       "imageToPdf": "Susun imej dan pilih saiz halaman"
+    },
+    "useCases": {
+      "heading": "Cara biasa menggunakannya",
+      "organize": [
+        "Susun semula kontrak yang diimbas ke susunan halaman betul sebelum dihantar.",
+        "Tambah halaman kosong untuk nota atau cetakan dua sisi.",
+        "Gabungkan halaman terbaik daripada beberapa draf menjadi satu dokumen bersih."
+      ],
+      "merge": [
+        "Gabungkan invois atau resit dalam satu fail untuk perakaunan.",
+        "Satukan surat iringan, resume dan rujukan dalam satu PDF permohonan.",
+        "Himpunkan laporan daripada bab yang dieksport sebagai PDF berasingan."
+      ],
+      "split": [
+        "Ekstrak hanya satu bab daripada manual tebal.",
+        "Pisahkan kelompok imbasan kepada satu fail setiap orang.",
+        "Hantar hanya halaman yang ditandatangani dalam kontrak."
+      ],
+      "rotate": [
+        "Betulkan foto dokumen dari telefon yang disimpan senget.",
+        "Tukar jadual landskap kembali ke potret untuk cetakan.",
+        "Betulkan halaman daripada pengimbas yang memasukkan kertas terbalik."
+      ],
+      "reorderPages": [
+        "Pindahkan halaman tersalah letak ke hadapan laporan.",
+        "Betulkan susunan imbasan yang terhasil songsang.",
+        "Letakkan halaman lampiran di hujung selepas menyusun dokumen."
+      ],
+      "deletePages": [
+        "Buang halaman kosong akibat imbasan dua sisi.",
+        "Buang senarai harga lapuk sebelum menghantar katalog.",
+        "Keluarkan halaman draf dalaman daripada dokumen untuk pelanggan."
+      ],
+      "extractPages": [
+        "Simpan hanya jadual harga daripada cadangan panjang.",
+        "Ambil halaman tandatangan kontrak untuk rekod.",
+        "Eksport halaman rajah untuk slaid."
+      ],
+      "crop": [
+        "Pangkas sempadan hitam yang ditinggalkan pengimbas.",
+        "Potong PDF kepada A4 atau Letter selepas cetak ke PDF.",
+        "Buang pengaki atau bar sisi yang tidak patut dicetak."
+      ],
+      "edit": [
+        "Isi borang yang tidak interaktif.",
+        "Tambah tandatangan pada peranti tanpa pencetak.",
+        "Tutup alamat lama sebelum berkongsi dokumen."
+      ],
+      "pdfToImage": [
+        "Guna halaman PDF dalam pembentangan atau laman web.",
+        "Kongsi pratonton halaman di media sosial.",
+        "Hantar halaman sebagai imej dalam aplikasi sembang."
+      ],
+      "imageToPdf": [
+        "Tukar foto dokumen dari telefon menjadi satu PDF.",
+        "Kumpulkan resit imbasan dalam satu fail tuntutan.",
+        "Bina PDF portfolio daripada imej reka bentuk."
+      ]
     }
   },
   "Legal": {
@@ -718,6 +832,73 @@
           "body": "Kami boleh mengemas kini terma ini; tarikh di atas menunjukkan versi semasa dan penggunaan berterusan selepas perubahan bermakna anda menerimanya. Ada soalan? Hubungi kami di bawah."
         }
       ]
+    }
+  },
+  "Faq": {
+    "heading": "Soalan lazim",
+    "common": {
+      "free": {
+        "q": "Adakah Reeff.PDF benar-benar percuma?",
+        "a": "Ya. Semua alat percuma dan tanpa had: tiada akaun, tiada tera air, tiada had halaman atau fail."
+      },
+      "privacy": {
+        "q": "Adakah fail saya dimuat naik ke pelayan?",
+        "a": "Tidak. Semua alat berjalan dalam pelayar anda, jadi PDF tidak pernah meninggalkan peranti anda."
+      },
+      "sizeLimit": {
+        "q": "Ada had saiz fail?",
+        "a": "Tiada had daripada kami. Fail sangat besar hanya terhad oleh memori peranti dan pelayar anda."
+      },
+      "mobile": {
+        "q": "Boleh guna pada telefon atau tablet?",
+        "a": "Boleh. Alat ini berfungsi dalam pelayar mudah alih terkini; dokumen besar lebih mudah pada komputer."
+      }
+    },
+    "tool": {
+      "organize": {
+        "q": "Boleh campur halaman daripada PDF berbeza?",
+        "a": "Boleh. Semasa menyusun, anda boleh ambil halaman daripada fail lain dan letakkan di mana-mana dalam susunan baharu."
+      },
+      "merge": {
+        "q": "Berapa banyak PDF boleh digabung sekali?",
+        "a": "Sebanyak yang anda mahu. Tiada had bilangan fail; hanya memori peranti yang penting."
+      },
+      "split": {
+        "q": "Boleh pisahkan PDF kepada halaman tunggal?",
+        "a": "Boleh. Pilih pilihan halaman berasingan untuk mengeksport setiap halaman sebagai fail sendiri dalam ZIP."
+      },
+      "rotate": {
+        "q": "Adakah putaran mengubah kandungan halaman?",
+        "a": "Tidak. Hanya orientasi halaman berubah; teks, imej dan kualiti kekal sama."
+      },
+      "reorderPages": {
+        "q": "Boleh gerakkan beberapa halaman sekali gus?",
+        "a": "Halaman diseret satu demi satu, tetapi anda boleh pilih julat sebelum menggunakan putaran atau eksport."
+      },
+      "deletePages": {
+        "q": "Boleh batalkan halaman yang dipadam?",
+        "a": "Boleh — tiada apa ditulis sehingga anda eksport. Nyahpilih halaman atau buka semula fail."
+      },
+      "extractPages": {
+        "q": "Apakah format halaman yang diekstrak?",
+        "a": "Pilih satu PDF baharu dengan semua halaman terpilih, atau ZIP dengan satu PDF setiap halaman."
+      },
+      "crop": {
+        "q": "Adakah pemangkasan melibatkan semua halaman?",
+        "a": "Anda tentukan: gunakan pada keseluruhan dokumen, halaman ganjil, genap atau halaman pilihan sahaja."
+      },
+      "edit": {
+        "q": "Boleh hapuskan teks sedia ada?",
+        "a": "Anda boleh tutup dengan blok putih. Teks asal tidak disusun semula, jadi susun atur kekal."
+      },
+      "pdfToImage": {
+        "q": "Resolusi apa yang boleh dieksport?",
+        "a": "Sehingga 300 DPI. DPI lebih tinggi bermaksud imej lebih tajam dan fail lebih besar."
+      },
+      "imageToPdf": {
+        "q": "Format imej apa yang disokong?",
+        "a": "PNG, JPG dan WebP. Format lain ditukar dalam pelayar sebelum PDF dibina."
+      }
     }
   }
 }

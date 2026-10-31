@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
-import { LEGAL_PATHS, SITE_URL, SITEMAP_PATHS } from "@/lib/seo";
+import { LEGAL_PATHS, SITE_URL, SITEMAP_PATHS, hreflangFor } from "@/lib/seo";
 
 // Required by `output: "export"` — metadata routes are emitted as static files
 // at build time instead of being served by a Node runtime.
@@ -19,7 +19,7 @@ const LAST_MODIFIED = new Date("2026-10-30T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const languagesFor = (path: string) => ({
-    ...Object.fromEntries(routing.locales.map((code) => [code, `${SITE_URL}/${code}${path}`])),
+    ...Object.fromEntries(routing.locales.map((code) => [hreflangFor(code), `${SITE_URL}/${code}${path}`])),
     "x-default": `${SITE_URL}/${routing.defaultLocale}${path}`,
   });
 
