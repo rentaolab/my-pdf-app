@@ -1,0 +1,62 @@
+{
+  "detailHeading": "Bila hendak digunakan",
+  "detail": {
+    "organize": "Gunakan penyusun apabila dokumen itu sendiri betul dan hanya urutannya salah: imbasan yang dibuat dalam dua kali, kontrak yang halaman tandatangannya terakhir, cadangan dengan lampiran di tengah. Berbeza dengan gabung, tiada apa dicantumkan di sini, jadi bilangan halaman hanya berubah apabila anda selitkan halaman kosong atau ambil halaman daripada fail lain.",
+    "merge": "Gabung sesuai apabila maklumat memang terletak dalam fail berasingan dan patut disatukan: sekumpulan invois pembekal, bab yang dieksport satu demi satu, kontrak bersama lampirannya. Setiap halaman mengekalkan saiz asalnya, jadi A4 dan Letter boleh dicampur, tetapi cetakan akan kelihatan tidak seragam.",
+    "split": "Pisah digunakan untuk menyerahkan sebahagian dokumen tanpa menunjukkan selebihnya: satu bab kepada penyemak, satu invois kepada jabatan kewangan, halaman bertandatangan kepada pihak lain. Titik pemisahan terletak antara halaman, jadi jika sesuatu bahagian bermula di tengah halaman, potong dahulu kemudian pisahkan hasilnya.",
+    "rotate": "Putar ialah alat pembaikan: ia menukar orientasi dan tidak lebih daripada itu. Helaian yang diimbas terbalik, foto borang yang disimpan melintang, jadual landskap dalam laporan potret. Hanya penanda putaran direkodkan, jadi teks masih boleh dipilih dan saiz fail tidak berubah.",
+    "reorderPages": "Editor halaman menyusun semula dokumen yang anda sudah ada: setiap halaman muncul sebagai lakaran kecil, jadi imbasan yang tertinggal atau berulang mudah dikesan. Ia bekerja pada satu fail pada satu masa; apabila halaman datang daripada beberapa dokumen, gunakan susun atau gabung.",
+    "deletePages": "Padam sesuai apabila dokumen hampir betul tetapi membawa halaman yang tidak sepatutnya ikut: belakang kosong, sebut harga lama, muka depan dalaman. Tiada apa ditulis sehingga anda eksport, jadi pemadaman tersilap hanya berharga memuat semula fail.",
+    "extractPages": "Ekstrak ialah kebalikan padam: daripada membuang halaman, anda hanya menyimpan yang dinamakan. Keluarkan satu invois daripada penyata, lampiran daripada kontrak, satu bab daripada manual, sama ada sebagai satu PDF baharu atau ZIP dengan satu fail bagi setiap halaman.",
+    "crop": "Potong menyempitkan kawasan yang kelihatan tanpa menulis semula halaman, jadi teks dalam bingkai masih boleh dipilih. Ia penyelesaian jujur untuk bingkai hitam pengimbas, slaid yang dieksport terlalu lebar atau pengepala pelayar yang terlekat semasa cetak ke PDF; bahagian di luar bingkai disembunyikan, bukan dihapuskan, sebab itu saiz fail hampir tidak berubah.",
+    "edit": "Editor menampung tambahan kecil pada PDF siap: mengisi ruang pada borang tidak interaktif, menandatangan tanpa pencetak, menutup alamat lama sebelum dokumen dihantar. Ia tidak mengalirkan semula teks, tambahan diletakkan di atas halaman, jadi ayat pengganti yang panjang mungkin tidak muat di ruang asal.",
+    "pdfToImage": "Tukar kepada imej apabila penerima tidak boleh memaparkan PDF: aplikasi sembang, slaid, ruang muat naik CMS. Render berlaku pada resolusi yang anda pilih: 150 DPI memadai untuk skrin dan sembang, 300 DPI diperlukan untuk cetakan dan OCR, dan lebih tinggi hanya membesarkan fail.",
+    "imageToPdf": "Imej ke PDF ialah perjalanan balik: foto resit, bingkai reka bentuk yang dieksport, tangkapan skrin perbualan. Kerana setiap halaman dibina daripada imej, fail yang dieksport tiada teks yang boleh dicari; jalankan OCR pada hasilnya jika dokumen perlu diindeks atau dipetik."
+  },
+  "faqExtra": {
+    "organize": [
+      { "q": "Adakah menyusun semula mengurangkan kualiti fail?", "a": "Tidak. Halaman disalin sebagaimana adanya, jadi teks, imej dan resolusi kekal sama; hanya urutan dan halaman kosong yang diselitkan berubah." },
+      { "q": "Bolehkah saya menyusun PDF yang dilindungi kata laluan?", "a": "Ia perlu dibuka kuncinya dahulu. Untuk memaparkan pratonton, setiap halaman perlu dibaca, dan dokumen tersulit tidak boleh dibaca tanpa kata laluan." }
+    ],
+    "merge": [
+      { "q": "Adakah saiz halaman diseragamkan selepas digabung?", "a": "Tidak. Setiap halaman mengekalkan dimensinya, jadi A4 dan Letter boleh berada dalam dokumen yang sama dan tetap dicetak pada saiz asal." },
+      { "q": "Apa berlaku kepada penanda buku selepas digabung?", "a": "Kandungan halaman dikekalkan sepenuhnya, tetapi penanda buku peringkat dokumen tidak dibawa ke fail baharu; ia perlu ditambah semula." }
+    ],
+    "split": [
+      { "q": "Bagaimana fail yang dipisahkan dinamakan?", "a": "Nama asal ditambah nombor bahagian, dibungkus dalam satu ZIP supaya satu muat turun memberikan semua bahagian." },
+      { "q": "Apa berlaku kepada halaman yang tiada titik pemisahan?", "a": "Ia kekal dalam bahagiannya sendiri dan tidak pernah digugurkan; hanya pemisahan yang anda letakkan antara halaman yang memotong dokumen." }
+    ],
+    "rotate": [
+      { "q": "Bolehkah saya memutar satu halaman sahaja?", "a": "Boleh. Putaran direkodkan per halaman, jadi satu helaian yang senget boleh dibetulkan tanpa menyentuh yang lain." },
+      { "q": "Adakah memutar menjejaskan kualiti?", "a": "Tidak. Kandungan halaman tidak dirender semula, jadi resolusi, fon dan imej kekal sama sebelum dan selepas." }
+    ],
+    "reorderPages": [
+      { "q": "Adakah ia berfungsi untuk dokumen sangat panjang?", "a": "Lakaran kecil dirender dalam pelayar, jadi fail beratus-ratus halaman mengambil sedikit masa untuk dipenuhi, paling ketara pada telefon." },
+      { "q": "Bolehkah saya memutar halaman semasa menyusun semula?", "a": "Boleh. Putaran direkodkan per halaman, jadi imbasan yang senget boleh dibetulkan tanpa menjejaskan yang lain." }
+    ],
+    "deletePages": [
+      { "q": "Bolehkah saya memadam satu julat penuh sekali gus?", "a": "Gunakan ruang julat untuk blok seperti 4-12, atau pintasan ganjil/genap untuk membuang setiap halaman kedua daripada imbasan dua muka surat." },
+      { "q": "Adakah memadam halaman mengecilkan fail?", "a": "Ya. Halaman yang dipadam tidak ditulis ke eksport langsung, jadi fail 200 halaman yang dipotong kepada 20 menjadi jauh lebih kecil." }
+    ],
+    "extractPages": [
+      { "q": "Bolehkah halaman yang diekstrak disusun semula?", "a": "Ia mengekalkan urutan asal. Jika perlu urutan lain, jalankan hasilnya melalui editor halaman selepas itu." },
+      { "q": "Adakah teks masih boleh dipilih dalam halaman yang diekstrak?", "a": "Ya. Halaman disalin dan bukan dirender semula, jadi teks, fon dan anotasi kekal utuh." }
+    ],
+    "crop": [
+      { "q": "Adakah bahagian yang dipotong benar-benar hilang?", "a": "Ia tidak lagi dicetak dan tidak lagi dipaparkan kerana kotak halaman yang kelihatan menyempit. Kandungan di bawahnya tidak ditulis semula, sebab itu saiz fail hampir tidak berubah." },
+      { "q": "Bolehkah setiap halaman dipotong berbeza?", "a": "Boleh. Gunakan satu bingkai untuk seluruh dokumen, atau tukar kepada halaman yang dipilih supaya setiap satu mengekalkan potongannya sendiri." }
+    ],
+    "edit": [
+      { "q": "Bolehkah saya menambah beberapa tandatangan?", "a": "Boleh. Lukis atau taip tandatangan sekali, kemudian letakkan pada seberapa banyak halaman yang diperlukan." },
+      { "q": "Bolehkah teks sedia ada diedit?", "a": "Tidak. Tambahan diletakkan di atas halaman, jadi teks asal tidak boleh dipilih atau ditulis semula; tutup dengan blok putih jika ia perlu hilang." }
+    ],
+    "pdfToImage": [
+      { "q": "DPI mana yang patut saya pilih?", "a": "150 untuk skrin dan sembang, 200 untuk slaid, 300 untuk cetakan atau OCR. Nilai lebih tinggi kelihatan lebih tajam dan fail menjadi jauh lebih besar." },
+      { "q": "Bolehkah saya menukar sebahagian halaman sahaja?", "a": "Boleh. Eksport semua halaman atau hanya yang dipilih, sama ada muat turun berasingan atau satu ZIP." }
+    ],
+    "imageToPdf": [
+      { "q": "Adakah imej dimampatkan semula?", "a": "Ia dimasukkan tanpa pusingan mampatan kedua, jadi foto tajam kekal tajam dan PDF membesar bersamanya, itu dijangka." },
+      { "q": "Bolehkah satu PDF mencampur saiz halaman?", "a": "Saiz yang dipilih dikenakan pada keseluruhan kelompok. Untuk format bercampur, bina dua PDF dan gabungkan supaya setiap halaman mengekalkan saiznya." }
+    ]
+  }
+}

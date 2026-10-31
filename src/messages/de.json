@@ -756,6 +756,20 @@
         "Gescannte Belege in einer Spesen-Datei sammeln.",
         "Ein Portfolio-PDF aus exportierten Designbildern bauen."
       ]
+    },
+    "detailHeading": "Wann du es brauchst",
+    "detail": {
+      "organize": "Nimm den Organizer, wenn das Dokument selbst stimmt und nur die Reihenfolge falsch ist: ein Scan aus zwei Durchgängen, ein Vertrag, dessen Unterschriftsseite am Ende gelandet ist, ein Angebot mit dem Anhang in der Mitte. Anders als beim Zusammenfügen wird hier nichts verbunden – die Seitenzahl ändert sich nur, wenn du leere Seiten einfügst oder Seiten aus einer anderen Datei holst.",
+      "merge": "Zusammenfügen passt, wenn die Information schon in getrennten Dateien liegt und zusammengehört: ein Ordner mit Lieferantenrechnungen, einzeln exportierte Kapitel, ein Vertrag mit seinem Anhang. Jede Seite behält ihre Originalgröße, also dürfen A4 und Letter gemischt werden – beim Drucken sieht das aber ungleichmäßig aus.",
+      "split": "Teilen ist dafür da, einen Teil eines Dokuments weiterzugeben, ohne den Rest zu zeigen: ein Kapitel an die Prüfung, eine Rechnung an die Buchhaltung, die unterschriebenen Seiten an die Gegenseite. Trennstellen liegen zwischen Seiten; beginnt ein Abschnitt mitten auf einer Seite, schneide ihn zuerst zu und teile das Ergebnis.",
+      "rotate": "Drehen ist ein Reparaturwerkzeug: Es ändert die Ausrichtung und sonst nichts. Ein Blatt, das verkehrt herum durch den Einzug lief, ein Foto eines Formulars, das quer gespeichert wurde, eine Quertabelle in einem Hochformatbericht. Gespeichert wird nur eine Drehmarkierung, deshalb bleibt der Text markierbar und die Dateigröße unverändert.",
+      "reorderPages": "Der Seiteneditor ordnet ein Dokument neu, das du schon hast: Jede Seite erscheint als Vorschau, was einen fehlenden oder doppelten Scan sofort sichtbar macht. Er arbeitet mit einer Datei gleichzeitig; kommen die Seiten aus mehreren Dokumenten, nutze Organisieren oder Zusammenfügen.",
+      "deletePages": "Löschen ist richtig, wenn ein Dokument fast stimmt, aber Seiten mitführt, die nicht mitreisen sollen: eine leere Rückseite, ein überholtes Angebot, ein internes Deckblatt. Bis zum Export wird nichts geschrieben, ein versehentliches Löschen kostet also nur das erneute Laden der Datei.",
+      "extractPages": "Extrahieren ist die Umkehrung von Löschen: Statt Seiten zu entfernen, behältst du nur die benannten. Zieh eine Rechnung aus einem Kontoauszug, einen Anhang aus einem Vertrag, ein Kapitel aus einem Handbuch – als neues PDF oder als ZIP mit einer Datei pro Seite.",
+      "crop": "Zuschneiden verengt den sichtbaren Bereich, ohne die Seite neu zu schreiben, deshalb bleibt Text im Rahmen markierbar. Es ist die ehrliche Lösung für den schwarzen Scannerrand, eine zu breit exportierte Folie oder den Browserkopf, der beim Drucken in PDF entsteht; was außerhalb des Rahmens liegt, wird verdeckt statt gelöscht – daher ändert sich die Dateigröße kaum.",
+      "edit": "Der Editor deckt kleine Ergänzungen an einem fertigen PDF ab: ein Feld in einem nicht interaktiven Formular ausfüllen, ohne Drucker unterschreiben, eine alte Adresse überdecken, bevor ein Dokument weitergeht. Er fließt Text nicht neu – Ergänzungen liegen über der Seite, ein langer Ersatzsatz passt deshalb vielleicht nicht in den ursprünglichen Platz.",
+      "pdfToImage": "In ein Bild umwandeln, wenn das Ziel kein PDF anzeigen kann: ein Messenger, eine Präsentation, das Upload-Feld eines CMS. Gerendert wird in der gewählten Auflösung: 150 DPI reichen für Bildschirm und Chat, 300 DPI brauchen Druck und OCR, höhere Werte blähen nur die Datei auf.",
+      "imageToPdf": "Bild zu PDF ist die Rückreise: Fotos von Belegen, exportierte Designframes, Screenshots einer Unterhaltung. Weil jede Seite aus einem Bild entsteht, hat die exportierte Datei keinen durchsuchbaren Text – lass bei Bedarf OCR über das Ergebnis laufen, wenn das Dokument indexiert oder zitiert werden soll."
     }
   },
   "Legal": {
@@ -899,6 +913,118 @@
         "q": "Welche Bildformate werden unterstützt?",
         "a": "PNG, JPG und WebP. Andere Formate werden im Browser konvertiert, bevor das PDF entsteht."
       }
+    },
+    "toolExtra": {
+      "organize": [
+        {
+          "q": "Verringert das Organisieren die Dateiqualität?",
+          "a": "Nein. Seiten werden unverändert kopiert, Text, Bilder und Auflösung bleiben also gleich; nur die Reihenfolge und eingefügte leere Seiten ändern sich."
+        },
+        {
+          "q": "Kann ich ein passwortgeschütztes PDF organisieren?",
+          "a": "Es muss zuerst entsperrt werden. Für die Vorschau müssen alle Seiten gelesen werden, und ein verschlüsseltes Dokument lässt sich ohne Passwort nicht lesen."
+        }
+      ],
+      "merge": [
+        {
+          "q": "Werden die Seitengrößen beim Zusammenfügen vereinheitlicht?",
+          "a": "Nein. Jede Seite behält ihre Abmessungen, A4 und Letter können also im selben Dokument stehen und werden trotzdem in Originalgröße gedruckt."
+        },
+        {
+          "q": "Was passiert beim Zusammenfügen mit Lesezeichen?",
+          "a": "Der Seiteninhalt bleibt vollständig erhalten, Lesezeichen auf Dokumentebene wandern aber nicht in die neue Datei; sie müssen neu angelegt werden."
+        }
+      ],
+      "split": [
+        {
+          "q": "Wie werden die geteilten Dateien benannt?",
+          "a": "Der ursprüngliche Dateiname plus eine Teilnummer, alles in einem ZIP, damit ein Download alle Teile liefert."
+        },
+        {
+          "q": "Was passiert mit Seiten, die zwischen keinen Trennstellen liegen?",
+          "a": "Sie bleiben in ihrem eigenen Teil und gehen nie verloren; nur die Trennstellen, die du zwischen Seiten setzt, zerschneiden das Dokument."
+        }
+      ],
+      "rotate": [
+        {
+          "q": "Kann ich nur eine von vielen Seiten drehen?",
+          "a": "Ja. Die Drehung wird pro Seite gespeichert, du kannst also ein einzelnes schiefes Blatt gerade stellen und den Rest unangetastet lassen."
+        },
+        {
+          "q": "Kostet Drehen Qualität?",
+          "a": "Nein. Der Seiteninhalt wird nicht neu gerendert, Auflösung, Schriften und Bilder sind vorher und nachher identisch."
+        }
+      ],
+      "reorderPages": [
+        {
+          "q": "Funktioniert es bei sehr langen Dokumenten?",
+          "a": "Vorschauen werden im Browser gerendert, eine Datei mit mehreren hundert Seiten braucht daher einen Moment, bis alles da ist – am Handy am deutlichsten."
+        },
+        {
+          "q": "Kann ich beim Sortieren eine Seite drehen?",
+          "a": "Ja. Die Drehung wird pro Seite gespeichert, ein schiefer Scan lässt sich also korrigieren, ohne die anderen zu berühren."
+        }
+      ],
+      "deletePages": [
+        {
+          "q": "Kann ich einen ganzen Bereich auf einmal löschen?",
+          "a": "Nutze das Bereichsfeld für einen Block wie 4-12 oder die Ungerade/Gerade-Verknüpfung, um bei einem zweiseitigen Scan jede zweite Seite zu entfernen."
+        },
+        {
+          "q": "Wird die Datei durch Löschen kleiner?",
+          "a": "Ja. Entfernte Seiten werden gar nicht in den Export geschrieben, daher wird eine Datei mit 200 Seiten nach dem Kürzen auf 20 deutlich kleiner."
+        }
+      ],
+      "extractPages": [
+        {
+          "q": "Lassen sich die extrahierten Seiten neu sortieren?",
+          "a": "Sie behalten ihre ursprüngliche Reihenfolge. Wenn du eine andere brauchst, schick das Ergebnis danach durch den Seiteneditor."
+        },
+        {
+          "q": "Bleibt der Text in den extrahierten Seiten markierbar?",
+          "a": "Ja. Seiten werden kopiert statt neu gerendert, Text, Schriften und Anmerkungen bleiben also erhalten."
+        }
+      ],
+      "crop": [
+        {
+          "q": "Ist der weggeschnittene Bereich wirklich weg?",
+          "a": "Er wird nicht mehr gedruckt und nicht mehr angezeigt, weil der sichtbare Seitenrahmen enger wird. Der Inhalt darunter wird nicht neu geschrieben, deshalb ändert sich die Dateigröße kaum."
+        },
+        {
+          "q": "Kann ich Seiten unterschiedlich zuschneiden?",
+          "a": "Ja. Wende einen Rahmen auf das ganze Dokument an oder wechsle zu den ausgewählten Seiten, damit jede ihren eigenen Zuschnitt behält."
+        }
+      ],
+      "edit": [
+        {
+          "q": "Kann ich mehrere Unterschriften setzen?",
+          "a": "Ja. Zeichne oder tippe eine Unterschrift einmal und platziere sie auf so vielen Seiten, wie das Dokument braucht."
+        },
+        {
+          "q": "Lässt sich vorhandener Text bearbeiten?",
+          "a": "Nein. Ergänzungen liegen über der Seite, vorhandener Text kann also weder markiert noch umgeschrieben werden – überdecke ihn mit einem weißen Block."
+        }
+      ],
+      "pdfToImage": [
+        {
+          "q": "Welche DPI soll ich wählen?",
+          "a": "150 für Bildschirm und Chat, 200 für Präsentationen, 300 für Druck oder OCR. Höhere Werte sehen schärfer aus und machen die Dateien viel größer."
+        },
+        {
+          "q": "Kann ich nur einige Seiten umwandeln?",
+          "a": "Ja. Exportiere alle Seiten oder nur die ausgewählten, als einzelne Downloads oder als ein ZIP."
+        }
+      ],
+      "imageToPdf": [
+        {
+          "q": "Werden die Bilder neu komprimiert?",
+          "a": "Sie werden ohne zweite Kompression eingebettet, scharfe Fotos bleiben also scharf und das PDF wächst mit – das ist zu erwarten."
+        },
+        {
+          "q": "Kann ein PDF verschiedene Seitengrößen mischen?",
+          "a": "Die gewählte Größe gilt für den ganzen Stapel. Für gemischte Formate baue zwei PDFs und füge sie zusammen, dann behält jede Seite ihre Größe."
+        }
+      ]
     }
   }
 }

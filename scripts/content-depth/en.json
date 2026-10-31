@@ -1,0 +1,128 @@
+{
+  "detailHeading": "When to use it",
+  "detail": {
+    "organize": "Use the organizer when the document itself is fine and only the sequence is wrong: a scan stitched from two passes, a contract whose signature page ended up at the back, a proposal with the appendix in the middle. Unlike merging, nothing is combined here, so the page count only changes when you add blank pages or pull pages in from another file.",
+    "merge": "Merging fits when the information already lives in separate files and belongs in one: a folder of supplier invoices, chapters exported one by one, a contract plus its annex. Every page keeps its original size, so mixing A4 and Letter is allowed but looks uneven once printed.",
+    "split": "Split is for handing over part of a document without exposing the rest: one chapter to a reviewer, a single invoice to accounting, the signed pages to a counterparty. Break points sit between pages, so if a section starts in the middle of a page, crop it first and split the result.",
+    "rotate": "Rotate is a repair tool: it changes orientation and nothing else. A sheet fed upside down, a photo of a form saved sideways, a landscape table inside a portrait report. Only a rotation flag is written, so the text stays selectable and the file size does not change.",
+    "reorderPages": "The page editor is for re-sequencing a document you already have: every page appears as a thumbnail, which makes a missing or duplicated scan easy to spot. It works on one file at a time; when the pages come from several documents, use organize or merge instead.",
+    "deletePages": "Reach for delete when a document is mostly right but carries pages that should not travel with it: a blank reverse side, a superseded quote, an internal cover sheet. Nothing is written until you export, so an accidental removal costs nothing more than reloading the file.",
+    "extractPages": "Extract is the inverse of delete: instead of removing pages you keep only the ones you name. Pull an invoice out of a statement, an annex out of a contract, a chapter out of a manual — as one new PDF or as a ZIP with one file per page.",
+    "crop": "Cropping narrows the visible area without rewriting the page, so text inside the frame stays selectable. It is the honest fix for a scanner border, an over-wide slide export or a browser header baked in by print-to-PDF; whatever sits outside the frame is hidden rather than deleted, which is why the file size barely moves.",
+    "edit": "The editor covers small additions to a finished PDF: filling a field on a non-interactive form, signing without a printer, covering an old address before a document is forwarded. It does not reflow text — additions sit on top of the page, so a long replacement sentence may not fit the space the original occupied.",
+    "pdfToImage": "Convert to an image when the destination cannot display a PDF: a chat app, a slide deck, a CMS upload field. Rendering happens at the resolution you choose, so 150 DPI suits screens and chat, 300 DPI is what print and OCR want, and higher settings only inflate the file.",
+    "imageToPdf": "Image-to-PDF is the return trip: photos of receipts, exported design frames, screenshots of a conversation. Because each page is built from an image, the exported file has no searchable text — run OCR on the result if the document has to be indexed or quoted."
+  },
+  "faqExtra": {
+    "organize": [
+      {
+        "q": "Does reorganizing reduce the file quality?",
+        "a": "No. Pages are copied as they are, so text, images and resolution stay identical; only the order and any inserted blank pages differ."
+      },
+      {
+        "q": "Can I organize a password-protected PDF?",
+        "a": "You have to unlock it first. Showing a preview means reading every page, and an encrypted document cannot be read without its password."
+      }
+    ],
+    "merge": [
+      {
+        "q": "Are page sizes normalised when files are merged?",
+        "a": "No. Each page keeps its own dimensions, so A4 and Letter can sit in the same document and still print at their original sizes."
+      },
+      {
+        "q": "What happens to bookmarks after merging?",
+        "a": "Page content is preserved in full, but document-level bookmarks are not carried into the new file; they have to be added again."
+      }
+    ],
+    "split": [
+      {
+        "q": "How are the split files named?",
+        "a": "The original file name plus a part number, packaged in one ZIP so a single download delivers every part."
+      },
+      {
+        "q": "What happens to pages no break point covers?",
+        "a": "They stay in their own part and are never dropped; only the boundaries you place between pages cut the document."
+      }
+    ],
+    "rotate": [
+      {
+        "q": "Can I rotate only one page of many?",
+        "a": "Yes. Rotation is stored per page, so you can straighten a single sideways sheet and leave the rest untouched."
+      },
+      {
+        "q": "Does rotating cost quality?",
+        "a": "No. The page content is not re-rendered, so resolution, fonts and images are identical before and after."
+      }
+    ],
+    "reorderPages": [
+      {
+        "q": "Does it work on very long documents?",
+        "a": "Thumbnails are rendered in the browser, so a file with several hundred pages takes a moment to fill in — most noticeably on a phone."
+      },
+      {
+        "q": "Can I rotate a page while reordering?",
+        "a": "Yes. Rotation is stored per page, so one crooked scan can be corrected without affecting the others."
+      }
+    ],
+    "deletePages": [
+      {
+        "q": "Can I delete a whole range at once?",
+        "a": "Use the range field for a block such as 4-12, or the odd/even shortcut to strip every other page from a two-sided scan."
+      },
+      {
+        "q": "Does deleting pages make the file smaller?",
+        "a": "Yes. Removed pages are not written to the export at all, so cutting a 200-page file down to 20 pages shrinks it considerably."
+      }
+    ],
+    "extractPages": [
+      {
+        "q": "Can the extracted pages be reordered?",
+        "a": "They keep their original order. If you need a different sequence, run the result through the page editor afterwards."
+      },
+      {
+        "q": "Is text still selectable in the extracted pages?",
+        "a": "Yes. Pages are copied rather than re-rendered, so text, fonts and annotations survive intact."
+      }
+    ],
+    "crop": [
+      {
+        "q": "Is the cropped area really gone?",
+        "a": "It no longer prints and no longer shows, because the visible page box is narrowed. The underlying content is not rewritten, which is why the file size hardly changes."
+      },
+      {
+        "q": "Can different pages be cropped differently?",
+        "a": "Yes. Apply one frame to the whole document, or switch to the selected pages so each keeps its own crop."
+      }
+    ],
+    "edit": [
+      {
+        "q": "Can I add several signatures?",
+        "a": "Yes. Draw or type a signature once, then place it on as many pages as the document needs."
+      },
+      {
+        "q": "Can existing text be edited?",
+        "a": "No. Additions are layered over the page, so original text cannot be selected or rewritten — cover it with a white-out block if it has to disappear."
+      }
+    ],
+    "pdfToImage": [
+      {
+        "q": "Which DPI should I pick?",
+        "a": "150 for screens and chat, 200 for slides, 300 for print or OCR. Higher values look sharper and make the files much larger."
+      },
+      {
+        "q": "Can I convert only some pages?",
+        "a": "Yes. Export every page or only the ones you select, either as single downloads or as one ZIP."
+      }
+    ],
+    "imageToPdf": [
+      {
+        "q": "Are the images recompressed?",
+        "a": "They are embedded without a second round of compression, so sharp photos stay sharp and the PDF grows with them — that is expected."
+      },
+      {
+        "q": "Can one PDF mix page sizes?",
+        "a": "The size you pick applies to the whole batch. For mixed formats, build two PDFs and merge them so each page keeps its own size."
+      }
+    ]
+  }
+}

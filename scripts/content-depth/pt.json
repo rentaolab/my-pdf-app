@@ -1,0 +1,62 @@
+{
+  "detailHeading": "Quando usar",
+  "detail": {
+    "organize": "Use o organizador quando o documento está bom e só a ordem está errada: uma digitalização feita em duas passagens, um contrato cuja página de assinatura ficou no fim, uma proposta com o anexo no meio. Diferente de unir, nada é combinado aqui, então o número de páginas só muda quando você insere páginas em branco ou puxa páginas de outro arquivo.",
+    "merge": "Unir faz sentido quando a informação já vive em arquivos separados e deve ficar junta: uma pasta de notas fiscais de fornecedores, capítulos exportados um a um, um contrato com o seu anexo. Cada página mantém o tamanho original, então misturar A4 e Carta é permitido, mas a impressão fica desuniforme.",
+    "split": "Dividir serve para entregar uma parte de um documento sem mostrar o resto: um capítulo para o revisor, uma nota fiscal para o financeiro, as páginas assinadas para a outra parte. Os pontos de corte ficam entre páginas, então se uma seção começa no meio da página, corte primeiro e divida o resultado.",
+    "rotate": "Girar é uma ferramenta de reparo: muda a orientação e nada mais. Uma folha digitalizada de cabeça para baixo, a foto de um formulário salva de lado, uma tabela horizontal dentro de um relatório vertical. Só uma marca de rotação é gravada, então o texto continua selecionável e o tamanho do arquivo não muda.",
+    "reorderPages": "O editor de páginas serve para reordenar um documento que você já tem: cada página aparece como miniatura, o que facilita achar uma digitalização faltando ou repetida. Trabalha com um arquivo por vez; quando as páginas vêm de vários documentos, use organizar ou unir.",
+    "deletePages": "Exclua páginas quando o documento está quase certo mas carrega páginas que não deveriam ir junto: um verso em branco, um orçamento já substituído, uma capa interna. Nada é gravado até você exportar, então uma exclusão por engano custa apenas recarregar o arquivo.",
+    "extractPages": "Extrair é o inverso de excluir: em vez de remover páginas, você mantém apenas as que indicar. Retire uma nota fiscal de um extrato, um anexo de um contrato, um capítulo de um manual, como um novo PDF ou como um ZIP com um arquivo por página.",
+    "crop": "Cortar estreita a área visível sem reescrever a página, então o texto dentro da moldura continua selecionável. É a solução honesta para a borda preta do scanner, um slide exportado largo demais ou o cabeçalho do navegador que fica ao imprimir para PDF; o que está fora da moldura é ocultado, não apagado, e por isso o tamanho quase não muda.",
+    "edit": "O editor cobre pequenos acréscimos num PDF pronto: preencher um campo de formulário não interativo, assinar sem impressora, cobrir um endereço antigo antes de reenviar um documento. Ele não reflui o texto — o que é adicionado fica sobre a página, então uma frase de substituição longa pode não caber no espaço original.",
+    "pdfToImage": "Converta para imagem quando o destino não exibe PDF: um app de mensagens, uma apresentação, o campo de upload de um CMS. A renderização acontece na resolução que você escolher: 150 DPI basta para telas e chat, 300 DPI é o que impressão e OCR pedem, e valores maiores só inflam o arquivo.",
+    "imageToPdf": "Imagem para PDF é a viagem de volta: fotos de recibos, frames de design exportados, capturas de uma conversa. Como cada página é construída a partir de uma imagem, o arquivo exportado não tem texto pesquisável; rode OCR no resultado se o documento precisar ser indexado ou citado."
+  },
+  "faqExtra": {
+    "organize": [
+      { "q": "Organizar reduz a qualidade do arquivo?", "a": "Não. As páginas são copiadas como estão, então texto, imagens e resolução continuam idênticos; mudam apenas a ordem e as páginas em branco inseridas." },
+      { "q": "Posso organizar um PDF protegido por senha?", "a": "É preciso desbloquear primeiro. Para mostrar a prévia é necessário ler todas as páginas, e um documento criptografado não pode ser lido sem a senha." }
+    ],
+    "merge": [
+      { "q": "Os tamanhos de página são unificados ao unir?", "a": "Não. Cada página mantém as suas dimensões, então A4 e Carta podem conviver no mesmo documento e ainda imprimir no tamanho original." },
+      { "q": "O que acontece com os marcadores após unir?", "a": "O conteúdo das páginas é preservado por inteiro, mas os marcadores de nível de documento não passam para o novo arquivo; é preciso adicioná-los de novo." }
+    ],
+    "split": [
+      { "q": "Como os arquivos divididos são nomeados?", "a": "O nome original mais um número de parte, empacotados em um ZIP para que um único download entregue todas as partes." },
+      { "q": "O que acontece com páginas que não estão entre cortes?", "a": "Ficam na sua própria parte e nunca são descartadas; só os cortes colocados entre páginas dividem o documento." }
+    ],
+    "rotate": [
+      { "q": "Posso girar apenas uma página de muitas?", "a": "Sim. A rotação é gravada por página, então dá para endireitar uma única folha torta e deixar o resto intacto." },
+      { "q": "Girar prejudica a qualidade?", "a": "Não. O conteúdo da página não é renderizado de novo, então resolução, fontes e imagens ficam idênticas antes e depois." }
+    ],
+    "reorderPages": [
+      { "q": "Funciona com documentos muito longos?", "a": "As miniaturas são renderizadas no navegador, então um arquivo com centenas de páginas leva um tempo para preencher — mais perceptível no celular." },
+      { "q": "Posso girar uma página enquanto reordeno?", "a": "Sim. A rotação é gravada por página, então é possível corrigir uma digitalização torta sem afetar as outras." }
+    ],
+    "deletePages": [
+      { "q": "Posso excluir um intervalo inteiro de uma vez?", "a": "Use o campo de intervalo para um bloco como 4-12, ou o atalho de ímpares e pares para remover uma página sim, outra não numa digitalização frente e verso." },
+      { "q": "Excluir páginas deixa o arquivo menor?", "a": "Sim. As páginas removidas não são gravadas na exportação, então sair de 200 para 20 páginas reduz bastante o tamanho." }
+    ],
+    "extractPages": [
+      { "q": "As páginas extraídas podem ser reordenadas?", "a": "Mantêm a ordem original. Se precisar de outra sequência, passe o resultado pelo editor de páginas depois." },
+      { "q": "O texto continua selecionável nas páginas extraídas?", "a": "Sim. As páginas são copiadas em vez de renderizadas de novo, então texto, fontes e anotações permanecem intactos." }
+    ],
+    "crop": [
+      { "q": "A parte cortada realmente some?", "a": "Deixa de imprimir e de aparecer, porque a área visível da página fica menor. O conteúdo por baixo não é reescrito, e por isso o tamanho do arquivo quase não muda." },
+      { "q": "Posso cortar diferente em cada página?", "a": "Sim. Aplique uma moldura ao documento todo ou mude para as páginas selecionadas para que cada uma mantenha o seu corte." }
+    ],
+    "edit": [
+      { "q": "Posso adicionar várias assinaturas?", "a": "Sim. Desenhe ou digite uma assinatura uma vez e coloque-a em quantas páginas o documento precisar." },
+      { "q": "Dá para editar o texto existente?", "a": "Não. O que é adicionado fica sobre a página, então o texto original não pode ser selecionado nem reescrito; cubra com um bloco branco se precisar sumir." }
+    ],
+    "pdfToImage": [
+      { "q": "Qual DPI devo escolher?", "a": "150 para telas e chat, 200 para apresentações, 300 para impressão ou OCR. Valores maiores ficam mais nítidos e geram arquivos bem maiores." },
+      { "q": "Posso converter apenas algumas páginas?", "a": "Sim. Exporte todas as páginas ou só as selecionadas, como downloads individuais ou um único ZIP." }
+    ],
+    "imageToPdf": [
+      { "q": "As imagens são recomprimidas?", "a": "São embutidas sem uma segunda compressão, então fotos nítidas continuam nítidas e o PDF cresce junto — isso é esperado." },
+      { "q": "Um PDF pode misturar tamanhos de página?", "a": "O tamanho escolhido vale para o lote inteiro. Para formatos mistos, gere dois PDFs e una-os, assim cada página mantém o seu." }
+    ]
+  }
+}

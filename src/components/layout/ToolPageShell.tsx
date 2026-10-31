@@ -53,7 +53,13 @@ export default function ToolPageShell({
 
   // `has()` keeps the build green while a locale is missing a FAQ translation;
   // the JSON-LD is then simply emitted without that entry instead of the page
-  // failing to render.
+  // failing to render. `toolExtra` holds the long-tail pairs (see
+  // `scripts/content-depth/`) as an array, so one locale can grow the list
+  // without a component change; both sets end up in the visible list and the
+  // FAQPage JSON-LD together.
+  const extraFaq = tFaq.has(`toolExtra.${toolKey}`)
+    ? (tFaq.raw(`toolExtra.${toolKey}`) as { q: string; a: string }[])
+    : [];
   const faqItems = [
     ...COMMON_FAQ_KEYS.filter((key) => tFaq.has(`common.${key}.q`)).map((key) => ({
       q: tFaq(`common.${key}.q`),
@@ -62,6 +68,7 @@ export default function ToolPageShell({
     ...(tFaq.has(`tool.${toolKey}.q`)
       ? [{ q: tFaq(`tool.${toolKey}.q`), a: tFaq(`tool.${toolKey}.a`) }]
       : []),
+    ...extraFaq,
   ];
 
   return (

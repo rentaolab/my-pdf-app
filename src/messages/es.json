@@ -756,6 +756,20 @@
         "Agrupa recibos escaneados en un archivo de gastos.",
         "Crea un PDF de portafolio con imágenes de diseño."
       ]
+    },
+    "detailHeading": "Cuándo conviene usarlo",
+    "detail": {
+      "organize": "Usa el organizador cuando el documento está bien y solo el orden está mal: un escaneo hecho en dos pasadas, un contrato cuya página de firma acabó al final, una propuesta con el anexo en medio. A diferencia de unir, aquí no se combina nada: el número de páginas solo cambia si añades páginas en blanco o traes páginas de otro archivo.",
+      "merge": "Unir encaja cuando la información ya vive en archivos separados y debe ir junta: una carpeta de facturas de proveedores, capítulos exportados uno a uno, un contrato con su anexo. Cada página conserva su tamaño original, así que mezclar A4 y Carta está permitido, pero al imprimir se nota la diferencia.",
+      "split": "Dividir sirve para entregar una parte de un documento sin mostrar el resto: un capítulo al revisor, una factura a contabilidad, las páginas firmadas a la otra parte. Los puntos de corte van entre páginas, así que si una sección empieza a mitad de página, recórtala primero y divide el resultado.",
+      "rotate": "Girar es una herramienta de reparación: cambia la orientación y nada más. Una hoja escaneada boca abajo, la foto de un formulario guardada de lado, una tabla horizontal dentro de un informe vertical. Solo se escribe una marca de rotación, así que el texto sigue siendo seleccionable y el tamaño del archivo no cambia.",
+      "reorderPages": "El editor de páginas sirve para reordenar un documento que ya tienes: cada página aparece como miniatura, lo que hace fácil detectar un escaneo que falta o está repetido. Trabaja con un archivo a la vez; cuando las páginas vienen de varios documentos, usa organizar o unir.",
+      "deletePages": "Elimina páginas cuando el documento está casi bien pero arrastra páginas que no deberían viajar con él: un reverso en blanco, una cotización ya sustituida, una portada interna. Nada se escribe hasta que exportas, así que un borrado por error solo cuesta volver a cargar el archivo.",
+      "extractPages": "Extraer es lo inverso de eliminar: en lugar de quitar páginas, conservas solo las que nombras. Saca una factura de un estado de cuenta, un anexo de un contrato, un capítulo de un manual, como un nuevo PDF o como un ZIP con un archivo por página.",
+      "crop": "Recortar estrecha el área visible sin reescribir la página, así que el texto dentro del marco sigue siendo seleccionable. Es la solución honesta para el borde negro del escáner, una diapositiva exportada demasiado ancha o el encabezado del navegador que queda al imprimir a PDF; lo que está fuera del marco se oculta en lugar de borrarse, y por eso el tamaño apenas cambia.",
+      "edit": "El editor cubre pequeños añadidos sobre un PDF terminado: rellenar un campo de un formulario no interactivo, firmar sin impresora, tapar una dirección antigua antes de reenviar un documento. No reflowea el texto: lo añadido se superpone a la página, así que una frase de reemplazo larga puede no caber donde estaba la original.",
+      "pdfToImage": "Convierte a imagen cuando el destino no puede mostrar un PDF: una app de mensajería, una presentación, el campo de subida de un CMS. El renderizado ocurre a la resolución que elijas: 150 DPI basta para pantallas y chat, 300 DPI es lo que piden impresión y OCR, y valores más altos solo inflan el archivo.",
+      "imageToPdf": "Imagen a PDF es el viaje de vuelta: fotos de recibos, marcos de diseño exportados, capturas de una conversación. Como cada página se construye a partir de una imagen, el archivo exportado no tiene texto buscable; aplica OCR al resultado si el documento debe indexarse o citarse."
     }
   },
   "Legal": {
@@ -899,6 +913,118 @@
         "q": "¿Qué formatos de imagen admite?",
         "a": "PNG, JPG y WebP. Otros formatos se convierten en el navegador antes de crear el PDF."
       }
+    },
+    "toolExtra": {
+      "organize": [
+        {
+          "q": "¿Organizar reduce la calidad del archivo?",
+          "a": "No. Las páginas se copian tal cual, así que el texto, las imágenes y la resolución son idénticos; solo cambian el orden y las páginas en blanco insertadas."
+        },
+        {
+          "q": "¿Puedo organizar un PDF protegido con contraseña?",
+          "a": "Primero hay que desbloquearlo. Mostrar una vista previa implica leer todas las páginas, y un documento cifrado no se puede leer sin su contraseña."
+        }
+      ],
+      "merge": [
+        {
+          "q": "¿Se unifican los tamaños de página al unir?",
+          "a": "No. Cada página conserva sus dimensiones, así que A4 y Carta pueden convivir en el mismo documento e imprimirse a su tamaño original."
+        },
+        {
+          "q": "¿Qué pasa con los marcadores al unir?",
+          "a": "El contenido de las páginas se conserva íntegro, pero los marcadores de nivel de documento no pasan al archivo nuevo; hay que volver a añadirlos."
+        }
+      ],
+      "split": [
+        {
+          "q": "¿Cómo se nombran los archivos divididos?",
+          "a": "El nombre original más un número de parte, empaquetados en un ZIP para que una sola descarga entregue todas las partes."
+        },
+        {
+          "q": "¿Qué ocurre con las páginas que no cubre ningún punto de corte?",
+          "a": "Se quedan en su propia parte y nunca se descartan; solo los cortes que colocas entre páginas dividen el documento."
+        }
+      ],
+      "rotate": [
+        {
+          "q": "¿Puedo girar solo una página de muchas?",
+          "a": "Sí. La rotación se guarda por página, así que puedes enderezar una sola hoja torcida y dejar el resto intacto."
+        },
+        {
+          "q": "¿Girar afecta a la calidad?",
+          "a": "No. El contenido de la página no se vuelve a renderizar, así que la resolución, las fuentes y las imágenes son idénticas antes y después."
+        }
+      ],
+      "reorderPages": [
+        {
+          "q": "¿Funciona con documentos muy largos?",
+          "a": "Las miniaturas se renderizan en el navegador, así que un archivo de varios cientos de páginas tarda un momento en llenarse, sobre todo en el móvil."
+        },
+        {
+          "q": "¿Puedo girar una página mientras reordeno?",
+          "a": "Sí. La rotación se guarda por página, de modo que puedes corregir un escaneo torcido sin afectar a los demás."
+        }
+      ],
+      "deletePages": [
+        {
+          "q": "¿Puedo eliminar un rango completo de una vez?",
+          "a": "Usa el campo de rango para un bloque como 4-12, o el atajo de pares e impares para quitar una de cada dos páginas de un escaneo a doble cara."
+        },
+        {
+          "q": "¿Eliminar páginas reduce el archivo?",
+          "a": "Sí. Las páginas eliminadas no se escriben en la exportación, así que pasar de 200 a 20 páginas reduce el tamaño de forma notable."
+        }
+      ],
+      "extractPages": [
+        {
+          "q": "¿Se pueden reordenar las páginas extraídas?",
+          "a": "Conservan su orden original. Si necesitas otra secuencia, pasa el resultado por el editor de páginas después."
+        },
+        {
+          "q": "¿El texto sigue siendo seleccionable en las páginas extraídas?",
+          "a": "Sí. Las páginas se copian en lugar de volver a renderizarse, así que el texto, las fuentes y las anotaciones se mantienen intactos."
+        }
+      ],
+      "crop": [
+        {
+          "q": "¿De verdad desaparece lo recortado?",
+          "a": "Ya no se imprime ni se ve, porque el marco visible de la página se estrecha. El contenido subyacente no se reescribe, y por eso el tamaño del archivo apenas cambia."
+        },
+        {
+          "q": "¿Puedo recortar distinto en cada página?",
+          "a": "Sí. Aplica un marco a todo el documento o cambia a las páginas seleccionadas para que cada una conserve su propio recorte."
+        }
+      ],
+      "edit": [
+        {
+          "q": "¿Puedo añadir varias firmas?",
+          "a": "Sí. Dibuja o escribe una firma una vez y colócala en tantas páginas como necesite el documento."
+        },
+        {
+          "q": "¿Se puede editar el texto existente?",
+          "a": "No. Lo añadido se superpone a la página, así que el texto original no se puede seleccionar ni reescribir; tápalo con un bloque blanco si tiene que desaparecer."
+        }
+      ],
+      "pdfToImage": [
+        {
+          "q": "¿Qué DPI debo elegir?",
+          "a": "150 para pantallas y chat, 200 para presentaciones, 300 para impresión u OCR. Valores más altos se ven más nítidos y generan archivos mucho más grandes."
+        },
+        {
+          "q": "¿Puedo convertir solo algunas páginas?",
+          "a": "Sí. Exporta todas las páginas o solo las seleccionadas, como descargas individuales o como un único ZIP."
+        }
+      ],
+      "imageToPdf": [
+        {
+          "q": "¿Se recomprimen las imágenes?",
+          "a": "Se incrustan sin una segunda compresión, así que las fotos nítidas siguen nítidas y el PDF crece con ellas; es lo esperado."
+        },
+        {
+          "q": "¿Puede un PDF mezclar tamaños de página?",
+          "a": "El tamaño que elijas se aplica a todo el lote. Para formatos mixtos, crea dos PDF y únelos para que cada página conserve el suyo."
+        }
+      ]
     }
   }
 }

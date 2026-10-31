@@ -756,6 +756,20 @@
         "Rassembler des reçus scannés dans un fichier de notes de frais.",
         "Créer un PDF de portfolio à partir d'images de design."
       ]
+    },
+    "detailHeading": "Quand l'utiliser",
+    "detail": {
+      "organize": "Utilisez l'organisateur quand le document est bon et que seul l'ordre est faux : un scan réalisé en deux passes, un contrat dont la page de signature a fini à la fin, une proposition avec l'annexe au milieu. Contrairement à la fusion, rien n'est assemblé ici : le nombre de pages ne change que si vous insérez des pages blanches ou importez des pages d'un autre fichier.",
+      "merge": "La fusion convient quand l'information vit déjà dans des fichiers séparés et doit être réunie : un dossier de factures fournisseurs, des chapitres exportés un par un, un contrat avec son annexe. Chaque page garde son format d'origine, donc mélanger A4 et Letter est permis, mais l'impression paraît irrégulière.",
+      "split": "Diviser sert à transmettre une partie d'un document sans montrer le reste : un chapitre au relecteur, une facture à la comptabilité, les pages signées au cocontractant. Les points de coupe se placent entre deux pages ; si une section commence au milieu d'une page, recadrez-la d'abord puis divisez le résultat.",
+      "rotate": "La rotation est un outil de réparation : elle change l'orientation et rien d'autre. Une feuille passée à l'envers dans le chargeur, la photo d'un formulaire enregistrée de travers, un tableau paysage dans un rapport portrait. Seul un indicateur de rotation est écrit, le texte reste donc sélectionnable et la taille du fichier ne bouge pas.",
+      "reorderPages": "L'éditeur de pages réordonne un document que vous avez déjà : chaque page s'affiche en vignette, ce qui rend un scan manquant ou dupliqué immédiatement visible. Il travaille sur un fichier à la fois ; quand les pages viennent de plusieurs documents, passez par organiser ou fusionner.",
+      "deletePages": "La suppression est le bon choix quand un document est presque juste mais transporte des pages qui ne devraient pas partir avec lui : un verso blanc, un devis périmé, une couverture interne. Rien n'est écrit avant l'export, une suppression accidentelle ne coûte donc que le rechargement du fichier.",
+      "extractPages": "L'extraction est l'inverse de la suppression : au lieu de retirer des pages, vous ne gardez que celles que vous nommez. Sortez une facture d'un relevé, une annexe d'un contrat, un chapitre d'un manuel — en un nouveau PDF ou en ZIP avec un fichier par page.",
+      "crop": "Le recadrage resserre la zone visible sans réécrire la page, le texte dans le cadre reste donc sélectionnable. C'est la solution honnête au bord noir du scanner, à une diapositive exportée trop large ou à l'en-tête du navigateur imprimé dans le PDF ; ce qui est hors du cadre est masqué et non supprimé, d'où une taille de fichier presque inchangée.",
+      "edit": "L'éditeur couvre de petits ajouts sur un PDF terminé : remplir un champ d'un formulaire non interactif, signer sans imprimante, masquer une ancienne adresse avant de transmettre un document. Il ne recompose pas le texte — les ajouts se posent au-dessus de la page, une phrase de remplacement longue peut donc ne pas tenir dans l'espace d'origine.",
+      "pdfToImage": "Convertissez en image quand la destination n'affiche pas de PDF : une messagerie, une présentation, le champ d'import d'un CMS. Le rendu se fait à la résolution choisie : 150 DPI suffisent pour les écrans et le chat, 300 DPI sont ce qu'attendent l'impression et l'OCR, et au-delà le fichier ne fait que grossir.",
+      "imageToPdf": "Image en PDF, c'est le trajet retour : photos de reçus, maquettes exportées, captures d'une conversation. Chaque page étant construite à partir d'une image, le fichier exporté ne contient pas de texte recherchable ; lancez un OCR sur le résultat si le document doit être indexé ou cité."
     }
   },
   "Legal": {
@@ -899,6 +913,118 @@
         "q": "Quels formats d'image sont acceptés ?",
         "a": "PNG, JPG et WebP. Les autres formats sont convertis dans le navigateur avant la création du PDF."
       }
+    },
+    "toolExtra": {
+      "organize": [
+        {
+          "q": "Réorganiser dégrade-t-il la qualité du fichier ?",
+          "a": "Non. Les pages sont copiées telles quelles : texte, images et résolution restent identiques, seuls l'ordre et les pages blanches insérées changent."
+        },
+        {
+          "q": "Puis-je organiser un PDF protégé par mot de passe ?",
+          "a": "Il faut d'abord le déverrouiller. Afficher un aperçu suppose de lire toutes les pages, et un document chiffré ne peut pas être lu sans son mot de passe."
+        }
+      ],
+      "merge": [
+        {
+          "q": "Les formats de page sont-ils harmonisés lors d'une fusion ?",
+          "a": "Non. Chaque page conserve ses dimensions : A4 et Letter peuvent cohabiter dans le même document et s'imprimer à leur taille d'origine."
+        },
+        {
+          "q": "Que deviennent les signets après une fusion ?",
+          "a": "Le contenu des pages est intégralement conservé, mais les signets au niveau du document ne sont pas repris dans le nouveau fichier ; il faut les recréer."
+        }
+      ],
+      "split": [
+        {
+          "q": "Comment sont nommés les fichiers divisés ?",
+          "a": "Le nom d'origine suivi d'un numéro de partie, regroupés dans un ZIP pour qu'un seul téléchargement livre toutes les parties."
+        },
+        {
+          "q": "Que deviennent les pages qui ne sont entre aucune coupe ?",
+          "a": "Elles restent dans leur propre partie et ne sont jamais perdues ; seules les coupures placées entre deux pages découpent le document."
+        }
+      ],
+      "rotate": [
+        {
+          "q": "Puis-je faire pivoter une seule page parmi plusieurs ?",
+          "a": "Oui. La rotation est enregistrée page par page : vous pouvez redresser une seule feuille de travers et laisser le reste intact."
+        },
+        {
+          "q": "La rotation dégrade-t-elle la qualité ?",
+          "a": "Non. Le contenu de la page n'est pas réaffiché : résolution, polices et images sont identiques avant et après."
+        }
+      ],
+      "reorderPages": [
+        {
+          "q": "Cela fonctionne-t-il sur de très longs documents ?",
+          "a": "Les vignettes sont générées dans le navigateur : un fichier de plusieurs centaines de pages met un moment à s'afficher, surtout sur un téléphone."
+        },
+        {
+          "q": "Puis-je faire pivoter une page pendant la réorganisation ?",
+          "a": "Oui. La rotation est enregistrée page par page : un scan de travers peut être corrigé sans toucher aux autres."
+        }
+      ],
+      "deletePages": [
+        {
+          "q": "Puis-je supprimer une plage entière d'un coup ?",
+          "a": "Utilisez le champ de plage pour un bloc comme 4-12, ou le raccourci pairs/impairs pour retirer une page sur deux d'un scan recto-verso."
+        },
+        {
+          "q": "Supprimer des pages réduit-il le fichier ?",
+          "a": "Oui. Les pages supprimées ne sont pas écrites dans l'export : passer de 200 à 20 pages réduit nettement le poids."
+        }
+      ],
+      "extractPages": [
+        {
+          "q": "Les pages extraites peuvent-elles être réordonnées ?",
+          "a": "Elles gardent leur ordre d'origine. Pour une autre séquence, faites passer le résultat par l'éditeur de pages."
+        },
+        {
+          "q": "Le texte reste-t-il sélectionnable dans les pages extraites ?",
+          "a": "Oui. Les pages sont copiées et non réaffichées : texte, polices et annotations sont préservés."
+        }
+      ],
+      "crop": [
+        {
+          "q": "La zone recadrée disparaît-elle vraiment ?",
+          "a": "Elle n'est plus imprimée ni affichée, car le cadre visible de la page est resserré. Le contenu sous-jacent n'est pas réécrit, d'où une taille de fichier presque inchangée."
+        },
+        {
+          "q": "Puis-je recadrer différemment chaque page ?",
+          "a": "Oui. Appliquez un cadre à tout le document, ou passez aux pages sélectionnées pour que chacune garde son propre cadrage."
+        }
+      ],
+      "edit": [
+        {
+          "q": "Puis-je ajouter plusieurs signatures ?",
+          "a": "Oui. Dessinez ou saisissez une signature une fois, puis placez-la sur autant de pages que nécessaire."
+        },
+        {
+          "q": "Le texte existant est-il modifiable ?",
+          "a": "Non. Les ajouts se superposent à la page : le texte d'origine ne peut être ni sélectionné ni réécrit ; masquez-le avec un bloc blanc s'il doit disparaître."
+        }
+      ],
+      "pdfToImage": [
+        {
+          "q": "Quel DPI choisir ?",
+          "a": "150 pour les écrans et le chat, 200 pour les présentations, 300 pour l'impression ou l'OCR. Plus la valeur est élevée, plus l'image est nette et le fichier lourd."
+        },
+        {
+          "q": "Puis-je convertir seulement certaines pages ?",
+          "a": "Oui. Exportez toutes les pages ou seulement celles sélectionnées, en téléchargements individuels ou en un seul ZIP."
+        }
+      ],
+      "imageToPdf": [
+        {
+          "q": "Les images sont-elles recompressées ?",
+          "a": "Elles sont intégrées sans seconde compression : les photos nettes le restent et le PDF grossit d'autant, c'est normal."
+        },
+        {
+          "q": "Un PDF peut-il mélanger plusieurs formats de page ?",
+          "a": "Le format choisi s'applique à tout le lot. Pour des formats mixtes, créez deux PDF puis fusionnez-les : chaque page garde sa taille."
+        }
+      ]
     }
   }
 }

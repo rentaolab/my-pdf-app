@@ -2,11 +2,14 @@ import { useTranslations } from "next-intl";
 
 /**
  * Per-tool content block: a unique intro paragraph, a three-step "how it works"
- * list, three concrete use cases and the local-processing promise.
+ * list, three concrete use cases, a "when to use it" paragraph that states the
+ * tool's limits, and the local-processing promise.
  *
  * This is what turns the tool pages from thin pages (h1 + one line) into pages
- * with unique, indexable prose — roughly 120–160 words per page per locale,
- * with only a handful of tool-specific strings to maintain.
+ * with unique, indexable prose — the tool copy carries roughly 220 words per
+ * page per locale, and the shared FAQ block adds another ~60 on top of that.
+ * The extra Q&A pairs in `Faq.toolExtra` are rendered by `ToolPageShell` and
+ * feed the FAQPage JSON-LD from the same array.
  */
 export default function ToolContent({ toolKey }: { toolKey: string }) {
   const t = useTranslations("ToolContent");
@@ -43,6 +46,11 @@ export default function ToolContent({ toolKey }: { toolKey: string }) {
             ))}
           </ul>
         </div>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+        <h2 className="text-sm font-bold text-slate-900">{t("detailHeading")}</h2>
+        <p className="mt-3 max-w-3xl text-xs leading-relaxed text-slate-600">{t(`detail.${toolKey}`)}</p>
       </div>
 
       <p className="max-w-3xl border-t border-slate-100 pt-4 text-xs leading-relaxed text-slate-500">{t("privacy")}</p>
