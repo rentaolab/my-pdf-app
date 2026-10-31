@@ -121,8 +121,8 @@ PDF 编辑/整理/转换 · 图片处理 · 音频处理（会议录音、格式
 | fr | Petites tâches de bureau, réglées. | ✅ |
 | es | Tareas de oficina, resueltas. | ✅ |
 | pt | Tarefas de escritório, resolvidas. | ✅ |
-| ms | Kerja-kerja kecil pejabat, serahkan pada Reeff | ⚠️ **建议母语校对** |
-| hi | दफ़्तर के छोटे-मोटे काम, Reeff को सौंपें | ⚠️ **建议母语校对** |
+| ms | Kerja-kerja kecil di pejabat, serahkan kepada Reeff | ✅ 2026-10-31 校对（补 `di`，`pada` → `kepada`） |
+| hi | दफ़्तर के छोटे-मोटे काम, Reeff को सौंपें | ✅ 2026-10-31 校对（措辞无需改动） |
 
 ---
 
@@ -144,7 +144,8 @@ PDF 编辑/整理/转换 · 图片处理 · 音频处理（会议录音、格式
 
 ## 10. 待办
 
-- [ ] `hi` / `ms` 品牌口号的母语校对
+- [x] `hi` / `ms` 品牌口号的母语校对 —— 2026-10-31 与全站 hi/ms 文案一并过了一遍
+      （见 `docs/launch-verification.md` §7 记录）；仍建议上线后请母语者抽检 FAQ 长尾段落。
 - [ ] 根域 522 修复 + v0 上线（独立 repo / 独立 Vercel 项目）
 - [ ] 定价页文案（按需付费的具体档位与额度）在 Phase 2 与免费/付费矩阵一起定
 - [x] 工具页补齐徽章（🟢/🔵）—— 已上线 🟢 `Runs locally`（11 个工具全部本机处理，`src/components/layout/ToolBadge.tsx`）；

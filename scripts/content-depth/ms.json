@@ -5,7 +5,7 @@
     "merge": "Gabung sesuai apabila maklumat memang terletak dalam fail berasingan dan patut disatukan: sekumpulan invois pembekal, bab yang dieksport satu demi satu, kontrak bersama lampirannya. Setiap halaman mengekalkan saiz asalnya, jadi A4 dan Letter boleh dicampur, tetapi cetakan akan kelihatan tidak seragam.",
     "split": "Pisah digunakan untuk menyerahkan sebahagian dokumen tanpa menunjukkan selebihnya: satu bab kepada penyemak, satu invois kepada jabatan kewangan, halaman bertandatangan kepada pihak lain. Titik pemisahan terletak antara halaman, jadi jika sesuatu bahagian bermula di tengah halaman, potong dahulu kemudian pisahkan hasilnya.",
     "rotate": "Putar ialah alat pembaikan: ia menukar orientasi dan tidak lebih daripada itu. Helaian yang diimbas terbalik, foto borang yang disimpan melintang, jadual landskap dalam laporan potret. Hanya penanda putaran direkodkan, jadi teks masih boleh dipilih dan saiz fail tidak berubah.",
-    "reorderPages": "Editor halaman menyusun semula dokumen yang anda sudah ada: setiap halaman muncul sebagai lakaran kecil, jadi imbasan yang tertinggal atau berulang mudah dikesan. Ia bekerja pada satu fail pada satu masa; apabila halaman datang daripada beberapa dokumen, gunakan susun atau gabung.",
+    "reorderPages": "Editor halaman menyusun semula dokumen yang anda sudah ada: setiap halaman muncul sebagai pratonton kecil, jadi imbasan yang tertinggal atau berulang mudah dikesan. Ia bekerja pada satu fail pada satu masa; apabila halaman datang daripada beberapa dokumen, gunakan susun atau gabung.",
     "deletePages": "Padam sesuai apabila dokumen hampir betul tetapi membawa halaman yang tidak sepatutnya ikut: belakang kosong, sebut harga lama, muka depan dalaman. Tiada apa ditulis sehingga anda eksport, jadi pemadaman tersilap hanya berharga memuat semula fail.",
     "extractPages": "Ekstrak ialah kebalikan padam: daripada membuang halaman, anda hanya menyimpan yang dinamakan. Keluarkan satu invois daripada penyata, lampiran daripada kontrak, satu bab daripada manual, sama ada sebagai satu PDF baharu atau ZIP dengan satu fail bagi setiap halaman.",
     "crop": "Potong menyempitkan kawasan yang kelihatan tanpa menulis semula halaman, jadi teks dalam bingkai masih boleh dipilih. Ia penyelesaian jujur untuk bingkai hitam pengimbas, slaid yang dieksport terlalu lebar atau pengepala pelayar yang terlekat semasa cetak ke PDF; bahagian di luar bingkai disembunyikan, bukan dihapuskan, sebab itu saiz fail hampir tidak berubah.",
@@ -28,10 +28,10 @@
     ],
     "rotate": [
       { "q": "Bolehkah saya memutar satu halaman sahaja?", "a": "Boleh. Putaran direkodkan per halaman, jadi satu helaian yang senget boleh dibetulkan tanpa menyentuh yang lain." },
-      { "q": "Adakah memutar menjejaskan kualiti?", "a": "Tidak. Kandungan halaman tidak dirender semula, jadi resolusi, fon dan imej kekal sama sebelum dan selepas." }
+      { "q": "Adakah memutar menjejaskan kualiti?", "a": "Tidak. Kandungan halaman tidak dijana semula, jadi resolusi, fon dan imej kekal sama sebelum dan selepas." }
     ],
     "reorderPages": [
-      { "q": "Adakah ia berfungsi untuk dokumen sangat panjang?", "a": "Lakaran kecil dirender dalam pelayar, jadi fail beratus-ratus halaman mengambil sedikit masa untuk dipenuhi, paling ketara pada telefon." },
+      { "q": "Adakah ia berfungsi untuk dokumen sangat panjang?", "a": "Pratonton kecil dijana dalam pelayar, jadi fail beratus-ratus halaman mengambil sedikit masa untuk dipenuhi, paling ketara pada telefon." },
       { "q": "Bolehkah saya memutar halaman semasa menyusun semula?", "a": "Boleh. Putaran direkodkan per halaman, jadi imbasan yang senget boleh dibetulkan tanpa menjejaskan yang lain." }
     ],
     "deletePages": [
@@ -40,7 +40,7 @@
     ],
     "extractPages": [
       { "q": "Bolehkah halaman yang diekstrak disusun semula?", "a": "Ia mengekalkan urutan asal. Jika perlu urutan lain, jalankan hasilnya melalui editor halaman selepas itu." },
-      { "q": "Adakah teks masih boleh dipilih dalam halaman yang diekstrak?", "a": "Ya. Halaman disalin dan bukan dirender semula, jadi teks, fon dan anotasi kekal utuh." }
+      { "q": "Adakah teks masih boleh dipilih dalam halaman yang diekstrak?", "a": "Ya. Halaman disalin dan bukan dijana semula, jadi teks, fon dan anotasi kekal utuh." }
     ],
     "crop": [
       { "q": "Adakah bahagian yang dipotong benar-benar hilang?", "a": "Ia tidak lagi dicetak dan tidak lagi dipaparkan kerana kotak halaman yang kelihatan menyempit. Kandungan di bawahnya tidak ditulis semula, sebab itu saiz fail hampir tidak berubah." },
