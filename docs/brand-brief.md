@@ -147,4 +147,5 @@ PDF 编辑/整理/转换 · 图片处理 · 音频处理（会议录音、格式
 - [ ] `hi` / `ms` 品牌口号的母语校对
 - [ ] 根域 522 修复 + v0 上线（独立 repo / 独立 Vercel 项目）
 - [ ] 定价页文案（按需付费的具体档位与额度）在 Phase 2 与免费/付费矩阵一起定
-- [ ] 工具页补齐徽章（🟢/🔵）—— 与 Phase 1 的逐页 metadata 一起做
+- [x] 工具页补齐徽章（🟢/🔵）—— 已上线 🟢 `Runs locally`（11 个工具全部本机处理，`src/components/layout/ToolBadge.tsx`）；
+  `how-it-works` 页附徽章说明。🔵 `Needs internet` 的文案与样式已就位，等第一个联网功能落地再启用。

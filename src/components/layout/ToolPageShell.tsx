@@ -3,6 +3,7 @@ import AdSlot from "@/components/ads/AdSlot";
 import Navbar from "@/components/layout/Navbar";
 import RelatedTools from "@/components/layout/RelatedTools";
 import SiteFooter from "@/components/layout/SiteFooter";
+import ToolBadge from "@/components/layout/ToolBadge";
 import ToolContent from "@/components/layout/ToolContent";
 import { Link } from "@/i18n/navigation";
 import { PDF_WORKER_PATH } from "@/lib/pdf-worker-path";
@@ -106,6 +107,11 @@ export default function ToolPageShell({
           <div>
             <h1 className="text-xl font-bold text-slate-900">{title}</h1>
             <p className="text-xs text-slate-500 mt-0.5">{t(`${toolKey}.description`)}</p>
+            {/* Trust badge (see `docs/brand-brief.md` §7) — all 11 tools process
+                in the browser, so the label is the same on every page. */}
+            <div className="mt-1.5">
+              <ToolBadge />
+            </div>
           </div>
         </div>
 
