@@ -27,6 +27,24 @@
 | `src/proxy.ts` | 保留给 `next dev`；注释说明生产由 Pages Function 负责 |
 | `package.json` | 移除 `start`（静态导出无法 `next start`），新增 `preview` |
 
+### 1.1 `robots.txt` 与 Cloudflare 托管块（2026-11-12 实测）
+
+该 zone 开启了 **AI Crawl Control**，会在边缘给 `robots.txt` **前置**一段托管块，
+其中对 `Baiduspider`、`PetalBot` 是 `Disallow: /`。这份站点有完整的 `zh` 与 `ms`
+译文，被挡住的恰好是能给它们排名的搜索引擎。
+
+两点必须知道：
+
+- **代码改不了这一层。** `public/_routes.json` 的 `exclude` 含 `/*.txt`，
+  `/robots.txt` 根本不进 `functions/_middleware.ts`；即便把 `/*.txt` 移出 exclude，
+  托管块仍是前置注入，会与 `out/robots.txt` 的 `Allow` 合并 —— `Disallow` 胜。
+- **唯一的开关在 Cloudflare Dashboard**：该 zone → AI Crawl Control →
+  关闭 Managed robots.txt。关闭后本仓库的 `src/app/robots.ts` 已经是期望策略
+  （`Baiduspider`/`PetalBot` allow，AI 训练爬虫 disallow），无需再改代码。
+
+验证：`curl -s https://pdf.reeff.app/robots.txt | head -5` 不应再出现
+`# BEGIN Cloudflare Managed content`，且 `Baiduspider` 后跟 `Allow: /`。
+
 ## 2. 本地命令
 
 ```bash

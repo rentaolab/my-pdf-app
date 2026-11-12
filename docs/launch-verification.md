@@ -103,7 +103,10 @@ npm run check:messages   # 字典：10 语言键位、长度预算、FAQ/useCase
                          # 以及 use client 里的 useTranslations 是否都在 CLIENT_NAMESPACES
 npm run check:seo        # 产物：title/description/canonical/hreflang/og/JSON-LD/单一 h1/
                          # sitemap 每条 URL 都有 HTML
-npm run check            # 两者串跑（需要先 build 出 out/）
+npm run check:paths      # 源码：functions/_middleware.ts 的 LEGACY_PATHS 必须等于
+                         # src/lib/seo.ts 的 TOOLS + LEGAL_PATHS；漏一项 = 该工具的无前缀
+                         # URL 永久 404（13 条那次就漏了 /compress-pdf）
+npm run check            # 三者串跑（check:seo 需要先 build 出 out/；check:paths 只读源码）
 npm run check:deploy     # 线上：out/ 与 pdf.reeff.app 逐页比对（sitemap 集合与 lastmod、
                          # 每页 h1 / FAQ dt / 首页工具链接），见 deploy-cloudflare.md §8.1
 ```

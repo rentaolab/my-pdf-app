@@ -114,6 +114,7 @@ const LEGACY_PATHS = new Set([
   "/edit-pdf",
   "/pdf-to-image",
   "/image-to-pdf",
+  "/compress-pdf",
   "/privacy",
   "/terms",
 ]);
