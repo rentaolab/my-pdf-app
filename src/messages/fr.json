@@ -1116,6 +1116,25 @@
         }
       ]
     },
+    "contact": {
+      "title": "Contact",
+      "description": "Comment écrire à Reeff.PDF pour signaler un bug, poser une question ou demander un outil, et quoi joindre pour qu'une seule réponse suffise.",
+      "intro": "Reeff.PDF est un petit projet indépendant. Il n'y a ni portail d'assistance ni file de tickets : le message arrive à la personne qui écrit les outils et reçoit en général une réponse sous deux jours ouvrés.",
+      "sections": [
+        {
+          "heading": "Signaler un bug",
+          "body": "Indiquez l'outil, le navigateur et sa version, et la nature du fichier — un scan, un export Word, un document avec formulaires. Si une page échoue, le nombre de pages et le fait que le texte soit sélectionnable ou non cernent la cause plus vite que le fichier lui-même. Ne joignez pas de document confidentiel ; une description suffit presque toujours."
+        },
+        {
+          "heading": "Demander un outil",
+          "body": "Décrivez ce que vous cherchiez à faire et ce que vous avez utilisé à la place. L'étape qui a bloqué — celle qui vous a fait chercher un autre outil — en dit plus long que le nom d'une fonction."
+        },
+        {
+          "heading": "Ce que le site conserve",
+          "body": "Les fichiers ne sont jamais envoyés, il n'y a donc rien à supprimer ni à remettre de notre côté. Le reste figure dans la politique de confidentialité : statistiques agrégées et ce qu'un réseau publicitaire reçoit sur les pages qui affichent des annonces."
+        }
+      ]
+    },
     "contactLabel": "Une question, un bug à signaler, un outil qui vous manque ? Écrivez-nous :"
   },
   "Badges": {

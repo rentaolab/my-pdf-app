@@ -1116,6 +1116,25 @@
         }
       ]
     },
+    "contact": {
+      "title": "Contato",
+      "description": "Como falar com o Reeff.PDF para relatar um erro, tirar uma dúvida ou pedir uma ferramenta, e o que incluir para resolver tudo em uma resposta.",
+      "intro": "O Reeff.PDF é um projeto independente e pequeno. Não há portal de suporte nem fila de chamados: o e-mail chega à pessoa que programa as ferramentas e costuma ser respondido em dois dias úteis.",
+      "sections": [
+        {
+          "heading": "Relatar um erro",
+          "body": "Diga qual ferramenta, qual navegador e versão, e o que era o arquivo — um digitalizado, uma exportação do Word, um documento com formulários. Se uma página falha, o número de páginas e se o texto pode ser selecionado ajudam a isolar a causa mais rápido do que o próprio arquivo. Não anexe documentos confidenciais; a descrição quase sempre basta."
+        },
+        {
+          "heading": "Pedir uma ferramenta",
+          "body": "Conte o que você tentava fazer e o que usou no lugar. O passo em que travou — o que fez você procurar outra ferramenta — diz mais sobre onde faltam recursos do que o nome de um recurso."
+        },
+        {
+          "heading": "O que o site armazena",
+          "body": "Os arquivos nunca são enviados, então não há nada do nosso lado para apagar ou entregar. O restante está na política de privacidade: análise agregada e o que uma rede de anúncios recebe nas páginas em que há anúncios."
+        }
+      ]
+    },
     "contactLabel": "Dúvidas, um erro a comunicar ou uma ferramenta que gostaria de ter? Escreva-nos:"
   },
   "Badges": {

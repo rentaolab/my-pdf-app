@@ -64,7 +64,7 @@ const MIN_EXTRA_FAQ = 2;
  * with the tool pages. The section/step counts are fixed per page so a locale
  * cannot silently ship a structurally shorter page than the English reference.
  */
-const INFO_SECTIONS = { about: 4, howItWorks: 3 };
+const INFO_SECTIONS = { about: 4, howItWorks: 3, contact: 3 };
 const INFO_STEPS = { howItWorks: 3 };
 const MIN_INFO_BODY = 120;
 const BADGE_KEYS = [

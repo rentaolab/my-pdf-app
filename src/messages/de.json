@@ -1116,6 +1116,25 @@
         }
       ]
     },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Wie Sie Reeff.PDF einen Fehler, eine Frage oder einen Werkzeugwunsch schicken, und was Sie mitschicken sollten, damit eine Antwort reicht.",
+      "intro": "Reeff.PDF ist ein kleines unabhängiges Projekt. Es gibt kein Supportportal und keine Ticket-Warteschlange: Die Mail erreicht die Person, die die Werkzeuge schreibt, und wird meist innerhalb von zwei Werktagen beantwortet.",
+      "sections": [
+        {
+          "heading": "Einen Fehler melden",
+          "body": "Nennen Sie das Werkzeug, den Browser samt Version und die Art der Datei — Scan, Export aus Word, Dokument mit Formularfeldern. Wenn eine Seite scheitert, grenzen Seitenzahl und die Frage, ob sich Text markieren lässt, die Ursache schneller ein als die Datei selbst. Bitte hängen Sie keine vertraulichen Dokumente an; eine Beschreibung genügt fast immer."
+        },
+        {
+          "heading": "Ein Werkzeug wünschen",
+          "body": "Beschreiben Sie, was Sie vorhatten und was Sie stattdessen benutzt haben. Der Schritt, an dem es hakte — der, der Sie zu einem anderen Werkzeug geführt hat — sagt mehr als der Name einer Funktion."
+        },
+        {
+          "heading": "Was die Seite speichert",
+          "body": "Dateien werden nie hochgeladen, es gibt also bei uns nichts zu löschen oder herauszugeben. Alles Weitere steht in der Datenschutzerklärung: zusammengefasste Statistik und das, was ein Werbenetzwerk auf Seiten mit Anzeigen erhält."
+        }
+      ]
+    },
     "contactLabel": "Fragen, ein Fehlerbericht oder ein Werkzeug, das Ihnen fehlt? Schreiben Sie uns:"
   },
   "Badges": {

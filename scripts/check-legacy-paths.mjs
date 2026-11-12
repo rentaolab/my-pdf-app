@@ -57,22 +57,25 @@ const toolsBlock = seo.match(/export const TOOLS = \[([\s\S]*?)\] as const;/);
 if (!toolsBlock) fail(`${SEO}: could not locate \`TOOLS\``);
 const toolPaths = toolsBlock ? [...toolsBlock[1].matchAll(/path:\s*["']([^"']+)["']/g)].map(([, value]) => value) : null;
 
+const infoPaths = quoted(seo, /export const INFO_PATHS = \[([\s\S]*?)\] as const;/, `${SEO}: \`INFO_PATHS\``);
 const legalPaths = quoted(seo, /export const LEGAL_PATHS = \[([\s\S]*?)\] as const;/, `${SEO}: \`LEGAL_PATHS\``);
 const legacyPaths = quoted(middleware, /const LEGACY_PATHS = new Set\(\[([\s\S]*?)\]\);/, `${MIDDLEWARE}: \`LEGACY_PATHS\``);
 
-if (toolPaths && legalPaths && legacyPaths) {
-  const expected = new Set([...toolPaths, ...legalPaths]);
+if (toolPaths && infoPaths && legalPaths && legacyPaths) {
+  const expected = new Set([...toolPaths, ...infoPaths, ...legalPaths]);
   const actual = new Set(legacyPaths);
 
   for (const entry of expected) {
     if (!actual.has(entry)) fail(`${MIDDLEWARE}: \`LEGACY_PATHS\` is missing "${entry}" — ${entry} would 404 instead of 301 to /en${entry}`);
   }
   for (const entry of actual) {
-    if (!expected.has(entry)) fail(`${MIDDLEWARE}: \`LEGACY_PATHS\` has "${entry}", which is not a tool or legal path in ${SEO}`);
+    if (!expected.has(entry)) fail(`${MIDDLEWARE}: \`LEGACY_PATHS\` has "${entry}", which is not a tool, info or legal path in ${SEO}`);
   }
 
   if (problems.length === 0) {
-    console.log(`  ${expected.size} legacy path(s) match ${SEO} (${toolPaths.length} tools + ${legalPaths.length} legal).`);
+    console.log(
+      `  ${expected.size} legacy path(s) match ${SEO} (${toolPaths.length} tools + ${infoPaths.length} info + ${legalPaths.length} legal).`,
+    );
   }
 }
 

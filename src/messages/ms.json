@@ -1116,6 +1116,25 @@
         }
       ]
     },
+    "contact": {
+      "title": "Hubungi",
+      "description": "Cara menghubungi Reeff.PDF untuk laporan pepijat, soalan atau permintaan alat, dan apa yang perlu disertakan supaya cukup satu balasan.",
+      "intro": "Reeff.PDF ialah projek peribadi yang kecil. Tiada portal sokongan dan tiada baris gilir tiket: e-mel sampai terus kepada orang yang membina alat ini, dan lazimnya dibalas dalam dua hari bekerja.",
+      "sections": [
+        {
+          "heading": "Melaporkan pepijat",
+          "body": "Nyatakan alat mana, pelayar dan versinya, serta jenis fail — imbasan, eksport daripada Word, atau dokumen berborang. Jika satu halaman gagal, bilangan halaman dan sama ada teks boleh dipilih lebih cepat menyempitkan punca daripada fail itu sendiri. Sila jangan lampirkan dokumen sulit; penerangan sahaja hampir selalu memadai."
+        },
+        {
+          "heading": "Meminta alat baharu",
+          "body": "Terangkan apa yang anda cuba lakukan dan apa yang anda gunakan sebagai ganti. Langkah yang tersekat — bahagian yang membuat anda mencari alat lain — lebih berguna daripada nama ciri, dan lebih menunjukkan di mana jurangnya."
+        },
+        {
+          "heading": "Apa yang disimpan oleh laman",
+          "body": "Fail tidak pernah dimuat naik, jadi tiada apa-apa di pihak kami untuk dipadam atau diserahkan. Selebihnya ada dalam dasar privasi: analitik agregat, dan apa yang diterima oleh rangkaian pengiklanan pada halaman yang memaparkan iklan."
+        }
+      ]
+    },
     "contactLabel": "Ada soalan, pepijat untuk dilaporkan, atau alat yang anda mahukan? Tulis kepada kami:"
   },
   "Badges": {

@@ -121,13 +121,28 @@ for (const file of files) {
 }
 
 // Sitemap sanity: every URL it advertises must exist as a file, and the count
-// must match 10 locales × (home + 12 tools + about + how-it-works + privacy +
-// terms).
+// must match 10 locales × every path `src/lib/seo.ts` sitemaps (home + tools +
+// info + legal). The page count is read from that file instead of being
+// hard-coded, so adding a page cannot silently leave this warning behind.
+const SITEMAP_PAGE_COUNT = (() => {
+  const source = readFileSync(join(ROOT, "src", "lib", "seo.ts"), "utf8");
+  const block = (name) => source.match(new RegExp(`export const ${name} = \\[([\\s\\S]*?)\\] as const;`));
+  const quotedCount = (name) => {
+    const match = block(name);
+    return match ? [...match[1].matchAll(/["']([^"']+)["']/g)].length : 0;
+  };
+  const tools = block("TOOLS");
+  const toolCount = tools ? [...tools[1].matchAll(/path:\s*["']([^"']+)["']/g)].length : 0;
+  return 1 + toolCount + quotedCount("INFO_PATHS") + quotedCount("LEGAL_PATHS");
+})();
+
 try {
   const sitemap = readFileSync(join(OUT_DIR, "sitemap.xml"), "utf8");
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
-  if (urls.length !== LOCALES.length * 17) {
-    warnings.push(`sitemap.xml has ${urls.length} URLs (expected ${LOCALES.length * 17})`);
+  if (urls.length !== LOCALES.length * SITEMAP_PAGE_COUNT) {
+    warnings.push(
+      `sitemap.xml has ${urls.length} URLs (expected ${LOCALES.length * SITEMAP_PAGE_COUNT})`,
+    );
   }
   for (const url of urls) {
     const route = url.slice(SITE_URL.length) || "/";

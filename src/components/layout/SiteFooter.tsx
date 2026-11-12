@@ -8,9 +8,9 @@ import { Link } from "@/i18n/navigation";
  * ad networks require the privacy policy to be reachable from the pages that
  * show ads, and because the home page is one click away from every tool.
  *
- * `/about` and `/how-it-works` are linked from the same row on purpose: every
- * page renders this footer, so they are the only two content pages that get an
- * inbound link from all 160 URLs.
+ * `/about`, `/how-it-works` and `/contact` are linked from the same row on
+ * purpose: every page renders this footer, so they are the only content pages
+ * that get an inbound link from every URL in the export.
  */
 export default async function SiteFooter() {
   const t = await getTranslations();
@@ -24,6 +24,10 @@ export default async function SiteFooter() {
         <span aria-hidden="true">·</span>
         <Link href="/how-it-works" className="hover:text-red-600 transition-colors">
           {t("InfoPages.howItWorks.title")}
+        </Link>
+        <span aria-hidden="true">·</span>
+        <Link href="/contact" className="hover:text-red-600 transition-colors">
+          {t("InfoPages.contact.title")}
         </Link>
         <span aria-hidden="true">·</span>
         <Link href="/privacy" className="hover:text-red-600 transition-colors">

@@ -4,12 +4,13 @@ import Navbar from "@/components/layout/Navbar";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from "@/lib/seo";
 
-export type InfoPageKey = "about" | "howItWorks";
+export type InfoPageKey = "about" | "howItWorks" | "contact";
 
 /** Locale-free path per page key; the `Link` wrapper adds the locale prefix. */
 const PATHS: Record<InfoPageKey, string> = {
   about: "/about",
   howItWorks: "/how-it-works",
+  contact: "/contact",
 };
 
 type Block = { heading: string; body: string };
@@ -50,7 +51,9 @@ export default async function InfoPageShell({ pageKey }: { pageKey: InfoPageKey 
   const sections = t.raw("sections") as Block[];
   const steps = t.has("steps") ? (t.raw("steps") as Step[]) : [];
   const path = PATHS[pageKey];
-  const otherKey: InfoPageKey = pageKey === "about" ? "howItWorks" : "about";
+  // Every info page links to the others, so the three pages form a small closed
+  // cluster instead of each dead-ending at the footer.
+  const otherKeys = (Object.keys(PATHS) as InfoPageKey[]).filter((key) => key !== pageKey);
 
   const breadcrumb = {
     "@context": "https://schema.org",
@@ -142,12 +145,17 @@ export default async function InfoPageShell({ pageKey }: { pageKey: InfoPageKey 
                 {CONTACT_EMAIL}
               </a>
             </p>
-            <Link
-              href={PATHS[otherKey]}
-              className="text-xs font-bold text-slate-600 hover:text-red-600 transition-colors"
-            >
-              {pages(`${otherKey}.title`)} →
-            </Link>
+            <span className="flex flex-wrap items-center gap-3">
+              {otherKeys.map((key) => (
+                <Link
+                  key={key}
+                  href={PATHS[key]}
+                  className="text-xs font-bold text-slate-600 hover:text-red-600 transition-colors"
+                >
+                  {pages(`${key}.title`)} →
+                </Link>
+              ))}
+            </span>
           </div>
         </article>
       </main>

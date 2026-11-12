@@ -104,16 +104,21 @@ npm run check:messages   # 字典：10 语言键位、长度预算、FAQ/useCase
 npm run check:seo        # 产物：title/description/canonical/hreflang/og/JSON-LD/单一 h1/
                          # sitemap 每条 URL 都有 HTML
 npm run check:paths      # 源码：functions/_middleware.ts 的 LEGACY_PATHS 必须等于
-                         # src/lib/seo.ts 的 TOOLS + LEGAL_PATHS；漏一项 = 该工具的无前缀
-                         # URL 永久 404（13 条那次就漏了 /compress-pdf）
-npm run check            # 三者串跑（check:seo 需要先 build 出 out/；check:paths 只读源码）
+                         # src/lib/seo.ts 的 TOOLS + INFO_PATHS + LEGAL_PATHS；
+                         # 漏一项 = 该页的无前缀 URL 永久 404（13 条那次漏了 /compress-pdf，
+                         # 17 条这次补齐了 /about、/how-it-works、/contact）
+npm run check:content    # 产物：每个工具页 ≥480 词（去 nav/footer/script），且任意两页
+                         # 同语言 5-gram 重叠 <33%。AdSense「低价值内容」整改的防退化闸门
+npm run check            # 四者串跑（check:seo / check:content 需要先 build 出 out/；
+                         # check:paths 只读源码）
 npm run check:deploy     # 线上：out/ 与 pdf.reeff.app 逐页比对（sitemap 集合与 lastmod、
                          # 每页 h1 / FAQ dt / 首页工具链接），见 deploy-cloudflare.md §8.1
+npm run check:ads:live -- --off   # 线上：审核期断言全站零广告位（0 slots / 0 adsbygoogle）
 ```
 
-新增页面或工具时，本节无需改动；但 sitemap 页数期望在
-`scripts/check-seo.mjs` 里是 `LOCALES.length * 17`（10 × 17 = 170），新增路由要同步改这个数字，
-否则会以「sitemap 广告了不存在的 HTML」或「URL 数不符」报出。
+新增页面或工具时，本节无需改动：sitemap 页数期望由 `scripts/check-seo.mjs` 从
+`src/lib/seo.ts` 的 `TOOLS` / `INFO_PATHS` / `LEGAL_PATHS` 现算（当前 1 + 12 + 3 + 2 = 18，
+即 10 × 18 = 180），不再有需要手改的魔法数字。
 
 ## 6. 本次上线实测（2026-10-31，commit `b8dfb19`）
 

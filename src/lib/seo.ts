@@ -34,11 +34,13 @@ export const TOOLS = [
 export const PAGE_PATHS: string[] = ["", ...TOOLS.map((tool) => tool.path)];
 
 /**
- * Standalone content pages (`/about`, `/how-it-works`). They are self-canonical
- * and localized like everything else, and they give the footer — which every
- * page renders — a second internal link target besides the legal pages.
+ * Standalone content pages (`/about`, `/how-it-works`, `/contact`). They are
+ * self-canonical and localized like everything else, and they give the footer —
+ * which every page renders — a second internal link target besides the legal
+ * pages. `/contact` also satisfies the reachable-contact-address expectation
+ * ad reviewers apply to a site that carries ads.
  */
-export const INFO_PATHS = ["/about", "/how-it-works"] as const;
+export const INFO_PATHS = ["/about", "/how-it-works", "/contact"] as const;
 
 /**
  * Legal pages. They are localized like everything else (so hreflang and the

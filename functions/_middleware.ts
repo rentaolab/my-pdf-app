@@ -100,7 +100,11 @@ const UNLOCALIZED_PATHS = ["/404", "/_not-found"] as const;
  * without a locale prefix. Only these get a 301; unknown paths fall through to
  * a real 404 instead of a redirect that dead-ends one hop later.
  *
- * Keep in sync with `PAGE_PATHS` + `LEGAL_PATHS` in `src/lib/seo.ts`.
+ * Keep in sync with `PAGE_PATHS` + `INFO_PATHS` + `LEGAL_PATHS` in
+ * `src/lib/seo.ts`. The info pages were missing until now, which meant
+ * `/about`, `/how-it-works` and `/contact` answered 404 on the bare path while
+ * every tool and legal page redirected — `scripts/check-legacy-paths.mjs`
+ * enforces the three lists together so it cannot drift again.
  */
 const LEGACY_PATHS = new Set([
   "/organize-pdf",
@@ -115,6 +119,9 @@ const LEGACY_PATHS = new Set([
   "/pdf-to-image",
   "/image-to-pdf",
   "/compress-pdf",
+  "/about",
+  "/how-it-works",
+  "/contact",
   "/privacy",
   "/terms",
 ]);

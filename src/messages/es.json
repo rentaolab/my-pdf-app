@@ -1116,6 +1116,25 @@
         }
       ]
     },
+    "contact": {
+      "title": "Contacto",
+      "description": "Cómo escribir a Reeff.PDF con un error, una duda o una petición de herramienta, y qué conviene incluir para resolverlo en una sola respuesta.",
+      "intro": "Reeff.PDF es un proyecto independiente y pequeño. No hay portal de soporte ni cola de tickets: el correo llega a la persona que programa las herramientas y suele responderse en dos días laborables.",
+      "sections": [
+        {
+          "heading": "Informar de un error",
+          "body": "Indica qué herramienta, qué navegador y versión, y qué era el archivo: un escaneo, una exportación de Word, un documento con formularios. Si falla una página concreta, el número de páginas y si el texto se puede seleccionar acotan la causa más rápido que el propio archivo. No adjuntes documentos confidenciales; casi siempre basta con la descripción."
+        },
+        {
+          "heading": "Pedir una herramienta",
+          "body": "Cuenta qué intentabas hacer y qué usaste en su lugar. El paso que se atascó —el que te llevó a buscar otra herramienta— dice más que el nombre de una función sobre dónde faltan piezas."
+        },
+        {
+          "heading": "Qué guarda el sitio",
+          "body": "Los archivos nunca se suben, así que no hay nada que podamos borrar ni entregar. El resto está en la política de privacidad: analítica agregada y lo que recibe una red publicitaria en las páginas donde se muestran anuncios."
+        }
+      ]
+    },
     "contactLabel": "¿Dudas, un error que reportar o una herramienta que echas en falta? Escríbenos:"
   },
   "Badges": {

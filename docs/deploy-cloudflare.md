@@ -163,6 +163,25 @@ curl -sI https://staging.pdf.reeff.app/en | grep -i x-robots-tag   # noindex, no
 - [ ] 直接输入 `/de/rotate-pdf/`（带尾斜杠）→ 301 → 正常显示
 - [ ] 断网/慢网时不出现无限 loading（静态资源 404 监控）
 
+### 5.3 2026-11-12 AdSense「低价值内容」整改后的本地验收
+
+工具页正文加厚、`/contact` 上线、信息页无前缀 301 三件事同批复核。表中数值均取自本地
+`npm run build` 后的 `out/`（`check:content` / `check:seo` 的实测输出）。
+
+| 用例 | 结果 |
+|---|---|
+| `LEGACY_PATHS` 条数 | **17**（12 tools + 3 info + 2 legal）；此前 14 条，`/about` `/how-it-works` `/contact` 在线上是无前缀 **404** |
+| `check:paths` | ✅ 期望集为 `TOOLS + INFO_PATHS + LEGAL_PATHS`，与 `src/lib/seo.ts` 一致 |
+| sitemap | **180 URL**（10 语言 × 18 页：home + 12 tools + 3 info + 2 legal）；页数由 `check-seo.mjs` 从 `seo.ts` 现算，不再硬编码 |
+| 工具页正文词数（去 nav/footer/script） | **520–665 词**（整改前 385–529），最薄为 `en/split-pdf` |
+| 同语言跨页 5-gram 重叠 | **峰值 29.5%**（`crop-pdf` vs `edit-pdf`），均值 27.7%，66 对组合全部 <30%（整改前峰值 38.6%、`merge` vs `split` 35.2%） |
+| `check:content` 负向测试 | 阈值临时收到 700 词 / 20% → 78 条报错、退出码 1；恢复即全绿 |
+| `/en/contact` 产出 | title / canonical / 单个 h1 / 3 个 h2 / 11 个 hreflang（10 语言 + `x-default`）/ `mailto` 齐备 |
+| 页脚 | 每页含 `/contact` 链接，三个信息页在 `InfoPageShell` 底部互链 |
+| 线上广告位 | `npm run check:ads:live -- --off` → **170 页 / 0 slots / 0 adsbygoogle**（审核期应保持此状态） |
+
+
+
 ## 6. 已知差异与代价
 
 | 项 | Vercel（迁移前） | Cloudflare Pages（迁移后） |
